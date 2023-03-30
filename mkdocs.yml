@@ -1,0 +1,25 @@
+site_name: 'Omics course'
+
+theme:
+  name: material
+  language: en
+  features:
+    - content.tooltips
+    - navigation.instant
+    # - navigation.tabs
+
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - abbr
+  - pymdownx.keys
+  - pymdownx.snippets:
+      auto_append:
+        - includes/abbreviations.md
+  - pymdownx.tabbed:
+      alternate_style: true 
+
+extra_css:
+  - stylesheets/extra.css
