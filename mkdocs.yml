@@ -1,4 +1,4 @@
-site_name: 'Omics course'
+site_name: 'Mapping'
 
 theme:
   name: material
@@ -6,11 +6,15 @@ theme:
   features:
     - content.tooltips
     - navigation.instant
-    # - navigation.tabs
+    - navigation.tabs
+    - toc.integrate
+    - content.tabs.link
 
 
 markdown_extensions:
+  - attr_list
   - admonition
+  - footnotes
   - pymdownx.details
   - pymdownx.superfences
   - abbr
@@ -19,7 +23,23 @@ markdown_extensions:
       auto_append:
         - includes/abbreviations.md
   - pymdownx.tabbed:
-      alternate_style: true 
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true 
 
 extra_css:
   - stylesheets/extra.css
+
+# nav:
+#   - Home: index.md
+#   - Lab-protocols: lab-protocols
+#   - Bioinformatics: 
+#       - bioinformatics/intro-to-linux.md
+#       - bioinformatics/data.md
+#       - bioinformatics/basecalling.md
+#       - bioinformatics/mapping.md
+#       - bioinformatics/variant-calling.md
+#       - bioinformatics/tb-profiler.md
+#       - bioinformatics/phylogenetics.md
+#   - Extra-reading:
+#       - extra-reading/about_conda.md

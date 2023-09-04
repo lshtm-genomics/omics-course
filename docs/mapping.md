@@ -335,15 +335,23 @@ rm sample1_1P.fastq sample1_1U.fastq sample1_2P.fastq sample1_2U.fastq
 
 ## Viewing in IGV
 
-Launch IGV by running the command `igv` on a New Terminal. We first need to load the reference genome. To do this click on `Genomes -> Load Genome from File...`. Navigate to `~/data/tb` and select the `tb.fasta` file. You can also load the genes by clicking on `File -> Load from File...`, then selecting the `tb.gff` file. Finally you can load the bam file by clicking `File -> Load from File...` and selecting the bam file you wish to load, in our case it will be `sample1.bam`. 
+Launch IGV by running the command `igv` on a New Terminal and perform the following steps:
 
-There are three main boxes that represent the genomic data. 
+1. We first need to load the reference genome. To do this click on **Genomes -> Load Genome from File...**. Navigate to **~/data/tb** and select the **tb.fasta** file.
+2. You can also load the genes by clicking on **File -> Load from File...**, then selecting the **tb.gff** file. 
+3. Finally you can load the bam file by clicking **File -> Load from File...** and selecting the bam file you wish to load, in our case it will be **sample1.bam**. 
 
-The top box shows which region you are viewing.
+There is a lot going on on the screen so have a look at the image below which explains some of the most important features.
 
-The middle box shows the bam files you have loaded. For each bam file you load there will be two tracks which show the coverage and the actual read data. Nucleotides in the reads that differ from the reference will be coloured and every nucleotide on the reads should be grey. If you hover over the reads a popup will show some detials including the name of the read and where it aligns to on the reference. Hover over the coverage track a popup will show which position you are viewing as well as the count of each nucleotide at that position. Some reads will be a different colour and by defaul this represents reads which are outliers due to their insert size or orientation. You can change this by right clicking on the read track and selecting "Color alignment by" followed by one of the choices. If you have paired data and would like to visualise the paired information you can right click on the reads and select "View as pairs". You should then see the read pairs connected by a thin grey line.
+![](../img/mapping_3.jpg)
 
-The bottom box shows a representation of the reference sequence as well as the location of the genes. If you zoom in, you will eventually see the individual nucleotides of the reference sequence. You can also expand the gene view to see the translated protein sequence. To do this, right click on the gene trakc and select "expanded".
+1. Zoom controls: This controls the level of zoom. To see your alignments you will need to zoom in
+2. Search bar: Here you can specify the region you want to view using genomic coordinates in the form of Chromosome:start-end. You can also search by gene name.
+3. Coverage track: This displays when you have loaded a bam file and is a bargraph where each bar represents a genomic position and the high is determined by the number of reads aligning to that position. If you click on a bar it will open up a window telling you the number of ACTGs. 
+4. Alignment track: Each grey bar represents a read. If there are coloured nucleotides, black dashes or purple vertical lines it represents a difference from the reference. Have a look at [this document](https://software.broadinstitute.org/software/igv/AlignmentData) to find out more.
+5. Gene track: This shows the location and orientation of the genes. Click on a gene to find out more information.
+
+Additionally, you can see that the screenshot above has loaded more than one bam file. 
 
 ### Navigation in IGV
 
@@ -464,3 +472,15 @@ This concludes the Mapping practical. You should now be able to:
 3. Map reads to a reference genome using BWA
 
 Next up you will learn how to use the alignment you have generated to call variants. 
+
+
+
+
+```
+trimmomatic PE sample1_1.fastq.gz sample1_2.fastq.gz -baseout sample1.fastq LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:36
+bwa mem -R "@RG\tID:sample1\tSM:sample1\tPL:Illumina" ~/data/tb/tb.fasta sample1_1P.fastq sample1_2P.fastq | samtools view -b - | samtools sort -o sample1.bam -
+samtools index sample1.bam
+trimmomatic PE sample2_1.fastq.gz sample2_2.fastq.gz -baseout sample2.fastq LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:36
+bwa mem -R "@RG\tID:sample2\tSM:sample2\tPL:Illumina" ~/data/tb/tb.fasta sample2_1P.fastq sample2_2P.fastq | samtools view -b - | samtools sort -o sample2.bam -
+samtools index sample2.bam
+```
