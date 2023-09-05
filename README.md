@@ -32,7 +32,15 @@ mkdocs serve
 
 ### Adding new tutorials
 
-If you need add a new tutorial just create a new markdown file in /docs/. If you are running mkdocs serve your changes will automatically force the browser to refresh.
+If you need add a new tutorial just create a new markdown file in `docs/`. If you are running mkdocs serve your changes will automatically force the browser to refresh.
+
+If you make some changes then just use:
+
+```
+git add docs/new-tutorial.md
+git commit -am 'added new tutorial'
+git push
+```
 
 #### Images
 
@@ -89,3 +97,5 @@ Code can be inserted with the the triple backticks (without the backslash):
 some_command -a parameter1
 \```
 ```
+
+
