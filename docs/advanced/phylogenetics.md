@@ -50,7 +50,7 @@ In the matrix, we can spot ‘rare’ nucleotide substitutions present in one or
 
 Open your command-line terminal and navigate to the folder containing the **H1N1.flu.2009.fas** sequence file.
 ```
-cd ~/data/phylogenetics/`
+cd ~/data/phylogenetics/
 ```
 Run the following command (This may take a few minutes to complete):
 ```
@@ -230,9 +230,9 @@ We will finally reconstruct the migration pathways of these H1N1/09 strains.
 
 This approach was applied to the H1N1/09 phylogeny, using an asymmetric continuous-time Markov chain [5], as implemented in the program BEAST. The asymmetric model uses separate parameters for forward and reverse rates of movement between each pair of locations. The tree file we used for the molecular clock analysis (**H1N1.flu.2009.mol_clock.2.tre**) also contains the result of the inferred migration patterns.
 
-On the left hand side toolbar, pull down the `Node Labels` menu and under` Display`, select **Location**. The most likely location of the ancestral virus located at the nodes will appear.
+On the left hand side toolbar, pull down the **Node Labels** menu and under **Display**, select **Location**. The most likely location of the ancestral virus located at the nodes will appear.
 
-To` display` the posterior probability of the most likely node location, select **Location.prob** in the Display menu of the `Node Labels`.
+To display the posterior probability of the most likely node location, select **Location.prob** in the Display menu of the **Node Labels**.
 
 
 !!! Question
