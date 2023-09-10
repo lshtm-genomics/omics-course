@@ -31,7 +31,9 @@ extra_css:
   - stylesheets/extra.css
 
 nav:
-  - Home: index.md
+  - Home: 
+    - index.md
+    - connecting.md
   - Introduction: 
       - introduction/intro-to-linux.md
       - introduction/mapping.md
