@@ -33,7 +33,7 @@ igv
 
 We are going to check at positions 187,503 and 587,585 in the genome. To zoom into a position in the genome you have to input the location into the search bar in the format of **Chromosome:position** or **Chromosome:start-end** if you want to visualise a range. For example - to go to position 187,503 type in **Chromosome:187503** and hit ++enter++. You should see an image similar to the one below.
 
-![variants_2](./img/variants_2.png)
+![variants_2](../img/variants_2.png)
 
 !!! exercise
     
@@ -51,7 +51,7 @@ We are going to check at positions 187,503 and 587,585 in the genome. To zoom in
         You should be able to see that almost all the reads have a different nucleotide from the reference at potision **187,503** so we can conclude that we have a SNP here.
         For position **587,585** it is a bit more complicated. You might notice that we have both the reference and alternate alleles at this position. Further, it looks like all alternate alleles are located at the very end of reads and alsways in the reads going in the same direction. This is most likely an artefact of alignment and not a real variant.
 
-        ![variants_3](./img/variants_3.png)
+        ![variants_3](../img/variants_3.png)
 
 
 
@@ -205,7 +205,7 @@ In the menu bar, select **Load From File...** and select the VCF files in ~/data
 Then the SNPs should appear in the VCF track above the reads panel as shown below. On the other hand, sequencing errors are not called SNPs at those positions.
 Making use of search bar to visit the two regions we visited in Exercise 1 (containing positions 187,503 and 587,585 respectively). Remember that we were trying to distinguish real SNPs from sequencing errors. 
 
-![variants_4](./img/variants_4.png)
+![variants_4](../img/variants_4.png)
 
 !!! question "Exercise"
     The SNPs called from GATK can be examined in the same way. Try load the VCF files you generated with GATK and check if you get the same calls as with bcftools.
@@ -214,11 +214,11 @@ Zoom out to visualise more variants. Double-click on the reads panel to zoom in.
 
 Here is an insertion at 859,131 in sample2. Insertions are represented using purple strips on the reads. You can clck on the strip to find out what the sequence of the insertion is.
 
-![variants_5](./img/variants_5.png)
+![variants_5](../img/variants_5.png)
 
 Here is a deletion at position 485,810 in sample1, note that because of how the deletion is labelled in each case (IGV or VCF) they appear shifted in position. This is because the variant falls on top of a homopolymer run of As so we can place the deletion on any of them.
 
-![variants_6](./img/variants_6.png)
+![variants_6](../img/variants_6.png)
 
 
 ### Drug resistance in Mycobacterium tuberculosis
@@ -239,7 +239,7 @@ One area where polymorphisms are elevated in Mycobacterium tuberculosis is in ge
 
 Load the Annotation track and go to the rpoB (Rv0667) gene region, to do so in the left side information table where the Chromosome is listed click on the tab “Features” then at the bottom from the list Select filter by select “Name” (type ‘Rv0667’ in the Search Box) and try to spot one of the above SNPs in the gene.
 
-![variants_7](./img/variants_7.png)
+![variants_7](../img/variants_7.png)
     
 
 !!! question "Exercise"
@@ -252,7 +252,7 @@ Load the Annotation track and go to the rpoB (Rv0667) gene region, to do so in t
 
         Sample 2 has a SNP at position 761155. It changes the nucleotide from a C to a T. By looking at the table you can see that this leads to the mutation S450L which is the most prominant resistance mutation for rifampicin. 
 
-        ![variants_8](./img/variants_8.png)
+        ![variants_8](../img/variants_8.png)
 
 ## Large structural variant (SV) detection and calling
 
@@ -307,11 +307,11 @@ The software has two sequential steps. First, structural variants are predicted 
 Paired-end options include, like all PEM-based software, the insert size cut-off (-s). The minimum paired-end mapping quality (-q) has been set to 20, therefore all reads with mapping quality below this threshold will be discarded. Structural variants detected by PEM will be outputted to the file indicated with ‘-o’.
 The specification of the standard deviation units (-s) is probably the most important cut-off for PEM methods. A deletion is detected when the pair mapped distance exceeds the upper threshold defined as s times (s = 3) the standard deviation (σ) over the mean (μ + 3σ).
 
-![variants_9](./img/variants_9.jpg)
+![variants_9](../img/variants_9.jpg)
 
 Second, Delly makes use of soft-clipped information to find exact breakpoints. Read splitting approaches rely on mapping broken reads that span breakpoints and are located in nearby locations. The structural variant signature in this case consists of one of the reads mapping to the reference and its split mate mapping with one of its parts approximately one insert size away. For insertions, the broken read will have its splits parts adjacent to each other, with a missing middle part of the read. In both cases, breakpoints can be resolved with base-pair precision.
 
-![variants_10](./img/variants_10.jpg)
+![variants_10](../img/variants_10.jpg)
 
 Split-read options include the reference genome file name (-g), the output file name containing structural variants inferred by split-read method (-b) and other parameters.
 
@@ -351,7 +351,7 @@ In the tool bar, select Import features as if we were going to load an annotatio
 
 Find the region 77,823-84,798 and establish whether differences in the alignment can be visually identified between samples . Note: The coverage plot can also give you a clear insight.
 
-![variants_11](./img/variants_11.png)
+![variants_11](../img/variants_11.png)
 
 
 !!! question "Exercise"
