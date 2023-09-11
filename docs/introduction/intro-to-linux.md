@@ -48,7 +48,7 @@ Now that you have mastered using the terminal you can close the file explorer, t
 Change to the tb directory and have a look at the files. Hopefully you will be able to see the **tb.fasta** file. The file is just a very large text file which stores the sequence data of the M. tuberculosis reference genome. We can use `head` to take a look at the first few lines of a file. Let's try it: 
 
 ```
-cd ~/refgenome
+cd ~/data/tb
 ls
 head tb.fasta
 ```
