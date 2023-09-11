@@ -23,7 +23,7 @@ Rather than attempting to assemble these very short reads into a whole new genom
 
 Here is the general workflow of mapping:
 1. The paired end reads (F=forward; R=reverse) are mapped against the reference. Different tools can be used for that. The results can be transformed with <a href="https://github.com/samtools/samtools">samtools</a> to an ordered and indexed bam file.
-2. Those bam files can be read into programs like Artemis to visualize the alignments of the short sequences.
+2. Those bam files can be read into programs like IGV to visualize the alignments of the short sequences.
 3. From the bam file it is possible to call variants. The output format is BCF or VCF. VCF can be loaded easily into excel like tools.
 
 ![Mapping_2](../img/Mapping_2.jpg)
@@ -388,7 +388,7 @@ Next, read files (both forward/reverse) are mapped against the reference
 bwa mem ~/data/malaria/Pf3D7_05.fasta ~/data/malaria/IT.Chr5_1.fastq.gz ~/data/malaria/IT.Chr5_2.fastq.gz | samtools view -b - | samtools sort -o IT.Chr5.bam -
 ```
 
-The details of where each IT clone read has been mapped is now stored in the file IT.Chr5.bam. We are going to view the mapped reads in Artemis using Artemis BAM view. Before we can proceed, however, we must index the BAM file to allow programs suchh as Artemis quick access to different sections of the file. 
+The details of where each IT clone read has been mapped is now stored in the file IT.Chr5.bam. We are going to view the mapped reads in IGV. Before we can proceed, however, we must index the BAM file to allow programs suchh as IGV quick access to different sections of the file. 
 
 ```
 samtools index IT.Chr5.bam
@@ -402,9 +402,9 @@ samtools view IT.Chr5.bam | grep "IL39_6014:8:61:7451:18170"
 
 ![mapping_1](../img/Mapping_18.jpg)
 
-### Viewing the mapped reads in Artemis
+### Viewing the mapped reads in IGV
 
-We will now examine the read mapping in Artemis using the BAM view feature.
+We will now examine the read mapping in IGV using the BAM view feature.
 
 Launch IGV by running the command `igv` on a New Terminal. We first need to load the reference genome. To do this click on `Genomes -> Load Genome from File...`. Navigate to `~/data/malaria` and select the `Pf3D7_05.fasta` file. You can also load the genes by clicking on `File -> Load from File...`, then selecting the `Pf3D7_05.gff` file. Finally you can load the bam file by clicking `File -> Load from File...` and selecting the bam file you wish to load, in our case it will be `IT.Chr5.bam`. 
 
@@ -422,7 +422,7 @@ Zoom in and position the mouse over a read until a window pops up. This window p
 
 It is thought that a duplication in the mdr1 gene of P. falciparum is associated with drug resistance against the antimalarial mefloquine and that it may also modulate susceptibility to chloroquine, another antimalarial drug. For more information have a look in PubMed, e.g. at Borges et al. (2011) [PMID: 21709099] or at Mungthin et al. (2010) [PMID: 20449753] 
 
-Once Artemis has started running on your screen navigate to the mdr1 gene locus using the search bar.
+Once IGV has started running on your screen navigate to the mdr1 gene locus using the search bar.
 
 !!! question
     === "Question"
