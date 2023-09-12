@@ -63,6 +63,7 @@ This will generate 5 files which are needed for BWA. We will then align the RNA-
 
 ```
 bwa mem H37Rv.fa Mtb_L1_1.fastq.gz Mtb_L1_2.fastq.gz | samtools sort - -o Mapping_Mtb/Mtb_L1.bam
+samtools index Mapping_Mtb/Mtb_L1.bam
 ```
 The output will be located in the Mapping_Mtb folder, which is in the transcriptomics directory.
 
