@@ -39,7 +39,11 @@ You can find the M. tuberculosis H37Rv reference genome (called H37Rv.fa) as wel
 
 ### Running BWA
 
-To work with the command line of Linux, you will first need to open a terminal and go to the data and transcriptomics directory:
+To work with the command line of Linux, you will first need to open a terminal, activate the rnaseq conda environment, go to the data and transcriptomics directory:
+
+```
+conda activate rnaseq
+```
 
 ```
 cd ~/data/transcriptomics
