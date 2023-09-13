@@ -6,9 +6,6 @@ Bacterial vaginosis (BV) is a dysbiotic condition caused by excessive growth of 
 
 To get the latest version of the data for this practical please open up a terminal window and enter the following:
 
-```
-bash <(curl -Ssk https://tbdr.lshtm.ac.uk/static/microbiome_data.sh)  
-```
 
 For this practical we are considering 12 samples of vaginal swab that were taken at a polyclinic by a GP in a setting of high transmission of HIV. DNA was extracted from the swabs and amplified using primers specific for the first two hypervariable regions (V1 and V2) of the 16S rRNA gene (27F and 338R). These samples were then sequenced with MiSeq Illumina producing paired end data of 300 bp length per read. The 12 pairs of files generated are found in the data/microbiome/fastq/ directory. The patients’ phenotype was determined by the doctors at the time of sample collection with the following results:
 
