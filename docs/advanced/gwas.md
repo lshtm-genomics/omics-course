@@ -14,7 +14,7 @@ Software you will need for analysis
  * Statistical software for data analysis and graphing such as: R: http://cran.r-project.org/
  * BCFtools
 
-The data for this practical is in the `~/Module7` directory. Please navigate to this directory before running any commands. 
+The data for this practical is in the `~/data/gwas` directory. Please navigate to this directory before running any commands. 
 
 ## 1. Create BED files for analysis
 
