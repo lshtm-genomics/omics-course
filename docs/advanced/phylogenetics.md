@@ -1,4 +1,4 @@
-# Pylogenetics
+# Phylogenetics
 The study of evolutionary relationships among biological entities
 
 ## Objectives
