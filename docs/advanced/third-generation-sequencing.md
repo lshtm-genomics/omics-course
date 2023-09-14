@@ -81,17 +81,13 @@ Before continuing, quit firefox by clicking the X in the top right corner of the
     === "Question 1"
         Approximately how long did the sequencing run take?
     === "Answer 1"
-        1-5 hours
-    === "Answer 2"
         0.7 hours
 
 !!! question
     === "Question 2"
         What is the N50 of the passed reads (>Q7) for all basecalled reads in this run?
-    === "Answer 1"
-        N50 = 636 bp
     === "Answer 2"
-        N50 = 1309 bp
+        N50 = 636 bp
 
 ## Adapter Trimming
 
@@ -148,9 +144,7 @@ firefox rcf.html
 !!! question
     === "Question 3"
         Can you see any contaminating reads? What organism(s) is/are there?
-    === "Answer 1"
-        _Dengue_
-    === "Answer 2"
+    === "Answer 3"
         _Cyanobacteria_ and _Betaproteobacteria_
 
 ## Mapping and Visualisation
@@ -206,9 +200,7 @@ Using the below animation as a guide, open up tablet and load the sorted.bam and
 !!! question
     === "Question 4"
         What is the percentage of the bases which are mismatched?
-    === "Answer 1"
-        21.6%
-    === "Answer 2"
+    === "Answer 4"
         16.2%
 
 **One of the foremost caveats of nanopore sequencing is the high error rate. It is important that we use programs which are sensitive to that - which is why we used the 'ont2d' argument in the mapping stage. Try switching the colour scheme to ‘Variants’ by using the tab in the top left corner of the interface.**
@@ -326,9 +318,7 @@ With Aliview open, you should now see the dataset we will be working with for th
 !!! question
     === "Question 4"
         How many sequences are there in the _Zika_ dataset?
-    === "Answer 1"
-        122
-    === "Answer 2"
+    === "Answer 4"
         284
 
 Before we continue with any analyses, we first have to add our new sequence and then align the dataset. Alignment is the process of arranging sequence data in such a way that each sequence may be compared to each other. For this we will use a program called ‘mafft’. This program will rearrange the sequences based on similarity, so that they may be compared in future analyses.
@@ -441,15 +431,11 @@ Use the scroll bars in the Figree window, and on the pane on the left hand side 
 
 !!! question "Exercise"
     
-    === "Question 1"
+    === "Question 6"
 
         What is the closest ancestor of our sequence?
-
-    === "Answer 1"
-
-       Brazil - 01/07/2015
     
-    === "Answer 2"
+    === "Answer 6"
 
        Brazil - 13/04/2016
 
