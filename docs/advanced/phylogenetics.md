@@ -1,4 +1,4 @@
-# Pylogenetics
+# Phylogenetics
 The study of evolutionary relationships among biological entities
 
 ## Objectives
@@ -39,7 +39,7 @@ Import the sequence file: **File > Open File**, navigate to **~/data/phylogeneti
 
 The sequence alignment is displayed as a matrix, where rows correspond to viral samples and columns to nucleotide positions (see **Figure 1**). Cells are coloured by type of nucleotides (A, C, G or T) and missing information, or gaps, are indicated by a dash (“-“).
 
-![Figure 2](img/phylo_1_1.jpg)
+![Figure 2](../img/phylo_1_1.jpg)
 
 The unique identifier of the sequences is shown at the left hand side of the nucleotide matrix and contains the strain name (e.g. A/England/247/2009) followed by the date of sampling (e.g. d2009-05-31) in the format dYYYY-MM-DD.
 
@@ -90,7 +90,7 @@ Take a few minutes to familiarize yourself with the tree.
 !!! reminder
     The components of a phylogenetic tree are shown in Figure 2. The sequences, or taxa (plural for taxon), are positioned at the end of the external branches. Related sequences are linked by a node (their most recent common ancestor). Two or more sequences descending from a node form a ‘clade’ (or cluster). The length of a branch represents the genetic distance between two nodes or between a node and a taxon, i.e., the number of mutations accumulated since divergence. The root corresponds to the common ancestor of all the taxa.
 
-![Figure 2](img/phylo_1_2.jpg)
+![Figure 2](../img/phylo_1_2.jpg)
 
 Since the sequences represent viruses sampled from different individuals, a clade in the tree corresponds to a transmission chain. The number of sequences in a clade reflects the number of infections sampled from that transmission chain. The root of the tree corresponds to the origin of the epidemic.
 
@@ -106,7 +106,7 @@ After looking at your tree with `figtree`, can you answer these questions:
 
         Q1. The viruses sampled in England form 3 distinct clades, suggesting 3 introduction events (colored in red in the figure below). The first one involves 18 cases (top of the tree), the second 2 cases (A/England/247/2009 and A/England/251/2009), and the third one 3 cases (A/England/247/2009, A/England/312/2009, and A/England/415/2009).
 
-        ![Cluster 1](img/phylo_1_Q1.png)
+        ![Cluster 1](../img/phylo_1_Q1.png)
 
 !!! Question
     === "Q2"
@@ -142,7 +142,7 @@ TempEst [2] is a tool designed to investigate the ‘temporal signal’ of molec
 
 <u>How does it work?</u> TempEst performs ‘root-to-tip’ linear regressions, which can be used as a simple diagnostic tool for molecular clock models. It implies plotting the genetic divergence of the sequences (i.e., the sum of the branch lengths from a sequence - the tip - to the root of the tree) against the sampling time of the sequences (Figure 3). A linear trend with few residuals indicates that evolution follows a strict molecular clock. The same trend with greater scatter from the regression line suggests that a relaxed molecular clock model may be most appropriate. No trend at all indicates that the data contains little temporal signal and is unsuitable for inference using phylogenetic molecular clock models.
 
-![Figure 3](img/phylo_1_3.jpg)
+![Figure 3](../img/phylo_1_3.jpg)
 
 Import the ML tree you saved earlier or, if you can’t find it anymore, select the file named **RAxML_bipartitions.H1N1.flu.2009.ML.tre** in your folder. If you are not prompted for the tree when `TempEst` opens, import it using the drop-down menu: `File` > `Open…`
 
@@ -174,7 +174,7 @@ Go to the `Root-to-tip` tab to see the root-to-tip linear regression plot. Check
 
         However, there is a certain degree of scatter from the regression line, and only 51% of the variation in genetic divergence is explained by a strict molecular clock hypothesis (R squared = 0.51). We will, therefore, assume significant variation from a strict molecular clock in this dataset and opt for a relaxed molecular clock (i.e., the rate of evolution varies over time and across lineages). This is despite a relatively short sampling interval (about 3 months) and moderate genetic diversity in the sampled population.
 
-        ![Figure 3](img/phylo_1_Q3.png)
+        ![Figure 3](../img/phylo_1_Q3.png)
 
 
 ## Dating Migration Events
@@ -226,7 +226,7 @@ We will finally reconstruct the migration pathways of these H1N1/09 strains.
 
     When individuals are infected in one location and then move to another, or infect someone whilst travelling, this is apparent as a “change” in the location ascribed to one branch of the tree. These changes in location along a phylogenetic tree can be inferred from the location values at the tips and the shape of the tree (see Figure 4). To do so, a model of location exchange process is fitted to the data and the most likely location of the viral strain positioned at the nodes of the tree, together with its probability, can be estimated using a MCMC sampling procedure similar to the one used in Section 2.
 
-![Figure 3](img/phylo_1_4.jpg)
+![Figure 3](../img/phylo_1_4.jpg)
 
 This approach was applied to the H1N1/09 phylogeny, using an asymmetric continuous-time Markov chain [5], as implemented in the program BEAST. The asymmetric model uses separate parameters for forward and reverse rates of movement between each pair of locations. The tree file we used for the molecular clock analysis (**H1N1.flu.2009.mol_clock.2.tre**) also contains the result of the inferred migration patterns.
 
@@ -276,7 +276,7 @@ Launch BEAUti by typing `beauti` into the command line or opening it from the da
 
 1.1. Load the FASTA sequence file **H1N1.flu.2009.fas** by clicking the `+` button or going to `File` > `Open…`.
 
-![BEAUti Sequence](img/phylo_1_5.jpg)
+![BEAUti Sequence](../img/phylo_1_5.jpg)
 
 This first will give you information on the number of taxa (50), the number of sites (12735), and the data type (nucleotide).
 
@@ -291,7 +291,7 @@ In the Tips tab, tick the box for **Use tip dates**, and then click on **Guess D
 - Parse as a calendar date (Date format: **yyyy-MM-dd**)
 Alternatively, you can create a tab-delimited file (.txt) with two columns corresponding to the taxa names and sample dates, and use **Import Date**s.
 
-![BEAUti Substitution Model](img/phylo_1_6.jpg)
+![BEAUti Substitution Model](../img/phylo_1_6.jpg)
 
 
 1.3. Set the location for each sample
@@ -304,14 +304,14 @@ This allows us to substitution and site heterogeneity models. The rate and likel
 
 In the Sites tab, select **GTR** from the ‘**Substitution model**’ dropdown box. We will set the ‘**Site Heterogeneity model**’ as ‘**Gamma**’ with 4 categories.
 
-![BEAUti Substitution Model](img/phylo_1_7.jpg)
+![BEAUti Substitution Model](../img/phylo_1_7.jpg)
 
 1.5 Set a clock model.
 The **‘Clocks’** tab will allow us to set the molecular clock for mutations along each branch of the tree. If we set this to **‘Strick clock’** this specifies that the mutation rate along each branch will be invariable. As we have shown in the TempEst analysis that our data varies significantly from a strict molecular clock, we will select a relaxed clock to allow for rate variation across branches in our tree.
 
 In the Clocks tab, select **‘Uncorrelated relaxed clock’** from the **‘Clock Type’** dropdown box and keep the **‘Relaxed Distribution’** option as **‘Lognormal**’.
 
-![BEAUti Substitution Model](img/phylo_1_8.jpg)
+![BEAUti Substitution Model](../img/phylo_1_8.jpg)
 
 
 1.6 Set a tree model.
@@ -332,7 +332,7 @@ Define the length of the chain by typing '**10000000**' in the '**Length of chai
 
 The name of the output files can be specified here. This will determine the names of the files that will be created after the BEAST run, .log, .trees, and .ops. The output file from BEAUti will be a **.xml** file for BEAST input. We will call this H1N1.flu.2009, so type this in the ‘**File name stem**’ box, if it doesn’t already appear there.
 
-![BEAUti Substitution Model](img/phylo_1_9.jpg)
+![BEAUti Substitution Model](../img/phylo_1_9.jpg)
 
 Then click on the `Generate BEAST file` button at the bottom right of the screen to generate the .xml file that will be used as the input for BEAST.
 
@@ -350,9 +350,9 @@ Open the program TRACER by typing `tracer`. This will allow you to check the out
 
 Load in the ‘**H1N1.flu.2009.log**’ file to Tracer to see the output.
 
-![BEAUti Substitution Model](img/phylo_1_10.jpg)
+![BEAUti Substitution Model](../img/phylo_1_10.jpg)
 
-![BEAUti Substitution Model](img/phylo_1_11.jpg)
+![BEAUti Substitution Model](../img/phylo_1_11.jpg)
 
 Here we want to look at the **ESS score**. This is the Effective Sample Size, which is a measure of the number of effectively independent draws from the posterior distribution that the Markov chain is equivalent to. Low scores are highlighted in red, with scores >200 considered sufficient to demonstrate good mixing.
 
@@ -369,9 +369,9 @@ Load in the ‘**H1N1.flu.2009.trees**’ file to TreeAnnotator through `Choose 
 You can also set the number of burnin states (The number of initial MCMC runs to discard).
 
 Then select `Run `to produce a single maximum clade credibility tree.
-![BEAUti Substitution Model](img/phylo_1_12.jpg)
+![BEAUti Substitution Model](../img/phylo_1_12.jpg)
 
 <hr>
 ## Calendar
 
-![BEAUti Substitution Model](img/phylo_1_13.jpg)
+![BEAUti Substitution Model](../img/phylo_1_13.jpg)
