@@ -416,11 +416,11 @@ cd ~/data/nanopore_activity/phylogenetics/figtree
 figtree RAxML_bipartitions.zika_phylogeny
 ```
 
-![ngs13](./docs/advanced/img/ngs13.gif)
+![ngs13](../img/ngs13.gif)
 
 Now that you have opened up the tree in Figtree, you first need to assign the bootstrap data to a category. We can then organise the tree in a way that it is more easy to view. Using the animation below as a guide, select the 'Midpoint Root' and 'Increasing Node Order' settings.
 
-![ngs14](./docs/advanced/img/ngs14.gif)
+![ngs14](../img/ngs14.gif)
 
 Use the scroll bars in the Figree window, and on the pane on the left hand side of the windows to zoom and navigate the tree.
 
