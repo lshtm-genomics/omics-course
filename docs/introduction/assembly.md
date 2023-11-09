@@ -208,21 +208,21 @@ The graph shown gives a good insight into the quality and depth of the assembly 
 ![](../img/assembly_6.png)
 
 !!! question
-    === "Question 2"
+    === "Question 1"
         In ACT inspect the region between 76,000 and 89,000. How does the coverage vary across the pseudo molecule? 
-    === "Answer 2"
+    === "Answer 1"
         Coverage across the pseudo molecule is sufficient across most regions. There are few visible fragmentations for which coverage is not existent that should be expected from the nature of the assembly.
 
 !!! question 
-    === "Question 3"
+    === "Question 2"
         How does this compare to the coverage across the matching regions mapped against the reference? 
-    === "Answer 3"
+    === "Answer 2"
         Overall coverage trends in comparison to original mapping assembly are similar. In the region of interest, we can notice pseudo molecule having uniform coverage whilst in mapping assembly the lack of supporting reads spanning between 795000-83000.
 
 !!! question
-    === "Question 4"
+    === "Question 3"
         Is there any kind of structural variant involved? 
-    === "Answer 4"
+    === "Answer 3"
         A few regions based on the coverage distribution might indicate the existence of structural variants that should be investigated further.
 
 ## Exercise 4: Structural Variant Validation
@@ -257,9 +257,9 @@ Once the server has blasted your data, it will create a web page for the results
 ![](../img/assembly_8.jpg)
 
 !!! question
-    === "Question 5"
+    === "Question 4"
         Is it a deletion? Or was it a false positive? Using the output from delly in the variant detection practical have a look at other SVs as well. 
-    === "Answer 5"
+    === "Answer 4"
         BLAST Graphic Summary of the resulting query contains a few rectangles (size correlates with alignment length) that represent regions of the sequence that maps to the reference. Rectangles joined by a thin line show that the contig sequence was split during alignment. It is indicating that the reads assembled into this single contig needed to be separated by a gap when aligning to the reference – therefore we can conclude a deletion compared to the reference. In order to validate in-depth deletion additional information could be extracted from long-read sequencing to prove or disprove the hypothesis.
 
         Shorter rectangles are matches coming from other smaller assembled contigs that may potentially reveal alternative areas of similarity or small repetitive sequences.
