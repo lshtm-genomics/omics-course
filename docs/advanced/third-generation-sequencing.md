@@ -160,25 +160,13 @@ cd ~/data/nanopore_activity/mapping
 Now we can use minimap2 to align our qc complete, porechopped reads. Minimap is a fast alignment tools similar to BWA mem. You can find more information about this tool by clicking the link [comparing the two alignment tools](https://lh3.github.io/2018/04/02/minimap2-and-the-future-of-bwa)
 
 ```
-minimap2 -ax map-ont ./reference.fasta basecalled_reads.fastq > alignment.sam
-```
-
-As before, we now need to convert our alignment .sam file in to a .bam formatted file:
-
-```
-samtools view -q 15 -b -S alignment.sam > alignment.bam
-```
-
-Next, we need to sort the .bam formatted file:
-
-```
-samtools sort alignment.bam -o sorted.bam
+minimap2 -ax map-ont ./reference.fasta basecalled_reads.fastq | samtools view -q 15 -b | samtools sort -o alignment.bam```
 ```
 
 Finally we need to index the sorted bam file:
 
 ```
-samtools index sorted.bam
+samtools index alignment.bam
 ```
 
 **Now that we have successfully mapped the reads to a reference we can visualise them in Tablet, to get a closer look at what our sequencing run looks like.**
@@ -187,7 +175,7 @@ samtools index sorted.bam
 tablet
 ```
 
-Using the below animation as a guide, open up tablet and load the sorted.bam and the reference.fasta files, then click on the ‘contig’ in the pane on the left side of the screen. You will see a loading bar, then the alignment will be shown. In the left ‘contig’ pane you will fine some metrics associated with this dataset.
+Using the below animation as a guide, open up tablet and load the alignment.bam and the reference.fasta files, then click on the ‘contig’ in the pane on the left side of the screen. You will see a loading bar, then the alignment will be shown. In the left ‘contig’ pane you will fine some metrics associated with this dataset.
 
 ![ngs8](../img/ngs8.gif)
     
@@ -230,7 +218,7 @@ cd ~/data/nanopore_activity/variant_calling
 We need to use Samtools, a versatile package you will be familiar with, to extract the depth statistics from the .bam alignment file we generated in the previous section. This will generate a file called ‘depth_statistics’.
 
 ```
-samtools depth ~/data/nanopore_activity/mapping/sorted.bam > depth_statistics
+samtools depth ~/data/nanopore_activity/mapping/alignment.bam > depth_statistics
 ```
 
 Next, we will use the R statistical package to generate a plot based on the data samtools generated. Simply type ‘R’ in to the terminal to initialise the R interface.
@@ -264,7 +252,7 @@ quit()
     Now that we know the coverage and depth, we can move on to the variant calling. For this, we will use a package called ‘bcftools’. Bcftools will look through the alignment and ‘call’ the positions which do not agree with the reference, count them and compile them in to a database called a VCF. Enter the following code in to the terminal to begin the process:
 
 ```
-bcftools mpileup -q 8 -B -I -Ou -f reference.fasta ~/data/nanopore_activity/mapping/sorted.bam | bcftools call -mv -Oz -o calls.vcf.gz
+bcftools mpileup -q 8 -B -I -Ou -f reference.fasta ~/data/nanopore_activity/mapping/alignment.bam | bcftools call -mv -Oz -o calls.vcf.gz
 ```
 
 ![ngs11](../img/ngs11.gif)
