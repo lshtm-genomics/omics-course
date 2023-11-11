@@ -71,10 +71,10 @@ zcat sample1_1.fastq.gz | head -8
 
 Each read consists of 4 lines, the first is the read name, the second are the bases read, the third line is ignored and the fourth is the encoded quality of each read (one character per base).
 
-The number of lines in each file is reported by:
+To see the number of lines in a .fastq.gz file we can run the following command: 
 
 ```
-wc -l *
+zcat sample1_1.fastq.gz | wc -l
 ```
 
 and therefore the number of reads can be calculated by dividing by 4. The length of the first read can be calculated by running:
@@ -132,11 +132,12 @@ quast -r ../tb.fasta -o quast contigs.fasta
 
  After it has finished you can examing the outputs. To view the report enter `cat quast/report.txt`. 
 
- !!! question
+
+!!! question
     === "Question 1"
-        See if you can spot the statistics we mentioned above. Compare the size of the reference with the size of the assembly. Are they different? 
+        See if you can spot the statistics we mentioned above. Compare the size of the reference with the size of the assembly. Are they different?
     === "Answer 1"
-        Quast report includes information on statistics N50, Genome fraction and Maximum contig size that were mentioned before as well as additional metrics worth exploring. Average contig size can be additionally calculated by dividing values from fields Total length (>= 0 bp) and # contigs (>= 0 bp) or directly from FASTA file with external tools for example seqmagick. It is advised to look at a variety of metrics and supporting analyses to determine quality of assembly. The total size of reference genome (1000020 bp) and resulting genome assembly (1005736 bp) are comperable. 
+        Quast report includes information on statistics N50, Genome fraction and Maximum contig size that were mentioned before as well as additional metrics worth exploring. Average contig size can be additionally calculated by dividing values from fields Total length (>= 0 bp) and # contigs (>= 0 bp) or directly from FASTA file with external tools for example seqmagick. It is advised to look at a variety of metrics and supporting analyses to determine quality of assembly. The total size of reference genome (1000020 bp) and resulting genome assembly (1005736 bp) are comperable.
 
 ![](../img/assembly_3.jpg)
 
@@ -208,21 +209,21 @@ The graph shown gives a good insight into the quality and depth of the assembly 
 ![](../img/assembly_6.png)
 
 !!! question
-    === "Question 1"
+    === "Question 2"
         In ACT inspect the region between 76,000 and 89,000. How does the coverage vary across the pseudo molecule? 
-    === "Answer 1"
+    === "Answer 2"
         Coverage across the pseudo molecule is sufficient across most regions. There are few visible fragmentations for which coverage is not existent that should be expected from the nature of the assembly.
 
 !!! question 
-    === "Question 2"
+    === "Question 3"
         How does this compare to the coverage across the matching regions mapped against the reference? 
-    === "Answer 2"
+    === "Answer 3"
         Overall coverage trends in comparison to original mapping assembly are similar. In the region of interest, we can notice pseudo molecule having uniform coverage whilst in mapping assembly the lack of supporting reads spanning between 795000-83000.
 
 !!! question
-    === "Question 3"
+    === "Question 4"
         Is there any kind of structural variant involved? 
-    === "Answer 3"
+    === "Answer 4"
         A few regions based on the coverage distribution might indicate the existence of structural variants that should be investigated further.
 
 ## Exercise 4: Structural Variant Validation

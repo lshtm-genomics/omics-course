@@ -4,9 +4,6 @@ Bacterial vaginosis (BV) is a dysbiotic condition caused by excessive growth of 
 
 ## Getting the data
 
-To get the latest version of the data for this practical please open up a terminal window and enter the following:
-
-
 For this practical we are considering 12 samples of vaginal swab that were taken at a polyclinic by a GP in a setting of high transmission of HIV. DNA was extracted from the swabs and amplified using primers specific for the first two hypervariable regions (V1 and V2) of the 16S rRNA gene (27F and 338R). These samples were then sequenced with MiSeq Illumina producing paired end data of 300 bp length per read. The 12 pairs of files generated are found in the data/metagenomics/fastq/ directory. The patients’ phenotype was determined by the doctors at the time of sample collection with the following results:
 
 | Sample | BV  | pH  |
@@ -50,7 +47,9 @@ mkdir fastqc_combined
 multiqc -o fastqc_combined fastqc_reports
 ```
 
-With `ls fastqc_combined` you can see that an HTML file, which we can view in a browser, has been created.
+With `ls fastqc_combined` you can see that an HTML file, which we can view in a browser, has been created. Open the HTML file using the command `firefox ~/data/metagenomics/fastqc_combined/multiqc_report.html`
+
+
 
 Scroll through the report and make note of the sequence counts barplots and the quality histograms. 
 
