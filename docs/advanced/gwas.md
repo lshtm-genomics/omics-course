@@ -16,13 +16,13 @@ The data required is genomic wide SNP data. It is already included in this pract
 
  * [R](http://cran.r-projecBasecalling) (Statistical software for data analysis and graphing)
   
- * Data analysis and graphing can be performed in a number of ways, and "R" is a example of a software that can be used for this. There is an option to perform this while sequencing in the MinKNOW GUI package, however this software provides fewer options in the ways basecalling can be completed and is less powerful. Here, we will use Guppy for maximum flexibility. Since the machines we are working on do not have a GPU available we will have to use the two CPU cores available to us. Therefore, we will only basecall a subset (<1%) of the dataset as an example, and in the subsequent steps we will use a pre-basecalled output.
-t.org/
+ * Data analysis and graphing can be performed in a number of ways, and "R" is a example of a software that can be used for this. 
+
  * BCFtools
 
 The data for this practical is in the `~/data/gwas` directory. Please navigate to this directory before running any commands. 
 
-**Before continuing also make sure to have loaded the gwas environment using the conda command.**
+**Before continuing also make sure to have loaded the "gwas" environment using the conda command.**
 
 
 ## 1. Create BED files for analysis
@@ -151,7 +151,6 @@ This generates MD.IBD-hist.pdf
 In the interest of time, this step has been mostly done for you.
 
 Principal components analysis (PCA) is performed with pruned bed file datasets generated before using the ./RUN_PCA.sh command. This generates the following output files: MD.pruned.pca.par, MD.pruned.pca.log, MD.pruned.pca.evec, MD.pruned.pca, MD.pruned.eval. The evec extension file is what you will need to view your PCs
-Basecalling can be performed in a number of ways. There is an option to perform this while sequencing in the MinKNOW GUI package, however this software provides fewer options in the ways basecalling can be completed and is less powerful. Here, we will use Guppy for maximum flexibility. Since the machines we are working on do not have a GPU available we will have to use the two CPU cores available to us. Therefore, we will only basecall a subset (<1%) of the dataset as an example, and in the subsequent steps we will use a pre-basecalled output.
 
 Create a scatter diagram of the first two principal components, including all individuals in the file MD.pruned.pca.evec (the first and second PCs are columns 2 and 3 respectively). Type: 
 
@@ -302,6 +301,7 @@ Let’s zoom into a region of interest: the tower of SNPs on CHR1 (coloured in y
  * Open the locuszoom webpage: http://locuszoom.org/genform.php?type=yourdata
  * Upload the text file (final.MD.assoc.assoc.adjusted)
  * Set The P-Value column name to be "GC"
+ * Change the Column Delimiter to "Whitespace"
  * Set the Marker column name to be "SNP"
  * In the region section, enter the most associated snp (“rs1065489”) with a flanking size of 500KB
  * In the Genome Build/LD Population field select the appropriate hg19 european ref panel.

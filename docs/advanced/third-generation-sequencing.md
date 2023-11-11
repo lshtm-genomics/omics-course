@@ -370,7 +370,7 @@ Now we have our multiple sequence alignment, we can now start the phylogenetic i
 From inside the ‘phylogenetics’ folder, run the following command in the terminal:
 
 ```
-iqtree -m GTR+G -s ./zika_all_aligned.fasta -bb 1000
+iqtree -m GTR+G -s ./zika_all_aligned.fasta -bb 1000 -nt AUTO
 ```
 
 !!! info
@@ -382,14 +382,10 @@ iqtree -m GTR+G -s ./zika_all_aligned.fasta -bb 1000
 
 Now that RAxML has completed its run we can now visualise the results in Figtree – a phylogenetic tree visualisation software package.
 
-**Navigate to the 'figtree' folder and run the following command:**
+**Run the following command:**
 
 ```
-cd ~/data/nanopore_activity/phylogenetics/figtree
-```
-
-```
-figtree RAxML_bipartitions.zika_phylogeny
+figtree ./zika_all_aligned.fasta.treefile
 ```
 
 ![ngs13](../img/ngs13.gif)

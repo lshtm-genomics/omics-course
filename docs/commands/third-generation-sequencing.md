@@ -34,10 +34,9 @@ cd ~/data/nanopore_activity/phylogenetics
 aliview zika_dataset.fasta
 cat zika_dataset.fasta consensus_sequence.fasta > zika_all.fasta
 mafft zika_all.fasta > zika_all_aligned.fasta
-raxmlHPC -T 4 -m GTRGAMMA -s ./zika_all_aligned.fasta -n zika_phylogeny -p 11334 -k -f a -x 13243 -N 1000 -#1
+iqtree -m GTR+G -s ./zika_all_aligned.fasta -bb 1000 -nt AUTO
 
-cd ~/data/nanopore_activity/phylogenetics/figtree
-figtree RAxML_bipartitions.zika_phylogeny
+figtree ./zika_all_aligned.fasta.treefile
 
 
 ```
