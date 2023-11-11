@@ -333,6 +333,18 @@ rm sample1_1P.fastq sample1_1U.fastq sample1_2P.fastq sample1_2U.fastq
         bwa mem -R "@RG\tID:sample2\tSM:sample2\tPL:Illumina" ~/data/tb/tb.fasta sample2_1P.fastq sample2_2P.fastq | samtools view -b - | samtools sort -o sample2.bam -
         ```
 
+
+
+
+<br/>
+<br/>
+### **Do Not Proceed Until Completing The Exercise Above For Sample 2**
+<br/>
+<br/>
+
+
+
+
 ## Viewing in IGV
 
 Launch IGV by running the command `igv` on a New Terminal and perform the following steps:

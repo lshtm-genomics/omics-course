@@ -209,13 +209,13 @@ Making use of search bar to visit the two regions we visited in Exercise 1 (cont
 !!! question "Exercise"
     The SNPs called from GATK can be examined in the same way. Try load the VCF files you generated with GATK and check if you get the same calls as with bcftools.
 
-Zoom out to visualise more variants. Double-click on the reads panel to zoom in. Go back to the VCF terminal view, take note of any indels found and try to locate them using Tablet. Note that insertions and deletions are represented in a different way in IGV. 
+Zoom out to visualise more variants. Double-click on the reads panel to zoom in. Go back to the VCF terminal view, take note of any indels found and try to locate them using IGV. Note that insertions and deletions are represented in a different way in IGV. 
 
 Here is an insertion at 859,131 in sample2. Insertions are represented using purple strips on the reads. You can click on the strip to find out what the sequence of the insertion is.
 
 ![variants_5](../img/variants_5.png)
 
-Here is a deletion at position 485,810 in sample1, note that because of how the deletion is labelled in each case (IGV or VCF) they appear shifted in position. This is because the variant falls on top of a homopolymer run of As so we can place the deletion on any of them.
+Here is a deletion at position 485,810 in sample1, note that because of how the deletion is labelled in each case (IGV or VCF) they appear shifted in position. This is because the variant falls on top of a homopolymer run of A's (AAA) so we can place the deletion on any of them.
 
 ![variants_6](../img/variants_6.png)
 
@@ -236,7 +236,8 @@ One area where polymorphisms are elevated in </i>Mycobacterium tuberculosis</i> 
 | 761155  | rpoB | C                    | T;G                    | TCG             | TTG;TGG            | S                    | L;W                    |
 | 761161  | rpoB | T                    | C                      | CTG             | CCG                | L                    | P                      |
 
-Load the Annotation track and go to the rpoB (Rv0667) gene region, to do so in the left side information table where the Chromosome is listed click on the tab “Features”, then at the bottom from the list Select filter by select “Name” (type ‘Rv0667’ in the Search Box) and try to spot one of the above SNPs in the gene.
+Load in the Annotation track, to do so click the File > Load from File and select ~/data/tb/tb.gff. Once loaded you can search for the Rv0667 gene in the Search Box and try to spot one of the above SNPs in the gene. 
+
 
 ![variants_7](../img/variants_7.png)
     
@@ -346,7 +347,7 @@ SV detection tools output not only potential structural differences, but also a 
 
 Launch an IGV instances as before (or use the same one if you kept it open) and load sample1.bam and sample2.bam in each of them as explained in Exercise 1.
 
-In the tool bar, select Import features as if we were going to load an annotation file. But this time select the compressed VCF files in ~/data/tb/ (i.e. sample1.delly.vcf.gz for the instance with sample1 loaded and sample2.delly.vcf.gz for the instance with sample2 loaded).
+In the tool bar, select Import features as if we were going to load an annotation file. But this time select the compressed VCF files in ~/data/tb/ (i.e. sample1.delly.vcf for the instance with sample1 loaded and sample2.delly.vcf for the instance with sample2 loaded).
 
 Find the region 77,823-84,798 and establish whether differences in the alignment can be visually identified between samples . Note: The coverage plot can also give you a clear insight.
 
@@ -355,11 +356,11 @@ Find the region 77,823-84,798 and establish whether differences in the alignment
 
 !!! question "Exercise"
     
-    === "Question 1"
+    === "Question 3"
 
         Which characteristic signatures of deletions (gap of coverage, long-spanning read pairs and split-reads) can be identified? (Read the notes below to help answer this question) 
 
-    === "Answer 1"
+    === "Answer 3"
 
         We can see a gap in the coverage and many reads which end abruptly at the same positions (split reads).
 

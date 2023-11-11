@@ -158,7 +158,7 @@ Rscript plot_ipd.R tb_pb_16,tb_pb_2 GTAYNNNNATC GTAYNNNNATC.pdf
 
 !!! question 
     === "Question 2"
-        Which sample has evidence for methhylation at the 'GATNNNNRTAC' motif.
+        Which sample has evidence for methylation at the 'GATNNNNRTAC' motif.
     === "Answer 2"
         Sample tb_pb_16. There are elevated IPD ratios on the third position (A).
 
