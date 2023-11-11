@@ -39,7 +39,7 @@ The blue text shows the location where the terminal is currently. In this case w
 
 We have now successfully used the terminal and the `ls`, `cd` and `pwd` commands. It is as simple as that! Some commands can be used by themselves such as `ls`, however others such as `cd` need additional information called arguments to do something useful. In the example above, we need to tell `cd` that we wanted to go to the `data` directory, so we typed `data` after `cd` separated by a space. While `cd` only took one argument, some programs take many more. You will see examples of this in a bit.
 
-Now that you have mastered using the terminal you can close the file explorer, this is the last time we will use it. We must face the long dark of the terminal! 
+Now that you have mastered using the terminal you can close the file explorer, this is the last time we will use it. We must now face using the terminal! 
 
 ## Useful commands/programs
 
@@ -79,7 +79,7 @@ This command it will print out the first five lines instead. Here we have used a
 
 ### less
 
-Another tool that we can use to view text files is the `less` command. Let's try view the reference file again with this method. 
+Another tool that we can use to view text files is the `less` command. Let's try to view the reference file again with this method. 
 
 ```
 less tb.fasta
@@ -129,7 +129,7 @@ rm tb_copy.fasta
 
 ## Pipes
 
-Imagine a cake factory production line. There are many steps that need to be taken to build the final cake (different ingredients added). Let's say we have 5 people working to make 100 cakes per day and each person specialises in adding a particular ingredient. We could get 100 bowls and add the flour to each one, then add eggs to each one and repeat this with each ingredient until we have the complete mix however we would be losing a lot of time as at any point there would be only one person working while the others wait for their turn. A more efficient way to do this by installing in a conveyor belt and having the employees sequentially add their ingredients to each bowl. This way everyone is working at the same time and the cakes will be made a lot faster. 
+Imagine a cake factory production line. There are many steps that need to be taken to build the final cake (adding different ingredients). Let's say we have 5 people working to make 100 cakes per day and each person specialises in adding a particular ingredient. We could get 100 bowls and add the flour to each one, then add eggs to each one and repeat this with each ingredient until we have the complete mix however we would be losing a lot of time as at any point there would be only one person working while the others wait for their turn. A more efficient way to do this by installing in a conveyor belt and having the employees sequentially add their ingredients to each bowl. This way everyone is working at the same time and the cakes will be made a lot faster. 
 
 ![](../img/linux_4.gif)
 
@@ -183,7 +183,7 @@ This tells us that `cd` could not find the directory called `fake_directory`.
 
 ### Missing a required argument
 
-If you run a program and fail to specify a it may give an error. Alternatively, it may display the program usage help and quit. For example, lets run `head` without passing the number of lines to the `-n`` flag: 
+If you run a program and fail to specify an arguement it may give an error. Alternatively, it may display the program usage help and quit. For example, lets run `head` without passing the number of lines to the `-n`` flag: 
 
 ```
 head -n tb.fasta

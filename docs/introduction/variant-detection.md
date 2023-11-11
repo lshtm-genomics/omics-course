@@ -6,9 +6,9 @@ New sequencing technologies are mostly used for re-sequencing, namely when a wel
 
 Most of the software for variant detection and calling require alignment files (e.g. BAM format) as input. We will be using samtools/bcftools and GATK for SNP and small indel discovery.
 
-Historically, structural variation refers to relatively large polymorphisms that alter the chromosome structure. Indels belong to this group of genetic variation. Among the early methods for discovering structural variants (SVs), whole-genome array comparative hybridisation (Carter[^1]) and SNP arrays (Cooper[^2]) have been successfully applied despite their resolution limitations
+Historically, structural variation refers to relatively large polymorphisms that alter the chromosome structure. Indels belong to this group of genetic variation. Among the early methods for discovering structural variants (SVs), whole-genome array comparative hybridisation (Carter[^1]) and SNP arrays (Cooper[^2]) have been successfully applied despite their resolution limitations.
 
-The advent of high-throughput sequencing platforms has opened new possibilities in this area. New tools have been developed to detect unusual patterns of reads, or pairs of reads, left by SVs. Such signatures can be broadly grouped into three categories of signature: discordant mapping of read pairs, read splitting, and depth of coverage. SV detection programs implement algorithms aiming to identify such signatures, or combinations of them, from sequence alignment files (Medvedev[^3])
+The advent of high-throughput sequencing platforms has opened new possibilities in this area. New tools have been developed to detect unusual patterns of reads, or pairs of reads, left by SVs. Such signatures can be broadly grouped into three categories of signature: discordant mapping of read pairs, read splitting, and depth of coverage. SV detection programs implement algorithms aiming to identify such signatures, or combinations of them, from sequence alignment files (Medvedev[^3]).
 
 ## SNP detection and calling
 
@@ -35,7 +35,6 @@ We are going to check at positions 187,503 and 587,585 in the genome. To zoom in
 
 ![variants_2](../img/variants_2.png)
 
-!!! exercise
     
 
 
@@ -156,7 +155,7 @@ cat sample1.raw.vcf | vcfutils.pl varFilter -d 10 -D 2000 > sample1.filt.vcf
 ```
 
 !!! important
-    Run the code above for sample2. The bam has already been preprocessed so all you have to do is replace “sample1” in the command with “sample2”
+    Run the code above for sample2. The bam has already been preprocessed so all you have to do is replace “sample1” in the command with “sample2”.
 
 ### Exercise 3: Calling SNPs and short indels using GATK
 
@@ -212,7 +211,7 @@ Making use of search bar to visit the two regions we visited in Exercise 1 (cont
 
 Zoom out to visualise more variants. Double-click on the reads panel to zoom in. Go back to the VCF terminal view, take note of any indels found and try to locate them using Tablet. Note that insertions and deletions are represented in a different way in IGV. 
 
-Here is an insertion at 859,131 in sample2. Insertions are represented using purple strips on the reads. You can clck on the strip to find out what the sequence of the insertion is.
+Here is an insertion at 859,131 in sample2. Insertions are represented using purple strips on the reads. You can click on the strip to find out what the sequence of the insertion is.
 
 ![variants_5](../img/variants_5.png)
 
@@ -221,11 +220,11 @@ Here is a deletion at position 485,810 in sample1, note that because of how the 
 ![variants_6](../img/variants_6.png)
 
 
-### Drug resistance in Mycobacterium tuberculosis
+### Drug resistance in </i>Mycobacterium tuberculosis</i>
 
-One area where polymorphisms are elevated in Mycobacterium tuberculosis is in genes relating to antibiotic action. Resistance to anti-tuberculosis drugs is caused predominantly by point mutations (i.e. SNPs) that arise spontaneously and offer the bacterium survival advantage during (incomplete) drug treatment. Since SNPs conferring drug resistance have been characterised (Sandgren[^7]) it has been proposed that drug susceptibility can be inferred based on the presence/absence of such markers (Peacock, 2013). In this exercise we will be looking at Rifampicin resistance-conferring mutations found in the rpoB gene.
+One area where polymorphisms are elevated in </i>Mycobacterium tuberculosis</i> is in genes relating to antibiotic action. Resistance to anti-tuberculosis drugs is caused predominantly by point mutations (i.e. SNPs) that arise spontaneously and offer the bacterium survival advantage during (incomplete) drug treatment. Since SNPs conferring drug resistance have been characterised (Sandgren[^7]) it has been proposed that drug susceptibility can be inferred based on the presence/absence of such markers (Peacock, 2013). In this exercise we will be looking at Rifampicin resistance-conferring mutations found in the rpoB gene.
 
-| osition | gene | Reference Nucleotide | Alternative Nucleotide | Reference Codon | Alternative Codons | Reference Amino Acid | Alternative Amino Acid |
+| Position | gene | Reference Nucleotide | Alternative Nucleotide | Reference Codon | Alternative Codons | Reference Amino Acid | Alternative Amino Acid |
 |---------|------|----------------------|------------------------|-----------------|--------------------|----------------------|------------------------|
 | 761095  | rpoB | T                    | C                      | CTG             | CCG                | L                    | P                      |
 | 761101  | rpoB | A                    | T                      | CAA             | CTA                | Q                    | L                      |
@@ -237,7 +236,7 @@ One area where polymorphisms are elevated in Mycobacterium tuberculosis is in ge
 | 761155  | rpoB | C                    | T;G                    | TCG             | TTG;TGG            | S                    | L;W                    |
 | 761161  | rpoB | T                    | C                      | CTG             | CCG                | L                    | P                      |
 
-Load the Annotation track and go to the rpoB (Rv0667) gene region, to do so in the left side information table where the Chromosome is listed click on the tab “Features” then at the bottom from the list Select filter by select “Name” (type ‘Rv0667’ in the Search Box) and try to spot one of the above SNPs in the gene.
+Load the Annotation track and go to the rpoB (Rv0667) gene region, to do so in the left side information table where the Chromosome is listed click on the tab “Features”, then at the bottom from the list Select filter by select “Name” (type ‘Rv0667’ in the Search Box) and try to spot one of the above SNPs in the gene.
 
 ![variants_7](../img/variants_7.png)
     
