@@ -71,10 +71,10 @@ zcat sample1_1.fastq.gz | head -8
 
 Each read consists of 4 lines, the first is the read name, the second are the bases read, the third line is ignored and the fourth is the encoded quality of each read (one character per base).
 
-The number of lines in each file is reported by:
+To see the number of lines in a .fastq.gz file we can run the following command: 
 
 ```
-wc -l *
+zcat sample1_1.fastq.gz | wc -l
 ```
 
 and therefore the number of reads can be calculated by dividing by 4. The length of the first read can be calculated by running:
@@ -132,11 +132,12 @@ quast -r ../tb.fasta -o quast contigs.fasta
 
  After it has finished you can examing the outputs. To view the report enter `cat quast/report.txt`. 
 
- !!! question
+
+!!! question
     === "Question 1"
-        See if you can spot the statistics we mentioned above. Compare the size of the reference with the size of the assembly. Are they different? 
+        See if you can spot the statistics we mentioned above. Compare the size of the reference with the size of the assembly. Are they different?
     === "Answer 1"
-        Quast report includes information on statistics N50, Genome fraction and Maximum contig size that were mentioned before as well as additional metrics worth exploring. Average contig size can be additionally calculated by dividing values from fields Total length (>= 0 bp) and # contigs (>= 0 bp) or directly from FASTA file with external tools for example seqmagick. It is advised to look at a variety of metrics and supporting analyses to determine quality of assembly. The total size of reference genome (1000020 bp) and resulting genome assembly (1005736 bp) are comperable. 
+        Quast report includes information on statistics N50, Genome fraction and Maximum contig size that were mentioned before as well as additional metrics worth exploring. Average contig size can be additionally calculated by dividing values from fields Total length (>= 0 bp) and # contigs (>= 0 bp) or directly from FASTA file with external tools for example seqmagick. It is advised to look at a variety of metrics and supporting analyses to determine quality of assembly. The total size of reference genome (1000020 bp) and resulting genome assembly (1005736 bp) are comperable.
 
 ![](../img/assembly_3.jpg)
 
@@ -257,9 +258,9 @@ Once the server has blasted your data, it will create a web page for the results
 ![](../img/assembly_8.jpg)
 
 !!! question
-    === "Question 5"
+    === "Question 4"
         Is it a deletion? Or was it a false positive? Using the output from delly in the variant detection practical have a look at other SVs as well. 
-    === "Answer 5"
+    === "Answer 4"
         BLAST Graphic Summary of the resulting query contains a few rectangles (size correlates with alignment length) that represent regions of the sequence that maps to the reference. Rectangles joined by a thin line show that the contig sequence was split during alignment. It is indicating that the reads assembled into this single contig needed to be separated by a gap when aligning to the reference – therefore we can conclude a deletion compared to the reference. In order to validate in-depth deletion additional information could be extracted from long-read sequencing to prove or disprove the hypothesis.
 
         Shorter rectangles are matches coming from other smaller assembled contigs that may potentially reveal alternative areas of similarity or small repetitive sequences.

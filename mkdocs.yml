@@ -1,4 +1,4 @@
-site_name: 'Mapping'
+site_name: 'LSHTM Omics'
 
 theme:
   name: material
@@ -49,3 +49,6 @@ nav:
       - other-omics/methylation.md
       - other-omics/ml.md
       - other-omics/tb-resistance.md
+      - other-omics/eqtl.md
+  - Additional-info:
+      - additional-info/conda.md

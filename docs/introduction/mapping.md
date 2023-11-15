@@ -35,7 +35,7 @@ Quality control of the reads is always important, to correct for any GC content 
 
 ## File formats
 
-You have the P. falciparum 3D7 clone reference file (Pf3D7_05.fasta). This contains the assembled sequence of the 3D7 genome. You also have two files of sequence reads from the IT clone (IT.Chr5_1.fastq.gz and IT.Chr5_2.fastq.gz). Look in both the reference file and the read files. 
+You have the </i>P. falciparum</i> 3D7 clone reference file (Pf3D7_05.fasta). This contains the assembled sequence of the 3D7 genome. You also have two files of sequence reads from the IT clone (IT.Chr5_1.fastq.gz and IT.Chr5_2.fastq.gz). Look in both the reference file and the read files. 
 
 ### FASTA format
 
@@ -90,7 +90,7 @@ Each read is represented by four lines:
 
     === "Answer"
 
-        Fastq: the 4th line for each read in fastq format represents the sequence quality
+        FASTQ: the 4th line for each read in fastq format represents the sequence quality
 
 ## Quality Control
 
@@ -107,7 +107,7 @@ conda activate mapping
 Open up a new terminal window and then type: `fastqc`
 Once the program is running, select `File > Open` to open one or more Sequence files (see below). Browse to `~/data/tb/` to choose `sample1_1.fastq` and click  `OK`. 
 
-FastQC supports FASTQ files (all quality encoding variants), GZip compressed FastQ and alignment files (SAM and BAM formats) 
+FastQC supports FASTQ files (all quality encoding variants), GZip compressed FastQ and alignment files (SAM and BAM formats). 
 
 Newly opened files will be immediately processed. Because of the size of FASTQ files it can sometimes take a couple of minutes to open them. 
 
@@ -160,7 +160,7 @@ Normal results are marked with green ticks, slightly abnormal with orange exclam
 
     === "Answer"
     
-        All of the fastq files look ok except sample3_1.fastq.gz. If you look at the 'Per base sequence quality' graph, you will see that many bases fall into the low quality zone (Q<20).
+        All of the FASTQ files look ok except sample3_1.fastq.gz. If you look at the 'Per base sequence quality' graph, you will see that many bases fall into the low quality zone (Q<20).
 
 ### Saving a report
 
@@ -240,7 +240,7 @@ All available BWA commands will appear on the terminal screen as shown below.
             bwt2sa        generate SA from BWT and Occ
     ```
 
-n order to map our paired-end reads, we will use ‘index’ and ‘mem’ commands. The ‘index’ command takes the reference genome (i.e. the database) in FASTA format as input and indexes it, which typically will take a few hours. This command only needs to be executed once for a particular reference genome.
+In order to map our paired-end reads, we will use ‘index’ and ‘mem’ commands. The ‘index’ command takes the reference genome (i.e. the database) in FASTA format as input and indexes it, which typically will take a few hours. This command only needs to be executed once for a particular reference genome.
 
 To see all options for the *index* command type: `bwa index`
 
@@ -333,6 +333,18 @@ rm sample1_1P.fastq sample1_1U.fastq sample1_2P.fastq sample1_2U.fastq
         bwa mem -R "@RG\tID:sample2\tSM:sample2\tPL:Illumina" ~/data/tb/tb.fasta sample2_1P.fastq sample2_2P.fastq | samtools view -b - | samtools sort -o sample2.bam -
         ```
 
+
+
+
+<br/>
+<br/>
+### **Do Not Proceed Until Completing The Exercise Above For Sample 2**
+<br/>
+<br/>
+
+
+
+
 ## Viewing in IGV
 
 Launch IGV by running the command `igv` on a New Terminal and perform the following steps:
@@ -363,9 +375,9 @@ Now you will be able to view the alignment of the reads to the reference. By def
 
 You can zoom in to a specific region using the search bar. You can do this by entering your region using the specific format: *chromosome_name:start-end*. For example if you want to go zoom in on positions 1000-2000 on the Mtb chromosome you can type in "Chromosome:1000-2000" and hit ++enter++. 
 
-In most cases you#ll probably be searching for a certain gene. You can also enter the gene name into the search bar and it will automatically center the view on this gene. Try this with the *rpoB* gene for example. Type in "rpoB" into the search bar and hit ++enter++.
+In most cases you'll probably be searching for a certain gene. You can also enter the gene name into the search bar and it will automatically center the view on this gene. Try this with the *rpoB* gene for example. Type in "rpoB" into the search bar and hit ++enter++.
 
-## Exercise: Mapping the P. falciparum IT reads with BWA
+## Exercise: Mapping the </i>P. falciparum</i> IT reads with BWA
 
 !!! info 
     Now we will map the IT clone reads to the 3D7 reference, again using the short reads mapping program BWA

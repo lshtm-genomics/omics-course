@@ -1,20 +1,29 @@
-# Genome Wide Aassociation Studies (GWAS) 
+# Genome Wide Association Studies (GWAS) 
 
-The objective of this tutorial is to get you familiar with the basic file format used for GWAS and common tools used for analysis and take you through data Quality control (Crucial in any study!). 
+## Introduction
 
-Our dataset is based on a GWAS study for Meningococcal disease in a European population (https://www.nature.com/articles/ng.640).
+The objective of this tutorial is to get you familiar with the basic file format used for GWAS and common tools used for analysis and take you through data quality control (Crucial in any study!). 
 
-Data
- * Genome wide SNP data
- * Scripts to facilitate analysis
+Our dataset is based on a GWAS study for Meningococcal disease in a [European population](https://www.nature.com/articles/ng.640).
 
-Software you will need for analysis 
- * Computer workstation with Unix/Linux operating system 
- * PLINK software for genome-wide association analysis: http://pngu.mgh.harvard.edu/_purcell/plink/download.shtml
- * Statistical software for data analysis and graphing such as: R: http://cran.r-project.org/
+The data required is genomic wide SNP data. It is already included in this practical. The scripts required to facilitate analysis are also included just like the other practicals.
+
+## Software you will need for analysis:
+
+ * Computer workstation with Unix/Linux operating system (You will be using this already)
+
+ * [PLINK software for genome-wide association analysis](http://pngu.mgh.harvard.edu/_purcell/plink/download.shtml)
+
+ * [R](http://cran.r-projecBasecalling) (Statistical software for data analysis and graphing)
+  
+ * Data analysis and graphing can be performed in a number of ways, and "R" is a example of a software that can be used for this. 
+
  * BCFtools
 
-The data for this practical is in the `~/Module7` directory. Please navigate to this directory before running any commands. 
+The data for this practical is in the `~/data/gwas` directory. Please navigate to this directory before running any commands. 
+
+**Before continuing also make sure to have loaded the "gwas" environment using the conda command.**
+
 
 ## 1. Create BED files for analysis
 
@@ -23,14 +32,14 @@ Convert your plink genotype files to binary format - smaller file easier for man
 **We have already provided you with plink formatted files we won't have to do this step.**
 
 !!! info
-    plink allows for the conversion from many different formats to plink format. For example if you had a VCF file you could type:
+    Plink allows for the conversion from many different formats to plink format. For example if you had a VCF file you could type:
     ```
     plink --vcf MD.vcf.gz --make-bed --out MD 
     ```
 
 Your data set:
 
-Plink binary formatted dataset consisting of 3004 individuals, 409 cases, 2595 controls, 601089 variants
+Plink binary formatted dataset consisting of 3004 individuals, 409 cases, 2595 controls, and 601089 variants.
 
  * MD.bed – binary-coded information on individuals and variants
  * MD.bim – variant information: “Chromosome”, “Marker name”, “Genetic Distance” (or '0' as dummy variable), “Base-pair coordinate”, “Allele 1”, “Allele 2”. Each SNP must have two alleles.
@@ -156,12 +165,13 @@ This outputs **pca_plot.pdf**
 !!! info
     Data in column 4 is used to colour the points according to phenotype (i.e. case vs control). Here, we chose to exclude all individuals with a 2nd principal component score >0.07. 
 
+To write the FID and IID of the individuals to a file called **fail_pca.txt** type:
 
 ```
 R CMD BATCH write_pca_fail.R
 ```
 
-To write the FID and IID of the filtered individuals to a file called **fail_pca.txt**. 
+
 
 !!! question
     How many individuals failed the PCA threshold? 
@@ -221,7 +231,7 @@ plink --bfile clean.MD --test-missing --allow-no-sex --out clean.MD
 
 The output of this test can be found in clean.MD.missing. 
 
-To create a file called ‘fail-diffmiss-qc.txt’, which contains all SNPs with a significantly different (P<0.00001) missing rate between cases and controls, type 
+To create a file called ‘fail-diffmiss-qc.txt’, which contains all SNPs with a significantly different (P<0.00001) missing rate between cases and controls, type: 
 
 ```
 perl run-diffmiss-qc.pl clean.MD
@@ -291,6 +301,7 @@ Let’s zoom into a region of interest: the tower of SNPs on CHR1 (coloured in y
  * Open the locuszoom webpage: http://locuszoom.org/genform.php?type=yourdata
  * Upload the text file (final.MD.assoc.assoc.adjusted)
  * Set The P-Value column name to be "GC"
+ * Change the Column Delimiter to "Whitespace"
  * Set the Marker column name to be "SNP"
  * In the region section, enter the most associated snp (“rs1065489”) with a flanking size of 500KB
  * In the Genome Build/LD Population field select the appropriate hg19 european ref panel.

@@ -1,4 +1,4 @@
-# Pylogenetics
+# Phylogenetics
 The study of evolutionary relationships among biological entities
 
 ## Objectives
@@ -150,7 +150,7 @@ We now have to tag the sequences with their sampling date. A list of all the seq
 
 In the Sample Date tab, click on `Parse Dates`. In the `Parse Dates for Taxa` window, select the following options:
 - The date is given by a numerical field in the taxon label that is defined by a prefix and its order (Order: **Last**; Prefix: **_d**)
-- Parse as a calendar date (Date format: **yyy-MM-dd**)
+- Parse as a calendar date (Date format: **yyyy-MM-dd**)
 
 Click `OK`, and the time of sampling will appear in the **Date** column.
 

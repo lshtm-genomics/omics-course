@@ -6,9 +6,9 @@ New sequencing technologies are mostly used for re-sequencing, namely when a wel
 
 Most of the software for variant detection and calling require alignment files (e.g. BAM format) as input. We will be using samtools/bcftools and GATK for SNP and small indel discovery.
 
-Historically, structural variation refers to relatively large polymorphisms that alter the chromosome structure. Indels belong to this group of genetic variation. Among the early methods for discovering structural variants (SVs), whole-genome array comparative hybridisation (Carter[^1]) and SNP arrays (Cooper[^2]) have been successfully applied despite their resolution limitations
+Historically, structural variation refers to relatively large polymorphisms that alter the chromosome structure. Indels belong to this group of genetic variation. Among the early methods for discovering structural variants (SVs), whole-genome array comparative hybridisation (Carter[^1]) and SNP arrays (Cooper[^2]) have been successfully applied despite their resolution limitations.
 
-The advent of high-throughput sequencing platforms has opened new possibilities in this area. New tools have been developed to detect unusual patterns of reads, or pairs of reads, left by SVs. Such signatures can be broadly grouped into three categories of signature: discordant mapping of read pairs, read splitting, and depth of coverage. SV detection programs implement algorithms aiming to identify such signatures, or combinations of them, from sequence alignment files (Medvedev[^3])
+The advent of high-throughput sequencing platforms has opened new possibilities in this area. New tools have been developed to detect unusual patterns of reads, or pairs of reads, left by SVs. Such signatures can be broadly grouped into three categories of signature: discordant mapping of read pairs, read splitting, and depth of coverage. SV detection programs implement algorithms aiming to identify such signatures, or combinations of them, from sequence alignment files (Medvedev[^3]).
 
 ## SNP detection and calling
 
@@ -33,9 +33,8 @@ igv
 
 We are going to check at positions 187,503 and 587,585 in the genome. To zoom into a position in the genome you have to input the location into the search bar in the format of **Chromosome:position** or **Chromosome:start-end** if you want to visualise a range. For example - to go to position 187,503 type in **Chromosome:187503** and hit ++enter++. You should see an image similar to the one below.
 
-![variants_2](./img/variants_2.png)
+![variants_2](../img/variants_2.png)
 
-!!! exercise
     
 
 
@@ -51,7 +50,7 @@ We are going to check at positions 187,503 and 587,585 in the genome. To zoom in
         You should be able to see that almost all the reads have a different nucleotide from the reference at potision **187,503** so we can conclude that we have a SNP here.
         For position **587,585** it is a bit more complicated. You might notice that we have both the reference and alternate alleles at this position. Further, it looks like all alternate alleles are located at the very end of reads and alsways in the reads going in the same direction. This is most likely an artefact of alignment and not a real variant.
 
-        ![variants_3](./img/variants_3.png)
+        ![variants_3](../img/variants_3.png)
 
 
 
@@ -156,7 +155,7 @@ cat sample1.raw.vcf | vcfutils.pl varFilter -d 10 -D 2000 > sample1.filt.vcf
 ```
 
 !!! important
-    Run the code above for sample2. The bam has already been preprocessed so all you have to do is replace “sample1” in the command with “sample2”
+    Run the code above for sample2. The bam has already been preprocessed so all you have to do is replace “sample1” in the command with “sample2”.
 
 ### Exercise 3: Calling SNPs and short indels using GATK
 
@@ -205,27 +204,27 @@ In the menu bar, select **Load From File...** and select the VCF files in ~/data
 Then the SNPs should appear in the VCF track above the reads panel as shown below. On the other hand, sequencing errors are not called SNPs at those positions.
 Making use of search bar to visit the two regions we visited in Exercise 1 (containing positions 187,503 and 587,585 respectively). Remember that we were trying to distinguish real SNPs from sequencing errors. 
 
-![variants_4](./img/variants_4.png)
+![variants_4](../img/variants_4.png)
 
 !!! question "Exercise"
     The SNPs called from GATK can be examined in the same way. Try load the VCF files you generated with GATK and check if you get the same calls as with bcftools.
 
-Zoom out to visualise more variants. Double-click on the reads panel to zoom in. Go back to the VCF terminal view, take note of any indels found and try to locate them using Tablet. Note that insertions and deletions are represented in a different way in IGV. 
+Zoom out to visualise more variants. Double-click on the reads panel to zoom in. Go back to the VCF terminal view, take note of any indels found and try to locate them using IGV. Note that insertions and deletions are represented in a different way in IGV. 
 
-Here is an insertion at 859,131 in sample2. Insertions are represented using purple strips on the reads. You can clck on the strip to find out what the sequence of the insertion is.
+Here is an insertion at 859,131 in sample2. Insertions are represented using purple strips on the reads. You can click on the strip to find out what the sequence of the insertion is.
 
-![variants_5](./img/variants_5.png)
+![variants_5](../img/variants_5.png)
 
-Here is a deletion at position 485,810 in sample1, note that because of how the deletion is labelled in each case (IGV or VCF) they appear shifted in position. This is because the variant falls on top of a homopolymer run of As so we can place the deletion on any of them.
+Here is a deletion at position 485,810 in sample1, note that because of how the deletion is labelled in each case (IGV or VCF) they appear shifted in position. This is because the variant falls on top of a homopolymer run of A's (AAA) so we can place the deletion on any of them.
 
-![variants_6](./img/variants_6.png)
+![variants_6](../img/variants_6.png)
 
 
-### Drug resistance in Mycobacterium tuberculosis
+### Drug resistance in </i>Mycobacterium tuberculosis</i>
 
-One area where polymorphisms are elevated in Mycobacterium tuberculosis is in genes relating to antibiotic action. Resistance to anti-tuberculosis drugs is caused predominantly by point mutations (i.e. SNPs) that arise spontaneously and offer the bacterium survival advantage during (incomplete) drug treatment. Since SNPs conferring drug resistance have been characterised (Sandgren[^7]) it has been proposed that drug susceptibility can be inferred based on the presence/absence of such markers (Peacock, 2013). In this exercise we will be looking at Rifampicin resistance-conferring mutations found in the rpoB gene.
+One area where polymorphisms are elevated in </i>Mycobacterium tuberculosis</i> is in genes relating to antibiotic action. Resistance to anti-tuberculosis drugs is caused predominantly by point mutations (i.e. SNPs) that arise spontaneously and offer the bacterium survival advantage during (incomplete) drug treatment. Since SNPs conferring drug resistance have been characterised (Sandgren[^7]) it has been proposed that drug susceptibility can be inferred based on the presence/absence of such markers (Peacock, 2013). In this exercise we will be looking at Rifampicin resistance-conferring mutations found in the rpoB gene.
 
-| osition | gene | Reference Nucleotide | Alternative Nucleotide | Reference Codon | Alternative Codons | Reference Amino Acid | Alternative Amino Acid |
+| Position | gene | Reference Nucleotide | Alternative Nucleotide | Reference Codon | Alternative Codons | Reference Amino Acid | Alternative Amino Acid |
 |---------|------|----------------------|------------------------|-----------------|--------------------|----------------------|------------------------|
 | 761095  | rpoB | T                    | C                      | CTG             | CCG                | L                    | P                      |
 | 761101  | rpoB | A                    | T                      | CAA             | CTA                | Q                    | L                      |
@@ -237,9 +236,10 @@ One area where polymorphisms are elevated in Mycobacterium tuberculosis is in ge
 | 761155  | rpoB | C                    | T;G                    | TCG             | TTG;TGG            | S                    | L;W                    |
 | 761161  | rpoB | T                    | C                      | CTG             | CCG                | L                    | P                      |
 
-Load the Annotation track and go to the rpoB (Rv0667) gene region, to do so in the left side information table where the Chromosome is listed click on the tab “Features” then at the bottom from the list Select filter by select “Name” (type ‘Rv0667’ in the Search Box) and try to spot one of the above SNPs in the gene.
+Load in the Annotation track, to do so click the File > Load from File and select ~/data/tb/tb.gff. Once loaded you can search for the Rv0667 gene in the Search Box and try to spot one of the above SNPs in the gene. 
 
-![variants_7](./img/variants_7.png)
+
+![variants_7](../img/variants_7.png)
     
 
 !!! question "Exercise"
@@ -252,7 +252,7 @@ Load the Annotation track and go to the rpoB (Rv0667) gene region, to do so in t
 
         Sample 2 has a SNP at position 761155. It changes the nucleotide from a C to a T. By looking at the table you can see that this leads to the mutation S450L which is the most prominant resistance mutation for rifampicin. 
 
-        ![variants_8](./img/variants_8.png)
+        ![variants_8](../img/variants_8.png)
 
 ## Large structural variant (SV) detection and calling
 
@@ -307,11 +307,11 @@ The software has two sequential steps. First, structural variants are predicted 
 Paired-end options include, like all PEM-based software, the insert size cut-off (-s). The minimum paired-end mapping quality (-q) has been set to 20, therefore all reads with mapping quality below this threshold will be discarded. Structural variants detected by PEM will be outputted to the file indicated with ‘-o’.
 The specification of the standard deviation units (-s) is probably the most important cut-off for PEM methods. A deletion is detected when the pair mapped distance exceeds the upper threshold defined as s times (s = 3) the standard deviation (σ) over the mean (μ + 3σ).
 
-![variants_9](./img/variants_9.jpg)
+![variants_9](../img/variants_9.jpg)
 
 Second, Delly makes use of soft-clipped information to find exact breakpoints. Read splitting approaches rely on mapping broken reads that span breakpoints and are located in nearby locations. The structural variant signature in this case consists of one of the reads mapping to the reference and its split mate mapping with one of its parts approximately one insert size away. For insertions, the broken read will have its splits parts adjacent to each other, with a missing middle part of the read. In both cases, breakpoints can be resolved with base-pair precision.
 
-![variants_10](./img/variants_10.jpg)
+![variants_10](../img/variants_10.jpg)
 
 Split-read options include the reference genome file name (-g), the output file name containing structural variants inferred by split-read method (-b) and other parameters.
 
@@ -347,20 +347,20 @@ SV detection tools output not only potential structural differences, but also a 
 
 Launch an IGV instances as before (or use the same one if you kept it open) and load sample1.bam and sample2.bam in each of them as explained in Exercise 1.
 
-In the tool bar, select Import features as if we were going to load an annotation file. But this time select the compressed VCF files in ~/data/tb/ (i.e. sample1.delly.vcf.gz for the instance with sample1 loaded and sample2.delly.vcf.gz for the instance with sample2 loaded).
+In the tool bar, select Import features as if we were going to load an annotation file. But this time select the compressed VCF files in ~/data/tb/ (i.e. sample1.delly.vcf for the instance with sample1 loaded and sample2.delly.vcf for the instance with sample2 loaded).
 
 Find the region 77,823-84,798 and establish whether differences in the alignment can be visually identified between samples . Note: The coverage plot can also give you a clear insight.
 
-![variants_11](./img/variants_11.png)
+![variants_11](../img/variants_11.png)
 
 
 !!! question "Exercise"
     
-    === "Question 1"
+    === "Question 3"
 
         Which characteristic signatures of deletions (gap of coverage, long-spanning read pairs and split-reads) can be identified? (Read the notes below to help answer this question) 
 
-    === "Answer 1"
+    === "Answer 3"
 
         We can see a gap in the coverage and many reads which end abruptly at the same positions (split reads).
 

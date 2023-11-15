@@ -39,7 +39,11 @@ You can find the M. tuberculosis H37Rv reference genome (called H37Rv.fa) as wel
 
 ### Running BWA
 
-To work with the command line of Linux, you will first need to open a terminal and go to the data and transcriptomics directory:
+To work with the command line of Linux, you will first need to open a terminal, activate the rnaseq conda environment, go to the data and transcriptomics directory:
+
+```
+conda activate rnaseq
+```
 
 ```
 cd ~/data/transcriptomics
@@ -63,6 +67,7 @@ This will generate 5 files which are needed for BWA. We will then align the RNA-
 
 ```
 bwa mem H37Rv.fa Mtb_L1_1.fastq.gz Mtb_L1_2.fastq.gz | samtools sort - -o Mapping_Mtb/Mtb_L1.bam
+samtools index Mapping_Mtb/Mtb_L1.bam
 ```
 The output will be located in the Mapping_Mtb folder, which is in the transcriptomics directory.
 
@@ -96,15 +101,27 @@ This exercise is similar to the one performed before in the Visualisation module
 
 ![](../img/rnaseq_3.png)
 
-!!! question
-    Why do some genes have little or no coverage?
 
-    Why do some reads map where there are no genes?
+
+!!! question
+    === "Question 2"
+        Why do some genes have little or no coverage?
+    === "Answer 2"
+        They are not being expressed in the given sample.
+
+!!! question
+    === "Question 3"
+        Why do some reads map where there are no genes?
+    === "Answer 3"
+        This could be due to:
+        * Genome annotation incompleteness
+        * Novel transcripts and isoforms
+        * Non-coding RNAs
 
 
 ### Including more lineages
 
-One interesting feature of the Artemis viewer is the possibility to see more than one BAM file at the same time, which enables to comapre coverage from different samples. Hence, next we want to include more lineages, in this case we will add another sample belonging to the lineage 4 of Mtb.
+One interesting feature of the IGV viewer is the possibility to see more than one BAM file at the same time, which enables to comapre coverage from different samples. Hence, next we want to include more lineages, in this case we will add another sample belonging to the lineage 4 of Mtb.
 
 To do it, we will need first to follow the previous steps in order to get the sorted and index bam files. Therefore, map it with BWA as before, the fastq files are in the directory ~/data/transcriptomics and are called Mtb_L4_1.fastq.gz and Mtb_L4_2.fastq.gz.
 
@@ -116,15 +133,22 @@ In the BAM view of the reads, it might be difficult to distinguish the differenc
 
 One reason to perform RNA-seq under different conditions or in different samples (in this case different lineages of Mtb), is to see genes that are differentially expressed. For example, one gene may be more highly expressed in one lineage that in the other.
 
+
+
 !!! question
-    Can you find any genes that have differential expression?
+    === "Question 4"
+        Can you find any genes that have differential expression?
+
 
 Now go to gene Rv2161c (position 2422271).
 
 ![](../img/rnaseq_5.png)
 
+
 !!! question
-    Would you think that this gene is differentially expressed?
+    === "Question 5"
+        Would you think that this gene is differentially expressed?
+
 
 ## Exercse 3: Differential expression
 
@@ -159,8 +183,12 @@ If you have any doubt about the parameters of the program, type:
 python -m HTSeq.scripts.count
 ```
 
+
 !!! question
-    What would -a parameter do?
+    === "Question 6"
+        What would -a parameter do?
+    === "Answer 6"
+        Ensures HTSeq-count skips all reads with alignment quality lower than the given minimum value.
 
 We can now take a look at the results from the HTSeq-count typing the following in the command line:
 
@@ -329,8 +357,12 @@ And you should get a table like this:
 
 The first column represents the name of each gene analysed, which are represented in rows.
 
+
 !!! question
-    How many genes did we analyse?
+    === "Question 7"
+        How many genes did we analyse?
+    === "Answer 7"
+        441
 
 
 Let's take a look at the summary of the results we just obtained:
@@ -356,10 +388,23 @@ When asking whether a gene is differentially expressed we use statistical tests 
 
 The summary shows us the number of genes with an adjusted p-value < 0.1 that are under or over expressed in one of the groups (log2FoldChange above or below 0, here represented as LFC). The adjusted p-value in the DESeq analysis is equivalent to the FDR or 'False Discovery Rate'. This value represents the proportion of discoveries that we can expect to be false.
 
-!!! question
-    Which is the maximum percentage of "false discoveries" that we can expect given a cut off adjusted p-value of 0.1?
 
-    How many genes are up and down-regulated with an adjusted p-value < 0.1?
+
+
+!!! question
+    === "Question 8"
+        Which is the maximum percentage of "false discoveries" that we can expect given a cut off adjusted p-value of 0.1?
+    === "Answer 8"
+        10%
+
+
+!!! question
+    === "Question 9"
+        How many genes are up and down-regulated with an adjusted p-value < 0.1?
+    === "Answer 9"
+        10 genes are up-regulated. 7 genes are down-regulated.
+
+
 
 Some of the p-values in our results might be NA values, which can be due to extreme outliers. To continue with the analysis we are going to remove these missing values.
 
@@ -459,15 +504,27 @@ You should get a plot like this:
 
 ![](../img/rnaseq_6.png)
 
+
 !!! question
-    Do the samples cluster by lineage in the dendrogram?
+    === "Question 10"
+        Do the samples cluster by lineage in the dendrogram?
+    === "Answer 10"
+        Yes
+
+
 
 As you can see in the color key, red cells in the plot represent overexpressed genes whilst green ones the underexpressed genes. Rows represent the 17 genes of interest and columns the 6 samples we are analysing.
 
-!!! question
-    How is Rv2493 in lineage 4 samples? And Rv2159c in lineage 1?
 
-    Take a look at the first 5 genes in the plot. As you might assume by the numbers they are located in the genome one after the other. Which potential explanations would you give to their down-regulation in one of the lineages?
+!!! question
+    === "Question 11"
+        How is Rv2493 in lineage 4 samples? And Rv2159c in lineage 1?
+    === "Answer 11"
+        Rv2493 is over expressed in 2 out of 3 lineage 4 samples and Rv2159c is under expressed in all lineage 1 samples
+
+
+
+Take a look at the first 5 genes in the plot. As you might assume by the numbers they are located in the genome one after the other. Which potential explanations would you give to their down-regulation in one of the lineages?
 
 ## Further exploration
 

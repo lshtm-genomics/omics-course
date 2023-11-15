@@ -19,5 +19,7 @@ cd ~/data/tb/variants/
 delly call -o sample1.delly.bcf -q 20 -s 3 -g ~/data/tb/tb.fasta ~/data/tb/sample1.bam
 delly call -o sample2.delly.bcf -q 20 -s 3 -g ~/data/tb/tb.fasta ~/data/tb/sample2.bam
 
+bcftools view -i 'FILTER="PASS" && ALT="<DEL>" && (END-POS)<20000' -c 2 sample1.delly.bcf > sample1.delly.vcf
+bcftools view -i 'FILTER="PASS" && ALT="<DEL>" && (END-POS)<20000' -c 2 sample2.delly.bcf > sample2.delly.vcf
 
 ```
