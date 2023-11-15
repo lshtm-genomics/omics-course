@@ -160,7 +160,7 @@ cd ~/data/nanopore_activity/mapping
 Now we can use minimap2 to align our qc complete, porechopped reads. Minimap is a fast alignment tools similar to BWA mem. You can find more information about this tool by clicking the link [comparing the two alignment tools](https://lh3.github.io/2018/04/02/minimap2-and-the-future-of-bwa)
 
 ```
-minimap2 -ax map-ont ./reference.fasta basecalled_reads.fastq | samtools view -q 15 -b | samtools sort -o alignment.bam```
+minimap2 -ax map-ont ./reference.fasta basecalled_reads.fastq | samtools view -q 15 -b | samtools sort -o alignment.bam
 ```
 
 Finally we need to index the sorted bam file:
