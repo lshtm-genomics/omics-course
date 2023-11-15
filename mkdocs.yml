@@ -43,12 +43,15 @@ nav:
       - advanced/phylogenetics.md
       - advanced/third-generation-sequencing.md
       - advanced/gwas.md
-  - Other-omics:
+  - "Other omics":
       - other-omics/microbiome.md
       - other-omics/transcriptomics.md
       - other-omics/methylation.md
       - other-omics/ml.md
       - other-omics/tb-resistance.md
       - other-omics/eqtl.md
-  - Additional-info:
+  - "Additional info":
       - additional-info/conda.md
+      - additional-info/software.md
+  - Presentations:
+      - presentations/presentations.md

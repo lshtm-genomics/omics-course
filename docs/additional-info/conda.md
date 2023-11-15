@@ -36,6 +36,10 @@ Conda environments work by creating isolated spaces, each with its own installat
 8. **Removing an Environment**:  
    `conda env remove --name myenv`
 
+## Environments for the course
+
+Click [here](https://github.com/jodyphelan/genomics_course/tree/master/conda_env) for links to environment file used for the practicals.
+
 ## Conclusion
 
 Conda environments are essential tools for data scientists and developers to manage dependencies and ensure project reproducibility. By understanding and utilizing them, you can maintain a more organized, conflict-free, and efficient development workflow.
