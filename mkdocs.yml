@@ -51,4 +51,4 @@ nav:
       - other-omics/tb-resistance.md
       - other-omics/eqtl.md
   - additional-info:
-      - conda.md
+      - additional-info/conda.md
