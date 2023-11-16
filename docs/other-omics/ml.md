@@ -284,6 +284,10 @@ Now type the below commands to train the model with different parameters, show o
 ```
 python full_model.py -i ../fastq2oh/ERR6634978_oh -v -o drug_predictions.txt
 ```
+Use the below code if you didn't let the one hot encoding step finish running
+```
+python full_model.py -i ../fastq2oh/oh -v -o drug_predictions.txt
+```
 
 -    i-one hot encoded input file
 -    o-output file name
