@@ -92,7 +92,7 @@ The number of epochs that a model is trained for is an important hyperparameter 
 
 ## Exercise 2 :Try different values of dropout and learning rate
 
-When working with python script that required input, you can also View the explanation for each input parameter using ```python full_model.py -h ```.
+When working with python script that required input, you can also View the explanation for each input parameter using ```python inh_model.py -h ```.
 
 ```
 usage: inh_model.py [-h] [-lr LEARNING_RATE] [-dr DROPOUT_RATE]
@@ -175,7 +175,7 @@ If the learning rate is low and the dropout rate is high, the model will learn s
 Type the commands below to train the model with different parameters.
 
 ```
-python train_torch_simple.py -lr <Pick a learning rate > -dr <Pick a dropout rate>
+python inh_model.py -lr <Pick a learning rate > -dr <Pick a dropout rate>
 ```
 -    learning rate range: between 10e-6 and 1
 -    Dropout rate range:  between 0 and 1
@@ -200,7 +200,7 @@ cd ../fastq2oh
 Now type the commands below to view the first few lines of the original fastq file:
 
 ```
-less ERR6634978_1.fastq | head
+less ERR6634978_1.fastq.gz | head
 ```
 
 !!! Reminder
@@ -236,20 +236,25 @@ conda activate fastq2oh
 ```
 Now type the commands below generate onehot in coded sequences:
 ```
-python fastq2oh.py -r gene.csv -o ERR6634978_oh ERR6634978_1.fastq.gz ERR6634978_2.fastq.gz
+python fastq2oh.py -r gene.csv -o ERR6634978_oh.csv ERR6634978_1.fastq.gz ERR6634978_2.fastq.gz
 ```
 
--    r-gene region
--    o-output file name
+-    -r: gene region
+-    -o: output file name
 -    two input files are followed
 
 !!! Reminder
-    this part might take a while to run. If you don't want to wait, press **ctrl + c** use the below command instead: ```less  oh | head```
+    this part might take a while to run. If you don't want to wait, press **ctrl + c** to stop the run use the below command instead: ```less  oh.csv | head```
 
 The above take a while to run
 Now type the commands below to view generate onehot encoded sequences:
 ```
-less  ERR6634978_oh | head
+less  ERR6634978_oh.csv | head
+```
+**Or** the below the `ERR6634978_oh` is not produced
+```
+less  ERR6634978_oh.csv | head
+
 ```
 !!! output
     ```
@@ -279,21 +284,23 @@ Then change the environment back to machine learning environment
 conda activate ml
 ```
 
-Now type the below commands to train the model with different parameters, show output in terminal and saving output into ```drug_predictions.txt``` file:
+Now type the below commands to train the model with different parameters, show output in terminal and saving output into ```drug_predictions.csv``` file:
 
 ```
-python full_model.py -i ../fastq2oh/ERR6634978_oh -v -o drug_predictions.txt
+python full_model.py -i ../fastq2oh/ERR6634978_oh.csv -v -o drug_predictions.csv
 ```
-Use the below code if you didn't let the one hot encoding step finish running
+**Or** Use the below code if you didn't let the one hot encoding step finish running
 ```
-python full_model.py -i ../fastq2oh/oh -v -o drug_predictions.txt
+python full_model.py -i ../fastq2oh/oh.csv -v -o drug_predictions.csv
 ```
 
 -    i-one hot encoded input file
 -    o-output file name
 -    v-verbose (show output in the terminal)
 
-You can also view the output file using ```less drug_predictions.txt```. Feel free to scroll around and press `Q` to exit.
+You can also view the output file using ```less drug_predictions.csv```. Feel free to scroll around and press `Q` to exit. 
+
+The output is in binary format (1=positive, 0=negative). What is the drug resistance profile of the sample?
 
 
 ## Additional information
@@ -304,7 +311,7 @@ In case you'd like a more hands on and visualised example of how a neural networ
 Regularization is a technique used in deep learning to prevent overfitting and improve the generalization performance of a model. There are several ways to regularize a deep learning model, including:
 
 1. L1 and L2 Regularization: These are the most common types of regularization used in deep learning. L1 regularization adds a penalty term to the loss function that is proportional to the absolute values of the model parameters, while L2 regularization adds a penalty term that is proportional to the squared values of the model parameters. Both types of regularization encourage the model to learn simpler, more interpretable features by shrinking the magnitude of the parameters.
-2. Dropout: Dropout is a technique that randomly drops out (i.e., sets to zero) a proportion of the neurons in a layer during training. This helps prevent overfitting by forcing the network to learn more robust features that do not rely on the activation of specific neurons.
+2. **Dropout (The one we have applied)**: Dropout is a technique that randomly drops out (i.e., sets to zero) a proportion of the neurons in a layer during training. This helps prevent overfitting by forcing the network to learn more robust features that do not rely on the activation of specific neurons.
 2. Data Augmentation: Data augmentation is a technique that artificially increases the size of the training dataset by creating new examples from the existing ones. This can be done by applying transformations such as rotations, flips, and crops to the original images, or by adding noise to the input data.
 3. Early Stopping: Early stopping is a technique that stops the training process before the model starts to overfit. This is done by monitoring the validation error during training and stopping the training process when the validation error stops improving.
 4. Batch Normalization: Batch normalization is a technique that normalizes the activations of a layer by subtracting the mean and dividing by the standard deviation of the activations in a batch of data. This helps to reduce the internal covariate shift, which can improve the training speed and stability of the model.
