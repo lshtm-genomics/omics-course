@@ -20,7 +20,7 @@ In this practical, we will focus on training a deep learning model to predict th
 
 
 !!! Important
-    Before doing anything, we need to first activate the conda environment for this practical by typing the following: `conda activate deep_learning`. This environment contains most of the software we need for this practical. This command needs to be run each time we open up a new terminal or switch from a different environment. 
+    Before doing anything, we need to first activate the conda environment for this practical by typing the following: `conda activate ml`. This environment contains most of the software we need for this practical. This command needs to be run each time we open up a new terminal or switch from a different environment. 
 
 ## Exercise 1: Running the neural network for predicting Isoniazid resistance 
 
@@ -31,26 +31,29 @@ You can list all installed environments with `cond env list`.
 In the terminal navigate to the ‘ml_workshop/inh_model’ directory, by typing:
 
 ```
-cd ~/ml_workshop/inh_model
+cd ~/data/ml_workshop/inh_model
 ```
 
 Now type the commands below to train the model with default parameters.
 
 ```
-python inh_model.py
+python inh_model.py -lr 0.001 -dr 0.2
 ```
 
 !!! Important
     It is important to specify </strong> python </strong> before the script to complie (run the script) using python.
 
-Two graphs are produced:
+Two graphs are produced in the same folder:
 
 ```
 INH-model_LR:0.001-DR:0.2-ACC.png
 INH-model_LR:0.001-DR:0.2-LOSS.png
 ```
 
-You can open the current folder using command ```open . ```.
+!!! Important
+    The script is adapted for CPU running (estimated running time of 2.5 minutes). Hence compromises in model accuracy is taken
+
+You can open the current folder using command ```open . ``` in terminal.
 Double click on the picture files to view them.
 
 ### ACC-accuracy
@@ -88,16 +91,8 @@ The number of epochs that a model is trained for is an important hyperparameter 
 
 
 ## Exercise 2 :Try different values of dropout and learning rate
-Type the commands below to train the model with different parameters.
 
-```
-python train_torch_simple.py -lr 0.001 -dr 0.2
-```
-
--    learning rate: between 10e-6 and 1
--    Dropout rate:  between 0 and 1
-
-When working with python script that required input, you can also View the explanation for each input parameter using ```python full_model.py -h ```.
+When working with python script that required input, you can also View the explanation for each input parameter using ```python inh_model.py -h ```.
 
 ```
 usage: inh_model.py [-h] [-lr LEARNING_RATE] [-dr DROPOUT_RATE]
@@ -120,7 +115,7 @@ It is the step size that a model takes when trying to find the best set of weigh
 !!!Intuition
     Imagine you are climbing a hill to reach the top. Your learning rate is how big of a step you take with each stride. If your steps are too small, it will take a long time to reach the top, but if your steps are too big, you might overshoot and miss the peak. 
 
-Similarly, in machine learning, a **small learning rate** will cause the algorithm to take longer to converge, while a **large learning rate** can cause the algorithm to overshoot and make inaccurate predictions. Therefore, choosing the right learning rate is important to achieve optimal results in machine learning models.
+Similarly, in machine learning, a **small learning rate** will cause the algorithm to take longer to converge, while a **large learning rate** can cause the algorithm to overshoot and make inaccurate predictions **(underfitting)**. Therefore, choosing the right learning rate is important to achieve optimal results in machine learning models.
 
 
 ###dr: dropout rate
@@ -155,6 +150,37 @@ If **both the learning rate and dropout rate are high**, the model will learn qu
 If the learning rate is low and the dropout rate is high, the model will learn slowly but regularize effectively, leading to good generalization. Finally, if the learning rate is high and the dropout rate is low, the model will learn quickly but may overfit due to insufficient regularization.
 
 
+!!! Question
+
+    === "Question"
+
+        Is the parameters used in exercise1 (learning rate, dropout rate) the best suited? Try different value combinations according to above intuitions. Observe the relationship between the two curves to adjust the hyperparameters
+        * Optimal: Low validation loss
+        * Overfitting: High training loss, low validation loss
+        * Underfitting: Low validation loss
+
+    === "Answer"
+
+        Not necessarily the optimal, but here are some guiding values to try out:
+        * Balanced
+            * lr = 0.0005
+            * dr = 0.2
+        * Underfitting
+            * lr = 0.2
+            * dr = 0.2
+        * Overfitting
+            * lr = 0.0005
+            * dr = 0.0
+
+Type the commands below to train the model with different parameters.
+
+```
+python inh_model.py -lr <Pick a learning rate > -dr <Pick a dropout rate>
+```
+-    learning rate range: between 10e-6 and 1
+-    Dropout rate range:  between 0 and 1
+
+
 ##Exercise 3: Converting Fastq to onehot encoding
 In machine learning, one-hot encoding is a way to represent categorical data in a numerical format that can be easily understood by algorithms.
 
@@ -174,11 +200,19 @@ cd ../fastq2oh
 Now type the commands below to view the first few lines of the original fastq file:
 
 ```
-less ERR6634978_1.fastq | head
+less ERR6634978_1.fastq.gz | head
 ```
 
 !!! Reminder
-    FASTQ is a text-based file format commonly used in bioinformatics to store and exchange sequences and their corresponding quality scores. It consists of four lines per sequence: the first line starts with "@" followed by a unique identifier for the sequence, the second line contains the actual nucleotide sequence, the third line starts with "+" followed by the same unique identifier as in the first line, and the fourth line contains the quality scores corresponding to each nucleotide in the sequence. The quality scores represent the confidence level of each nucleotide call and are represented as ASCII characters. The FASTQ format is widely used in sequencing technologies such as Illumina, Ion Torrent, and PacBio.
+    FASTQ is a text-based file format commonly used in bioinformatics to store and exchange sequences and their corresponding quality scores. 
+
+    It consists of four lines per sequence: 
+     - The first line starts with "@" followed by a unique identifier for the sequence.
+     - The second line contains the actual nucleotide sequence.
+     - The third line starts with "+" followed by the same unique identifier as in the first line
+     - The fourth line contains the quality scores corresponding to each nucleotide in the sequence. The quality scores represent the confidence level of each nucleotide call and are represented as ASCII characters. 
+
+    The FASTQ format is widely used in sequencing technologies such as Illumina, Ion Torrent, and PacBio.
 
 !!! output
     ```
@@ -196,19 +230,31 @@ less ERR6634978_1.fastq | head
 
 !!! Reminder
     ```less``` show a scrollable content of the file, ```head``` allow the terminal to only show the first few lines from less output.
-
+Activate one hot encoding environment
+```
+conda activate fastq2oh
+```
 Now type the commands below generate onehot in coded sequences:
 ```
-python fastq2oh.py -r gene.csv -o ERR6634978_oh ERR6634978_1.fastq.gz ERR6634978_2.fastq.gz
+python fastq2oh.py -r gene.csv -o ERR6634978_oh.csv ERR6634978_1.fastq.gz ERR6634978_2.fastq.gz
 ```
 
--    r-gene region
--    o-output file name
+-    -r: gene region
+-    -o: output file name
 -    two input files are followed
 
+!!! Reminder
+    this part might take a while to run. If you don't want to wait, press **ctrl + c** to stop the run use the below command instead: ```less  oh.csv | head```
+
+The above take a while to run
 Now type the commands below to view generate onehot encoded sequences:
 ```
-less  ERR6634978_oh | head
+less  ERR6634978_oh.csv | head
+```
+**Or** the below the `ERR6634978_oh` is not produced
+```
+less  ERR6634978_oh.csv | head
+
 ```
 !!! output
     ```
@@ -233,18 +279,28 @@ First change the directory to the script folder using hte below command:
 ```
 cd ../full_model
 ```
+Then change the environment back to machine learning environment 
+```
+conda activate ml
+```
 
-Now type the below commands to train the model with different parameters, show output in terminal and saving output into ```drug_predictions.txt``` file:
+Now type the below commands to train the model with different parameters, show output in terminal and saving output into ```drug_predictions.csv``` file:
 
 ```
-python full_model.py -i ../fastq2oh/ERR6634978_oh -v -o drug_predictions.txt
+python full_model.py -i ../fastq2oh/ERR6634978_oh.csv -v -o drug_predictions.csv
+```
+**Or** Use the below code if you didn't let the one hot encoding step finish running
+```
+python full_model.py -i ../fastq2oh/oh.csv -v -o drug_predictions.csv
 ```
 
 -    i-one hot encoded input file
 -    o-output file name
 -    v-verbose (show output in the terminal)
 
-You can also view the output file using ```less drug_predictions.txt```. Feel free to scroll around and press `Q` to exit.
+You can also view the output file using ```less drug_predictions.csv```. Feel free to scroll around and press `Q` to exit. 
+
+The output is in binary format (1=positive, 0=negative). What is the drug resistance profile of the sample?
 
 
 ## Additional information
@@ -255,7 +311,7 @@ In case you'd like a more hands on and visualised example of how a neural networ
 Regularization is a technique used in deep learning to prevent overfitting and improve the generalization performance of a model. There are several ways to regularize a deep learning model, including:
 
 1. L1 and L2 Regularization: These are the most common types of regularization used in deep learning. L1 regularization adds a penalty term to the loss function that is proportional to the absolute values of the model parameters, while L2 regularization adds a penalty term that is proportional to the squared values of the model parameters. Both types of regularization encourage the model to learn simpler, more interpretable features by shrinking the magnitude of the parameters.
-2. Dropout: Dropout is a technique that randomly drops out (i.e., sets to zero) a proportion of the neurons in a layer during training. This helps prevent overfitting by forcing the network to learn more robust features that do not rely on the activation of specific neurons.
+2. **Dropout (The one we have applied)**: Dropout is a technique that randomly drops out (i.e., sets to zero) a proportion of the neurons in a layer during training. This helps prevent overfitting by forcing the network to learn more robust features that do not rely on the activation of specific neurons.
 2. Data Augmentation: Data augmentation is a technique that artificially increases the size of the training dataset by creating new examples from the existing ones. This can be done by applying transformations such as rotations, flips, and crops to the original images, or by adding noise to the input data.
 3. Early Stopping: Early stopping is a technique that stops the training process before the model starts to overfit. This is done by monitoring the validation error during training and stopping the training process when the validation error stops improving.
 4. Batch Normalization: Batch normalization is a technique that normalizes the activations of a layer by subtracting the mean and dividing by the standard deviation of the activations in a batch of data. This helps to reduce the internal covariate shift, which can improve the training speed and stability of the model.

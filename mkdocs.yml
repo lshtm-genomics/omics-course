@@ -53,5 +53,6 @@ nav:
   - "Additional info":
       - additional-info/conda.md
       - additional-info/software.md
+      - additional-info/SettingUpVirtualLinux.md
   - Presentations:
       - presentations/presentations.md
