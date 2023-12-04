@@ -459,7 +459,7 @@ Differently coloured nucleotides appear on the stacked reads highlighting every 
     === "Question"
          Now consider the neighbouring position 958146. What could this be? Is it from IT or Dd2? 
     === "Answer"
-        To answer this question, clone the window and display the reads of only one or the other parasite strain in each window, as demonstrated below. It looks like the SNP onle appears in reads from IT
+        To answer this question, look at the position in the different bams. It looks like the SNP onle appears in reads from IT
 
 
 !!! information
