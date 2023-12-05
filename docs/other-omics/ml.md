@@ -243,7 +243,7 @@ One hot encoding can be created from alignment files (.bam). As a refresher let'
 
 ```
 bwa index MTB-h37rv_asm19595v2-eg18.fa
-bwa mem MTB-h37rv_asm19595v2-eg18.fa ERR6634978_1.subset.fastq.gz ERR6634978_2.subset.fastq.gz | samtools sort - -o ERR6634978.bam
+bwa mem MTB-h37rv_asm19595v2-eg18.fa ERR6634978_1.fastq.gz ERR6634978_2.fastq.gz | samtools sort - -o ERR6634978.bam
 samtools index ERR6634978.bam
 ``` 
 
@@ -284,11 +284,7 @@ Check if you are in the right directory using ```ls``` and ```pwd``` containing 
 Now type the below commands to train the model with different parameters, show output in terminal and saving output into ```drug_predictions.csv``` file:
 
 ```
-python full_model.py -i ../fastq2oh/ERR6634978_oh.csv -v -o drug_predictions.csv
-```
-**Or** Use the below code if you didn't let the one hot encoding step finish running
-```
-python full_model.py -i ../fastq2oh/oh.csv -v -o drug_predictions.csv
+python full_model.py -i ERR6634978_oh.csv -v -o drug_predictions.csv
 ```
 
 -    -i: one hot encoded input file
