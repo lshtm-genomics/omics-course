@@ -51,10 +51,18 @@ INH-model_LR:0.001-DR:0.2-LOSS.png
 ```
 
 !!! Important
-    The script is adapted for CPU running (estimated running time of 2.5 minutes). Hence compromises in model accuracy is taken
+    The script is adapted for CPU running (estimated running time of 2.5 minutes). Hence compromises in model accuracy is taken. 
 
-You can open the current folder using command ```open . ``` in terminal.
-Double click on the picture files to view them. ***Or*** use ```xdg-open <file name>``` in the terminal
+    Waiting for model to run/train and dealing with these fragmented times is also essential in our lives here are some ground rules:
+    - If a model takes < 5 minutes to train, I like to check Instagram to give my brain a break.
+    - If a model takes 5–30 min to train, I’ll usually spend time reading or writing documentation. Sometimes debugging too.
+    - Upwards of that, and I’ll continue my day as usual and work on another project in the meanwhile.
+    In this case you perhaps read on as well. There are some interesting info near at the end.
+
+When the run finishes, you can open the current folder using command ```open . ``` in terminal.
+Double click on the picture files to view them. 
+
+***Or*** use ```xdg-open <file name>``` in the terminal
 
 ### ACC-accuracy
 Accuracy is a common performance metric used in deep learning to **evaluate the effectiveness of a model** at predicting the correct output. It measures the proportion of correct predictions made by the model out of the total number of predictions. 
@@ -194,7 +202,7 @@ In machine learning, one-hot encoding is a way to represent categorical data in 
 First change the directory to the script folder using hte below command:
 
 ```
-cd ../fastq2oh
+cd ../full_model
 ```
 
 Now type the commands below to view the first few lines of the original fastq file:
@@ -230,31 +238,28 @@ less ERR6634978_1.fastq.gz | head
 
 !!! Reminder
     ```less``` show a scrollable content of the file, ```head``` allow the terminal to only show the first few lines from less output.
-Activate one hot encoding environment
+
+One hot encoding can be created from alignment files (.bam). As a refresher let's generate that .bam file from raw fastq sequence.
+
 ```
-conda activate fastq2oh
-```
+bwa index MTB-h37rv_asm19595v2-eg18.fa
+bwa mem MTB-h37rv_asm19595v2-eg18.fa ERR6634978_1.subset.fastq.gz ERR6634978_2.subset.fastq.gz | samtools sort - -o ERR6634978.bam
+samtools index ERR6634978.bam
+``` 
+
 Now type the commands below generate onehot in coded sequences:
 ```
-python fastq2oh.py -r gene.csv -o ERR6634978_oh.csv ERR6634978_1.fastq.gz ERR6634978_2.fastq.gz
+python bam2oh.py  ERR6634978.bam --regions gene.csv --output ERR6634978_oh.csv
 ```
 
--    -r: gene region
--    -o: output file name
+-    --regions: gene region
+-    --output: output file name
 -    two input files are followed
-
-!!! Reminder
-    this part might take a while to run. If you don't want to wait, press **ctrl + c** to stop the run use the below command instead: ```less  oh.csv | head```
 
 The above take a while to run
 Now type the commands below to view generate onehot encoded sequences:
 ```
 less  ERR6634978_oh.csv | head
-```
-**Or** the below the `ERR6634978_oh` is not produced
-```
-less  ERR6634978_oh.csv | head
-
 ```
 !!! output
     ```
@@ -274,15 +279,7 @@ less  ERR6634978_oh.csv | head
 
 Now try to use a fully trained model to predict all 13 different types of drug resistance.
 
-First change the directory to the script folder using hte below command:
-
-```
-cd ../full_model
-```
-Then change the environment back to machine learning environment 
-```
-conda activate ml
-```
+Check if you are in the right directory using ```ls``` and ```pwd``` containing ```full_model.py```.
 
 Now type the below commands to train the model with different parameters, show output in terminal and saving output into ```drug_predictions.csv``` file:
 
@@ -294,9 +291,9 @@ python full_model.py -i ../fastq2oh/ERR6634978_oh.csv -v -o drug_predictions.csv
 python full_model.py -i ../fastq2oh/oh.csv -v -o drug_predictions.csv
 ```
 
--    i-one hot encoded input file
--    o-output file name
--    v-verbose (show output in the terminal)
+-    -i: one hot encoded input file
+-    -o: output file name
+-    -v: verbose (show output in the terminal)
 
 You can also view the output file using ```less drug_predictions.csv```. Feel free to scroll around and press `Q` to exit. 
 
