@@ -5,7 +5,7 @@ Next-generation sequencing data is being produced at an ever-increasing rate. Th
 ## Introduction
 Deep learning neural networks have revolutionized the field of predictive modelling, especially in bioinformatics and genomics. By utilizing multiple layers of artificial neurons to extract and process data, deep learning networks have shown impressive performance in tasks such as image classification, natural language processing, and speech recognition. The same principles can be applied to infectious disease genomic DNA data for drug resistance prediction. By leveraging the inherent complexity and high-dimensional nature of genomic data, deep learning networks can learn to identify subtle patterns and relationships that may be missed by traditional statistical methods. Additionally, deep learning networks can be optimized to handle missing data, noisy data, and varying data types, which are common challenges in genomic data analysis.
 
-![mapping_1](/img/ml_1.png)
+![mapping_1](../img/ml_1.png)
 
 !!! Knowledge
     A neural network is a type of machine learning model that consists of layers of interconnected nodes, also known as neurons. Each neuron takes in input values, multiplies them by weights, and applies an activation function to produce an output. The output from one layer becomes the input to the next layer until the final layer produces the model's prediction. During training, the model adjusts the weights to minimize the difference between its prediction and the actual output. This process is repeated multiple times until the model's predictions become accurate enough for the desired task.
@@ -54,7 +54,7 @@ INH-model_LR:0.001-DR:0.2-LOSS.png
     The script is adapted for CPU running (estimated running time of 2.5 minutes). Hence compromises in model accuracy is taken
 
 You can open the current folder using command ```open . ``` in terminal.
-Double click on the picture files to view them.
+Double click on the picture files to view them. ***Or*** use ```xdg-open <file name>``` in the terminal
 
 ### ACC-accuracy
 Accuracy is a common performance metric used in deep learning to **evaluate the effectiveness of a model** at predicting the correct output. It measures the proportion of correct predictions made by the model out of the total number of predictions. 
@@ -128,7 +128,7 @@ Dropout works by **randomly dropping out**, or "turning off", some of the neuron
 
 By randomly "turning off" some of the neurons, the **model is forced to learn more robust and diverse features**, leading to better generalization to new data. The dropout rate is the percentage of neurons that are randomly dropped out during each training epoch, and it is another important hyperparameter that can be tuned to optimize the performance of the model.
 
-![mapping_1](/img/ml_2.png)
+![mapping_1](../img/ml_2.png)
 
 
 
@@ -139,7 +139,7 @@ By randomly "turning off" some of the neurons, the **model is forced to learn mo
 | Low  |  High  |  Slow learning, high regularization, good generalization |
 | Low  |  Low  |  Slow learning, low regularization, risk of overfitting |
 
-![mapping_1](/img/ml_3.png)
+![mapping_1](../img/ml_3.png)
 
 A **high learning rate** means the model will make larger updates to its weights during training, while a **low learning rate** means the updates will be smaller. 
 
@@ -346,4 +346,4 @@ The learning rate and dropout rate and two of the most important hyperparameters
 
 ### Full model structure
 In case if you are curious of how the structure of the full model looks like
-![mapping_1](/img/ml_4.png)
+![mapping_1](../img/ml_4.png)

@@ -9,7 +9,7 @@ Here are instructions on how to update/add new tutorials
 It is best to do this in a fresh conda environment which you can make with
 
 ```
-mamba create -n mkdocs mkdocs-material
+mamba create -n mkdocs -c conda-forge mkdocs-material -y
 ```
 
 Then on your computer clone the repository:
@@ -22,6 +22,12 @@ Checkout the `dev` branch:
 
 ```
 git checkout dev
+```
+
+Activate the conda environment
+
+```
+conda activate mkdocs-material
 ```
 
 Then go into the folder and run mkdocs serve
