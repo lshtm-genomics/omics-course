@@ -39,6 +39,7 @@ nav:
       - introduction/mapping.md
       - introduction/variant-detection.md
       - introduction/assembly.md
+      - introduction/task.md
   - Advanced:
       - advanced/phylogenetics.md
       - advanced/third-generation-sequencing.md
