@@ -24,7 +24,7 @@ In this practical, we will focus on training a deep learning model to predict th
 
 ## Exercise 1: Running the neural network for predicting Isoniazid resistance 
 
-Here we train a model using <i>KatG</i> sequence data from <i>M. tuberculosis</i> genome
+Here we train a model using <i>KatG</i> sequence data from <i>M. tuberculosis</i> genome. KatG is a gene on which SNPs resposible isoniazid resistance are commonly found.
 
 You can list all installed environments with `cond env list`.
 
