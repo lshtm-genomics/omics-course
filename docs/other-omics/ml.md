@@ -20,15 +20,15 @@ In this practical, we will focus on training a deep learning model to predict th
 
 
 !!! Important
-    Before doing anything, we need to first activate the conda environment for this practical by typing the following: `conda activate ml`. This environment contains most of the software we need for this practical. This command needs to be run each time we open up a new terminal or switch from a different environment. 
+    Before doing anything, we need to first activate the conda environment for this practical by typing the following: `conda activate ml`. This environment contains most of the software we need for this practical. This command needs to be run each time we open up a new terminal or switch from a different environment. You can list all installed environments with `cond env list`.
+
 
 ## Exercise 1: Running the neural network for predicting Isoniazid resistance 
 
-Here we train a model using <i>KatG</i> sequence data from <i>M. tuberculosis</i> genome
+Here we train a model using <i>katG</i> sequence data from <i>M. tuberculosis</i> genome. katG is a gene on which SNPs resposible isoniazid resistance are commonly found.
 
-You can list all installed environments with `cond env list`.
 
-In the terminal navigate to the ‘ml_workshop/inh_model’ directory, by typing:
+In the terminal navigate to the `ml_workshop/inh_model` directory, by typing:
 
 ```
 cd ~/data/ml_workshop/inh_model
@@ -74,10 +74,10 @@ Similarly, in deep learning, accuracy measures **how often the model's predictio
 
 For example, if a model predicts that an image contains a cat and the true label is also cat, then that prediction is counted as correct. 
 
-**The higher the accuracy, the better the model** is at making correct predictions. However, accuracy can be influenced by factors such as class imbalance or the types of errors the model makes. Therefore, it is important to consider other performance metrics in addition to accuracy when evaluating the performance of a deep learning model.
+**The higher the accuracy, the better the model** is at making correct predictions. However, accuracy can be influenced by factors such as class imbalance (***data problems***) or various different types of errors the model makes (***model problems***). Therefore, it is important to consider other performance metrics in addition to accuracy when evaluating the performance of a deep learning model.
 
 ### LOSS-loss
-In deep learning, the goal of the model is to accurately predict the outcome of a given task, such as image recognition or natural language processing. 
+In deep learning, the goal of the model is to accurately predict the outcome of a given task, such as image recognition or natural language processing and also in this case sequence processing. 
 
 **Loss** is a term used to quantify the difference between the predicted output and the actual output. 
 
