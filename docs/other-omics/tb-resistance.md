@@ -6,7 +6,7 @@ We will now look at using **TB-Profiler** to predict drug resistance patterns. T
 conda is a package manager that you can use to install bioinformatics software. We have installed a faster version of conda, which is called mamba. You can install almost all bioinfromatics software with mamba and it will be your best friend as you continue on in your journey as a bioinformatician. Run the following command to create a conda "environment" with the latest version of tb-profiler installed. We also want to use IGV and a tool called curl later, so we need to add that to the install command.
 
 ```
-mamba create -n tb-profiler -c bioconda -c conda-forge tb-profiler=4.2.0 igv curl
+mamba create -n tb-profiler -c bioconda -c conda-forge tb-profiler=5 igv freebayes=1.3.6
 ```
 
 Before you can use tb-profiler, you should activate the environment using the following command (remembter that you'll have to run this every time you open up a new terminal window):
