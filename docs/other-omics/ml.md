@@ -50,13 +50,17 @@ INH-model_LR:0.001-DR:0.2-ACC.png
 INH-model_LR:0.001-DR:0.2-LOSS.png
 ```
 
-!!! Important
+!!! Information
     The script is adapted for CPU running (estimated running time of 2.5 minutes). Hence compromises in model accuracy is taken. 
 
     Waiting for model to run/train and dealing with these fragmented times is also essential in our lives here are some ground rules:
+
     - If a model takes < 5 minutes to train, I like to check Instagram to give my brain a break.
+    
     - If a model takes 5–30 min to train, I’ll usually spend time reading or writing documentation. Sometimes debugging too.
+    
     - Upwards of that, and I’ll continue my day as usual and work on another project in the meanwhile.
+    
     In this case you perhaps read on as well. There are some interesting info near at the end.
 
 When the run finishes, you can open the current folder using command ```open . ``` in terminal.
@@ -105,7 +109,7 @@ When working with python script that required input, you can also View the expla
 ```
 usage: inh_model.py [-h] [-lr LEARNING_RATE] [-dr DROPOUT_RATE]
 
-Isoniazid prediction model using KatG sequences as input.
+Isoniazid prediction model using katG sequences as input.
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -170,6 +174,7 @@ If the learning rate is low and the dropout rate is high, the model will learn s
     === "Answer"
 
         Not necessarily the optimal, but here are some guiding values to try out:
+        
         * Balanced
             * lr = 0.0005
             * dr = 0.2
