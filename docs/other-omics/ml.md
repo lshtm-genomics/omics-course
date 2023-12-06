@@ -296,11 +296,7 @@ Check if you are in the right directory using ```ls``` and ```pwd``` containing 
 Now type the below commands to train the model with different parameters, show output in terminal and saving output into ```drug_predictions.csv``` file:
 
 ```
-python full_model.py -i ../fastq2oh/ERR6634978_oh.csv -v -o drug_predictions.csv
-```
-**Or** Use the below code if you didn't let the one hot encoding step finish running
-```
-python full_model.py -i ../fastq2oh/oh.csv -v -o drug_predictions.csv
+python full_model.py -i ERR6634978_oh.csv -v -o drug_predictions.csv
 ```
 
 -    -i: one hot encoded input file
