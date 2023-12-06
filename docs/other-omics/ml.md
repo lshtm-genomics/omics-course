@@ -192,9 +192,9 @@ Type the commands below to train the model with different parameters.
 python inh_model.py -lr <Pick a learning rate> -dr <Pick a dropout rate>
 ```
 
-- learning rate range: between 10e-6 and 1
+* learning rate range: between 10e-6 and 1
 
-- Dropout rate range:  between 0 and 1
+* Dropout rate range:  between 0 and 1
 
 
 ##Exercise 3: Converting Fastq to onehot encoding
