@@ -35,14 +35,22 @@ The --prefix argument allows you to specify a prefix for the output files. After
 
 Now try running tb-profiler on sample2 using the bam file as input. After it finishes, look at the report. Do you see any differences?
 
-Often you want to combine the results from many runs into a single report. This helps with comparing resistance and lineage data from different isolates. A single report can be generated with the collate function. Run the follwing command and it will generate a text file containing key metrics from both samples. You can open this in LibreOffice Calc (a free alternative to excel). Just make sure you have only "tab" checked as the seperator (see image below). 
+Often you want to combine the results from many runs into a single report. This helps with comparing resistance and lineage data from different isolates. A single report can be generated with the collate function. Run the follwing command and it will generate a text file containing key metrics from both samples. 
 
-![](../img/tbprofiler_1.png)
 
 ```
 tb-profiler collate
-libreoffice --calc tbprofiler.txt
 ```
+
+You can open this in LibreOffice Calc (a free alternative to excel). Open libreoffice by running the following on the terminal:
+
+```
+libreoffice --calc 
+```
+
+Then choose file -> open and select the tbprofiler.txt file in the ~/data/tb directory. Just make sure you have only "tab" checked as the seperator (see image below).
+
+![](../img/tbprofiler_1.png)
 
 ## Bedaquiline resistance: a case study
 
@@ -70,8 +78,9 @@ After you have generated the result files, run the collate function and open usi
 
 ```
 tb-profiler collate
-libreoffice --calc tbprofiler.txt
 ```
+
+Open the tbprofiler.txt file in ~/data/tb/bedaquiline using libreoffice similar to as you have done before.
 
 !!! question
     Do the results from tb-profiler agree with the phenotypic results? 
