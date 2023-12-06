@@ -189,8 +189,9 @@ If the learning rate is low and the dropout rate is high, the model will learn s
 Type the commands below to train the model with different parameters.
 
 ```
-python inh_model.py -lr <Pick a learning rate > -dr <Pick a dropout rate>
+python inh_model.py -lr <Pick a learning rate> -dr <Pick a dropout rate>
 ```
+
 - learning rate range: between 10e-6 and 1
 
 - Dropout rate range:  between 0 and 1
@@ -250,7 +251,11 @@ One hot encoding can be created from alignment files (.bam). As a refresher let'
 
 ```
 bwa index MTB-h37rv_asm19595v2-eg18.fa
+```
+```
 bwa mem MTB-h37rv_asm19595v2-eg18.fa ERR6634978_1.subset.fastq.gz ERR6634978_2.subset.fastq.gz | samtools sort - -o ERR6634978.bam
+```
+```
 samtools index ERR6634978.bam
 ``` 
 
