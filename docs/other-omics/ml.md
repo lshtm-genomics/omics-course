@@ -167,6 +167,7 @@ If the learning rate is low and the dropout rate is high, the model will learn s
     === "Question"
 
         Is the parameters used in exercise1 (learning rate, dropout rate) the best suited? Try different value combinations according to above intuitions. Observe the relationship between the two curves to adjust the hyperparameters
+
         * Optimal: Low validation loss
         * Overfitting: High training loss, low validation loss
         * Underfitting: Low validation loss
@@ -174,7 +175,7 @@ If the learning rate is low and the dropout rate is high, the model will learn s
     === "Answer"
 
         Not necessarily the optimal, but here are some guiding values to try out:
-        
+
         * Balanced
             * lr = 0.0005
             * dr = 0.2
@@ -190,8 +191,9 @@ Type the commands below to train the model with different parameters.
 ```
 python inh_model.py -lr <Pick a learning rate > -dr <Pick a dropout rate>
 ```
--    learning rate range: between 10e-6 and 1
--    Dropout rate range:  between 0 and 1
+- learning rate range: between 10e-6 and 1
+
+- Dropout rate range:  between 0 and 1
 
 
 ##Exercise 3: Converting Fastq to onehot encoding
