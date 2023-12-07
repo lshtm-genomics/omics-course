@@ -43,7 +43,7 @@ guppy_basecaller --config dna_r9.4.1_450bps_fast.cfg --trim_adapters --compress_
 ```
 
 !!! info
-    Hover over the basecalling model 'dna_r9.4.1_450bps_fast.cfg' in the above command to see an explanation. You can navigate to `/opt/ont/data` to see all of the models available for use. Alternatively, for simplicity, you can use the `--kit` and `--flowcell` flags instead of defining a model. However, by default, using these arguments do not apply the most accurate basecalling models available.
+    Hover over the basecalling model 'dna_r9.4.1_450bps_fast.cfg' in the above command to see an explanation. You can navigate to `/home/user/software/ont-guppy-cpu/data/` to see all of the models available for use. Alternatively, for simplicity, you can use the `--kit` and `--flowcell` flags instead of defining a model. However, by default, using these arguments do not apply the most accurate basecalling models available.
 
 You should now see the bascalling process begin, and a progress bar appear. This may take some time depending on the performance of your machine.
 
@@ -175,7 +175,7 @@ samtools index alignment.bam
 tablet
 ```
 
-Using the below animation as a guide, open up tablet and load the alignment.bam and the reference.fasta files, then click on the ‘contig’ in the pane on the left side of the screen. You will see a loading bar, then the alignment will be shown. In the left ‘contig’ pane you will fine some metrics associated with this dataset.
+Using the below animation as a guide, open up tablet and load the **alignment.bam** and the **reference.fasta** files, then click on the ‘contig’ in the pane on the left side of the screen. You will see a loading bar, then the alignment will be shown. In the left ‘contig’ pane you will fine some metrics associated with this dataset.
 
 ![ngs8](../img/ngs8.gif)
     
@@ -304,9 +304,9 @@ aliview zika_dataset.fasta
 With Aliview open, you should now see the dataset we will be working with for the rest of the activity. In the left pane you should see the sequence metadata: the unique sequence accession number, the species the virus was isolated from, the country of origin and the date of collection. Spanning across horizontally, you should see the genome sequence to which the metadata is associated with. On the pane at the bottom of the window, you should see a few statistics about the dataset. Have a browse and familiarise yourself with the data and the software interface.
 
 !!! question
-    === "Question 4"
+    === "Question 5"
         How many sequences are there in the _Zika_ dataset?
-    === "Answer 4"
+    === "Answer 5"
         284
 
 Before we continue with any analyses, we first have to add our new sequence and then align the dataset. Alignment is the process of arranging sequence data in such a way that each sequence may be compared to each other. For this we will use a program called ‘mafft’. This program will rearrange the sequences based on similarity, so that they may be compared in future analyses.
@@ -401,15 +401,17 @@ Use the scroll bars in the Figree window, and on the pane on the left hand side 
 !!! info
     Now that we can see where our sequence falls on the tree, we can look in to the geographical and chronological metadata in our dataset and the structure of the tree, to gain a deeper understanding of what happened during the Zika outbreak in the Americas.
 
-!!! question "Exercise"
-    
+       
+
+!!! question
     === "Question 6"
-
         What is the closest ancestor of our sequence?
-    
     === "Answer 6"
+        Brazil - 13/04/2016
 
-       Brazil - 13/04/2016
+
+
+
 
 !!! info
     What can you tell about the outbreak from the topology (shape and order) of the tree? Can you see distinct clades (groupings) in the overall structure of the tree? As you follow the nodes in each clade further in to the tree, towards the leaves, what to notice about the geography of the isolates in this dataset? Can you tell where most of the lineages began?
