@@ -28,3 +28,19 @@ Your tasks are below:
 3. Call the variants and find the SNPs that are within the genes you found earlier that are known to cause drug resistance.
 4. Identify the individuals that struggled to fight infection and what antibiotics were they using at the hospital.
 5. Find the strain (lineage type) that comes with each patient by finding these deletions.
+
+### Tips
+
+???+ note "Tips for Mtb Genomic Analysis"
+
+    - **NCBI Datasets**: Obtain datasets from [NCBI Taxonomy](https://www.ncbi.nlm.nih.gov/taxonomy). Required files: fasta and gff.
+
+    - **Reference Mapping**: Map your data with a reference genome for alignment.
+
+    - **Rifampicin Resistance**: Investigate genes impacting Rifampicin resistance. Use the antibiotic information to focus your search.
+
+    - **Gene Viewing**: Annotate with snpEff for gene positioning, or view vcfs/bams in [IGV](https://software.broadinstitute.org/software/igv/).
+
+    - **Strain Identification**: Examine regions containing Rv0072 and PPE50. Apply similar methods as in variant detection for strain identification.
+
+
