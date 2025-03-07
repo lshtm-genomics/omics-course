@@ -64,4 +64,4 @@ If you need a graphical interface, you can use TigerVNC to connect to the Codesp
 !!! danger "Important"
     When you are finished working, make sure to stop the Codespace to using up your free hours. You can do this by opening up the command palette (`Cmd+Shift+P` or `Ctrl+Shift+P`) and typing `Codespaces: Stop Current Codespace`. You will be able to restart that Codespace at any time by selecting `Codespaces: Connect to Codespace` from the command palette.
 
-That's it! You're now connected to your GitHub Codespace and ready to start coding. If you have any questions or need help, feel free to ask in the chat.
+That's it! You're now connected to your GitHub Codespace and ready to start your bioinformatics journey. 
