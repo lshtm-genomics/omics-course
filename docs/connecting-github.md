@@ -61,6 +61,7 @@ It should take a few minutes to create the Codespace. Once it's ready, you will 
 
 If you need a graphical interface, you can use TigerVNC to connect to the Codespace. Open TigerVNC and enter the following address: `localhost:5901`. Once you've entered the password, you should see the full desktop environment of your Codespace.
 
-! Note: When you are finished working, make sure to stop the Codespace to using up your free hours.
+!!! danger "Important"
+    When you are finished working, make sure to stop the Codespace to using up your free hours. You can do this by opening up the command palette (`Cmd+Shift+P` or `Ctrl+Shift+P`) and typing `Codespaces: Stop Codespace`.
 
 That's it! You're now connected to your GitHub Codespace and ready to start coding. If you have any questions or need help, feel free to ask in the chat.
