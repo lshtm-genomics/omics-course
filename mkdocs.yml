@@ -33,7 +33,7 @@ extra_css:
 nav:
   - Home: 
     - index.md
-    - connecting.md
+    - connecting-github.md
   - Introduction: 
       - introduction/intro-to-linux.md
       - introduction/mapping.md
