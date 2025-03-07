@@ -6,7 +6,7 @@ There are three comonents you will need to understand before we get connected.
 
 ####  GitHub Codespaces
 
-GitHub Codespaces is a cloud-based development environment that allows users to run and edit code directly in a virtual machine (VM) hosted by GitHub. It provides a fully configured workspace, pre-installed with necessary tools like Git, Python, and Docker, eliminating the need for users to set up a local environment.
+GitHub Codespaces is a cloud-based development environment that allows users to run and edit code directly in a virtual machine (VM) hosted by GitHub. It provides a fully configured workspace, pre-installed with necessary tools like Git, Python, and Docker, eliminating the need for users to set up a local environment. Every GitHub user has a certain number of free Codespace hours per month (120 for a free account), making it an ideal solution for doing some occasional bioinformatics. 
 
 #### Visual Studio Code (VS Code)
 
@@ -60,3 +60,7 @@ Once you have installed TigerVNC, you can connect to your GitHub Codespace using
 It should take a few minutes to create the Codespace. Once it's ready, you will be able to access the terminal and files directly from VS Code.
 
 If you need a graphical interface, you can use TigerVNC to connect to the Codespace. Open TigerVNC and enter the following address: `localhost:5901`. Once you've entered the password, you should see the full desktop environment of your Codespace.
+
+! Note: When you are finished working, make sure to stop the Codespace to using up your free hours.
+
+That's it! You're now connected to your GitHub Codespace and ready to start coding. If you have any questions or need help, feel free to ask in the chat.
