@@ -4,7 +4,7 @@ Bacterial vaginosis (BV) is a dysbiotic condition caused by excessive growth of 
 
 ## Getting the data
 
-For this practical we are considering 12 samples of vaginal swab that were taken at a polyclinic by a GP in a setting of high transmission of HIV. DNA was extracted from the swabs and amplified using primers specific for the first two hypervariable regions (V1 and V2) of the 16S rRNA gene (27F and 338R). These samples were then sequenced with MiSeq Illumina producing paired end data of 300 bp length per read. The 12 pairs of files generated are found in the data/metagenomics/fastq/ directory. The patients’ phenotype was determined by the doctors at the time of sample collection with the following results:
+For this practical we are considering 12 samples of vaginal swab that were taken at a polyclinic by a GP in a setting of high transmission of HIV. DNA was extracted from the swabs and amplified using primers specific for the first two hypervariable regions (V1 and V2) of the 16S rRNA gene (27F and 338R). These samples were then sequenced with MiSeq Illumina producing paired end data of 300 bp length per read. The 12 pairs of files generated are found in the data/microbiome/fastq/ directory. The patients’ phenotype was determined by the doctors at the time of sample collection with the following results:
 
 | Sample | BV  | pH  |
 |--------|-----|-----|
@@ -28,7 +28,7 @@ One idiosyncrasy of QIIME2 is the use of so-called "artefacts". These are zip-ar
 
 ## Quality control
 
-After activating the conda environment for this practical with `conda activate microbiome`, go into the module directory with `cd data/metagenomics` and have a look at its contents with `ls`. There should be a directory with the 16S sequencing data (in fastq), a 16S database (in db), and a CSV file with our metadata. Let's check if our reads are there with `ls fastq`. We can also have a look at the filesizes with `du -sh fastq/* | sort -h` (it can't hurt to get a feeling for these things). 
+After activating the conda environment for this practical with `conda activate microbiome`, go into the module directory with `cd data/microbiome` and have a look at its contents with `ls`. There should be a directory with the 16S sequencing data (in fastq), a 16S database (in db), and a CSV file with our metadata. Let's check if our reads are there with `ls fastq`. We can also have a look at the filesizes with `du -sh fastq/* | sort -h` (it can't hurt to get a feeling for these things). 
 
 ```
 mkdir fastqc_reports
@@ -47,7 +47,7 @@ mkdir fastqc_combined
 multiqc -o fastqc_combined fastqc_reports
 ```
 
-With `ls fastqc_combined` you can see that an HTML file, which we can view in a browser, has been created. Open the HTML file using the command `firefox ~/data/metagenomics/fastqc_combined/multiqc_report.html`
+With `ls fastqc_combined` you can see that an HTML file, which we can view in a browser, has been created. Open the HTML file using the command `firefox ~/data/microbiome/fastqc_combined/multiqc_report.html`
 
 
 
@@ -94,16 +94,16 @@ This should have done the trick. `cat fastq_abs_paths` let's us see what we got.
 
 ```
 sample-id       forward-absolute-filepath       reverse-absolute-filepath
-BB_1    /home/user/data/metagenomics/fastq/BB_1_1.fastq.gz      /home/user/data/metagenomics/fastq/BB_1_2.fastq.gz
-BB_2    /home/user/data/metagenomics/fastq/BB_2_1.fastq.gz      /home/user/data/metagenomics/fastq/BB_2_2.fastq.gz
-BB_4    /home/user/data/metagenomics/fastq/BB_4_1.fastq.gz      /home/user/data/metagenomics/fastq/BB_4_2.fastq.gz
-BB_5    /home/user/data/metagenomics/fastq/BB_5_1.fastq.gz      /home/user/data/metagenomics/fastq/BB_5_2.fastq.gz
-BB_6    /home/user/data/metagenomics/fastq/BB_6_1.fastq.gz      /home/user/data/metagenomics/fastq/BB_6_2.fastq.gz
-BB_7    /home/user/data/metagenomics/fastq/BB_7_1.fastq.gz      /home/user/data/metagenomics/fastq/BB_7_2.fastq.gz
-BB_9    /home/user/data/metagenomics/fastq/BB_9_1.fastq.gz      /home/user/data/metagenomics/fastq/BB_9_2.fastq.gz
-BB_10   /home/user/data/metagenomics/fastq/BB_10_1.fastq.gz     /home/user/data/metagenomics/fastq/BB_10_2.fastq.gz
-BB_11   /home/user/data/metagenomics/fastq/BB_11_1.fastq.gz     /home/user/data/metagenomics/fastq/BB_11_2.fastq.gz
-BB_12   /home/user/data/metagenomics/fastq/BB_12_1.fastq.gz     /home/user/data/metagenomics/fastq/BB_12_2.fastq.gz
+BB_1    /home/user/data/microbiome/fastq/BB_1_1.fastq.gz      /home/user/data/microbiome/fastq/BB_1_2.fastq.gz
+BB_2    /home/user/data/microbiome/fastq/BB_2_1.fastq.gz      /home/user/data/microbiome/fastq/BB_2_2.fastq.gz
+BB_4    /home/user/data/microbiome/fastq/BB_4_1.fastq.gz      /home/user/data/microbiome/fastq/BB_4_2.fastq.gz
+BB_5    /home/user/data/microbiome/fastq/BB_5_1.fastq.gz      /home/user/data/microbiome/fastq/BB_5_2.fastq.gz
+BB_6    /home/user/data/microbiome/fastq/BB_6_1.fastq.gz      /home/user/data/microbiome/fastq/BB_6_2.fastq.gz
+BB_7    /home/user/data/microbiome/fastq/BB_7_1.fastq.gz      /home/user/data/microbiome/fastq/BB_7_2.fastq.gz
+BB_9    /home/user/data/microbiome/fastq/BB_9_1.fastq.gz      /home/user/data/microbiome/fastq/BB_9_2.fastq.gz
+BB_10   /home/user/data/microbiome/fastq/BB_10_1.fastq.gz     /home/user/data/microbiome/fastq/BB_10_2.fastq.gz
+BB_11   /home/user/data/microbiome/fastq/BB_11_1.fastq.gz     /home/user/data/microbiome/fastq/BB_11_2.fastq.gz
+BB_12   /home/user/data/microbiome/fastq/BB_12_1.fastq.gz     /home/user/data/microbiome/fastq/BB_12_2.fastq.gz
 ```
 
 Great! This should be sufficient to let QIIME2 know where the files that we want to import are. Now, we can import the reads with 
@@ -221,7 +221,7 @@ We are not only interested in the ecological diversity of our samples; we also w
 
 ```
 qiime feature-classifier classify-sklearn \
-    --i-classifier db/gg-13-8-99-nb-classifier.qza \
+    --i-classifier db/2024.09.backbone.full-length.nb.sklearn-1.4.2.qza \
     --i-reads rep_seqs.qza \
     --p-n-jobs 1 \
     --o-classification taxonomy.qza

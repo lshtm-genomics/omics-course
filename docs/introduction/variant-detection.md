@@ -19,7 +19,7 @@ Some differences between the reference and the mapped reads are due to sequencin
 Activate the relevant `conda` environment and open up a new session of `igv`:
 
 ```
-conda activate variant_detection
+conda activate day1
 igv
 ```
 

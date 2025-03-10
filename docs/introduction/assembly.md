@@ -36,7 +36,7 @@ De novo assembly is one the most computationally demanding processes in bioinfor
 Activate the relevant conda environment
 
 ```
-conda activate assembly
+conda activate day1
 ```
 
 Change to the data directory:
@@ -94,7 +94,7 @@ You will see that there are many options and the pipeline can be customised exte
 An example invocation that takes the fastq formatted paired end files (Mtb_sample1_1.fastq.gz and Mtb_sample1_2.fastq.gz) and performs assembly.
 
 ```
-spades.py -1 ~/data/tb/sample1_1.fastq.gz -2  ~/data/tb/sample1_2.fastq.gz -o sample1_asm
+spades.py --isolate -1 ~/data/tb/sample1_1.fastq.gz -2  ~/data/tb/sample1_2.fastq.gz -o sample1_asm
 ```
 
 Employing paired-end reads (rather than single-end) increases the assembly quality. In general, libraries with smaller insert size produce more fragmented and shorter assemblies, whilst the genome coverage does not increase that much. The combination of libraries with different insert size always gives the best results.

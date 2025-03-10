@@ -53,7 +53,11 @@ cd ~/data/methylation
 ls
 ```
 
-There are several files present. We will first take a look at the files ending with **.motif_summary.csv**. We can open these files using excel or a similar program. Linux has an open source package that is quite similar to Excel called **LibreOffice Calc**. Open the program by clicking on the icon in the side-bar. Now select **File** -> **Open...** and navigate to **~/data/methylation/** and double click on **tb_pb_1.motif_summary.csv**. Under '**Separator**' make sure only '**Comma**' is selected and click **OK**. 
+There are several files present. We will first take a look at the files ending with **.motif_summary.csv**. We can open these files using excel or a similar program. Linux has an open source package that is quite similar to Excel called **gnumeric**. Let's use it to view the contents of **tb_pb_1.motif_summary.csv**. 
+
+```
+gnumeric tb_pb_1.motif_summary.csv
+```
 
 You should now see a spreadsheet containing a number of different columns: 
 
@@ -110,7 +114,7 @@ The modifications and motifs pipeline also provides a CSV file containing all th
 zcat tb_pb_14.ipd.csv | head
 ```
 
-This is a very large file, so we can't open it with LibreOffice Calc. The first few lines should look like the example below. 
+This is a very large file, so we can't open it with `gnumeric`. The first few lines should look like the example below. 
 
 !!! terminal "Terminal output"
     ```
@@ -196,13 +200,13 @@ We can now pass this file to the `combine_motifs.py` script:
 python combine_motifs.py files.txt unfiltered_motifs.csv
 ```
 
-Take a look at the '**unfiltered_motifs.csv**' file using **LibreOffice Calc**. There are many motifs which are present in only one sample. These likely represent noise in the data and should be filtered out. Rerun the command with a quality filter: 
+Take a look at the '**unfiltered_motifs.csv**' file using **gnumeric**. There are many motifs which are present in only one sample. These likely represent noise in the data and should be filtered out. Rerun the command with a quality filter: 
 
 ```
 python combine_motifs.py files.txt filtered_motifs.csv --min_qual 60
 ```
 
-We have specified the minimum QV of the motif to be 60. Take a look at the filtered_motifs.csv file using LibreOffice Calc and look at the difference. You should now have 5 motifs. This will serve as our final high-quality list of motifs.
+We have specified the minimum QV of the motif to be 60. Take a look at the filtered_motifs.csv file using gnumeric and look at the difference. You should now have 5 motifs. This will serve as our final high-quality list of motifs.
 
 It is evident that some samples have methylation on certain motifs while others do not. We will now try to understand if there is a particular pattern to the methylation seen in the data. The methylation pattern can either be random or specific to a certain strain. To do this we will reconstruct the phylogeny and overlay the methylation information.
 
@@ -213,7 +217,7 @@ Using the same raw data and the SMRT portal analysis suite we have generated who
         Create a phylogenetic free using the pacbio.fasta file as input.
     === "Solution 1"
         ```
-        raxmlHPC -m GTRGAMMA -s pacbio.fasta -n pacbio.ML -p 11334 -k -f a -x 13243 -N 100
+        iqtree -m GTR+G -s pacbio.fasta -bb 1000
         ```
 
 Open up the tree by launching `figtree`. Open the tree by clicking on **Open...** and selecting the 'RAxML_bestTree.pacbio.ML' tree. Midpoint root the tree by selecting **Midpoint Root** from the **Tree** menu. Finally, we will load annotations allowing figtree to display which samples do or don't have methylation. Select **Import annotations...** from the **File** menu and select the '**filtered_motifs.tsv**' file. This file was created during the merging step and is simply a tab-separated file with the rows being samples and the columns being motifs. The values in the file are either **0** (representing absence of methylation) or **1** (representing presence of methylation). 
@@ -273,25 +277,25 @@ The command will now count 780 variants.
 
 ### 2. Annotating the variants
 
-In order to narrow down the number of variants we need to narrow down out search to only variants in the Rv3263 gene. The VCF file currently only contains information on the position of the variants on the chromosome but no information about genes. We can use bcftools csq to perform the annotation: 
+In order to narrow down the number of variants we need to narrow down out search to only variants in the Rv3263 gene. The VCF file currently only contains information on the position of the variants on the chromosome but no information about genes. We can use `snpEff` to perform the annotation: 
 
 ```
-bcftools view pacbio.vcf.gz -s tb_pb_10,tb_pb_14,tb_pb_11 -x | bcftools csq -f tb_genome.fasta -g tb_genome.gff  | grep Rv3263
+bcftools view pacbio.vcf.gz -s tb_pb_10,tb_pb_14,tb_pb_11 -x | snpEff ann Mycobacterium_tuberculosis_h37rv  -no-upstream -no-downstream | grep Rv3263
 ```
 
 We have dropped the -H as we are no longer counting lines and the header is needed by the next command. The following new parts have been added:
 
-* `bcftools csq`: This bcftools function annotates a VCF file
-* `-f tb_genome.fa`: Provides the reference fasta file
-* `-g tb_genome.gff`: Provides the GFF file (contains information about gene locations)
+* `snpEff ann`: This snpEff function annotates a VCF file
+* `Mycobacterium_tuberculosis_h37rv`: Provides the database with annotations. There are many different databases available for different organisms. The full list can be seen by running `snpEff databases`
+* `-no-upstream -no-downstream`: This flag prevents the annotation of variants which are upstream or downstream of a gene
 * `grep Rv3263`: Looks for lines containing 'Rv3263' and prints them
 
 We can see this command prints out a number of lines. The last two lines represent two variants in VCF format:
 
 !!! terminal "Terminal output"
     ```
-    Chromosome	3643985	.	A	C	225	PASS	VDB=0.702241;SGB=-0.693147;MQSB=0.911099;MQ0F=0;MQ=57;DP=308;DP4=0,0,150,158;MinDP=28;AN=6;AC=4;BCSQ=missense|Rv3263|gene3340|protein_coding|+|270E>270A|3643985A>C	GT:DP:PL:AD:BCSQ	1/1:144:255,255,0:0,144:3	1/1:164:255,255,0:0,164:3	0/0:117:.:.:0
-    Chromosome	3644554	.	G	A	225	PASS	VDB=0.847222;SGB=-0.693147;MQSB=0.91807;MQ0F=0;MQ=57;DP=145;DP4=0,0,75,70;MinDP=14;AN=6;AC=2;BCSQ=missense|Rv3263|gene3340|protein_coding|+|460A>460T|3644554G>A	GT:DP:PL:AD:BCSQ	0/0:14:.:.:0	0/0:121:.:.:0	1/1:145:255,255,0:0,145:3
+    Chromosome      3643985 .       A       C       225.0   PASS    VDB=0.702241;SGB=-0.693147;MQSB=0.911099;MQ0F=0;MQ=57;DP=308;DP4=0,0,150,158;MinDP=28;AN=6;AC=4;ANN=C|missense_variant|MODERATE|Rv3263|Rv3263|transcript|CCP46082|protein_coding|1/1|c.809A>C|p.Glu270Ala|809/1662|809/1662|270/553||      GT:DP:PL:AD     1/1:144:255,255,0:0,144    1/1:164:255,255,0:0,164 0/0:117:.:.
+    Chromosome      3644554 .       G       A       225.0   PASS    VDB=0.847222;SGB=-0.693147;MQSB=0.91807;MQ0F=0;MQ=57;DP=145;DP4=0,0,75,70;MinDP=14;AN=6;AC=2;ANN=A|missense_variant|MODERATE|Rv3263|Rv3263|transcript|CCP46082|protein_coding|1/1|c.1378G>A|p.Ala460Thr|1378/1662|1378/1662|460/553||      GT:DP:PL:AD     0/0:14:.:.0/0:121:.:.      1/1:145:255,255,0:0,145
     ```
 
 ### 3. Customising output format
@@ -299,20 +303,28 @@ We can see this command prints out a number of lines. The last two lines represe
 This format can be a little difficult to understand so the last part we will add to this command will translate this to a more readable format:
 
 ```
-bcftools view pacbio.vcf.gz -s tb_pb_10,tb_pb_14,tb_pb_11 -x | bcftools csq -f tb_genome.fasta -g tb_genome.gff  | bcftools query -f '[%POS\t%SAMPLE\t%TBCSQ{1}\n]' | grep Rv3263
+bcftools view pacbio.vcf.gz -s tb_pb_10,tb_pb_14,tb_pb_11 -x | snpEff ann Mycobacterium_tuberculosis_h37rv  -no-upstream -no-downstream | bcftools query -f '[%POS\t%SAMPLE\t%ANN\n]' | grep Rv3263
 ```
 
 We have moved the grep command to the end and added in the following parameters:
 
 * `bcftools query`: This command allows conversion of VCF into custom formats
-* `-f '[%POS\t%SAMPLE\t%TBCSQ{1}\n]'`: This specifies the format we want (Position, Sample name and annotations)
+* `-f '[%POS\t%SAMPLE\t%ANN\n]'`: This specifies the format we want (Position, Sample name and annotations)
 
 !!! terminal "Terminal output"
     ```
-    3643985	tb_pb_10	missense|Rv3263|gene3340|protein_coding|+|270E>270A|3643985A>C
-    3643985	tb_pb_14	missense|Rv3263|gene3340|protein_coding|+|270E>270A|3643985A>C
-    3644554	tb_pb_11	missense|Rv3263|gene3340|protein_coding|+|460A>460T|3644554G>A
+    3643985 tb_pb_10        1/1     C|missense_variant|MODERATE|Rv3263|Rv3263|transcript|CCP46082|protein_coding|1/1|c.809A>C|p.Glu270Ala|809/1662|809/1662|270/553||
+    3643985 tb_pb_14        1/1     C|missense_variant|MODERATE|Rv3263|Rv3263|transcript|CCP46082|protein_coding|1/1|c.809A>C|p.Glu270Ala|809/1662|809/1662|270/553||
+    3643985 tb_pb_11        0/0     C|missense_variant|MODERATE|Rv3263|Rv3263|transcript|CCP46082|protein_coding|1/1|c.809A>C|p.Glu270Ala|809/1662|809/1662|270/553||
+    3644554 tb_pb_10        0/0     A|missense_variant|MODERATE|Rv3263|Rv3263|transcript|CCP46082|protein_coding|1/1|c.1378G>A|p.Ala460Thr|1378/1662|1378/1662|460/553||
+    3644554 tb_pb_14        0/0     A|missense_variant|MODERATE|Rv3263|Rv3263|transcript|CCP46082|protein_coding|1/1|c.1378G>A|p.Ala460Thr|1378/1662|1378/1662|460/553||
+    3644554 tb_pb_11        1/1     A|missense_variant|MODERATE|Rv3263|Rv3263|transcript|CCP46082|protein_coding|1/1|c.1378G>A|p.Ala460Thr|1378/1662|1378/1662|460/553||
+
     ```
+
+!!! tip "Tip"
+    The 3rd column is the genotype of the sample. Each sample will have a genotype entry for each variant. A value of 0/0 means  reference, and 1/1 means alternate. We can select only samples with an alternate genotype by using the command. Try adding `| awk '$3=="1/1"'` to the end of the command.
+
 
 From the output (above) we can see that tb_pb_10 and tb_pb_14 both have the same mutation (270E>270A) while tb_pb_11 has a different mutation (460A>460T). These mutations are good candidates to take towards functional studies to validate the loss of function effect on the MTase.
 

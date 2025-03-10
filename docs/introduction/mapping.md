@@ -31,7 +31,7 @@ Here is the general workflow of mapping:
 Quality control of the reads is always important, to correct for any GC content biases, possible contamination, and read quality.
 
 !!! important
-    Before doing anything, we need to first activate the conda environment for this practical by typing the following: `conda activate mapping`. This environment contains most of the software we need for this practical. This command needs to be run each time we open up a new terminal or switch from a different environment. 
+    Before doing anything, we need to first activate the conda environment for this practical by typing the following: `conda activate day1`. This environment contains most of the software we need for this practical. This command needs to be run each time we open up a new terminal or switch from a different environment. 
 
 ## File formats
 
@@ -101,7 +101,7 @@ FastQC is a tool written in Java to perform quality control checks on raw sequen
 First we will activate the software environment using: 
 
 ```
-conda activate mapping
+conda activate day1
 ```
 
 Open up a new terminal window and then type: `fastqc`

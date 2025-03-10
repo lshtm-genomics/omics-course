@@ -29,7 +29,7 @@ The file **‘H1N1.flu.2009.fas’** is a multi-FASTA file containing 50 full-le
 
 We will use AliView to manually inspect the FASTA file:
 
-Activate the correct environment with `conda activate phylogenetics`.
+Activate the correct environment with `conda activate phylo`.
 Open AliView by running the commmand `aliview`.
 Import the sequence file: **File > Open File**, navigate to **~/data/phylogenetics** and select the file **H1N1.flu.2009.fas**.
 
@@ -54,23 +54,16 @@ cd ~/data/phylogenetics/
 ```
 Run the following command (This may take a few minutes to complete):
 ```
-raxmlHPC -m GTRGAMMA -s H1N1.flu.2009.fas -n H1N1.flu.2009.ML -p 11334 -k -f a -x 13243 -N 100
+iqtree -m GTR+G -s H1N1.flu.2009.fas -bb 1000 
 ```
 
-- **raxmlHPC**: This will run RAxML on the command-line and uses the following parameters:
-- **m GTRGAMMA**: This sets the substitution model to be used. We are using GTR (generalised time reversible) with a gamma distribution.
+- **iqtree**: This will run iqtree on the command-line and uses the following parameters:
+- **m GTR+G**: This sets the substitution model to be used. We are using GTR (generalised time reversible) with a gamma distribution.
 - **s H1N1.flu.2009.fas**: This is your input file.
-- **n H1N1.flu.2009.ML**: This is the name that will appended to output files.
-- **p 11334**: This is a random seed number.
-- **k**: Trees are printed with branch lengths.
-- **f a**: This tells RAxML to conduct a rapid Bootstrap analysis and search for the best-scoring ML tree in a single run.
--**x 13243**: This is a random seed number for bootstrapping.
--**N 100**: This specifies the number of bootstrap runs.
-Once the software has finished running, the file RAxML_bipartitions.H1N1.flu.2009.ML will contain the ML tree with bootstrap supports. Add the extension .tre to the file:
+-**-bb 1000**: This specifies the number of bootstrap runs.
 
-```
-mv RAxML_bipartitions.H1N1.flu.2009.ML RAxML_bipartitions.H1N1.flu.2009.ML.tre
-```
+Once the software has finished running, the file `H1N1.flu.2009.fas.treefile` will contain the ML tree with bootstrap supports. Add the extension .tre to the file:
+
 And open the tree to view in the program FigTree, for this run the command:
 ```
 figtree
@@ -149,6 +142,7 @@ Import the ML tree you saved earlier or, if you can’t find it anymore, select 
 We now have to tag the sequences with their sampling date. A list of all the sequences in the tree will appear (in the default `Sample Dates` tab). In order to plot root-to-tip genetic distances against sampling time, each sequence has to be associated with its date of sampling. Sampling dates are indicated at the end of the sequences’ name, preceded by the suffix ‘_d’, in the format YYYY-MM-DD. For instance, the sequence named ‘A/Lima/WRAIR1687P/2009_d2009-06-27’ was sampled on the 27th of June 2009.
 
 In the Sample Date tab, click on `Parse Dates`. In the `Parse Dates for Taxa` window, select the following options:
+
 - The date is given by a numerical field in the taxon label that is defined by a prefix and its order (Order: **Last**; Prefix: **_d**)
 - Parse as a calendar date (Date format: **yyyy-MM-dd**)
 
@@ -285,11 +279,12 @@ If you want to partition the data, i.e. if you have samples that you know are fr
 1.2. Attach a date to each sample.
 
 This can be done in the same way as was shown in TempEst:
-In the Tips tab, tick the box for **Use tip dates**, and then click on **Guess Dates**. In the **Guess date values for all taxa** window, select the following options:
+In the Tips tab, tick the box for **Use tip dates**, and then click on **Parse Dates**. In the **Parse Dates for Taxa** window, select the following options:
 
 - The date is given by a numerical field in the taxon label that is defined by a prefix and its order (Order: Last; Prefix: _d)
 - Parse as a calendar date (Date format: **yyyy-MM-dd**)
-Alternatively, you can create a tab-delimited file (.txt) with two columns corresponding to the taxa names and sample dates, and use **Import Date**s.
+
+Alternatively, you can create a tab-delimited file (.txt) with two columns corresponding to the taxa names and sample dates, and use **Import Dates**.
 
 ![BEAUti Substitution Model](../img/phylo_1_6.jpg)
 

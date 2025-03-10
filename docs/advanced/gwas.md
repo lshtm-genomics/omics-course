@@ -119,7 +119,7 @@ plink --bfile MD --extract MD.prune.in --genome --out MD
 This might take a few minutes and creates files with the extension *.genome & *.log 
 
 !!! info
-    You can also create a BED file with the pruned SNPs: `plink --bfile MD --extract MD.prune.in --make-bed --out MD.pruned`. Note: `nohup` and `&` are used to allow the command to run in the background thus freeing up the terminal for further use. You can use top to see if the process is still running (remember to press q to exit). Alternatively, you could of course simply run the command in another terminal. 
+    You can also create a BED file with the pruned SNPs: `nohup plink --bfile MD --extract MD.prune.in --make-bed --out MD.pruned &`. Note: `nohup` and `&` are used to allow the command to run in the background thus freeing up the terminal for further use. You can use top to see if the process is still running (remember to press q to exit). Alternatively, you could of course simply run the command in another terminal. 
 
 !!! question
     How many SNPs are in your pruned list? HINT: Have a look at your log file (using the `less` command) or type `wc -l MD.prune.in`

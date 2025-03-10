@@ -42,15 +42,11 @@ Often you want to combine the results from many runs into a single report. This 
 tb-profiler collate
 ```
 
-You can open this in LibreOffice Calc (a free alternative to excel). Open libreoffice by running the following on the terminal:
+You can open this in gnumeric (a free alternative to excel). Open gnumeric by running the following on the terminal:
 
 ```
-libreoffice --calc 
+gnumeric tbprofiler.txt
 ```
-
-Then choose file -> open and select the tbprofiler.txt file in the ~/data/tb directory. Just make sure you have only "tab" checked as the seperator (see image below).
-
-![](../img/tbprofiler_1.png)
 
 ## Bedaquiline resistance: a case study
 
