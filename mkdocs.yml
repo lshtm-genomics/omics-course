@@ -51,10 +51,11 @@ nav:
       - other-omics/ml.md
       - other-omics/tb-resistance.md
       - other-omics/eqtl.md
-      - other-omics/task.md
+      # - other-omics/task.md
   - "Additional info":
       - additional-info/conda.md
       - additional-info/software.md
       - additional-info/SettingUpVirtualLinux.md
+      - additional-info/faq.md
   - Presentations:
       - presentations/presentations.md
