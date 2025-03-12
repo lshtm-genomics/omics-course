@@ -1,0 +1,1516 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../third-generation-sequencing/">
+      
+      
+        <link rel="next" href="../../other-omics/microbiome/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Genome Wide Association Studies (GWAS) - LSHTM Omics</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#genome-wide-association-studies-gwas" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="LSHTM Omics" class="md-header__button md-logo" aria-label="LSHTM Omics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LSHTM Omics
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Genome Wide Association Studies (GWAS)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../introduction/intro-to-linux/" class="md-tabs__link">
+          
+  
+  Introduction
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../phylogenetics/" class="md-tabs__link">
+          
+  
+  Advanced
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../other-omics/microbiome/" class="md-tabs__link">
+          
+  
+  Other omics
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../additional-info/conda/" class="md-tabs__link">
+          
+  
+  Additional info
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../presentations/presentations/" class="md-tabs__link">
+          
+  
+  Presentations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LSHTM Omics" class="md-nav__button md-logo" aria-label="LSHTM Omics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    LSHTM Omics
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../connecting-github/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting connected
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Introduction
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/intro-to-linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/mapping/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mapping
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/variant-detection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Variant detection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/assembly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assembly
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/task/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Task
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Advanced
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../phylogenetics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Phylogenetics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../third-generation-sequencing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Third Generation Sequencing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Genome Wide Association Studies (GWAS)
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Genome Wide Association Studies (GWAS)
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#software-you-will-need-for-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Software you will need for analysis:
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-create-bed-files-for-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Create BED files for analysis
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-sample-qc" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Sample QC
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Sample QC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#identification-of-individuals-with-discordant-sex-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identification of Individuals with discordant sex information
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identification-of-individuals-with-elevated-missing-data-rates-or-outlying-heterozygosity-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identification of individuals with elevated missing data rates or outlying heterozygosity rate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identification-of-duplicated-or-related-individuals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identification of duplicated or related individuals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identification-of-individuals-of-divergent-ancestry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identification of individuals of divergent ancestry
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-all-individuals-failing-qc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Remove all individuals failing QC
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#marker-qc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Marker QC
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Marker QC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#identify-all-markers-with-an-excessive-missing-data-rate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identify all markers with an excessive missing data rate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-markers-for-different-genotype-call-rates-between-cases-and-contols" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test markers for different genotype call rates between cases and contols
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remove-all-markers-failing-qc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Remove all markers failing QC
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#perform-a-gwas-on-your-qcd-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perform a GWAS on your QC’d dataset
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Other omics
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Other omics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other-omics/microbiome/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Microbiomes Practical
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other-omics/transcriptomics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transcriptomics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other-omics/methylation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Methylation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other-omics/ml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deep learning (Neural Network)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other-omics/tb-resistance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TB resistance prediction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other-omics/eqtl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    EQTL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Additional info
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Additional info
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/conda/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conda Environments: Why and How to Use Them
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/software/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Software
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/SettingUpVirtualLinux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Virtual Box: Setting Up Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/faq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Frequently asked questions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Presentations
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Presentations
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../presentations/presentations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Presentations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="genome-wide-association-studies-gwas">Genome Wide Association Studies (GWAS)</h1>
+<h2 id="introduction">Introduction</h2>
+<p>The objective of this tutorial is to get you familiar with the basic file format used for GWAS and common tools used for analysis and take you through data quality control (Crucial in any study!). </p>
+<p>Our dataset is based on a GWAS study for Meningococcal disease in a <a href="https://www.nature.com/articles/ng.640">European population</a>.</p>
+<p>The data required is genomic wide SNP data. It is already included in this practical. The scripts required to facilitate analysis are also included just like the other practicals.</p>
+<h2 id="software-you-will-need-for-analysis">Software you will need for analysis:</h2>
+<ul>
+<li>
+<p>Computer workstation with Unix/Linux operating system (You will be using this already)</p>
+</li>
+<li>
+<p><a href="http://pngu.mgh.harvard.edu/_purcell/plink/download.shtml">PLINK software for genome-wide association analysis</a></p>
+</li>
+<li>
+<p><a href="http://cran.r-projecBasecalling">R</a> (Statistical software for data analysis and graphing)</p>
+</li>
+<li>
+<p>Data analysis and graphing can be performed in a number of ways, and "R" is a example of a software that can be used for this. </p>
+</li>
+<li>
+<p>BCFtools</p>
+</li>
+</ul>
+<p>The data for this practical is in the <code>~/data/gwas</code> directory. Please navigate to this directory before running any commands. </p>
+<p><strong>Before continuing also make sure to have loaded the "gwas" environment using the conda command.</strong></p>
+<h2 id="1-create-bed-files-for-analysis">1. Create BED files for analysis</h2>
+<p>Convert your plink genotype files to binary format - smaller file easier for manipulation of data. </p>
+<p><strong>We have already provided you with plink formatted files we won't have to do this step.</strong></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Plink allows for the conversion from many different formats to plink format. For example if you had a VCF file you could type:
+<div class="highlight"><pre><span></span><code>plink --vcf MD.vcf.gz --make-bed --out MD 
+</code></pre></div></p>
+</div>
+<p>Your data set:</p>
+<p>Plink binary formatted dataset consisting of 3004 individuals, 409 cases, 2595 controls, and 601089 variants.</p>
+<ul>
+<li>MD.bed – binary-coded information on individuals and variants</li>
+<li>MD.bim – variant information: “Chromosome”, “Marker name”, “Genetic Distance” (or '0' as dummy variable), “Base-pair coordinate”, “Allele 1”, “Allele 2”. Each SNP must have two alleles.</li>
+<li>MD.fam – Individual Information. The first 6 columns are mandatory and in the order: “Family ID”, “Individual ID”, “Paternal ID”, “Maternal ID”, “Sex”, “Phenotype”.</li>
+</ul>
+<p>Double-check the basic stats of your dataset (number of variants, individuals, controls, cases) by examining MD.bim and MD.fam with bash utilities like <code>awk</code> or <code>wc</code>. </p>
+<p>What other information is available?</p>
+<h2 id="2-sample-qc">2. Sample QC</h2>
+<h3 id="identification-of-individuals-with-discordant-sex-information">Identification of Individuals with discordant sex information</h3>
+<p>Ideally, if X-chromosome data are available, we would calculate the mean homozygosity rate across X chromosome markers for each individual in the study and identify discordance with our reported Sex phenotype.</p>
+<p><strong>As our data only contains autosomes we will skip this step.</strong></p>
+<h3 id="identification-of-individuals-with-elevated-missing-data-rates-or-outlying-heterozygosity-rate">Identification of individuals with elevated missing data rates or outlying heterozygosity rate</h3>
+<p>At the shell prompt type: 
+<div class="highlight"><pre><span></span><code>plink --bfile MD --missing --out MD
+</code></pre></div></p>
+<p>This creates the files MD.imiss (sample-based missing report) and MD.lmiss (variant-based missing report). The fourth column in the imiss file (N_MISS) gives the number of missing SNPs and the sixth column (F_MISS) gives the proportion of missing SNPs per individual. </p>
+<p>At the shell prompt type:</p>
+<div class="highlight"><pre><span></span><code>plink --bfile MD --het --out MD
+</code></pre></div>
+<p>This creates the file MD.het where the third column gives the observed number of homozygous genotypes [O(Hom)] and the fifth column gives the number of non-missing genotypes [N(NM)], per individual. </p>
+<p>Calculate the observed heterozygosity rate per individual using the formula (N(NM) - O(Hom))/N(NM) and create a graph where the proportion of missing SNPs per individual is plotted on the x-axis and the observed heterozygosity rate per individual is plotted on the y-axis. Type: </p>
+<div class="highlight"><pre><span></span><code>R CMD BATCH imiss-vs-het.Rscript
+</code></pre></div>
+<p>This creates the graph MD.imiss-vs-het.pdf (see below). </p>
+<p><img alt="" src="../../img/gwas_1.jpg" /></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Examine the plot to decide reasonable thresholds at which to exclude individuals based on elevated missing or extreme heterozygosity. </p>
+<p>Here we will exclude all individuals with a genotype failure rate ≥ 0.0185 (vertical dashed line) and/or heterozygosity rate ± 3 standard deviations from the mean (horizontal dashed lines). </p>
+</div>
+<p>Add the family ID and individual ID of all the failing this QC using:</p>
+<div class="highlight"><pre><span></span><code>R CMD BATCH imiss_het_fail.Rscript
+</code></pre></div>
+<p>This produces a file named fail_imiss_het_qc.txt </p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>How many samples failed this QC stage? </p>
+</div>
+<h3 id="identification-of-duplicated-or-related-individuals">Identification of duplicated or related individuals</h3>
+<p>To identify duplicate &amp; related individuals, create an Identity-by-State (IBS) matrix – calculated for each pair of individuals based on the shared proportion of alleles. </p>
+<p>To reduce the computational complexity, first prune the dataset so that no pair of SNPs (within a given window e.g 200kb) has linkage disequilibrium (r² &gt; 0.2). Type </p>
+<div class="highlight"><pre><span></span><code>plink --bfile MD --indep-pairwise 200 5 0.5 --out MD
+</code></pre></div>
+<p>This creates files with the extension <em>.prune.in </em>.prune.out &amp; *.log. Then, to extract pruned SNPs and generate pair-wise IBS, type: </p>
+<div class="highlight"><pre><span></span><code>plink --bfile MD --extract MD.prune.in --genome --out MD 
+</code></pre></div>
+<p>This might take a few minutes and creates files with the extension <em>.genome &amp; </em>.log </p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>You can also create a BED file with the pruned SNPs: <code>nohup plink --bfile MD --extract MD.prune.in --make-bed --out MD.pruned &amp;</code>. Note: <code>nohup</code> and <code>&amp;</code> are used to allow the command to run in the background thus freeing up the terminal for further use. You can use top to see if the process is still running (remember to press q to exit). Alternatively, you could of course simply run the command in another terminal. </p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>How many SNPs are in your pruned list? HINT: Have a look at your log file (using the <code>less</code> command) or type <code>wc -l MD.prune.in</code></p>
+</div>
+<p>To identify all pairs of individuals with an Idenity-by-descent (IBD) &gt; 0.185. Type: </p>
+<div class="highlight"><pre><span></span><code>perl run-IBD-QC.pl MD
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The code also looks at the individual call rates stored in MD.imiss and outputs the ID of the individual with the lower call rate to <strong>fail_IBD-QC.txt</strong> for each pair of related individuals. </p>
+</div>
+<p>To visualise the IBD rates, type: </p>
+<div class="highlight"><pre><span></span><code>R CMD BATCH  plot-IBD.Rscript
+</code></pre></div>
+<p>This generates MD.IBD-hist.pdf </p>
+<p><img alt="" src="../../img/gwas_2.jpg" /></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Note: The expectation is that IBD = 1 for duplicates or monozygotic twins, IBD = 0.5 for 1st-degree relatives, IBD = 0.25 for 2nd-degree relatives and IBD = 0.125 for 3rd-degree relatives. Due to variation around these values it is typical to exclude one individual from each pair with an IBD &gt; 0.185, which is halfway between the expected IBD for 3rd- and 2nd-degree relatives. </p>
+</div>
+<h3 id="identification-of-individuals-of-divergent-ancestry">Identification of individuals of divergent ancestry</h3>
+<p>In the interest of time, this step has been mostly done for you.</p>
+<p>Principal components analysis (PCA) is performed with pruned bed file datasets generated before using the ./RUN_PCA.sh command. This generates the following output files: MD.pruned.pca.par, MD.pruned.pca.log, MD.pruned.pca.evec, MD.pruned.pca, MD.pruned.eval. The evec extension file is what you will need to view your PCs</p>
+<p>Create a scatter diagram of the first two principal components, including all individuals in the file MD.pruned.pca.evec (the first and second PCs are columns 2 and 3 respectively). Type: </p>
+<div class="highlight"><pre><span></span><code>R CMD BATCH plot-pca-results.Rscript
+</code></pre></div>
+<p>This outputs <strong>pca_plot.pdf</strong></p>
+<p><img alt="" src="../../img/gwas_3.jpg" /></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Data in column 4 is used to colour the points according to phenotype (i.e. case vs control). Here, we chose to exclude all individuals with a 2nd principal component score &gt;0.07. </p>
+</div>
+<p>To write the FID and IID of the individuals to a file called <strong>fail_pca.txt</strong> type:</p>
+<div class="highlight"><pre><span></span><code>R CMD BATCH write_pca_fail.R
+</code></pre></div>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>How many individuals failed the PCA threshold? </p>
+</div>
+<h3 id="remove-all-individuals-failing-qc">Remove all individuals failing QC</h3>
+<p>To concatenate all the files listing individuals failing the previous QC steps into single file, at the unix prompt type: </p>
+<div class="highlight"><pre><span></span><code>cat fail*txt | sort -k1 | uniq &gt; fail_qc_inds.txt
+</code></pre></div>
+<p>The file fail_qc_inds.txt should now contain a list of unique individuals failing the previous QC steps. </p>
+<p>To remove these from the dataset type: </p>
+<div class="highlight"><pre><span></span><code>plink --bfile MD --remove fail_qc_inds.txt --make-bed --out clean.MD
+</code></pre></div>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>How many individuals in total will be excluded from further analysis?</p>
+<p>How many individuals in total do you have for further analysis? HINT: check your log file</p>
+</div>
+<h2 id="marker-qc">Marker QC</h2>
+<h3 id="identify-all-markers-with-an-excessive-missing-data-rate">Identify all markers with an excessive missing data rate</h3>
+<p>To calculate the missing genotype rate for each marker type: </p>
+<div class="highlight"><pre><span></span><code>plink --bfile clean.MD --missing --out clean.MD
+</code></pre></div>
+<p>The results of this analysis can be found in clean.MD.lmiss. </p>
+<p>Plot a histogram of the missing genotype rate to identify a threshold for extreme genotype failure rate. This can be done using the data in column five of the clean.MD.lmiss file. Type: </p>
+<div class="highlight"><pre><span></span><code>R CMD BATCH lmiss-hist.Rscript
+</code></pre></div>
+<p>This generates clean.MD.lmiss.pdf </p>
+<p><img alt="" src="../../img/gwas_4.jpg" /></p>
+<p>We chose to a call-rate threshold of 5% (these SNPs will be removed later in the protocol). </p>
+<h3 id="test-markers-for-different-genotype-call-rates-between-cases-and-contols">Test markers for different genotype call rates between cases and contols</h3>
+<p>To test all markers for differences in call rate between cases and controls, at the Unix prompt type: </p>
+<div class="highlight"><pre><span></span><code>plink --bfile clean.MD --test-missing --allow-no-sex --out clean.MD
+</code></pre></div>
+<p>The output of this test can be found in clean.MD.missing. </p>
+<p>To create a file called ‘fail-diffmiss-qc.txt’, which contains all SNPs with a significantly different (P&lt;0.00001) missing rate between cases and controls, type: </p>
+<div class="highlight"><pre><span></span><code>perl run-diffmiss-qc.pl clean.MD
+</code></pre></div>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>How many variants have failed QC? </p>
+</div>
+<h3 id="remove-all-markers-failing-qc">Remove all markers failing QC</h3>
+<p>To remove poor SNPs from further analysis and create a new clean (QC’D) MD data file, at the Unix prompt type:</p>
+<div class="highlight"><pre><span></span><code>plink --bfile clean.MD --exclude fail-diffmiss-qc.txt --maf 0.01 --geno 0.05 --hwe 0.00001 --make-bed --out clean.final.MD
+</code></pre></div>
+<p>In addition to markers failing previous QC steps, those with a MAF &lt; 0.01, missing rate &gt; 0.05 and a HWE P-value &lt; 0.00001 (in controls) are also removed. </p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>How many variants and individuals pass filters and QC for your GWAS? </p>
+</div>
+<h2 id="perform-a-gwas-on-your-qcd-dataset">Perform a GWAS on your QC’d dataset</h2>
+<p>To run a basic case/control association test, at the unix prompt type:</p>
+<div class="highlight"><pre><span></span><code>plink --bfile clean.final.MD --assoc --ci 0.95 --adjust --allow-no-sex --out final.MD.assoc
+</code></pre></div>
+<p>Your association output file will contain 12 columns: </p>
+<ul>
+<li>CHR - Chromosome</li>
+<li>SNP - SNP ID</li>
+<li>BP - Physical position (base-pair)</li>
+<li>A1 - Minor allele name (based on whole sample)</li>
+<li>F_A - Frequency of this allele in cases</li>
+<li>F_U - Frequency of this allele in controls</li>
+<li>A2 - Major allele name</li>
+<li>CHISQ - Basic allelic test chi-square (1df)</li>
+<li>P - Asymptotic p-value for this test</li>
+<li>OR - Estimated odds ratio (for A1, i.e. A2 is reference)</li>
+<li>L95 - Lower bound of 95% confidence interval for odds ratio</li>
+<li>U95 - Upper bound of 95% confidence interval for odds ratio</li>
+</ul>
+<p>To visualise your data:</p>
+<p>Generate a Quantile-Quantile (QQ) plot of your p-values to look at the distribution of P-values and assess whether genomic inflation is present (lambda&gt;1) (this can also be found in your assoc. log file).</p>
+<p>Generate a manhattan plot to visualise where your association signals lie across the chromosomes. Type: </p>
+<div class="highlight"><pre><span></span><code>R CMD BATCH GWAS_plots.R
+</code></pre></div>
+<p>This generates both plots: final.MD.assoc_qq.png and final.MD.assoc_mhplot.png </p>
+<p><img alt="" src="../../img/gwas_5.jpg" /></p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>What do the plots tell you? </p>
+</div>
+<p>Let’s zoom into a region of interest: the tower of SNPs on CHR1 (coloured in yellow). This the Complement Factor H (CFH) region known to be associated with Meningococcal disease. The previous Rscript in 8.2.2 above also generated the chr1_CFH_region.txt file. </p>
+<ul>
+<li>Open the locuszoom webpage: http://locuszoom.org/genform.php?type=yourdata</li>
+<li>Upload the text file (final.MD.assoc.assoc.adjusted)</li>
+<li>Set The P-Value column name to be "GC"</li>
+<li>Change the Column Delimiter to "Whitespace"</li>
+<li>Set the Marker column name to be "SNP"</li>
+<li>In the region section, enter the most associated snp (“rs1065489”) with a flanking size of 500KB</li>
+<li>In the Genome Build/LD Population field select the appropriate hg19 european ref panel.</li>
+<li>Then press "Plot Data" to generate your plot.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.tooltips", "navigation.instant", "navigation.tabs", "toc.integrate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

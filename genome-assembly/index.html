@@ -1,0 +1,1349 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Genome Assembly - LSHTM Omics</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8608ea7d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#genome-assembly" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="LSHTM Omics" class="md-header__button md-logo" aria-label="LSHTM Omics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LSHTM Omics
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Genome Assembly
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href=".." class="md-tabs__link">
+          
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../introduction/intro-to-linux/" class="md-tabs__link">
+          
+  
+  Introduction
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../advanced/phylogenetics/" class="md-tabs__link">
+          
+  
+  Advanced
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../other-omics/microbiome/" class="md-tabs__link">
+          
+  
+  Other omics
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../additional-info/conda/" class="md-tabs__link">
+          
+  
+  Additional info
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../presentations/presentations/" class="md-tabs__link">
+          
+  
+  Presentations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="LSHTM Omics" class="md-nav__button md-logo" aria-label="LSHTM Omics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    LSHTM Omics
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../connecting-github/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting connected
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Introduction
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/intro-to-linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/mapping/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mapping
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/variant-detection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Variant detection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/assembly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assembly
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/task/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Task
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Advanced
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced/phylogenetics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Phylogenetics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced/third-generation-sequencing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Third Generation Sequencing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced/gwas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Genome Wide Association Studies (GWAS)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Other omics
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Other omics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../other-omics/microbiome/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Microbiomes Practical
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../other-omics/transcriptomics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transcriptomics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../other-omics/methylation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Methylation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../other-omics/ml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deep learning (Neural Network)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../other-omics/tb-resistance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TB resistance prediction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../other-omics/eqtl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    EQTL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Additional info
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Additional info
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../additional-info/conda/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conda Environments: Why and How to Use Them
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../additional-info/software/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Software
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../additional-info/SettingUpVirtualLinux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Virtual Box: Setting Up Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../additional-info/faq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Frequently asked questions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Presentations
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Presentations
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../presentations/presentations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Presentations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="genome-assembly">Genome Assembly</h1>
+<h2 id="introduction">Introduction</h2>
+<p>The main challenge of sequencing a genome is determining how to arrange reads into chromosomes. We have already explored mapping, where the sequence data is aligned to a known reference genome. A complementary technique, where no reference is used or available, is called de novo assembly.</p>
+<p>De novo assembly is the process of reconstruction of the sample genome sequence without comparison to other genomes. It follows a bottom-up strategy by which reads are overlapped and grouped into contigs. Contigs are joined into scaffolds covering, ideally, the whole of each chromosome in the organism. However de novo assembly from next generation sequence (NGS) data faces several challenges. Read lengths are short and therefore detectable overlap between reads is lower and repeat regions harder to resolve. Longer read lengths will overcome these limitations but this is technology limited. These issues can also be overcome by increasing the coverage depth, i.e. the number of reads over each part of the genome. The higher the coverage then the greater the chance of observing overlaps among reads to create larger contigs and being able to span short repeat regions. In addition, the modern hardware commonly output paired-end reads. These are two reads that are separated by a gap of known size. They enable the resolution of repeats greater than the read length by employing their expected separation and orientation as location constraints. Sequencing errors add difficulty since algorithms must allow certain mismatches when overlapping reads and joining regions, possibly leading to discarding true overlaps and false positives (Miller, Koren, &amp; Sutton, 2010)</p>
+<p>Despite all mentioned limitations, the high coverage currently achieved, growing read lengths (e.g. 100 read depth, &gt;150bp – Illumina HiSeq2500) and paired-end information make it feasible to obtain assemblies from small genomes (e.g. bacterial) with relatively low fragmentation. Current assemblers employ graph theory to represent sequences and their overlaps as a set of nodes and edges, being classified into three main groups: greedy, Overlap/Layout/Consensus (OLC) and de Bruijn graph assemblers</p>
+<p>Graph theory is a branch of discrete mathematics that studies problems of graphs. Graphs are sets of points called ‘vertices’ or ‘nodes’ joined by lines called ‘edges’. In the graph to the left there are 6 nodes and 7 edges. The edges are unidirectional which means that they can only be traversed in the direction of the arrow. For example paths in this graph include 3-2-5-1, 3-4-6 and 3-2-1.</p>
+<p><img alt="assembly_1" src="../img/assembly_1.jpeg" /></p>
+<p>The greedy algorithms consist of progressively adding single reads into contigs by end-to-end overlapping, starting with those reads with the highest overlap score and ending once no more joins can be found. Such scores are normally measured as the overlap length or the percentage of identity between reads along their joining region. SSAKE (Warren, Sutton, Jones, &amp; Holt, 2007), the first short-read assembler, is based on this approach as well as its two descendants SHARCGS (Dohm, Lottaz, Borodina, &amp; Himmelbauer, 2007) and VCAKE (Jeck et al., 2007).</p>
+<p>OLC assemblers build an overlap graph, in which nodes represent the reads and edges the overlaps. It requires a very time-consuming first step, where all reads are compared against each other. Paths along the graph show likely contigs.</p>
+<p>These two algorithms (greedy and OLC) are more suited to fewer, longer reads than those generated with NGS technologies. De Bruijn graph assemblers are the state-of-the-art approach for data sets composed of many thousands of short reads.</p>
+<p><img alt="assembly_2" src="../img/assembly_2.jpeg" /></p>
+<p>De Bruijn graph assemblers start by splitting the set of reads into k-mers, a set of overlapping sub-reads, and then use the latter to build the graph. Each edge represents an observed k-mer and its adjacent nodes the prefix and suffix of the original k-mer. Therefore, groups of overlapping reads are not actually computed but rather represented as paths in the graph. In the figure above the sequence ATGGCGTGCA with 3-mers and overlap of 2 base pairs (bp).</p>
+<p>Since edges correspond to all k-mers existing in the sampled genome, the assembly is resolved by finding a path that visits every edge in the graph. This approach is especially suitable to handle the large number of reads because each k-mer is stored at most once regardless of how many times it occurs in the reads. Several programs implement de Bruijn graph algorithms, including Euler (Pevzner, Tang, &amp; Waterman, 2001), Velvet (Zerbino &amp; Birney, 2008), ABySS (Simpson et al., 2009), AllPaths (Butler et al., 2008) and SOAPdenovo (Li et al., 2010).</p>
+<p>In conclusion, the de Bruijn graph assemblers are more appropriate for large amounts of data from high-coverage sequencing and have become the programs of choice when processing short reads produced by Illumina and other established platforms (&gt;100bp).</p>
+<h2 id="exercise-1-de-novo-assemly-using-spades">Exercise 1: <em>De novo</em> Assemly using Spades</h2>
+<p><em>De novo</em> assembly is one the most computationally demanding processes in bioinformatics. Large genomes require many hours or days of processing. A small bacterial genome may take up to several hours to assemble. Here we will assemble M. tuberculosis genomes using Spades (Bankevich et al, 2012). We will compute assembly statistics to check the quality, and review how resulting contigs can be aligned, ordered and orientated along the reference genome using Abacas (Assefa, Keane, Otto, Newbold, &amp; Berriman, 2009).</p>
+<p><strong>Quick start and data checks</strong></p>
+<p>Activate the relevant <code>conda</code> environment</p>
+<div class="highlight"><pre><span></span><code>conda activate assembly
+</code></pre></div>
+<p>Change to the data directory:</p>
+<div class="highlight"><pre><span></span><code>cd ~/data/tb
+</code></pre></div>
+<p>And list the files there:</p>
+<div class="highlight"><pre><span></span><code>ls
+</code></pre></div>
+<p>There are 6 fastq files in this directory; these are the input data for this practical. There are paired-end reads for three samples. To view the first 8 lines of a fastq file type:</p>
+<div class="highlight"><pre><span></span><code>zcat sample1_1.fastq.gz | head -8
+</code></pre></div>
+<p>This gives:</p>
+<div class="admonition terminal">
+<p class="admonition-title">Terminal output</p>
+<div class="highlight"><pre><span></span><code>@HS3_5961:1:2207:17088:52965#1/1
+GCCGGTTGTTCGGCTGGAAGGTCCTTTTGCCCTTGGTCACGGGCGTCTCCTCGCTATGTCTGGCAACATCACCAT
++
+GGGGGGEGFGFGGGFGDBEBF:AFDEFG?CFFDD:FBEE?EFEDFDEFEAEBFB8CCC?A@CD;ADDD86CCC&gt;&lt;
+@HS3_5961:1:1208:19785:88067#1/1
+CTTAGGGTCGCCGTTAAGTTCGGAGACGACCGCGTTCCACACTGTGGTGAAGCCTGAACCGGGGTCATCGGTCAA
++
+HHHHFFHBHHHHHHHEGDDDGGEGFHHHHHHGHHHDFFEFFFDD&gt;DB@CDAEFF?FBFGDDCCC.=?5=&lt;@@;DA
+</code></pre></div>
+</div>
+<p>Each read consists of 4 lines, the first is the read name, the second are the bases read, the third line is ignored and the fourth is the encoded quality of each read (one character per base).</p>
+<p>The number of lines in each file is reported by:</p>
+<div class="highlight"><pre><span></span><code>wc -l *
+</code></pre></div>
+<p>and therefore the number of reads can be calculated by dividing by 4. The length of the first read can be calculated by running:</p>
+<div class="highlight"><pre><span></span><code>zcat sample1_1.fastq.gz | head -2 | tail -1 | wc -c
+</code></pre></div>
+<p>This gives the number of characters in the line including the new line character, so it gives a number one greater than the first read length.</p>
+<p><strong>Running Spades</strong></p>
+<p>Spades is implemented in a single program that performs several steps in the assembly pipeline with a single command. The options are explained by running the command with no parameters (spades.py):</p>
+<p>You will see that there are many options and the pipeline can be customised extensively. However, for most purposes we can run the tool with the default settings. You only need to supply the reads and an output directory.</p>
+<p>An example invocation that takes the fastq formatted paired end files (Mtb_sample1_1.fastq.gz and Mtb_sample1_2.fastq.gz) and performs assembly.</p>
+<p><div class="highlight"><pre><span></span><code>spades.py -1 ~/data/tb/sample1_1.fastq.gz -2  ~/data/tb/sample1_2.fastq.gz -o sample1_asm
+</code></pre></div>
+Employing paired-end reads (rather than single-end) increases the assembly quality. In general, libraries with smaller insert size produce more fragmented and shorter assemblies, whilst the genome coverage does not increase that much. The combination of libraries with different insert size always gives the best results.</p>
+<p>De novo assembly gives much better results if reads are aggressively pre-filtered before passing them to the assembler. This is the same as we have seen for mapping and variant detection earlier in the course.</p>
+<p>Although anecdotal recommendations for the k-mer length range from lower than half of the read length up to 80% of read length, the parameter is difficult to determine in advance since it depends on coverage, read length, error rates and the sample properties (repeat regions, etc). Therefore, it is advisable to perform several assemblies using different values of k-mer length to decide a value.</p>
+<p>Thankfully spades automatically chooses a range of k-mer lengths to test and chooses the best one. The pipeline also performs reads correction, which aims to correct random errors in reads which will have a knock on effect on the k-mers used in the assembly.</p>
+<p>Eventually, after spades finishes running there will be several files will be obtained in the directory the most important for our purposes are:</p>
+<ul>
+<li>
+<p>A <abbr title="A format used to store sequence data">fasta</abbr> file (contigs.<abbr title="A format used to store sequence data">fasta</abbr>) containing all assembled contigs</p>
+</li>
+<li>
+<p>A <abbr title="A format used to store sequence data">fasta</abbr> file (scaffolds.<abbr title="A format used to store sequence data">fasta</abbr>) containing all assembled scaffolds</p>
+</li>
+</ul>
+<p>Scaffolds are contigs that have been chained together into larger sequences using information such from <a href="https://emea.illumina.com/science/technology/next-generation-sequencing/mate-pair-sequencing.html">mate pair libraries</a>] and reference sequences. The scaffolds should be very similar to the contigs in this assembly because the insert sizes of our library are relatively small. For the rest of this practical we will only be analysing the contigs.</p>
+<p><strong>Assembly Quality</strong></p>
+<p>The outcome of de novo assembly is a set of contigs. In a perfect assembly each contig covers exactly one chromosome in its entirety. In practice many contigs are created and the assembly quality is measured by examining their length; individually and in combination. An assembly is considered to be of good quality if relatively few long contigs are obtained covering the majority of the original or expected genome. There are different metrics used to assess the quality of assemblies:</p>
+<ul>
+<li>
+<p>N50. The length of the contig that contains the middle nucleotide when the contigs are ordered by size. Note, N80 or N60 may also be used.</p>
+</li>
+<li>
+<p>Genome coverage. If a genome reference exists then the genome coverage can be computed as the percentage of bases in the reference covered by the assembled contigs.</p>
+</li>
+<li>
+<p>Maximum/median/average contig size. Usually computed after removing the smallest contigs (e.g. discarding all contigs shorter than 150 bp).</p>
+</li>
+</ul>
+<p>We can compute these statistics with the help of a tool called quast (made by the same developers as spades). To get the statistics first navigate to the assembly directory and run <code>quast</code></p>
+<div class="highlight"><pre><span></span><code>cd sample1_asm
+quast -r ../tb.fasta -o quast contigs.fasta 
+</code></pre></div>
+<p>After it has finished you can examing the outputs. To view the report enter cat quast/report.txt.</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>See if you can spot the statistics we mentioned above. Compare the size of the reference with the size of the assembly. Are they different?</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Question 1</label><label for="__tabbed_1_2">Answer 1</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>See if you can spot the statistics we mentioned above. Compare the size of the reference with the size of the assembly. Are they different?</p>
+</div>
+<div class="tabbed-block">
+<p>Quast report includes information on statistics N50, Genome fraction and Maximum contig size that were mentioned before as well as additional metrics worth exploring. Average contig size can be additionally calculated by dividing values from fields <code>Total length (&gt;= 0 bp)</code> and <code># contigs (&gt;= 0 bp)</code> or directly from FASTA file with external tools for example <code>seqmagick</code>. It is advised to look at a variety of metrics and supporting analyses to determine quality of assembly. The total size of reference genome (1000020 bp) and resulting genome assembly (1005736 bp) are comperable.</p>
+</div>
+</div>
+</div>
+</div>
+<p>High depth of coverage is essential to obtain high quality assembled genomes. It is always the case that contig sizes drop when coverage decreases under a certain value, generally considered to be 50x, although such threshold will depend on the size and repeat content of the sequenced genome. A coverage limit is reached above which no improvement on assembly metrics is observed. As shown to the left, coverage greater that 50x does not significantly improve N50 in an assembly of E. coli. Although such thresholds will not necessarily be the same for other genomes, the principles apply for all.</p>
+<p><img alt="assembly_3" src="../img/assembly_3.jpeg" /></p>
+<p>More data requires more memory too, as the lower graph demonstrates. Again the figures are genome specific but it is easy to see how large computers can quickly become necessary as coverage and genome size increase. (Illumina, 2009).</p>
+<h2 id="exercise-2-contig-ordering">Exercise 2: Contig Ordering</h2>
+<p><strong>Ordering with ABACAS</strong></p>
+<p>To align, order and orientate contigs along the reference genome we will be using ABACAS (Assefa et al., 2009). The output will be in the form of a pseudo molecule, where all of the contigs will be joined by N’s. To display the complete list of possible parameters by typing:</p>
+<div class="highlight"><pre><span></span><code>abacas.pl –h
+</code></pre></div>
+<p>The basic usage (for this exercise) is:</p>
+<div class="highlight"><pre><span></span><code>cp ~/data/tb/tb.fasta .
+abacas.pl -r tb.fasta -q contigs.fasta -p nucmer -b -d -a -m -N -g sample1 -o sample1_asm
+</code></pre></div>
+<p>This will create a pseudomolecule (into sample1_asm.<abbr title="A format used to store sequence data">fasta</abbr>) from the assembled contigs (in contigs.fa). The program creates a number of files with the same base filename for the other requested processing output, including gap information (-g, sample1_asm.gaps, sample1_asm.gaps.tab), a comparison file (sample1_asm.crunch), no padding version (-n, sample1_asm.NoNs.<abbr title="A format used to store sequence data">fasta</abbr>), etc.</p>
+<p><strong>Visualisation with ACT</strong></p>
+<p>Artemis Comparison Tools (ACT) (Carver et al., 2005) is a tool for displaying pair-wise comparison between two or more DNA sequences. It was developed to help identify and analyse regions of similarity and difference between genomes along their entire sequences and their annotation. ABACAS produces the required files to compare the original reference genome with the pseudo molecule resulting after ordering assembled contigs.</p>
+<p>Launch ACT by running:</p>
+<div class="highlight"><pre><span></span><code>act
+</code></pre></div>
+<p><img alt="assembly_4" src="../img/assembly_4.jpeg" /></p>
+<p>Click <em>File &gt; Open</em>. Select the reference <abbr title="A format used to store sequence data">fasta</abbr> file <em>(tb.<abbr title="A format used to store sequence data">fasta</abbr>)</em> and the pseudomoelcule <em>(sample1_asm.<abbr title="A format used to store sequence data">fasta</abbr>)</em> as the two sequence files with the associated comparison file <em>(sample1_asm.crunch)</em> – you will have to navigate the directories. Then press Apply.</p>
+<p>A map between the two sequences will be displayed. To load annotation click on <em>File &gt; tb.<abbr title="A format used to store sequence data">fasta</abbr> &gt; Read An Entry...</em> and select the <em>tb.gff</em> file from the <code>~/data/tb/</code> directory. To make stop codons disappear (represented as black vertical lines) right-click on the reference and the pseudo molecule panels and deselect Stop Codons option in the right-click menu.</p>
+<p>Right-click on one of the red ribbons linking the contigs and select View Selected Matches to find out the first and last position the contig maps to the reference and to the pseudo molecule. The percentage of identity between them is also shown.</p>
+<p><img alt="assembly_5" src="../img/assembly_5.png" /></p>
+<h2 id="exercise-3-mapping-back-to-the-reference">Exercise 3: Mapping back to the Reference</h2>
+<p>Contigs aligning with large internal gaps or low confidence indicate either structural variants or misassemblies, and should be carefully monitored. If paired-end reads are available then mapping them back onto the contigs (pseudo molecule) is another source of information. Large deviations in the mapping distance or read pairs in which only one read maps against the contigs may hint at misassemblies rather than structural variation</p>
+<p>The following commands maps the raw reads against the pseudo molecules from the previous exercise. This is a similar process to those you have used in the previous classes.</p>
+<div class="highlight"><pre><span></span><code>cd ~/data/tb/sample1_asm
+bwa index -a is sample1_asm.fasta
+bwa mem -k 20 -c 100 -L 20 -U 20 -M -T 50 sample1_asm.fasta ~/data/tb/sample1_1.fastq.gz ~/data/tb/sample1_2.fastq.gz | samtools sort -o sample1_asm.bam
+samtools index sample1_asm.bam
+</code></pre></div>
+<p>This process indexes, maps and stores the fastq paired-end reads against the ABACAS ordered pseudomolecule (sample1/sample1_asm.<abbr title="A format used to store sequence data">fasta</abbr>) for sample1 created by spades. The output is a BAM file (sample1/sample1_asm.bam).</p>
+<p>This script can be modified to create a BAM file for the sequence data mapped against any reference genome, just as you have done in the previous class.</p>
+<p>These files can be visualised in ACT. File &gt; sample1_asm.<abbr title="A format used to store sequence data">fasta</abbr> &gt; Read BAM/VCF... and choose the remapped.bam file (sample1_asm.bam). Do the same for tb.<abbr title="A format used to store sequence data">fasta</abbr> and choose the originally mapped BAM file (sample1.bam). These BAM data are represented as pileup data – each read stacked up over the section of the reference that it has been mapped to. Extra information can be presented by right-clicking on the pileups and selecting Graph &gt; Coverage or View &gt; Inferred Size.</p>
+<p>The graph shown gives a good insight into the quality and depth of the assembly and is very useful for finding regions that have been misaligned (i.e. joined in error) as their coverage should be very low or very high.</p>
+<p><img alt="assembly_6" src="../img/assembly_6.png" /></p>
+<p>In ACT inspect the region between 76,000 and 89,000</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:6"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><input id="__tabbed_2_5" name="__tabbed_2" type="radio" /><input id="__tabbed_2_6" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Question 2</label><label for="__tabbed_2_2">Answer 2</label><label for="__tabbed_2_3">Question 3</label><label for="__tabbed_2_4">Answer 3</label><label for="__tabbed_2_5">Question 4</label><label for="__tabbed_2_6">Answer 4</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>How does the coverage vary across the pseudo molecule?</p>
+</div>
+<div class="tabbed-block">
+<p>Coverage across the pseudo molecule is sufficient across most regions. There are few visible fragmentations for which coverage is not existent that should be expected from the nature of the assembly.</p>
+</div>
+<div class="tabbed-block">
+<p>How does this compare to the coverage across the matching regions mapped against the reference?</p>
+</div>
+<div class="tabbed-block">
+<p>Overall coverage trends in comparison to original mapping assembly are similar. In the region of interest, we can notice pseudo molecule having uniform coverage whilst in mapping assembly the lack of supporting reads spanning between 795000-83000.</p>
+</div>
+<div class="tabbed-block">
+<p>Is there any kind of structural variant involved?</p>
+</div>
+<div class="tabbed-block">
+<p>A few regions based on the coverage distribution might indicate the existence of structural variants that should be investigated further.</p>
+</div>
+</div>
+</div>
+</div>
+<h2 id="exercise-4-structural-variant-validation">Exercise 4: Structural Variant Validation</h2>
+<p>Structural variant (SV) software aims to detect signatures left by changes in chromosome material and chromosome rearrangements. However, reads mapping to repetitive or highly polymorphic regions may mimic the same signatures (false positives).</p>
+<p>Here we describe a de novo assembly approach that we call targeted assembly of candidate SV regions. It consists of obtaining the reads from the predicted SV region, performing de novo assembly and mapping the resulting contig back to the reference. The nature of the contig alignment can reveal the SV.</p>
+<p>We have previously identified a deletion in sample1 in the region 79570-83050 using delly. This region has been investigated above, in the context of a large assembly, and interesting mapping and assembly results have been found.</p>
+<p>The reads are extracted from the BAM file using samtools. Extracting a wider range (by at least 400bp) than the candidate region enables spades to construct good contigs either side of the possible SV.</p>
+<div class="highlight"><pre><span></span><code>cd ~/data/tb
+samtools view -b sample1.bam Chromosome:79000-84000  | samtools fastq - &gt; region.fastq
+</code></pre></div>
+<p>The next step is to perform de novo assembly of the extracted reads.</p>
+<div class="highlight"><pre><span></span><code>spades.py -s region.fastq -o region_assembly
+</code></pre></div>
+<p>We map the output contigs back to the reference with BLAST. This powerful alignment algorithm is available online or for download as a command line tool. Go to the web address http://blast.ncbi.nlm.nih.gov/Blast.cgi and navigate to the Nucleotide BLAST page. Check the “Align two or more sequences” box. Upload the contigs file (~/data/tb/region_assembly/contigs.<abbr title="A format used to store sequence data">fasta</abbr>) as the subject and the tb reference (~/data/tb/tb.<abbr title="A format used to store sequence data">fasta</abbr>) as the query. Enter an appropriate region of the reference to blast against as there is little point in searching the entire genome when we are only interested in a small range (79100-83900).</p>
+<p><img alt="assembly_7" src="../img/assembly_7.jpeg" /></p>
+<p>Blast Alignment input screen. Choose the appropriate reference and sample sequences, enter the range of interest and click BLAST.</p>
+<p><img alt="assembly_8" src="../img/assembly_8.jpeg" /></p>
+<p>Once the server has blasted your data, it will create a web page for the results with graphical and textual information on how well the sequences aligned.</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Question 5</label><label for="__tabbed_3_2">Answer 5</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Is it a deletion? Or was it a false positive? Using the output from delly in the variant detection practical have a look at other SVs as well.</p>
+</div>
+<div class="tabbed-block">
+<p>BLAST Graphic Summary of the resulting query contains a few rectangles (size correlates with alignment length) that represent regions of the sequence that maps to the reference. Rectangles joined by a thin line show that the contig sequence was split during alignment. It is indicating that the reads assembled into this single contig needed to be separated by a gap when aligning to the reference – therefore we can conclude a deletion compared to the reference. In order to validate in-depth deletion additional information could be extracted from long-read sequencing to prove or disprove the hypothesis. Shorter rectangles are matches coming from other smaller assembled contigs that may potentially reveal alternative areas of similarity or small repetitive sequences.</p>
+</div>
+</div>
+</div>
+</div>
+<h2 id="advanced-topics">Advanced Topics</h2>
+<p><strong>Annotation Transfer</strong></p>
+<p>Once the contigs ordered are against the reference, it is useful to determine the position and function of possible genes. It is possible to implement ab initio gene finding, but an alternative approach is to use the annotation of the reference and adapt it to the new assembly. A tool called RATT (Otto et al., 2011 “Rapid annotation transfer tools”) has been developed to transfer the annotation from a reference to a new assembly. In the first step the similarity between the two sequences is determined and a synteny map is constructed. This map is used to align the annotation of the reference onto the new sequence. In a second step, the algorithm tries to correct gene models. One advantages of RATT is that the complete annotation is transferred, including descriptions. Thus careful manual annotation from the reference becomes available in the newly sequenced genome. Where no synteny exists, no transfer can be performed. An outputted combined “embl” format file with sequence and inferred annotation can be viewed in artemis to assess the quality of the transfer.</p>
+<p><strong>Improving assemblies</strong></p>
+<p>The quality of the assembly is determined by a number of factors, including the type of software used, the length of reads and the repetitive nature or complexity of the genome. For example, assembly of Plasmodium is more difficult than that of most bacteria (due to the high AT content and repeats). A good assembly of a bacterial genome will return 20-100 supercontigs. It is possible to manually / visually improve assemblies and annotation within Artemis. To improve the assembly in a more automated fashion, there is other software:</p>
+<ul>
+<li>
+<p><strong>SSPACE</strong>: </p>
+<p>This tool can scaffold contigs. Although spades can also scaffold contigs, SSPACE generally performs better.</p>
+</li>
+<li>
+<p><strong>Abacas</strong>:</p>
+<p>This tool has the option to design primers that can be used to generate a PCR product to span a possible gap. The resulting new sequence can then be included in the assembly. This process is called finishing.</p>
+</li>
+<li>
+<p><strong>Image</strong>:</p>
+<p>This tool can close gaps in the assembly automatically. First the reads are mapped against the assembly. Using all reads that map close to a gap and with their mate pairs within the gap, it is possible to perform a local assembly. This process is repeated iteratively. This procedure can close up to 80% of the sequencing gaps (Tasi et al, 2010).</p>
+</li>
+<li>
+<p><strong>iCORN</strong>:</p>
+<p>This tool can correct base errors in the sequence. Reads are mapped against the reference and differences are called. Those differences or variants that surpass a specified quality threshold are corrected. A correction is accepted if the amount of perfect mapping reads does not decrease. This algorithm also runs iteratively. Here, perfect mapping refers to the read and its mate pair mapping in the expected insert size without any difference to the iteratively derived reference.</p>
+</li>
+</ul>
+<p>All these programs are available through the <a href="http://www.sanger.ac.uk/resources/software/pagit/">PAGIT suite (post assembly genome improvement toolkit)</a>.</p>
+<p><strong>References</strong></p>
+<p>Assefa, S., Keane, T. M., Otto, T. D., Newbold, C., &amp; Berriman, M. (2009). ABACAS: algorithm-based automatic contiguation of assembled sequences. Bioinformatics (Oxford, England), 25(15), 1968-9. doi:10.1093/bioinformatics/btp347</p>
+<p>Butler, J., MacCallum, I., Kleber, M., Shlyakhter, I. A, Belmonte, M. K., Lander, E. S., Nusbaum, C., et al. (2008). ALLPATHS: de novo assembly of whole-genome shotgun microreads. Genome research, 18(5), 810-20. doi:10.1101/gr.7337908</p>
+<p>Carver, T. J., Rutherford, K. M., Berriman, M., Rajandream, M.-A., Barrell, B. G., &amp; Parkhill, J. (2005). ACT: the Artemis Comparison Tool. Bioinformatics (Oxford, England), 21(16), 3422-3. doi:10.1093/bioinformatics/bti553</p>
+<p>Compeau, P.E.C., Pevzner, P.A., Tesler, G. (2007) How to apply de Bruijn graphs to genome assembly. Nature Biotechnology 29(11) 987-991</p>
+<p>Dohm, J. C., Lottaz, C., Borodina, T., &amp; Himmelbauer, H. (2007). SHARCGS, a fast and highly accurate short-read assembly algorithm for de novo genomic sequencing. Genome research, 17(11), 1697-706. doi:10.1101/gr.6435207</p>
+<p>Illumina, I. (2009). De Novo Assembly Using Illumina Reads. Analyzer. Retrieved from http://scholar.google.com/scholar?hl=en&amp;btnG=Search&amp;q=intitle:De+Novo+Assembly+Using+Illumina+Reads#0</p>
+<p>Jeck, W. R., Reinhardt, J. a, Baltrus, D. a, Hickenbotham, M. T., Magrini, V., Mardis, E. R., Dangl, J. L., et al. (2007). Extending assembly of short DNA sequences to handle error. Bioinformatics (Oxford, England), 23(21), 2942-4. doi:10.1093/bioinformatics/btm451</p>
+<p>Li, R., Zhu, H., Ruan, J., Qian, W., Fang, X., Shi, Z., Li, Y., et al. (2010). De novo assembly of human genomes with massively parallel short read sequencing. Genome research, 20(2), 265-72. doi:10.1101/gr.097261.109</p>
+<p>Margulies, M., Egholm, M., Altman, W. E., Attiya, S., Bader, J. S., Bemben, L. a, Berka, J., et al. (2005). Genome sequencing in microfabricated high-density picolitre reactors. Nature, 437(7057), 376-80. doi:10.1038/nature03959</p>
+<p>Miller, J. R., Koren, S., &amp; Sutton, G. (2010). Assembly algorithms for next-generation sequencing data. Genomics, 95(6), 315-27. Elsevier Inc. doi:10.1016/j.ygeno.2010.03.001</p>
+<p>Pevzner, P. a, Tang, H., &amp; Waterman, M. S. (2001). An Eulerian path approach to DNA fragment assembly. Proceedings of the National Academy of Sciences of the United States of America, 98(17), 9748-53. doi:10.1073/pnas.171285098</p>
+<p>Simpson, J. T., Wong, K., Jackman, S. D., Schein, J. E., Jones, S. J. M., &amp; Birol, I. (2009). ABySS: a parallel assembler for short read sequence data. Genome research, 19(6), 1117-23. doi:10.1101/gr.089532.108</p>
+<p>Warren, R. L., Sutton, G. G., Jones, S. J. M., &amp; Holt, R. a. (2007). Assembling millions of short DNA sequences using SSAKE. Bioinformatics (Oxford, England), 23(4), 500-1. doi:10.1093/bioinformatics/btl629</p>
+<p>Zerbino, D. R., &amp; Birney, E. (2008). Velvet: algorithms for de novo short read assembly using de Bruijn graphs. Genome research, 18(5), 821-9. doi:10.1101/gr.074492.107</p>
+<p><strong>Acknowledgements</strong>: Thomas Otto and Wellcome Trust.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.tooltips", "navigation.instant", "navigation.tabs", "toc.integrate", "content.tabs.link"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

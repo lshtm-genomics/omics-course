@@ -1,0 +1,23 @@
+:root > * {
+    --md-code-bg-color: #000000;
+    --md-code-fg-color: #ffffff;
+  }
+
+
+  :root {
+    --md-admonition-icon--terminal: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill-rule="evenodd" clip-rule="evenodd" d="m 53.740115,7.2768355 c -25.935529,0 -46.9604506,22.3685485 -46.9604506,49.9615815 V 456.93107 c 0,27.59378 21.0249006,49.96158 46.9604506,49.96158 H 523.34463 c 25.93625,0 46.96044,-22.3678 46.96044,-49.96158 V 57.238417 c 0,-27.593033 -21.02419,-49.9615815 -46.96044,-49.9615815 z M 523.34463,57.238417 H 53.740115 V 456.93107 H 523.34463 Z"/><path  d="m 107.48105,328.58609 27.61493,27.61473 82.84597,-82.84421 -82.84597,-82.84558 -27.61493,27.61513 55.22986,55.23045 z"/><path d="m 313.98871,309.44633 h -76.92656 v 38.46328 h 76.92656 z"/></svg>')
+  }
+  .md-typeset .admonition.terminal,
+  .md-typeset details.terminal {
+    border-color: rgb(0, 0, 0);
+  }
+  .md-typeset .terminal > .admonition-title,
+  .md-typeset .terminal > summary {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  .md-typeset .terminal > .admonition-title::before,
+  .md-typeset .terminal > summary::before {
+    background-color: rgb(0, 0, 0);
+    -webkit-mask-image: var(--md-admonition-icon--terminal);
+            mask-image: var(--md-admonition-icon--terminal);
+  }

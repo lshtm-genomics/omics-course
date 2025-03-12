@@ -1,0 +1,1808 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../intro-to-linux/">
+      
+      
+        <link rel="next" href="../variant-detection/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Mapping - LSHTM Omics</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mapping" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="LSHTM Omics" class="md-header__button md-logo" aria-label="LSHTM Omics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LSHTM Omics
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Mapping
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../intro-to-linux/" class="md-tabs__link">
+          
+  
+  Introduction
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../advanced/phylogenetics/" class="md-tabs__link">
+          
+  
+  Advanced
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../other-omics/microbiome/" class="md-tabs__link">
+          
+  
+  Other omics
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../additional-info/conda/" class="md-tabs__link">
+          
+  
+  Additional info
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../presentations/presentations/" class="md-tabs__link">
+          
+  
+  Presentations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LSHTM Omics" class="md-nav__button md-logo" aria-label="LSHTM Omics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    LSHTM Omics
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../connecting-github/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting connected
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Introduction
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro-to-linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Mapping
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Mapping
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sequencingmapping-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sequencing/Mapping workflow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-formats" class="md-nav__link">
+    <span class="md-ellipsis">
+      File formats
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File formats">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fasta-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      FASTA format
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fastq-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      FASTQ format
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quality-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quality Control
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quality Control">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#saving-a-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      Saving a report
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trimming-reads-using-trimmomatic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trimming reads using Trimmomatic
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alignment-of-short-reads" class="md-nav__link">
+    <span class="md-ellipsis">
+      Alignment of short reads
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Alignment of short reads">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sequence-alignment-exercise-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sequence alignment Exercise 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#do-not-proceed-until-completing-the-exercise-above-for-sample-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Do Not Proceed Until Completing The Exercise Above For Sample 2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viewing-in-igv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing in IGV
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Viewing in IGV">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#navigation-in-igv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Navigation in IGV
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Navigation in IGV">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zooming-in-and-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      Zooming in and out
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#viewing-a-region" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing a region
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-mapping-the-p-falciparum-it-reads-with-bwa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise: Mapping the P. falciparum IT reads with BWA
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exercise: Mapping the P. falciparum IT reads with BWA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#viewing-the-mapped-reads-in-igv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Viewing the mapped reads in IGV
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#differences-in-read-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Differences in read coverage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identifying-single-nucleotide-polymorphisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identifying Single Nucleotide Polymorphisms
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../variant-detection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Variant detection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assembly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assembly
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../task/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Task
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Advanced
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/phylogenetics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Phylogenetics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/third-generation-sequencing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Third Generation Sequencing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/gwas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Genome Wide Association Studies (GWAS)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Other omics
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Other omics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other-omics/microbiome/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Microbiomes Practical
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other-omics/transcriptomics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transcriptomics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other-omics/methylation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Methylation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other-omics/ml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deep learning (Neural Network)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other-omics/tb-resistance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TB resistance prediction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other-omics/eqtl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    EQTL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Additional info
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Additional info
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/conda/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conda Environments: Why and How to Use Them
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/software/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Software
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/SettingUpVirtualLinux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Virtual Box: Setting Up Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/faq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Frequently asked questions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Presentations
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Presentations
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../presentations/presentations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Presentations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="mapping">Mapping</h1>
+<p>Next-generation sequencing data is being produced at an ever-increasing rate. The raw data is not meaningful by itself and needs to be processed using various bioinformatic software. This practical will focus on genomic resequencing data where the raw data is aligned to a reference genome.</p>
+<h2 id="introduction">Introduction</h2>
+<p>Improvements in DNA sequencing technology have led to new opportunities for studying organisms at the genomic and transcriptomic levels. Applications include studies of genomic variation within species and gene identification. In this module we will concentrate on data generated using the Illumina Genome Analyzer II technology, although the techniques you will learn are applicable to other technologies (e. g. 454 GS FLX and ABI SOLiD). A single machine can produce around 20 Gigabases of sequence data in a week. This is the equivalent to over 6 human genomes. The data from the Illumina machine comes as relatively short stretches of 35 - 250 base pairs (bp) of DNA - around 300 million of them. These individual sequences are called <strong>reads</strong>. The older capillary sequencing technology generates longer reads of ~500 bp, but the approach is much slower and more expensive.</p>
+<p>One of the greatest challenges of sequencing a genome is determining how to arrange sequencing reads into chromosomes. This process of determining how the reads fit together by looking for overlaps between them is called genome assembly. Capillary sequencing reads (~500bp) are considered a good length for genome assembly. Genome assembly using sequence reads of &lt;100bp is more complicated due to the high frequency of repeats longer than the read length. Assemblies for bacterial genomes can comprise of at least 50 pieces (called “contigs”), whilst for Eukaryotes more than 1000 pieces is common. Therefore new sequencing technologies are applied predominantly where a reference genome already exists. A reference genome is a well assembled genome from the same or a similar organism that is undergoing sequencing. Sequencing a genome with new technology when there is an existing reference is called resequencing.</p>
+<p>In this practical, we will focus on mapping reads to a reference genome and visualising the resulting alignments using <a href="https://ics.hutton.ac.uk/tablet/">Tablet</a>.</p>
+<h2 id="sequencingmapping-workflow">Sequencing/Mapping workflow</h2>
+<p>The diagram below describes the workflows for genomic resequencing and RNA sequencing. We will cover the in silico (computational) aspects of these workflows.</p>
+<p><img alt="mapping_1" src="../../img/Mapping_1.jpg" /></p>
+<p>When resequencing, instead of assembling the reads to produce a new genome sequence and then comparing the two genome sequences, we map the new sequence data to the reference genome. We can then identify Single Nucleotide Polymorphisms (SNPs), insertions and deletions (indels) and Copy Number Variants (CNVs) between two similar organisms.</p>
+<p>The first example we use here is a reference genome for <i>Plasmodium falciparum</i> (3D7 clone, size 23Mb, 81% AT content) (Gardener et al., 2002). This parasite is the causative agent of malaria. Malaria is widespread in tropical and subtropical regions, including parts of the Americas, Asia, and Africa. Each year, there are approximately 350–500 million cases of malaria, killing between one and three million people, the majority of whom are young children in sub-Saharan Africa. Recently we sequenced two laboratory strains, IT and DD2, using 76 bp paired end read technology. The second example is using the reference genome for <i>Mycobacterium tuberculosis</i> (H37Rv, size 4.4Mb, GC content 65.6%) (Cole et al, 1998). This bacterium causes tuberculosis disease.</p>
+<p>Rather than attempting to assemble these very short reads into a whole new genome, we will map them against the existing genome assembly of <i>P. falcipraum</i> (3D7) or <i>M. tuberculosis</i> (H37Rv). Furthermore, we will identify differences between the genomes of the three clones, find mutations and CNVs associated to drug resistance, whilst determining how the reads fit together.</p>
+<p>Here is the general workflow of mapping:
+1. The paired end reads (F=forward; R=reverse) are mapped against the reference. Different tools can be used for that. The results can be transformed with <a href="https://github.com/samtools/samtools">samtools</a> to an ordered and indexed bam file.
+2. Those bam files can be read into programs like IGV to visualize the alignments of the short sequences.
+3. From the bam file it is possible to call variants. The output format is BCF or VCF. VCF can be loaded easily into excel like tools.</p>
+<p><img alt="Mapping_2" src="../../img/Mapping_2.jpg" /></p>
+<p>Quality control of the reads is always important, to correct for any GC content biases, possible contamination, and read quality.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Before doing anything, we need to first activate the conda environment for this practical by typing the following: <code>conda activate day1</code>. This environment contains most of the software we need for this practical. This command needs to be run each time we open up a new terminal or switch from a different environment. </p>
+</div>
+<h2 id="file-formats">File formats</h2>
+<p>You have the </i>P. falciparum</i> 3D7 clone reference file (Pf3D7_05.<abbr title="A format used to store sequence data">fasta</abbr>). This contains the assembled sequence of the 3D7 genome. You also have two files of sequence reads from the IT clone (IT.Chr5_1.fastq.gz and IT.Chr5_2.fastq.gz). Look in both the reference file and the read files. </p>
+<h3 id="fasta-format">FASTA format</h3>
+<p>In the terminal navigate to the data/malaria directory, by typing:</p>
+<div class="highlight"><pre><span></span><code>cd ~/data/malaria/
+head -n 5 Pf3D7_05.fasta
+</code></pre></div>
+<div class="admonition output">
+<p class="admonition-title">Output</p>
+<div class="highlight"><pre><span></span><code>&gt;Pf3D7_05
+ctaaaccctgaaccctaaaccctgaaccctaaaccctaaaccctgaaccctaaaccctga
+accctaaaccctgaaccccctaaaccctaaaccctgaaccctaaaccctaaaaccctgaa
+ccctaaaccctgaaccctaaaccctgaaccctgaaccctaaaccctgaaccctaaaccct
+gaaccctaaaccctaaaccctaaaccctaaaccctaaaccctaaaccctaaaccctgaac
+</code></pre></div>
+</div>
+<p>The line starting with "&gt;" defines the header and all subsequent lines define the sequence.</p>
+<h3 id="fastq-format">FASTQ format</h3>
+<p>Now type the commands below to see what FASTQ format looks like.</p>
+<div class="highlight"><pre><span></span><code>zcat IT.Chr5_1.fastq.gz | head -n 12
+</code></pre></div>
+<div class="admonition output">
+<p class="admonition-title">Output</p>
+<div class="highlight"><pre><span></span><code>@HS3_5961:1:2207:17088:52965#1/1
+GCCGGTTGTTCGGCTGGAAGGTCCTTTTGCCCTTGGTCACGGGCGTCTCCTCGCTATGTCTGGCAACATCACCAT
++
+GGGGGGEGFGFGGGFGDBEBF:AFDEFG?CFFDD:FBEE?EFEDFDEFEAEBFB8CCC?A@CD;ADDD86CCC&gt;&lt;
+</code></pre></div>
+</div>
+<p>Each read is represented by four lines:</p>
+<ol>
+<li>The read name and additional info from the sequencing platform</li>
+<li>The sequence of the read</li>
+<li>A row in which comments can be added (rarely used anymore)</li>
+<li>Sequence quality. There is one character for each nucleotide. The characters relate to a sequence quality score e.g. how likely is the nucleotide correct? ‘&gt;’ is higher quality than ‘6’. Sequence reads tend to have more errors at the end than the start</li>
+</ol>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Question</label><label for="__tabbed_1_2">Answer</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Which format allows the storage of base quality data?</p>
+</div>
+<div class="tabbed-block">
+<p>FASTQ: the 4th line for each read in fastq format represents the sequence quality</p>
+</div>
+</div>
+</div>
+</div>
+<h2 id="quality-control">Quality Control</h2>
+<p>Prior to the analysis of these sequences, it is highly advisable to perform quality control checks and filtering in order to minimise artefacts like base calling errors, poor quality reads or primer contamination. The difference in passing filtered data to downstream programs can be night-and-day for processes like de novo assembly or SNP calling. </p>
+<p>FastQC is a tool written in Java to perform quality control checks on raw sequence data. It computes several statistics and shows the results on summary graphs and tables. We will analyse several datasets in order to check whether the samples look good or, on the contrary, they require further filtering. </p>
+<p>First we will activate the software environment using: </p>
+<div class="highlight"><pre><span></span><code>conda activate day1
+</code></pre></div>
+<p>Open up a new terminal window and then type: <code>fastqc</code>
+Once the program is running, select <code>File &gt; Open</code> to open one or more Sequence files (see below). Browse to <code>~/data/tb/</code> to choose <code>sample1_1.fastq</code> and click  <code>OK</code>. </p>
+<p>FastQC supports FASTQ files (all quality encoding variants), GZip compressed FastQ and alignment files (SAM and BAM formats). </p>
+<p>Newly opened files will be immediately processed. Because of the size of FASTQ files it can sometimes take a couple of minutes to open them. </p>
+<p>FastQC performs several analyses, described in modules on left hand side of the main window (see below). Note that these results should be taken as guidance in the context of our library and never as pass/fail results. Nevertheless, they will highlight major problematic aspects. Let us now interpret the output of some of the modules.</p>
+<p>Normal results are marked with green ticks, slightly abnormal with orange exclamation marks and very unusual with red crosses</p>
+<div class="admonition information">
+<p class="admonition-title">Information</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:7"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><input id="__tabbed_2_5" name="__tabbed_2" type="radio" /><input id="__tabbed_2_6" name="__tabbed_2" type="radio" /><input id="__tabbed_2_7" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Basic sequence statistics</label><label for="__tabbed_2_2">Per Base Sequence Quality</label><label for="__tabbed_2_3">Per Tile Sequence Quality</label><label for="__tabbed_2_4">Per base N content</label><label for="__tabbed_2_5">Sequence length distribution</label><label for="__tabbed_2_6">Sequence duplication levels</label><label for="__tabbed_2_7">Overrepresented sequences</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>The Basic Statistics module provides overall information such as the total number of reads, read length and %GC content.</p>
+</div>
+<div class="tabbed-block">
+<p>This view shows the quality values (y-axis) along the read at each nucleotide position (x-axis). The greater this value, the lower the probability that the corresponding base call is incorrect. At each position a Box-Whisker plot is drawn where the central red line is the median; the yellow box represents the inter-quartile range (25-75%); the upper and lower whiskers the 10% and 90% points; and the blue line correspond to the mean quality. This analysis computes the mean quality of each read and then displays for all observed values the number of reads having such quality. It is expected that a small subset will have universally poor quality. FastQC outputs a warning if the most frequently observed mean is below 27 (corresponding to a 0.2% error rate) and a failure if is below 20 (1% error rate).</p>
+</div>
+<div class="tabbed-block">
+<p>This graph will only appear in your analysis results if you're using an Illumina library which retains its original sequence identifiers. Encoded in these is the flowcell tile from which each read came. The graph allows you to look at the quality scores from each tile across all of your bases to see if there was a loss in quality associated with only one part of the flowcell.</p>
+<p>The plot shows the deviation from the average quality for each tile. The colours are on a cold to hot scale, with cold colours being positions where the quality was at or above the average for that base in the run, and hotter colours indicate that a tile had worse qualities than other tiles for that base. In the example below you can see that certain tiles show consistently poor quality. A good plot should be blue all over.</p>
+</div>
+<div class="tabbed-block">
+<p>This module outputs the percentage of N base calls at each position. N is usually called when the sequencer is not confident enough to call a base (A, T, C or G). Small proportion of Ns may appear especially towards the last positions.</p>
+</div>
+<div class="tabbed-block">
+<p>Current sequencers frequently produce reads of uniform length. Nevertheless, if reads are trimmed due to quality issues we will observe variable read lengths.</p>
+</div>
+<div class="tabbed-block">
+<p>This module computes the degree of duplication of every read in the file by looking for exact matches over the whole length of the rest of reads. A dataset with high depth of coverage, namely an over-represented target genome, will report higher duplication levels than one would expect since multiple reads starting at the same position will be found by chance.</p>
+</div>
+<div class="tabbed-block">
+<p>In a normal library, every individual sequence will make up a tiny fraction of the whole set. Therefore, overrepresented reads may be indicators of biologically significant sequences or contaminants. All reads representing more than 0.1% of the total amount will be listed. Primers and adaptors are the most common sources of contamination.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Question</label><label for="__tabbed_3_2">Answer</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>At this point you should be able to open sequence files with FastQC and interpret the quality plots described. First, open sample IT.Chr5_1.fastq.gz in ~/data/malaria/. Second, open sample1_1.fastq.gz, sample2_1.fastq.gz and sample3_1.fastq.gz in ~/data/tb/.</p>
+<p>Questions:</p>
+<p>Can you spot any quality issue with the reads we should be worried about?
+If so, what may be their source?</p>
+</div>
+<div class="tabbed-block">
+<p>All of the FASTQ files look ok except sample3_1.fastq.gz. If you look at the 'Per base sequence quality' graph, you will see that many bases fall into the low quality zone (Q&lt;20).</p>
+</div>
+</div>
+</div>
+</div>
+<h3 id="saving-a-report">Saving a report</h3>
+<p>We can keep a record of the FastQC results. To create a report simply select File &gt; Save Report from the main menu. This will create a folder containing the images from the analyses, an HTML version of module results and text files containing results numeric data. </p>
+<p>You may find useful the information in the following links:</p>
+<ol>
+<li>http://www.bioinformatics.babraham.ac.uk/projects/fastqc/</li>
+<li>http://bioinfo-core.org/index.php/9th_Discussion-28_October_2010</li>
+<li>http://www.youtube.com/watch?v=bz93ReOv87Y (FastQC video tutorial)</li>
+</ol>
+<p>We have used the FastQC tool to identify problems in raw sequence data. Nevertheless, bad quality issues in our data are not a death sentence for the experiment; it can still be useful for downstream analyses if we applied the right filtering before processing. In general, the problem in the sequence files is the degradation in quality of bases at end of the reads, leading to the need to hard clip or trim them. </p>
+<h2 id="trimming-reads-using-trimmomatic">Trimming reads using Trimmomatic</h2>
+<p>The quality of the last few bases of the read can be substantially lower than the rest of the sequence read. In general, QC tools are unable to filter these reads out due to their overall high quality. Besides, it is not advisable to discard the whole read just because of few low-quality bases at the ends. Therefore, it is crucial to trim such bases before any further analysis. Trimmomatic (Lohse et al., 2012) is a fast command line tool that can be used to trim and crop Illumina data as well as to remove adapters (see Table below). We will be using the paired-end mode which will process both forward and reverse reads simultaneously, keeping the correspondence of read pairs intact. </p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ILLUMINACLIP</td>
+<td>Cut adapter and other Illumina-specific sequences from the read</td>
+</tr>
+<tr>
+<td>SLIDINGWINDOW</td>
+<td>Performs a sliding window trimming approach. It starts scanning at the 5'   end and clips the read once the average quality within the window falls below   a threshold</td>
+</tr>
+<tr>
+<td>MAXINFO</td>
+<td>An adaptive quality trimmer which balances read length and error rate to   maximise the value of each read</td>
+</tr>
+<tr>
+<td>LEADING</td>
+<td>Cut bases off the start of a read, if below a threshold quality</td>
+</tr>
+<tr>
+<td>TRAILING</td>
+<td>Cut bases off the end of a read, if below a threshold quality</td>
+</tr>
+<tr>
+<td>CROP</td>
+<td>Cut the read to a specified length by removing bases from the end</td>
+</tr>
+<tr>
+<td>HEADCROP</td>
+<td>Cut the specified number of bases from the start of the read</td>
+</tr>
+<tr>
+<td>MINLEN</td>
+<td>Drop the read if it is below a specified length</td>
+</tr>
+<tr>
+<td>AVGQUAL</td>
+<td>Drop the read if the average quality is below the specified level</td>
+</tr>
+<tr>
+<td>TOPHRED33</td>
+<td>Convert quality scores to Phred-33</td>
+</tr>
+<tr>
+<td>TOPHRED64</td>
+<td>Convert quality scores to Phred-64</td>
+</tr>
+</tbody>
+</table>
+<p>Try to understand what the following command line specifies by looking at the Trimmomatic parameters in the previous table, and run it for sample1. </p>
+<div class="highlight"><pre><span></span><code>cd ~/data/tb/
+trimmomatic PE sample1_1.fastq.gz sample1_2.fastq.gz -baseout sample1.fastq LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:36
+</code></pre></div>
+<h2 id="alignment-of-short-reads">Alignment of short reads</h2>
+<p>A major step in most sequence analysis pipelines involves the alignment of reads against a reference genome, a requisite stage for downstream analyses. Traditional alignment software have become obsolete when dealing with the large amounts of short reads (millions) produced by NGS platforms and, during the last few years, software particularly designed to map short queries onto a long reference sequence have been produced. </p>
+<p>Currently popular alignment tools are summarised in Li &amp; Homer (2010). As shown in column 5 in the Table below, most of them allow gaps in alignments. Effective gapped aligners avoid calling false SNPs predicted due to the presence of insertions and deletions (indels). Furthermore, software including paired-end information are capable of mapping repeat reads with uniquely mapped mates; they also correct alignment errors that are inconsistent with the constraints imposed by mate pairs in terms of distance and orientation. Base quality in reads has also been exploited by programs like MAQ improving alignment accuracy. </p>
+<p>All aforementioned programs output both aligned and unaligned reads in Sequence Alignment/Map (SAM) format (H. Li et al. 2009), a standardised format widely supported by downstream bioinformatic tools (e.g. variant callers, alignment viewers). The development and improvement of efficient short-read alignment algorithms has made the fast processing of data produced by current sequencing platforms feasible which, initially, entailed a bottleneck in the analysis of such high-coverage sequence datasets. </p>
+<h3 id="sequence-alignment-exercise-1">Sequence alignment Exercise 1</h3>
+<p>In this exercise we will be running the Burrows-Wheeler Aligner (BWA), an efficient program that aligns relatively short nucleotide sequences (i.e. short reads) against a long reference sequence. It implements two algorithms, bwa-short and BWA-SW. The former works for query sequences shorter than ~200bp with low error rate (&lt;3%) (e.g. reads produced by Illumina technology). It performs gapped global alignment, supports paired-end reads, and is one the fastest short read alignment algorithms currently available. BWA-SW is designed for longer sequences (e.g. 454 reads) with more errors. </p>
+<p>Open up a new terminal window and type <code>bwa</code></p>
+<p>All available BWA commands will appear on the terminal screen as shown below.</p>
+<div class="admonition output">
+<p class="admonition-title">Output</p>
+<div class="highlight"><pre><span></span><code>Program: bwa (alignment via Burrows-Wheeler transformation)
+Version: 0.7.17-r1188
+Contact: Heng Li 
+
+Usage:   bwa  [options]
+
+Command: index         index sequences in the FASTA format
+        mem           BWA-MEM algorithm
+        fastmap       identify super-maximal exact matches
+        pemerge       merge overlapping paired ends (EXPERIMENTAL)
+        aln           gapped/ungapped alignment
+        samse         generate alignment (single ended)
+        sampe         generate alignment (paired ended)
+        bwasw         BWA-SW for long queries
+
+        shm           manage indices in shared memory
+        fa2pac        convert FASTA to PAC format
+        pac2bwt       generate BWT from PAC
+        pac2bwtgen    alternative algorithm for generating BWT
+        bwtupdate     update .bwt to the new format
+        bwt2sa        generate SA from BWT and Occ
+</code></pre></div>
+</div>
+<p>In order to map our paired-end reads, we will use ‘index’ and ‘mem’ commands. The ‘index’ command takes the reference genome (i.e. the database) in FASTA format as input and indexes it, which typically will take a few hours. This command only needs to be executed once for a particular reference genome.</p>
+<p>To see all options for the <em>index</em> command type: <code>bwa index</code></p>
+<p>Most options will be set automatically according to the data we are running it on. Thus, we do not have to worry about setting them.</p>
+<p>Type the following line:</p>
+<div class="highlight"><pre><span></span><code>bwa index ~/data/tb/tb.fasta
+</code></pre></div>
+<p>Several alignment algorithms are implemented in BWA. We will be using the BWA-MEM, which is the latest and generally recommended for high-quality queries as it is faster and more accurate. To see which parameters can be tuned for the ‘mem’ command type: <code>bwa mem</code></p>
+<p>We will be using the trimmed files output (from applying trimmomatic) as input for BWA:</p>
+<div class="highlight"><pre><span></span><code>bwa mem -R &quot;@RG\tID:sample1\tSM:sample1\tPL:Illumina&quot; ~/data/tb/tb.fasta sample1_1P.fastq sample1_2P.fastq | samtools view -b - | samtools sort -o sample1.bam -
+</code></pre></div>
+<p>Then we can index the bam file using:</p>
+<div class="highlight"><pre><span></span><code>samtools index sample1.bam
+</code></pre></div>
+<p>The previous commands transformed SAM files into binary format, sorted the reads by occurrence against the reference, and then indexed the bam files. At this point, we can use the ‘flagstat’ samtools command to print summary statistics from indexed bam files:</p>
+<p><div class="highlight"><pre><span></span><code>samtools flagstat sample1.bam
+</code></pre></div>
+The 'flagstat' output should look like this:</p>
+<div class="admonition output">
+<p class="admonition-title">Output</p>
+<div class="highlight"><pre><span></span><code>1345146 + 0 in total (QC-passed reads + QC-failed reads)
+0 + 0 secondary
+0 + 0 supplementary
+0 + 0 duplicates
+1330984 + 0 mapped (98.95% : N/A)
+1345146 + 0 paired in sequencing
+672573 + 0 read1
+672573 + 0 read2
+1312598 + 0 properly paired (97.58% : N/A)
+1318846 + 0 with itself and mate mapped
+12138 + 0 singletons (0.90% : N/A)
+0 + 0 with mate mapped to a different chr
+0 + 0 with mate mapped to a different chr (mapQ&gt;=5)
+</code></pre></div>
+</div>
+<p>Where each line specifies:</p>
+<ol>
+<li>Total number of reads</li>
+<li>Duplicates</li>
+<li>Number of mapped reads</li>
+<li>Paired reads in sequencing</li>
+<li>Number of forward reads</li>
+<li>Number of reverse reads</li>
+<li>Number of properly mapped reads (same chromosome, opposite orientation, and within few deviations from the expected insert size)</li>
+<li>Number of reads mapped along with their mates (7 is a subset of 8)</li>
+<li>Singletons: number of reads mapped alone, i.e. mate not mapped (8+9=3)</li>
+<li>Reads whose mates are mapped to a different chromosome</li>
+<li>Reads whose mates are mapped to a different chromosome with mapping quality greater than 5; note that (11) is a subset of (10)</li>
+</ol>
+<p>Finally, let's also remove some temporary files we no longer need. Trimming has produced some files which are unzipped and take up a lot of space. Let's remove these using: </p>
+<div class="highlight"><pre><span></span><code>rm sample1_1P.fastq sample1_1U.fastq sample1_2P.fastq sample1_2U.fastq
+</code></pre></div>
+<div class="admonition exercise">
+<p class="admonition-title">Exercise</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Task</label><label for="__tabbed_4_2">Hints</label><label for="__tabbed_4_3">Cheats</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Execute all previous commands for to get a bam file for sample 2</p>
+</div>
+<div class="tabbed-block">
+<p>You need to run through the following steps:</p>
+<ol>
+<li>Trim the reads with trimmomatic</li>
+<li>Use bwa to align the reads and samtools to store as bam</li>
+</ol>
+</div>
+<div class="tabbed-block">
+<p>Here is the code you need to use:</p>
+<div class="highlight"><pre><span></span><code>cd ~/data/tb
+trimmomatic PE sample1_1.fastq.gz sample1_2.fastq.gz -baseout sample1.fastq LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:36
+bwa mem -R &quot;@RG\tID:sample2\tSM:sample2\tPL:Illumina&quot; ~/data/tb/tb.fasta sample2_1P.fastq sample2_2P.fastq | samtools view -b - | samtools sort -o sample2.bam -
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<p><br/>
+<br/></p>
+<h3 id="do-not-proceed-until-completing-the-exercise-above-for-sample-2"><strong>Do Not Proceed Until Completing The Exercise Above For Sample 2</strong></h3>
+<p><br/>
+<br/></p>
+<h2 id="viewing-in-igv">Viewing in IGV</h2>
+<p>Launch IGV by running the command <code>igv</code> on a New Terminal and perform the following steps:</p>
+<ol>
+<li>We first need to load the reference genome. To do this click on <strong>Genomes -&gt; Load Genome from File...</strong>. Navigate to <strong>~/data/tb</strong> and select the <strong>tb.<abbr title="A format used to store sequence data">fasta</abbr></strong> file.</li>
+<li>You can also load the genes by clicking on <strong>File -&gt; Load from File...</strong>, then selecting the <strong>tb.gff</strong> file. </li>
+<li>Finally you can load the bam file by clicking <strong>File -&gt; Load from File...</strong> and selecting the bam file you wish to load, in our case it will be <strong>sample1.bam</strong>. </li>
+</ol>
+<p>There is a lot going on on the screen so have a look at the image below which explains some of the most important features.</p>
+<p><img alt="" src="../../img/mapping_3.jpg" /></p>
+<ol>
+<li>Zoom controls: This controls the level of zoom. To see your alignments you will need to zoom in</li>
+<li>Search bar: Here you can specify the region you want to view using genomic coordinates in the form of Chromosome:start-end. You can also search by gene name.</li>
+<li>Coverage track: This displays when you have loaded a bam file and is a bargraph where each bar represents a genomic position and the high is determined by the number of reads aligning to that position. If you click on a bar it will open up a window telling you the number of ACTGs. </li>
+<li>Alignment track: Each grey bar represents a read. If there are coloured nucleotides, black dashes or purple vertical lines it represents a difference from the reference. Have a look at <a href="https://software.broadinstitute.org/software/igv/AlignmentData">this document</a> to find out more.</li>
+<li>Gene track: This shows the location and orientation of the genes. Click on a gene to find out more information.</li>
+</ol>
+<p>Additionally, you can see that the screenshot above has loaded more than one bam file. </p>
+<h3 id="navigation-in-igv">Navigation in IGV</h3>
+<h4 id="zooming-in-and-out">Zooming in and out</h4>
+<p>Now you will be able to view the alignment of the reads to the reference. By default, IGV will only display the alignments when viewing a region of the genome less than 30kb. To view the alignment you can zoom in using the "+" button on the top right side of the window. You can zoom out using the "-" button.</p>
+<h4 id="viewing-a-region">Viewing a region</h4>
+<p>You can zoom in to a specific region using the search bar. You can do this by entering your region using the specific format: <em>chromosome_name:start-end</em>. For example if you want to go zoom in on positions 1000-2000 on the Mtb chromosome you can type in "Chromosome:1000-2000" and hit <span class="keys"><kbd class="key-enter">Enter</kbd></span>. </p>
+<p>In most cases you'll probably be searching for a certain gene. You can also enter the gene name into the search bar and it will automatically center the view on this gene. Try this with the <em>rpoB</em> gene for example. Type in "rpoB" into the search bar and hit <span class="keys"><kbd class="key-enter">Enter</kbd></span>.</p>
+<h2 id="exercise-mapping-the-p-falciparum-it-reads-with-bwa">Exercise: Mapping the </i>P. falciparum</i> IT reads with BWA</h2>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Now we will map the IT clone reads to the 3D7 reference, again using the short reads mapping program BWA</p>
+</div>
+<p>The files for this exercise are in the <code>~/data/malaria</code> directory:</p>
+<div class="highlight"><pre><span></span><code>cd ~/data/malaria/
+</code></pre></div>
+<p>First we need to index the reference (the algorithm needs to access specific positions in the reference in an efficient way). </p>
+<div class="highlight"><pre><span></span><code>bwa index ~/data/malaria/Pf3D7_05.fasta
+</code></pre></div>
+<p>Next, read files (both forward/reverse) are mapped against the reference </p>
+<div class="highlight"><pre><span></span><code>bwa mem ~/data/malaria/Pf3D7_05.fasta ~/data/malaria/IT.Chr5_1.fastq.gz ~/data/malaria/IT.Chr5_2.fastq.gz | samtools view -b - | samtools sort -o IT.Chr5.bam -
+</code></pre></div>
+<p>The details of where each IT clone read has been mapped is now stored in the file IT.Chr5.bam. We are going to view the mapped reads in IGV. Before we can proceed, however, we must index the BAM file to allow programs suchh as IGV quick access to different sections of the file. </p>
+<div class="highlight"><pre><span></span><code>samtools index IT.Chr5.bam
+</code></pre></div>
+<p>Before we visualize the alignment of the reads in IGV, let us have a look at the sam/bam format. Samtools was developed to have a standard format to store reads. It contains information about the reference sequence, where a read is mapped, quality of mapping, and where it’s mate is mapped. Files ending with .sam, are normally plain text, but as they might take too much space, the file is compressed into a bam file. All visualization tools will need the bam file. It has to be sorted (by chromosome and position) and indexed. Indexing enables the fast processing of alignments. </p>
+<div class="highlight"><pre><span></span><code>samtools view IT.Chr5.bam | grep &quot;IL39_6014:8:61:7451:18170&quot;
+</code></pre></div>
+<p><img alt="mapping_1" src="../../img/Mapping_18.jpg" /></p>
+<h3 id="viewing-the-mapped-reads-in-igv">Viewing the mapped reads in IGV</h3>
+<p>We will now examine the read mapping in IGV using the BAM view feature.</p>
+<p>Launch IGV by running the command <code>igv</code> on a New Terminal. We first need to load the reference genome. To do this click on <code>Genomes -&gt; Load Genome from File...</code>. Navigate to <code>~/data/malaria</code> and select the <code>Pf3D7_05.<abbr title="A format used to store sequence data">fasta</abbr></code> file. You can also load the genes by clicking on <code>File -&gt; Load from File...</code>, then selecting the <code>Pf3D7_05.gff</code> file. Finally you can load the bam file by clicking <code>File -&gt; Load from File...</code> and selecting the bam file you wish to load, in our case it will be <code>IT.Chr5.bam</code>. </p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Question</label><label for="__tabbed_5_2">Answer</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Scroll through the genome. Describe the coverage. Are there regions that are not covered? </p>
+</div>
+<div class="tabbed-block">
+<p>In general there is good coverage across the genome. This can be said by the fact that most of the positions have many reads overlapping them. There are a few positions with few or no reads aligning. This could be due to poor sequencing of those regions or a deletion.</p>
+</div>
+</div>
+</div>
+</div>
+<p>Let's go to the region around the PF3D7_0504700 gene by typing it into the search bar and hitting <span class="keys"><kbd class="key-enter">Enter</kbd></span>.</p>
+<p>Zoom in and position the mouse over a read until a window pops up. This window provides information on the mapping of the reads, as it is stored in the bam file. Notice the Mapping quality (MAPQ). The maximum value for this is 60. The mapping quality depends on the accuracy of the sequence read and the number of mismatches with the reference. A value of 0 means that the read maps equally well to at least one other location and therefore is unreliably mapped. </p>
+<h3 id="differences-in-read-coverage">Differences in read coverage</h3>
+<p>It is thought that a duplication in the mdr1 gene of P. falciparum is associated with drug resistance against the antimalarial mefloquine and that it may also modulate susceptibility to chloroquine, another antimalarial drug. For more information have a look in PubMed, e.g. at Borges et al. (2011) [PMID: 21709099] or at Mungthin et al. (2010) [PMID: 20449753] </p>
+<p>Once IGV has started running on your screen navigate to the mdr1 gene locus using the search bar.</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Question</label><label for="__tabbed_6_2">Answer</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>It looks like that those two clones have a copy number variation (assuming the reference was assembled correctly). Is the duplication the same in both clones? </p>
+</div>
+<div class="tabbed-block">
+<p>The region with elevated coverage is slightly different and so we can conclude that the duplication is different between the strains.</p>
+</div>
+</div>
+</div>
+</div>
+<h3 id="identifying-single-nucleotide-polymorphisms">Identifying Single Nucleotide Polymorphisms</h3>
+<p>Let us have a look at SNPs now. To do so, zoom in on the mdr1 gene and make sure you are in Strand Stack view and have Show SNP marks selected. As mentioned before, in addition to true SNPs some differences between the reference sequence and the mapped reads are due to sequencing errors. On average, 1 in every 100 bases in the reads is expected to be incorrect. In particular, some sequencing errors may be due to a systematic problem as illustrated below. </p>
+<p>Differently coloured nucleotides appear on the stacked reads highlighting every base in a read which does not match to the reference. If you zoom in you can distinguish real SNPs as vertical coloured lines, while the random sequencing errors are more disperse. </p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Question</label><label for="__tabbed_7_2">Answer</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>When you zoom in on position 958145 as far as you can go, you can see a SNP: here, both strain IT and Dd2 have a thymine where the reference (3D7) has an adenine. What is the consequence of this SNP? Can we tell what effect it will have for the clones? Is this the mutation N86Y (or also simply referred to as Y86) that may modulate the degree of resistance to chloroquine? (See e.g. Mula et al. (2011) [PMID: 21810256]) </p>
+</div>
+<div class="tabbed-block">
+<p>To answer the question, right-click on the gene track and make sure "expanded" is selected. You can see which amino acids are normally coded for around amino acid position 86. Note also that AAT codes for Asn (N) and TAT codes for Tyr (Y). This SNP modulates resistance to chloroquine.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">Question</label><label for="__tabbed_8_2">Answer</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Now consider the neighbouring position 958146. What could this be? Is it from IT or Dd2? </p>
+</div>
+<div class="tabbed-block">
+<p>To answer this question, look at the position in the different bams. It looks like the SNP onle appears in reads from IT</p>
+</div>
+</div>
+</div>
+</div>
+<div class="admonition information">
+<p class="admonition-title">Information</p>
+<h1 id="important-aspects-of-the-mapping-procedure">Important aspects of the mapping procedure</h1>
+<h2 id="non-uniquerepeat-regions">Non-unique/repeat regions</h2>
+<p>A sequence read may map equally well to multiple locations in the reference genome. In such cases it is unclear where the read should be placed. Different mapping algorithms have alternative strategies for this problem. Maq will randomly report only one of the mapping locations and give the read a score of 0.</p>
+<h2 id="gc-content">GC content</h2>
+<p>Some organisms have genomes with extreme GC content. The Plasmodium genome, for instance, is 19% GC, meaning 81% of bases are A or T. The result of this is that reads are more likely to map by chance to multiple locations in the genome, when compared to a genome with neutral GC content (e.g. 40-60% GC).</p>
+<h2 id="insert-size">Insert size</h2>
+<p>When mapping paired reads, the mapping algorithm (e.g. bwa) takes the expected insert (e.g. sequenced DNA fragment) size into account. If the fragments are expected to be, on average 400bp and the sequence reads are 150bp, then the paired reads should be ~100bp apart. If the paired reads are significantly further apart then we can say that the reads do not map reliably and discard them. This information can assist with improving the reliability of mapping.</p>
+<h2 id="tips">Tips</h2>
+<p>It is always a good idea to try different programs for any particular problem in computational biology. If they all produce the same answer you can be more certain it is correct. Alternative short read mappers include SOAP (Li et al., 2008b), Ssaha (Ning et al., 2001), MAQ (Li et al., 2008), Bowtie(2) (Langmead et al, 2009, 2012) and SMALT. As seen, TopHat (Trapnell et al., 2009) is particularly useful for RNAseq mapping as it supports spliced mapping. New tools for mapping sequence reads are continually being developed. This reflects improvements in mapping technology but it is also due to changes in the sequence data to be mapped. The sequencing machines we are using now (e.g. Illumina Genome Analyzer II, HiSeq2000/2500, 454 GS FLX etc) will not be the ones we are using in a few years time and the data the new machines produce are likely to be sub-optimally mapped with current tools.</p>
+</div>
+<p>This concludes the Mapping practical. You should now be able to:</p>
+<ol>
+<li>Assess the quality of raw sequence data</li>
+<li>Perform read trimming to remove low quality bases</li>
+<li>Map reads to a reference genome using BWA</li>
+</ol>
+<p>Next up you will learn how to use the alignment you have generated to call variants. </p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.tooltips", "navigation.instant", "navigation.tabs", "toc.integrate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

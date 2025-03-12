@@ -1,0 +1,1566 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../advanced/gwas/">
+      
+      
+        <link rel="next" href="../transcriptomics/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Microbiomes Practical - LSHTM Omics</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#microbiomes-practical" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="LSHTM Omics" class="md-header__button md-logo" aria-label="LSHTM Omics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LSHTM Omics
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Microbiomes Practical
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../introduction/intro-to-linux/" class="md-tabs__link">
+          
+  
+  Introduction
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../advanced/phylogenetics/" class="md-tabs__link">
+          
+  
+  Advanced
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Other omics
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../additional-info/conda/" class="md-tabs__link">
+          
+  
+  Additional info
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../presentations/presentations/" class="md-tabs__link">
+          
+  
+  Presentations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LSHTM Omics" class="md-nav__button md-logo" aria-label="LSHTM Omics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    LSHTM Omics
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../connecting-github/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting connected
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Introduction
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/intro-to-linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/mapping/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mapping
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/variant-detection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Variant detection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/assembly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assembly
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/task/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Task
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Advanced
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/phylogenetics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Phylogenetics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/third-generation-sequencing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Third Generation Sequencing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/gwas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Genome Wide Association Studies (GWAS)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Other omics
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Other omics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Microbiomes Practical
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Microbiomes Practical
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#getting-the-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting the data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analysing-the-microbiome-samples-with-qiime2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Analysing the microbiome samples with QIIME2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quality-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quality control
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import-into-qiime" class="md-nav__link">
+    <span class="md-ellipsis">
+      Import into qiime
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#denoising-with-dada2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Denoising with DADA2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-a-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building a tree
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estimating-diversity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estimating diversity
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#taxonomic-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Taxonomic classification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-differences-in-alpha-diversity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing differences in alpha diversity
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-beta-diversity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Testing beta diversity
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transcriptomics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transcriptomics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../methylation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Methylation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deep learning (Neural Network)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tb-resistance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TB resistance prediction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eqtl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    EQTL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Additional info
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Additional info
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/conda/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conda Environments: Why and How to Use Them
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/software/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Software
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/SettingUpVirtualLinux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Virtual Box: Setting Up Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/faq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Frequently asked questions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Presentations
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Presentations
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../presentations/presentations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Presentations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="microbiomes-practical">Microbiomes Practical</h1>
+<p>Bacterial vaginosis (BV) is a dysbiotic condition caused by excessive growth of certain bacteria replacing the regular vaginal microbiome. Common symptoms include increased discharge, burning with urination, and itching. BV increases the risk of infection by a number of sexually transmitted infections including HIV/AIDS as well as the risk of early delivery when pregnant. The changed composition of the microbiome leads to a higher pH and a hundred to thousand-fold increase in the total number of bacteria present.</p>
+<h2 id="getting-the-data">Getting the data</h2>
+<p>For this practical we are considering 12 samples of vaginal swab that were taken at a polyclinic by a GP in a setting of high transmission of HIV. DNA was extracted from the swabs and amplified using primers specific for the first two hypervariable regions (V1 and V2) of the 16S rRNA gene (27F and 338R). These samples were then sequenced with MiSeq Illumina producing paired end data of 300 bp length per read. The 12 pairs of files generated are found in the data/microbiome/fastq/ directory. The patients’ phenotype was determined by the doctors at the time of sample collection with the following results:</p>
+<table>
+<thead>
+<tr>
+<th>Sample</th>
+<th>BV</th>
+<th>pH</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BB_1</td>
+<td>no</td>
+<td>4.4</td>
+</tr>
+<tr>
+<td>BB_2</td>
+<td>no</td>
+<td>3.6</td>
+</tr>
+<tr>
+<td>BB_3</td>
+<td>yes</td>
+<td>5.5</td>
+</tr>
+<tr>
+<td>BB_4</td>
+<td>no</td>
+<td>5.3</td>
+</tr>
+<tr>
+<td>BB_5</td>
+<td>yes</td>
+<td>5.6</td>
+</tr>
+<tr>
+<td>BB_6</td>
+<td>yes</td>
+<td>5.3</td>
+</tr>
+<tr>
+<td>BB_7</td>
+<td>yes</td>
+<td>4.7</td>
+</tr>
+<tr>
+<td>BB_8</td>
+<td>no</td>
+<td>4.4</td>
+</tr>
+<tr>
+<td>BB_9</td>
+<td>no</td>
+<td>4.4</td>
+</tr>
+<tr>
+<td>BB_10</td>
+<td>no</td>
+<td>3.6</td>
+</tr>
+<tr>
+<td>BB_11</td>
+<td>yes</td>
+<td>4.7</td>
+</tr>
+<tr>
+<td>BB_12</td>
+<td>yes</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<h2 id="analysing-the-microbiome-samples-with-qiime2">Analysing the microbiome samples with QIIME2</h2>
+<p>Out of all tookits aiming at the unification of the analysis of microbiome data, QIIME (pronounced "chime") and its successor QIIME2 have grown the largest user base in recent years (mostly due to the ease of use and comprehensive online documentation). QIIME2 wraps an extensive suite of third party tools (covering most of the "standard" microbiome pipeline from preprocessing and filtering of raw sequencing reads to statistical tests on diversity metrics and analyses on differential abundance of single taxa) into a single command line interface. In addition, it also provides a GUI as well as a python API for both less and more technically inclined users. We will stay on the middle ground by using the CLI today.
+One idiosyncrasy of QIIME2 is the use of so-called "artefacts". These are zip-archives with a special file extension (.qza for data artefacts and .qzv for visualisation artefacts) that hold bulk data in addition to unique IDs and provenance metadata, which describe all steps that lead to the creation of that particular artefact. This has the advantage that for every intermediate or final result of qiime it is perfectly clear how it was generated from start to finish. There is a small downside, though, since we have to import our data into the QIIME2 format prior to running any analyses. However, before we do that, let's have a look at the quality of our reads (qiime also provides functionality for sequencing data quality control, but it is not as detailed as the output of some dedicated tools like FastQC). </p>
+<h2 id="quality-control">Quality control</h2>
+<p>After activating the conda environment for this practical with <code>conda activate microbiome</code>, go into the module directory with <code>cd data/microbiome</code> and have a look at its contents with <code>ls</code>. There should be a directory with the 16S sequencing data (in fastq), a 16S database (in db), and a CSV file with our metadata. Let's check if our reads are there with <code>ls fastq</code>. We can also have a look at the filesizes with <code>du -sh fastq/* | sort -h</code> (it can't hurt to get a feeling for these things). </p>
+<div class="highlight"><pre><span></span><code>mkdir fastqc_reports
+
+fastqc -o fastqc_reports -q -t 1 fastq/*
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The -t flag tells fastqc the number of threads to use. If you have more CPUs available, adjust this number accordingly. </p>
+</div>
+<p>This should produce a FastQC report for each fastq file and put them all into fastqc_reports (run <code>ls fastqc_reports</code> to double check). Going through 24 FastQC reports (two per sample; one for the forward and one for the reverse reads) manually would be quite tedious. Thankfully, multiqc can combine them for us! Let's create a new directory for it to write the results into and run it. </p>
+<div class="highlight"><pre><span></span><code>mkdir fastqc_combined
+
+multiqc -o fastqc_combined fastqc_reports
+</code></pre></div>
+<p>With <code>ls fastqc_combined</code> you can see that an HTML file, which we can view in a browser, has been created. Open the HTML file using the command <code>firefox ~/data/microbiome/fastqc_combined/multiqc_report.html</code></p>
+<p>Scroll through the report and make note of the sequence counts barplots and the quality histograms. </p>
+<p><img alt="" src="../../img/microbiome_1.png" /></p>
+<p><img alt="" src="../../img/microbiome_2.png" /></p>
+<p>In the counts plot we can see that two samples (BB_3 and BB_8) have significantly fewer reads than the others. This looks like something went wrong during library preparation for these two samples and we should exclude them from further analysis. Also note that the reads of the other samples have decent quality up until ~200 bp length. We will need this information later. </p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>The difference in file sizes of the sequencing files between BB_3 / BB_8 and the other samples was not as drastic as the difference in actual read counts. Can you think of a reason why that might be? Hint: What does the file extension .gz mean? </p>
+</div>
+<p>For this dataset, the primers have already been trimmed from the reads and the FastQC output showed us that there are no adapters that would need removal. Also, quality-based trimming is discouraged when using DADA2 (an important step in our later analyses). Therefore, no further pre-processing is needed and we can transform the data into the qiime format. </p>
+<h2 id="import-into-qiime">Import into qiime</h2>
+<p>In order to do this, qiime needs a tab-separated file with the sample IDs and the absolute paths to the forward and reverse reads. There are many ways to create such a file (and if you have just a few samples you can simply type it by hand). We will use the opportunity to string a few handy command line utilities together that we have not seen so far. First, let's write the header line of the import-list to a new file: </p>
+<div class="highlight"><pre><span></span><code>printf \
+    &quot;sample-id\tforward-absolute-filepath\treverse-absolute-filepath\n&quot; \
+    &gt; fastq_abs_paths
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>We use backslashs here to break this command into multiple lines. </p>
+</div>
+<p>Then, we append the lines corresponding to our samples to the file that was just created. We can achieve this with </p>
+<div class="highlight"><pre><span></span><code>ls fastq | grep -oE &#39;BB_[0-9]+&#39; | sort -t _ -k 2 -n | uniq | \
+      grep -vE &#39;BB_[38]&#39; | \
+      awk -v path=$(pwd)/fastq/ &#39;OFS=&quot;\t&quot; \
+          {print $1, path $1 &quot;_1.fastq.gz&quot;, path $1 &quot;_2.fastq.gz&quot;}&#39; \
+      &gt;&gt; fastq_abs_paths
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>With the first grep we get the sample IDs from the filenames. We then sort them numerically (-n) based on the second field (-k 2) when split at underscores (-t _). Since there are two files per sample, we only keep the uniq sample IDs before removing the low-read-counts samples (BB_3 and BB_8) with another grep (grep -v keeps all lines that do not match the regex). The remaining sample IDs are subsequently fed to awk in order to print the absolute paths which are finally appended to fastq_abs_paths. </p>
+</div>
+<p>This should have done the trick. <code>cat fastq_abs_paths</code> let's us see what we got. The output should look like this: </p>
+<div class="highlight"><pre><span></span><code>sample-id       forward-absolute-filepath       reverse-absolute-filepath
+BB_1    /home/user/data/microbiome/fastq/BB_1_1.fastq.gz      /home/user/data/microbiome/fastq/BB_1_2.fastq.gz
+BB_2    /home/user/data/microbiome/fastq/BB_2_1.fastq.gz      /home/user/data/microbiome/fastq/BB_2_2.fastq.gz
+BB_4    /home/user/data/microbiome/fastq/BB_4_1.fastq.gz      /home/user/data/microbiome/fastq/BB_4_2.fastq.gz
+BB_5    /home/user/data/microbiome/fastq/BB_5_1.fastq.gz      /home/user/data/microbiome/fastq/BB_5_2.fastq.gz
+BB_6    /home/user/data/microbiome/fastq/BB_6_1.fastq.gz      /home/user/data/microbiome/fastq/BB_6_2.fastq.gz
+BB_7    /home/user/data/microbiome/fastq/BB_7_1.fastq.gz      /home/user/data/microbiome/fastq/BB_7_2.fastq.gz
+BB_9    /home/user/data/microbiome/fastq/BB_9_1.fastq.gz      /home/user/data/microbiome/fastq/BB_9_2.fastq.gz
+BB_10   /home/user/data/microbiome/fastq/BB_10_1.fastq.gz     /home/user/data/microbiome/fastq/BB_10_2.fastq.gz
+BB_11   /home/user/data/microbiome/fastq/BB_11_1.fastq.gz     /home/user/data/microbiome/fastq/BB_11_2.fastq.gz
+BB_12   /home/user/data/microbiome/fastq/BB_12_1.fastq.gz     /home/user/data/microbiome/fastq/BB_12_2.fastq.gz
+</code></pre></div>
+<p>Great! This should be sufficient to let QIIME2 know where the files that we want to import are. Now, we can import the reads with </p>
+<div class="highlight"><pre><span></span><code>qiime tools import \
+    --type &#39;SampleData[PairedEndSequencesWithQuality]&#39; \
+    --input-path fastq_abs_paths \
+    --output-path fastq_imported.qza \
+    --input-format PairedEndFastqManifestPhred33V2
+</code></pre></div>
+<p>This hopefully finishes successfully in a few seconds. Afterwards, you can check whether a new file was created with <code>ls</code> (which is slowly becoming our best friend now – right after <code>cd</code> of course). </p>
+<p>qiime also requires the metadata to be in TSV (tab-separated values), whereas our file is a CSV (comma-separated). We can simply fix this with </p>
+<div class="highlight"><pre><span></span><code>cat meta.csv | tr &#39;,&#39; &#39;\t&#39; &gt; meta.tsv
+</code></pre></div>
+<h2 id="denoising-with-dada2">Denoising with DADA2</h2>
+<p>Now that we have imported the data we can unleash the power of qiime! Sequence denoising (or OTU clustering) is the centrepiece of every 16S pipeline. We will use the DADA2 which fits a sequencing error model to the data and tries to merge ("denoise") sequences that differ only due to sequencing errors as opposed to actual biological variation. </p>
+<div class="highlight"><pre><span></span><code>qiime dada2 denoise-paired \
+    --i-demultiplexed-seqs fastq_imported.qza \
+    --p-trunc-len-f 190 \
+    --p-trunc-len-r 190 \
+    --p-n-threads 1 \
+    --verbose \
+    --o-table table.qza \
+    --o-representative-sequences rep_seqs.qza \
+    --o-denoising-stats denoising_stats.qza
+</code></pre></div>
+<p>This will produce an artefact holding a list of unique sequences (rep_seqs.qza) as well as a table with the number of occurrences of each representative sequence per sample (table.qza). DADA2 fits the error model on all reads of a sequencing run simultaneously (as opposed to Deblur, which fits it separately for each sample). It is therefore considerably slower and we will have to wait a few minutes for it to finish. In the meantime you can have a look at the later sections of the practical. </p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>If applicable, increase the number of threads in order to speed things up.
+Hint: You can put time in front of any command to see how long it took. Try it with <code>time sleep 5</code> in a new terminal.
+Also note that we told the program to truncate forward and reverse reads after 190 bp due to the decrease in quality we saw in multiqc_report.html. As the amplicon is only expected to be ~310 bp long, this should still give us sufficient overlap. </p>
+</div>
+<h2 id="building-a-tree">Building a tree</h2>
+<p>qiime includes a tree-building pipeline which allows us to generate a phylogenetic tree from the denoised sequences with a single command. MAFFT is used for the alignment and multiple tree-inference methods are available (have a look at qiime's phylogeny plugin for details). We will use FastTree, which is the fastest but also least accurate option available. </p>
+<div class="highlight"><pre><span></span><code>qiime phylogeny align-to-tree-mafft-fasttree \
+    --i-sequences rep_seqs.qza \
+    --o-alignment aligned_rep_seqs.qza \
+    --o-masked-alignment masked_aligned_rep_seqs.qza \
+    --o-tree unrooted_tree.qza \
+    --o-rooted-tree rooted_tree.qza
+</code></pre></div>
+<p>As you can see, this will create an alignment, mask locations that aligned badly, and then generate the tree (unrooted and rooted at midpoint). </p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>We have built a new tree here because the pipeline with FastTree runs quite quickly and we don't want to have to wait during the practical. However, instead of creating one from scratch, we could have also inserted our sequences into an existing phylogeny. qiime offers pre-computed trees for two popular 16S databases and an insertion algorithm in the fragment-insertion plugin.
+In general, it needs to be said that phylogenomics is an incredibly deep topic. Since the tree is not substantial for our analysis, we can simply use qiime's pipeline with the default parameters. However, if you ever rely on a high-quality phylogeny for a different project, you should definitely try to find the best approach for your data and have a close look at the respective literature. </p>
+</div>
+<h2 id="estimating-diversity">Estimating diversity</h2>
+<p>One reason for generating a phylogeny in a microbiome analysis is so that it can be used in phylogeny-based diversity metrics. Let's generate these now. Before we can run the corresponding command, though, we need to look up the lowest number of denoised reads per sample. </p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Large differences in sequencing depth between samples can distort the results of diversity estimates. Therefore, it is common practice to down-sample (in ecology-speech "rarify") the reads of each sample to a number that is equal or smaller than the number of reads in the least deeply sequenced sample. This simply means that we randomly select N reads from each sample where N is the smallest number of reads in any sample. </p>
+</div>
+<p>To check the number of denoised reads per sample, we can create a qiime visualisation of our counts table with </p>
+<div class="highlight"><pre><span></span><code>qiime feature-table summarize \
+    --i-table table.qza \
+    --o-visualization table.qzv
+</code></pre></div>
+<p>Visualisation files are produced by certain qiime commands and provide human-readable information like plots, tables, or summary statistics. There are several ways to view such files. The easiest one is to go to <a href="https://view.qiime2.org/">https://view.qiime2.org/</a> and drag &amp; drop them into your browser window. </p>
+<p>Note that the tables and plots generated at <a href="https://view.qiime2.org/">https://view.qiime2.org/</a> are all rendered in your local browser and that nothing is uploaded to be processed on an external server, which is often required when working with sensitive data. </p>
+<p>Try using this site to view the table.qzv visualisation artefact produced by the last command. Once the visualisation has loaded, there should be a table looking like this: </p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Minimum frequency</td>
+<td>24,366.0</td>
+</tr>
+<tr>
+<td>1st quartile</td>
+<td>31,235.75</td>
+</tr>
+<tr>
+<td>Median frequency</td>
+<td>35,43.0</td>
+</tr>
+<tr>
+<td>3rd quartile</td>
+<td>41,694.0</td>
+</tr>
+<tr>
+<td>Maximum frequency</td>
+<td>53,797.0</td>
+</tr>
+<tr>
+<td>Mean frequency</td>
+<td>36,440.9</td>
+</tr>
+</tbody>
+</table>
+<p>So, we need to rarify to a sampling depth of 24,336 reads. Let's generate the diversity metrics now (again, adjust the number of threads according to your setup): </p>
+<div class="highlight"><pre><span></span><code>qiime diversity core-metrics-phylogenetic \
+    --i-phylogeny rooted_tree.qza \
+    --i-table table.qza \
+    --p-sampling-depth 24366 \
+    --p-n-jobs-or-threads 1 \
+    --m-metadata-file meta.tsv \
+    --output-dir core-metrics-results
+</code></pre></div>
+<p>This will generate a new directory "core-metrics-results" holding (based on multiple different diversity metrics) sample-wise diversity values ("alpha diversity"), pairwise inter-sample distance matrices ("beta diversity"), and visualisations of PCoA plots (ending in .qzv). These can again be inspected with <a href="https://view.qiime2.org/">https://view.qiime2.org/</a>. For example, the PCoA plot based on Bray–Curtis distance with BV-negative samples in red and BV-positive samples in blue looks like this: </p>
+<p><img alt="" src="../../img/microbiome_4.png" /></p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>What does the plot tell us about our samples and the impact of BV on inter-sample diversity. Look up the term "Anna Karenina Principle" and what it means in terms of the microbiome. Can we say that it applies to our data? </p>
+</div>
+<h2 id="taxonomic-classification">Taxonomic classification</h2>
+<p>We are not only interested in the ecological diversity of our samples; we also want to know which species were found. Again, there are multiple ways of achieving this. We will use a Naïve Bayes classifier (pre-trained on the Greengenes 13_8 database) available from the Qiime2 website. You can find it in the db directory and use it with the following command: </p>
+<div class="highlight"><pre><span></span><code>qiime feature-classifier classify-sklearn \
+    --i-classifier db/2024.09.backbone.full-length.nb.sklearn-1.4.2.qza \
+    --i-reads rep_seqs.qza \
+    --p-n-jobs 1 \
+    --o-classification taxonomy.qza
+</code></pre></div>
+<p>The produced table in taxonomy.qza simply links the taxonomic classifications (from phylum to species level) to the corresponding sequences. If you want to inspect the table, run </p>
+<div class="highlight"><pre><span></span><code>qiime metadata tabulate \
+    --m-input-file taxonomy.qza \
+    --o-visualization taxonomy.qzv
+</code></pre></div>
+<p>and open the visualisation taxonomy.qzv in <a href="https://view.qiime2.org/">https://view.qiime2.org/</a>. </p>
+<p>To get a more intuitive understanding of the microbial composition of our samples we can now ask qiime to plot it for us: </p>
+<div class="highlight"><pre><span></span><code>qiime taxa barplot \
+    --i-table table.qza \
+    --i-taxonomy taxonomy.qza \
+    --m-metadata-file meta.tsv \
+    --o-visualization taxa_barplot.qzv
+</code></pre></div>
+<p>The resulting visualisation at species level ("Level 7") looks like this in <a href="https://view.qiime2.org/">https://view.qiime2.org/</a>: </p>
+<p><img alt="" src="../../img/microbiome_5.png" /></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>You can adjust the with of the bars with the slider above the plot. </p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>We can see that some samples are dominated by Lactobacillus iners (green), whereas for others the situation looks very different. Double check with the metadata to find out if this is associated with BV-status. </p>
+</div>
+<h2 id="testing-differences-in-alpha-diversity">Testing differences in alpha diversity</h2>
+<p>Alpha diversity measures the general diversity of an ecosystem (i.e. a sample in our case) or a group of ecosystems (i.e. groups of samples like all samples with BV). After looking at the taxa barplot we just generated, do you think that the BV samples are statistically significantly more diverse than the non-BV samples? We can check if your estimate is correct by running a Kruskal–Wallis test on the four metrics of alpha diversity that we calculated for our samples. Let's create a new directory to write the results into and run: </p>
+<div class="highlight"><pre><span></span><code>mkdir alpha_tests
+for metric in faith_pd evenness shannon observed_features; do
+    qiime diversity alpha-group-significance \
+        --i-alpha-diversity core-metrics-results/${metric}_vector.qza \
+        --m-metadata-file meta.tsv \
+        --o-visualization alpha_tests/${metric}_group_significance.qzv
+done
+</code></pre></div>
+<p>This produces four more visualisations. Have a look at them. Were you right? </p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>It looks like the different alpha diversity metrics disagree! After reading the short definitions of the metrics provided below, can you think of a reason for this discrepancy?
+faith_pd: Faith's phylogenetic diversity is defined as the sum of branch-lengths in the phylogeny between all species found in a sample (regardless of abundance).
+evenness: Pielou's evenness index quantifies how differently abundant species making up an ecosystem are.
+shannon: The Shannon index or Shannon entropy quantifies how difficult it is to guess the species of a random specimen taken from the sample (the more species and the more equally abundant they are, the more difficult).
+observed_features: Simply the number of unique taxa found in the sample. </p>
+</div>
+<h2 id="testing-beta-diversity">Testing beta diversity</h2>
+<p>As opposed to alpha diversity, which quantifies the diversity of a sample (or a group of samples) overall, beta diversity gives an estimate of the magnitude of differences between individual samples or groups of samples. We can test the difference between BV and non-BV samples for all beta diversity metrics with the following command: </p>
+<div class="highlight"><pre><span></span><code>mkdir -p beta_tests
+
+for metric in bray_curtis jaccard unweighted_unifrac weighted_unifrac; do
+    qiime diversity beta-group-significance \
+        --i-distance-matrix core-metrics-results/${metric}_distance_matrix.qza \
+        --m-metadata-file meta.tsv \
+        --m-metadata-column BV \
+        --o-visualization beta_tests/${metric}_significance.qzv \
+        --p-permutations 9999
+done
+</code></pre></div>
+<p>Again, we got a visualisation for each metric. Have a look at them in <a href="https://view.qiime2.org/">https://view.qiime2.org/</a>. What do you find? Are all of them in agreement this time? </p>
+<p>This concludes today's practical. If you are interested in differentially abundant taxa between the BV and non-BV samples, have a look at qiime's' ANCOM function. </p>
+<p>Acknowledgements: Many thanks to Dr. Suzanna Francis for providing the data and Ernest Diez-Benavente and Julian Lisebber-Egger for designing the practical materials.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.tooltips", "navigation.instant", "navigation.tabs", "toc.integrate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

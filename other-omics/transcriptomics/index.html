@@ -1,0 +1,1750 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../microbiome/">
+      
+      
+        <link rel="next" href="../methylation/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Transcriptomics - LSHTM Omics</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#transcriptomics" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="LSHTM Omics" class="md-header__button md-logo" aria-label="LSHTM Omics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LSHTM Omics
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Transcriptomics
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../introduction/intro-to-linux/" class="md-tabs__link">
+          
+  
+  Introduction
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../advanced/phylogenetics/" class="md-tabs__link">
+          
+  
+  Advanced
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../microbiome/" class="md-tabs__link">
+          
+  
+  Other omics
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../additional-info/conda/" class="md-tabs__link">
+          
+  
+  Additional info
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../presentations/presentations/" class="md-tabs__link">
+          
+  
+  Presentations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LSHTM Omics" class="md-nav__button md-logo" aria-label="LSHTM Omics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    LSHTM Omics
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../connecting-github/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting connected
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Introduction
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/intro-to-linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/mapping/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mapping
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/variant-detection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Variant detection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/assembly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assembly
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/task/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Task
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Advanced
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/phylogenetics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Phylogenetics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/third-generation-sequencing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Third Generation Sequencing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/gwas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Genome Wide Association Studies (GWAS)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Other omics
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Other omics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../microbiome/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Microbiomes Practical
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Transcriptomics
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Transcriptomics
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-1-mapping-rna-seq-with-bwa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 1: Mapping RNA-seq with BWA
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exercise 1: Mapping RNA-seq with BWA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-bwa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running BWA
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-2-visualising-alignments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 2: Visualising alignments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exercise 2: Visualising alignments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interpreting-the-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interpreting the mapping
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#including-more-lineages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Including more lineages
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercse-3-differential-expression" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercse 3: Differential expression
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exercse 3: Differential expression">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#counting-reads-with-htseq-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      Counting reads with HTSeq-count
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-differentially-expressed-genes-with-deseq2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Finding differentially expressed genes with DESeq2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-exploration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Further exploration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Further exploration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-do-i-do-with-a-gene-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      What do I do with a gene list?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../methylation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Methylation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deep learning (Neural Network)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tb-resistance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TB resistance prediction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eqtl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    EQTL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Additional info
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Additional info
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/conda/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conda Environments: Why and How to Use Them
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/software/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Software
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/SettingUpVirtualLinux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Virtual Box: Setting Up Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/faq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Frequently asked questions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Presentations
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Presentations
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../presentations/presentations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Presentations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="transcriptomics">Transcriptomics</h1>
+<h2 id="introduction">Introduction</h2>
+<p>An application of next-generation sequencing is RNA sequencing (Mortazavi et al., 2008; Wang et al., 2009). In particular we will discuss transcriptome (messenger RNA) sequencing. Transcriptome sequencing is a very useful addition to genome sequencing projects as it helps to identify genes and thus aids in genome annotation. In this sense, it is similar to earlier transcriptome sequencing using capillary methods (EST sequencing), but provides much higher coverage of the transcriptome.</p>
+<p>Reads from RNA sequencing can be treated in much the same way as those from DNA sequencing. The exception is in eukaryotes when there is splicing, where a single gene can code for multiple proteins through transcription of determined exons.</p>
+<p>Due to the vast number of reads produced by next generation sequencing technology, the transcriptome is also sequenced very deeply. Each gene is sequenced in proportion to its abundance and the large number of reads means that even low abundance genes are sequenced to some extent. This means that expression levels of genes can be compared. One can visualise the "pile up" of reads in a particular region by looking at coverage plots. The higher the signals in the plot, the more expressed a transcript is. It is important to note that the sequences originate from transcriptome samples (mRNA) and therefore only contains information about the exons and untranslated regions (UTRs).</p>
+<p>Imagine the following transcript is present in the sample:</p>
+<p><img alt="" src="../../img/rnaseq_1.png" /></p>
+<p>Reads belonging to the transcript are produced by the sequencing process. When the reads come out as raw data, there is no information about where they belong in the reference genome. Furthermore, all reads from several different transcripts come out together. An alignment algorithm localises them in the reference genome based on similarity matches.</p>
+<p><img alt="" src="../../img/rnaseq_2.jpg" /></p>
+<p>In the plot, the coverage line represents the number of reads that align to the genome at each base position. This allows us to identify coding regions, here, the 3 exons (in yellow) that comprise the transcript above.</p>
+<p>In this module we will use a similar approach used to map DNA sequencing data to map RNA sequencing data from Mycobacterium tuberculosis.</p>
+<p>Understanding an organism's genome goes beyond cataloging the genes that are present in the genome. Insight into the biological stages in which each gene is expressed (potentially used) helps us to identify how organisms develop and respond to a particular external stimuli. The first layer of such complex patterns involves the understanding of how the genome is being used is the transcriptome. This is also the most accessible type of information because, like the genome, the transcriptome is made of nucleic acids and can be sequenced relatively easily. Arguably the proteome is of greater relevance to understand cellular biology, but it is chemically heterogenous making it much more difficult to assay.</p>
+<p>Over the past two decades, microarray technology has been applied extensively for addressing the question of which genes are expressed and when, enabling the performance of differential expression analysis. Despite its success, this technology is limited in that it requires prior knowledge of the gene sequences for an organism and has a limited dynamic range in detecting the level of expression, e.g. how many copies of a transcript are made. RNA sequencing technology using, for instance Illumina HiSeq machines, can sequence all the genes that are transcribed, and the results have a more linear relationship to the real number of transcripts generated.</p>
+<p>The aim of differential expression analysis is to determine which genes are more or less expressed in different situations. We could ask, for instance, whether a bacterium uses its genome differentially when exposed to stress, such as heat or challenged by a drug. Alternatively, we could ask which genes make human livers different from kidneys.</p>
+<p>In these exercises, we will try to gain some understanding of differences between M. tuberculosis lineages. The genome of M. tuberculosis was published in 1998 (Cole et al., 1998). It has 4.4 Mb and a high GC content (~65%), comprising 4,111 genes. Although the variability of the M. tuberculosis genome has been considered limited, it has been demonstrated a higher diversity than it was previously thought. Currently, M. tuberculosis is classified in 7 different lineages with a different geographical distribution, and also virulence or spreading capacity has been seen to vary between lineages. Strains from different lineages have shown differences in virulence or in acquisition of drug resistance (Parwati et al., 2010), and these differences might be caused by variable expression of determined genes.</p>
+<p>Therefore, the aim of this session is to become familiar with the steps carried out in transcriptomics studies, from mapping RNA-seq reads to the performance of differential expression analysis.</p>
+<h2 id="exercise-1-mapping-rna-seq-with-bwa">Exercise 1: Mapping RNA-seq with BWA</h2>
+<p>First, we will map RNA sequence reads from a M. tuberculosis lineage 1 strain to the reference genome, in this case, the H37Rv M. tuberculosis strain.</p>
+<p>You can find the M. tuberculosis H37Rv reference genome (called H37Rv.fa) as well as the two files of RNA-seq reads from a lineage 1 strain (Mtb_L1_1.fastq and Mtb_L1_2.fastq) in the transcriptomics directory.</p>
+<h3 id="running-bwa">Running BWA</h3>
+<p>To work with the command line of Linux, you will first need to open a terminal, activate the rnaseq conda environment, go to the data and transcriptomics directory:</p>
+<div class="highlight"><pre><span></span><code>conda activate rnaseq
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>cd ~/data/transcriptomics
+</code></pre></div>
+<p>And list the files there:</p>
+<div class="highlight"><pre><span></span><code>ls
+</code></pre></div>
+<p>You will find there the 4 fastq files, 2 of them from the lineage 1 sample, and the reference genome <abbr title="A format used to store sequence data">fasta</abbr> file; these are the input data for this practical.</p>
+<p>For the mapping, first an index of the reference genome must be constructed with bwa index. On the command line, you should type:</p>
+<div class="highlight"><pre><span></span><code>bwa index H37Rv.fa
+</code></pre></div>
+<p>This will generate 5 files which are needed for BWA. We will then align the RNA-seq reads to the reference genome with bwa mem. We will therefore use the reference genome (in <abbr title="A format used to store sequence data">fasta</abbr> format) and the two fastq files that contain the RNA-seq reads, saving the output to a SAM file. To start you should type:</p>
+<p><div class="highlight"><pre><span></span><code>bwa mem H37Rv.fa Mtb_L1_1.fastq.gz Mtb_L1_2.fastq.gz | samtools sort - -o Mapping_Mtb/Mtb_L1.bam
+samtools index Mapping_Mtb/Mtb_L1.bam
+</code></pre></div>
+The output will be located in the Mapping_Mtb folder, which is in the transcriptomics directory.</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Question 1</label><label for="__tabbed_1_2">Answer 1</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>We also need to index our bam file. Can you remember how to do this?</p>
+</div>
+<div class="tabbed-block">
+<p>We can do this with the following code:</p>
+<div class="highlight"><pre><span></span><code>samtools index Mapping_Mtb/Mtb_L1.bam
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<h2 id="exercise-2-visualising-alignments">Exercise 2: Visualising alignments</h2>
+<p>Now we will examine the reads mapping in IGV. Follow the steps as before:</p>
+<p>Launch IGV by running the command <code>igv</code> on a New Terminal and perform the following steps:</p>
+<ol>
+<li>We first need to load the reference genome. To do this click on <strong>Genomes -&gt; Load Genome from File...</strong>. Navigate to <strong>~/data/transcriptomics/</strong> and select the <strong>H37Rv.fa</strong> file.</li>
+<li>You can also load the genes by clicking on <strong>File -&gt; Load from File...</strong>, then selecting the <strong>Mtb.gtf</strong> file. </li>
+<li>Finally you can load the bam file by clicking <strong>File -&gt; Load from File...</strong> and selecting the bam file you wish to load.</li>
+</ol>
+<h3 id="interpreting-the-mapping">Interpreting the mapping</h3>
+<p>This exercise is similar to the one performed before in the Visualisation module. Scroll along the genome and examine the read coverage (the part of the genome mapped goes from position 2420631 to 2920631. To view that part select 'Goto', 'Navigator' and write in 'Goto Base' 2420631). Notice how different genes have different depths of coverage.</p>
+<p><img alt="" src="../../img/rnaseq_3.png" /></p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Question 2</label><label for="__tabbed_2_2">Answer 2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Why do some genes have little or no coverage?</p>
+</div>
+<div class="tabbed-block">
+<p>They are not being expressed in the given sample.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Question 3</label><label for="__tabbed_3_2">Answer 3</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Why do some reads map where there are no genes?</p>
+</div>
+<div class="tabbed-block">
+<p>This could be due to:
+* Genome annotation incompleteness
+* Novel transcripts and isoforms
+* Non-coding RNAs</p>
+</div>
+</div>
+</div>
+</div>
+<h3 id="including-more-lineages">Including more lineages</h3>
+<p>One interesting feature of the IGV viewer is the possibility to see more than one BAM file at the same time, which enables to comapre coverage from different samples. Hence, next we want to include more lineages, in this case we will add another sample belonging to the lineage 4 of Mtb.</p>
+<p>To do it, we will need first to follow the previous steps in order to get the sorted and index bam files. Therefore, map it with BWA as before, the fastq files are in the directory ~/data/transcriptomics and are called Mtb_L4_1.fastq.gz and Mtb_L4_2.fastq.gz.</p>
+<p>Once we have the bam files, we can add it to the IGV viewer using <strong>File -&gt; Load from File...</strong> and selecting the bam file you wish to load.</p>
+<p><img alt="" src="../../img/rnaseq_4.png" /></p>
+<p>In the BAM view of the reads, it might be difficult to distinguish the differences between the BAM files. However, in the coverage plot, one can see the differences in coverage.</p>
+<p>One reason to perform RNA-seq under different conditions or in different samples (in this case different lineages of Mtb), is to see genes that are differentially expressed. For example, one gene may be more highly expressed in one lineage that in the other.</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:1"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Question 4</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Can you find any genes that have differential expression?</p>
+</div>
+</div>
+</div>
+</div>
+<p>Now go to gene Rv2161c (position 2422271).</p>
+<p><img alt="" src="../../img/rnaseq_5.png" /></p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:1"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Question 5</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Would you think that this gene is differentially expressed?</p>
+</div>
+</div>
+</div>
+</div>
+<h2 id="exercse-3-differential-expression">Exercse 3: Differential expression</h2>
+<p>There are tools that calculate the differential expression, like the R packages DESeq or EdgeR. They take the reads mapped to each gene, normalize the resulting quantities of mapped reads (coverage), and then estimate if any genes are differentially expressed. In general, the results are more credible and significant if biological replicates are included.</p>
+<h3 id="counting-reads-with-htseq-count">Counting reads with HTSeq-count</h3>
+<p>In order to perform a differential expression analysis, the first step is to count the reads mapped to each of the genes so that we can make comparisons between the different samples.</p>
+<p><strong>HTSeq-count</strong> is part of the HTSeq package which will quantify the number of reads mapping to gene models in different RNA-seq experiments given a file with aligned sequencing reads (the bam file obtained through BWA) and a list of genomic features (the Mtb.gtf file with the gene annotation).</p>
+<p>We will run HTSeq-count with the RNA-seq data from the L1 and L4 strains we were using in the previous exercises. To do it, we will go to the directory where we have the data and use the following command:</p>
+<div class="highlight"><pre><span></span><code>cd ~/data/transcriptomics
+
+python -m HTSeq.scripts.count -f bam -r pos -s reverse -t gene ./Mapping_Mtb/Mtb_L1.bam Mtb.gtf &gt; ./Mapping_Mtb/Mtb_L1_htseq_count.txt
+
+python -m HTSeq.scripts.count -f bam -r pos -s reverse -t gene ./Mapping_Mtb/Mtb_L4.bam Mtb.gtf &gt; ./Mapping_Mtb/Mtb_L4_htseq_count.txt
+</code></pre></div>
+<p>The parameters we have used in the HTSeq-count command are:</p>
+<ul>
+<li>-f: format of the input data</li>
+<li>-r: how is sorted the data</li>
+<li>-s: whether the data is from a strand-specific assay. The reverse option is used for pair-end reads from HiSeq in order to mantain the strain-specificity (the reads have to map to the gene in the corresponding strand to be counted)</li>
+<li>-t: feature type, in this case exon</li>
+</ul>
+<p>If you have any doubt about the parameters of the program, type:</p>
+<div class="highlight"><pre><span></span><code>python -m HTSeq.scripts.count
+</code></pre></div>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">Question 6</label><label for="__tabbed_6_2">Answer 6</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>What would -a parameter do?</p>
+</div>
+<div class="tabbed-block">
+<p>Ensures HTSeq-count skips all reads with alignment quality lower than the given minimum value.</p>
+</div>
+</div>
+</div>
+</div>
+<p>We can now take a look at the results from the HTSeq-count typing the following in the command line:</p>
+<div class="highlight"><pre><span></span><code>cd ~/data/transcriptomics/Mapping_Mtb
+
+less Mtb_L1_htseq_count.txt
+</code></pre></div>
+<p>You should see two columns with the list of genes and the counts for each gene.</p>
+<div class="admonition terminal">
+<p class="admonition-title">Terminal output</p>
+<div class="highlight"><pre><span></span><code>Rv2158c 0
+Rv2159c 22
+Rv2160A 11
+Rv2160c 0
+Rv2161c 193
+Rv2162c 753
+Rv2163c 6181
+Rv2164c 2169
+Rv2165c 6878
+Rv2166c 11357
+Rv2167c 0
+Rv2168c 0
+Rv2169c 3017
+Rv2170  235
+Rv2171  1779
+Rv2172c 9812
+Rv2173  1525
+Rv2174  1828
+Rv2175c 767
+Rv2176  1440
+Rv2177c 169
+Rv2178c 6200
+Rv2179c 205
+Rv2180c 319
+Rv2181  4288
+Rv2182c 10635
+Rv2183c 1197
+:
+</code></pre></div>
+</div>
+<p>To exit this view you just need to type 'q'.</p>
+<h3 id="finding-differentially-expressed-genes-with-deseq2">Finding differentially expressed genes with DESeq2</h3>
+<p>Now we are going to perform a differential expression analysis in order to look for genes with variable expression between lineages. To do it we will use 6 sequenced samples, 3 from lineage 1 and 3 from lineage 4. Two of them will be the two analysed in the previous steps. We are going to use an R package for the anaylsis of the differential gene expression called DESeq2.</p>
+<p>A differential expression analysis is used to compare gene expression levels, given by the number of reads per gene (obtained by HTSeq-count) between samples (for example, between 2 lineages of Mtb). In order to accurately ascertain which genes are differentially expressed, and the amount of expression, it is necessary to use replicated data. As with all biological experiments doing it once may simply not be enough. There is no simple way to decide how many replicates to do, it is usually a compromise of statistical power and cost. By determining how much variability there is in the sample preparation and sequencing reactions we can better assess whether genes are really expressed and more accurately determine any differences. The key to this is performing biological rather than technical replicates. This means, for instance in tuberculosis, growing up three cultures of bacteria, treating them all identically, extracting RNA from each and sequencing the three samples separately. Technical replicates, whereby the same sample is sequenced three times do not account for the variability that really exists in biological systems or the experimental error between cultures of bacteria and RNA extractions. More replicates will help to improve statistical power for genes that are already detected at high levels, while deeper sequencing will improve power to detect differential expression for genes which are expressed at low levels. In this exercise we will consider the 3 L1 and the 3 L4 samples as biological replicates.</p>
+<p>To start, we firstly need a table with the counts. In the Mapping_Mtb directory (where we should be) we can find a folder called HTSeqCounts with 6 files called:</p>
+<div class="highlight"><pre><span></span><code>cd ~/data/transcriptomics/Mapping_Mtb/HTSeqCounts
+
+ls
+</code></pre></div>
+<div class="admonition terminal">
+<p class="admonition-title">Terminal output</p>
+<div class="highlight"><pre><span></span><code>Mtb_1_L4_htseq_count.txt  Mtb_3_L1_htseq_count.txt  Mtb_5_L1_htseq_count.txt
+Mtb_2_L1_htseq_count.txt  Mtb_4_L4_htseq_count.txt  Mtb_6_L4_htseq_count.txt
+</code></pre></div>
+</div>
+<p>Now, to start, we need to open R in the terminal, just typing:</p>
+<div class="highlight"><pre><span></span><code>R
+</code></pre></div>
+<p>And then load the packages we are going to need for the analysis:</p>
+<div class="highlight"><pre><span></span><code>library(DESeq2)
+library(gplots)
+</code></pre></div>
+<p>These 6 files are the results of the HTSeq-count of the two samples previously analysed plus 4 more Mtb samples we will use to perform the analysis.</p>
+<p>To prepare the data we are going to use the following scripts.</p>
+<p>First we are going to set the directory where we have the files:</p>
+<div class="highlight"><pre><span></span><code>directory &lt;- &quot;~/data/transcriptomics/Mapping_Mtb/HTSeqCounts/&quot; 
+</code></pre></div>
+<p>And now we can select the files and save them in the variable ‘sampleFiles’ by selecting all the files that contain "Mtb" that are present in our directory:</p>
+<div class="highlight"><pre><span></span><code>sampleFiles &lt;- grep(&quot;Mtb&quot;, list.files(directory), value = TRUE)
+</code></pre></div>
+<p>As we are comparing lineage 1 to lineage 4 samples, we are going to set up lineage as "condition".</p>
+<div class="highlight"><pre><span></span><code>sampleCondition &lt;- c(&quot;l4&quot;,&quot;l1&quot;,&quot;l1&quot;,&quot;l4&quot;,&quot;l1&quot;,&quot;l4&quot;)
+</code></pre></div>
+<p>Now we construct the table with the sample information and convert it in a DESeq object:</p>
+<div class="highlight"><pre><span></span><code>sampleTable &lt;- data.frame(
+    sampleName = sampleFiles,
+    fileName = sampleFiles,
+    condition = sampleCondition
+)
+
+dds &lt;- DESeqDataSetFromHTSeqCount(
+    sampleTable = sampleTable,
+    directory = directory,
+    design = ~ condition
+)
+</code></pre></div>
+<p>Before doing the analysis, we are going to filter the dataset keeping only the genes with at least 10 counts, so that we make sure that every gene considered for the analysis was transcribed.</p>
+<p>To do it, type the following:</p>
+<div class="highlight"><pre><span></span><code>keep &lt;- rowSums(counts(dds)) &gt;= 10
+dds &lt;- dds[keep,]
+</code></pre></div>
+<p>And we are going to set up the condition for the analysis in two levels which are 'lineage 1' and 'lineage 4':</p>
+<div class="highlight"><pre><span></span><code>dds$condition &lt;- factor(dds$condition, levels = c(&quot;l1&quot;,&quot;l4&quot;))
+</code></pre></div>
+<p>We can then run the differential expression anaylisis by calling the function DESeq(), which will normalise the data and compare between the two groups established (l1 and l4). We can store the results in a variable called 'res':</p>
+<div class="highlight"><pre><span></span><code>dds &lt;- DESeq(dds)
+res &lt;- results(dds)
+</code></pre></div>
+<p>Let's take a look at the results. Type:</p>
+<div class="highlight"><pre><span></span><code>res
+</code></pre></div>
+<p>And you should get a table like this:</p>
+<div class="admonition terminal">
+<p class="admonition-title">Terminal output</p>
+<div class="highlight"><pre><span></span><code>log2 fold change (MLE): condition l4 vs l1
+Wald test p-value: condition l4 vs l1
+DataFrame with 441 rows and 6 columns
+        baseMean log2FoldChange     lfcSE       stat       pvalue         padj
+
+Rv2159c 1251.0885      6.5961892 0.5609037  11.759933 6.278432e-32 9.208368e-30
+Rv2160A  766.1015      6.6738839 0.5544491  12.036965 2.271613e-33 4.997548e-31
+Rv2161c 5336.3523      5.8122020 0.4210642  13.803600 2.424369e-43 1.066722e-40
+Rv2162c 4784.6386      3.8915692 0.3784335  10.283364 8.375204e-25 9.212724e-23
+Rv2163c 3616.8513     -0.5480522 0.3940154  -1.390941 1.642434e-01 9.243213e-01
+...           ...            ...       ...        ...          ...          ...
+Rv2586c  3828.546     0.16674016 0.3612166  0.4616071    0.6443631    0.9964280
+Rv2587c  5655.191     0.21607557 0.3636699  0.5941530    0.5524098    0.9964280
+Rv2588c  1305.013    -0.02030647 0.4871420 -0.0416849    0.9667499    0.9983353
+Rv2589   1665.930     0.25845265 0.3629410  0.7121064    0.4763989    0.9964280
+Rv2590   5873.482     0.42707857 0.6169747  0.6922141    0.4888029    0.9964280
+</code></pre></div>
+</div>
+<p>The first column represents the name of each gene analysed, which are represented in rows.</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:2"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">Question 7</label><label for="__tabbed_7_2">Answer 7</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>How many genes did we analyse?</p>
+</div>
+<div class="tabbed-block">
+<p>441</p>
+</div>
+</div>
+</div>
+</div>
+<p>Let's take a look at the summary of the results we just obtained:</p>
+<div class="highlight"><pre><span></span><code>summary(res)
+</code></pre></div>
+<div class="admonition terminal">
+<p class="admonition-title">Terminal output</p>
+<div class="highlight"><pre><span></span><code>out of 441 with nonzero total read count
+adjusted p-value &lt; 0.1
+LFC &gt; 0 (up)     : 10, 2.3%
+LFC &lt; 0 (down)   : 7, 1.6%
+outliers [1]     : 1, 0.23%
+low counts [2]   : 0, 0%
+(mean count &lt; 2)
+[1] see &#39;cooksCutoff&#39; argument of ?results
+[2] see &#39;independentFiltering&#39; argument of ?results
+</code></pre></div>
+</div>
+<p>When asking whether a gene is differentially expressed we use statistical tests to assign a p-value. If a gene has a p-value of 0.05 we know that there is only a 5% chance that it is not really differentially expressed. However, if we are asking this question for every gene in the genome, then we would expect to see due to multiple comparison, p-values less than 0.05 for many genes even though they are not really differentially expressed. Due to this statistical problem we must correct the p-values so that we are not tricked into accepting a large number of erroneous results. Adjusted p-values are p-values which have been corrected for what is known as multiple hypothesis testing. </p>
+<p>The summary shows us the number of genes with an adjusted p-value &lt; 0.1 that are under or over expressed in one of the groups (log2FoldChange above or below 0, here represented as LFC). The adjusted p-value in the DESeq analysis is equivalent to the FDR or 'False Discovery Rate'. This value represents the proportion of discoveries that we can expect to be false.</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:2"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">Question 8</label><label for="__tabbed_8_2">Answer 8</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Which is the maximum percentage of "false discoveries" that we can expect given a cut off adjusted p-value of 0.1?</p>
+</div>
+<div class="tabbed-block">
+<p>10%</p>
+</div>
+</div>
+</div>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="9:2"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">Question 9</label><label for="__tabbed_9_2">Answer 9</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>How many genes are up and down-regulated with an adjusted p-value &lt; 0.1?</p>
+</div>
+<div class="tabbed-block">
+<p>10 genes are up-regulated. 7 genes are down-regulated.</p>
+</div>
+</div>
+</div>
+</div>
+<p>Some of the p-values in our results might be NA values, which can be due to extreme outliers. To continue with the analysis we are going to remove these missing values.</p>
+<div class="highlight"><pre><span></span><code>res &lt;- res[!is.na(res$padj),]
+</code></pre></div>
+<p>Let's now order the results by p value, so we see the top genes with the highest statistial significance. Take a look at the results again.</p>
+<div class="highlight"><pre><span></span><code>resOrdered &lt;- res[order(res$pvalue),]
+resOrdered
+</code></pre></div>
+<p>To visualise the diffences in expression we are going to plot a heatmap using the 17 genes that are above the cut off. To do it, we will first get the normalised counts in a variable called "counts_heatmap". We will copy the names of the first 17 genes from our "resOrdered" table in a vector, and then extract the normalised counts from "counts_heatmap" for the 17 genes we want to plot.</p>
+<div class="highlight"><pre><span></span><code>counts_heatmap &lt;- counts(dds, normalized = TRUE)
+idx &lt;- rownames(resOrdered)[1:17]
+counts_heatmap &lt;- counts_heatmap[rownames(counts_heatmap)%in%idx,]
+</code></pre></div>
+<p>If we type:</p>
+<div class="highlight"><pre><span></span><code>counts_heatmap
+</code></pre></div>
+<p>We can see the table with the normalised counts for each sample and each of the genes of our interest.</p>
+<div class="admonition terminal">
+<p class="admonition-title">Terminal output</p>
+<div class="highlight"><pre><span></span><code>    Mtb_1_L4_htseq_count.txt Mtb_2_L1_htseq_count.txt
+Rv2159c               1061.02472                16.090459
+Rv2160A                933.18297                 8.045229
+Rv2161c              10927.68994               141.157208
+Rv2162c               8503.01996               550.732527
+Rv2188c               1643.41488               495.147306
+Rv2271                 804.10604              1115.361360
+Rv2274A                 57.43615                68.018758
+Rv2275                2069.55403              1757.516950
+Rv2292c                 54.96577               263.298419
+Rv2338c               1439.60920              3638.637880
+Rv2346c               1742.22976              1260.175491
+Rv2381c               5656.53398              1778.727101
+Rv2382c               2140.57722               623.139593
+Rv2493                2611.18306               308.644258
+Rv2494                1635.38617               244.282423
+Rv2506                 345.23447               993.220149
+Rv2573                  31.49724                71.675681
+        Mtb_3_L1_htseq_count.txt Mtb_4_L4_htseq_count.txt
+Rv2159c                 34.44955               3070.71886
+Rv2160A                 25.05422               1716.06570
+Rv2161c                122.13932              10217.41567
+Rv2162c                685.85926              12248.53695
+Rv2188c                595.03771               3311.94670
+Rv2271                3936.64424                797.08204
+Rv2274A                147.19354                 55.37080
+Rv2275                3592.14872               1232.32231
+Rv2292c                140.92998                 62.66773
+Rv2338c               3335.34297               1310.44236
+Rv2346c                908.21546               2235.00602
+Rv2381c                466.63484               3045.82346
+Rv2382c                654.54148               1449.94245
+Rv2493                 184.77487               2647.49705
+Rv2494                 266.20108               1598.45639
+Rv2506                 494.82084                499.19570
+Rv2573                 112.74399                 57.08773
+        Mtb_5_L1_htseq_count.txt Mtb_6_L4_htseq_count.txt
+Rv2159c                 30.57068               3293.67692
+Rv2160A                 16.98371               1897.27712
+Rv2161c                302.31010              10307.40137
+Rv2162c                577.44627               6142.23638
+Rv2188c                343.07102               4986.18078
+Rv2271                1837.63783                871.00738
+Rv2274A                220.78828                 26.91855
+Rv2275                9847.15722               1075.78064
+Rv2292c                125.67948                 71.62257
+Rv2338c               5896.74541               1217.10303
+Rv2346c                886.54986               8732.18549
+Rv2381c               1895.38245               3401.35112
+Rv2382c                740.48992               1372.36538
+Rv2493                 377.03844               1754.03197
+Rv2494                 261.54919               1206.52789
+Rv2506                1864.81177                392.72242
+Rv2573                 220.78828                 49.03022
+</code></pre></div>
+</div>
+<p>To plot the heatmap copy the following script:</p>
+<div class="highlight"><pre><span></span><code>colnames(counts_heatmap) &lt;- c(&quot;L4_1&quot;,&quot;L1_2&quot;,&quot;L1_3&quot;,&quot;L4_4&quot;,&quot;L1_5&quot;,&quot;L4_6&quot;)
+heatmap.2(as.matrix(counts_heatmap), scale=&quot;row&quot;, col=greenred(75), Rowv=NA, dendrogram = &quot;col&quot;, trace=&quot;none&quot;, density.info = &quot;none&quot;)
+</code></pre></div>
+<p>You should get a plot like this:</p>
+<p><img alt="" src="../../img/rnaseq_6.png" /></p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="10:2"><input checked="checked" id="__tabbed_10_1" name="__tabbed_10" type="radio" /><input id="__tabbed_10_2" name="__tabbed_10" type="radio" /><div class="tabbed-labels"><label for="__tabbed_10_1">Question 10</label><label for="__tabbed_10_2">Answer 10</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Do the samples cluster by lineage in the dendrogram?</p>
+</div>
+<div class="tabbed-block">
+<p>Yes</p>
+</div>
+</div>
+</div>
+</div>
+<p>As you can see in the color key, red cells in the plot represent overexpressed genes whilst green ones the underexpressed genes. Rows represent the 17 genes of interest and columns the 6 samples we are analysing.</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="11:2"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><input id="__tabbed_11_2" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">Question 11</label><label for="__tabbed_11_2">Answer 11</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>How is Rv2493 in lineage 4 samples? And Rv2159c in lineage 1?</p>
+</div>
+<div class="tabbed-block">
+<p>Rv2493 is over expressed in 2 out of 3 lineage 4 samples and Rv2159c is under expressed in all lineage 1 samples</p>
+</div>
+</div>
+</div>
+</div>
+<p>Take a look at the first 5 genes in the plot. As you might assume by the numbers they are located in the genome one after the other. Which potential explanations would you give to their down-regulation in one of the lineages?</p>
+<h2 id="further-exploration">Further exploration</h2>
+<h3 id="what-do-i-do-with-a-gene-list">What do I do with a gene list?</h3>
+<p>As we have just seen, differential expression analysis results is a list of genes which show differences between two conditions. It can be daunting trying to determine what the results mean. On one hand you may find that due to there being no real differences or there being too much noise in your experiment, you have no significant differences. On the other hand, you may find thousands of genes are differentially expressed. What can you say about that?</p>
+<p>Other than looking for genes you expect to be different or unchanged, one of the first things to do is look at Gene Ontology (GO) term enrichment. There are many different algorithms for this, but you should annotate your genes with functional terms from GO using for instance Bast2GO (Conesa et al., 2005) and then use perhaps TopGO (Alexa et al., 2006) to determine whehter any particular sorts of genes occur more than expected in your differentially expressed genes.</p>
+<h2 id="references">References</h2>
+<p>Mortazavi A, Williams BA, McCue K, Schaeffer L, Wold B. (2008). Mapping and quantifying mammalian transcriptomes by RNA-Seq. Nat Methods 5(7):621-8. doi: 10.1038/nmeth.1226</p>
+<p>Wang Z, Gerstein M, Snyder M. (2009). RNA-Seq: a revolutionary tool for transcriptomics. Nat Rev Genet 10(1):57-63. doi: 10.1038/nrg2484</p>
+<p>Cole ST, Brosch R, Parkhill J, Garnier T, Churcher C, Harris D et al. (1998). Deciphering the biology of Mycobacterium tuberculosis from the complete genome sequence. Nature 393(6685):537-44.</p>
+<p>Parwati I, van Crevel R, van Soolingen D. (2010) Possible underlying mechanisms for successful emergence of the Mycobacterium tuberculosis Beijing genotype strains. Lancet Infect Dis 10(2):103-111. doi: 10.1016/S1473-3099(09)70330-5</p>
+<p>Conesa A, Gotz S, Garcia-Gomez JM, Terol J, Talon M, Robles M. (2005) Blast2GO: a universal tool for annotation, visualization and analysis in functional genomics research. Bioinformatics 21(18):3674-6.</p>
+<p>Alexa A, Rahnenfuhrer J, Lengauer T. (2006). Improved scoring of functional groups from gene expression data by decorrelating GO graph structure. Bioinformatics 22(13):1600-7.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.tooltips", "navigation.instant", "navigation.tabs", "toc.integrate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

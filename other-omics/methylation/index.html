@@ -1,0 +1,1535 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../transcriptomics/">
+      
+      
+        <link rel="next" href="../ml/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Methylation - LSHTM Omics</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#methylation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="LSHTM Omics" class="md-header__button md-logo" aria-label="LSHTM Omics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LSHTM Omics
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Methylation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../introduction/intro-to-linux/" class="md-tabs__link">
+          
+  
+  Introduction
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../advanced/phylogenetics/" class="md-tabs__link">
+          
+  
+  Advanced
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../microbiome/" class="md-tabs__link">
+          
+  
+  Other omics
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../additional-info/conda/" class="md-tabs__link">
+          
+  
+  Additional info
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../presentations/presentations/" class="md-tabs__link">
+          
+  
+  Presentations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LSHTM Omics" class="md-nav__button md-logo" aria-label="LSHTM Omics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    LSHTM Omics
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../connecting-github/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting connected
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Introduction
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/intro-to-linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/mapping/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mapping
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/variant-detection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Variant detection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/assembly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assembly
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/task/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Task
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Advanced
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/phylogenetics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Phylogenetics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/third-generation-sequencing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Third Generation Sequencing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/gwas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Genome Wide Association Studies (GWAS)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Other omics
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Other omics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../microbiome/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Microbiomes Practical
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transcriptomics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transcriptomics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Methylation
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Methylation
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objectives
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#genome-assembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      Genome assembly
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methylation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methylation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-1-analysing-motif-summary-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 1: Analysing motif summary reports
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methylation-and-mutations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methylation and mutations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Methylation and mutations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-extracting-sample-specific-mutations" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Extracting sample-specific mutations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-annotating-the-variants" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Annotating the variants
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-customising-output-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Customising output format
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deep learning (Neural Network)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tb-resistance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TB resistance prediction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eqtl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    EQTL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Additional info
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Additional info
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/conda/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conda Environments: Why and How to Use Them
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/software/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Software
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/SettingUpVirtualLinux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Virtual Box: Setting Up Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/faq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Frequently asked questions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Presentations
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Presentations
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../presentations/presentations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Presentations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="methylation">Methylation</h1>
+<h2 id="objectives">Objectives</h2>
+<p>By the end of this practical you should: </p>
+<ul>
+<li>Understand the file formats used to represent methylation data from PacBio technology</li>
+<li>Know how to merge and perform quality control</li>
+<li>Visualise methylation data</li>
+<li>Analyse multi sample BCF files</li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>Over the last few practicals we have dealt with Illlumina and MinION data. Now we are going to have a look at another platform called <strong>Pacific Biosciences Single Molecule Real Time Sequencing</strong> (PacBio SMRT sequencing). This is another third-generation platform which produces long reads, similar to Oxford Nanopore. Like other long-read platforms the error rate is much higher than short-read platforms such as Illumina. As a consequence, the methods required to analyse the data also differ. </p>
+<p>PacBio technology has many applications, but is particularly useful for: </p>
+<ul>
+<li>Genome assembly</li>
+<li>Analysing methylation</li>
+</ul>
+<h2 id="genome-assembly">Genome assembly</h2>
+<p>In the previous practical we looked at using Illumina data to assemble the genome of several M. tuberculosis isolates. Although this helped with reconstructing some of the regions for which mapping doesn't work, it is not perfect. Genome reconstructions are often broken up into many contigs using short read data and are subject to errors in highly repetitive regions. Ultimately, the completeness of the assembly is limited by the length of the read. If the read is shorter than the length of the repeat there is no way of resolving how many copies of the repeat are present. This is where the read length of PacBio comes in handy. </p>
+<p>PacBio produces read lengths averaging 15Kb, with some reads greater than 100Kb in size. For most microbial genomes the read lengths will be much larger than any repeat sequence and therefore this often results in assemblies producing a complete chromosome in one contig. </p>
+<p>With complete genome assemblies, it is possible to identify:</p>
+<ul>
+<li>SNPs</li>
+<li>Small indels</li>
+<li>Large structural variants</li>
+<li>Novel insertions</li>
+</ul>
+<h2 id="methylation_1">Methylation</h2>
+<p>Methylation refers to the mechanism by which methyl groups (CH3) are added to DNA. This is often referred to as epigenetic modification. Methylation of DNA is facilitated by DNA methyltransferases (MTase), which mostly are part of restriction-modification systems. Restriction enzymes cut unmethylated DNA at a specific motifs (recognition sites), while the paired methyltransferase methylates the same motif. Traditionally, DNA methylation in bacteria has been seen as a primitive immune mechanism to fight against invading phages. When a bacterium is invaded by foreign DNA, its restriction enzyme will cut it if the recognition site is present on the DNA, thus neutralising the threat. There is one problem however. The restriction enzyme is not specific to foreign DNA and will also cut its own genome. The solution comes from the MTase. The MTase will methylate the same motif on the bacterium's genome, preventing the restriction enzyme from cutting. </p>
+<p>Although this is an important function of methylation, it is also thought to modulate the binding of other DNA-binding proteins and play a role in gene expression which is important in the interaction of a pathogen with its environment. </p>
+<p>PacBio technology works by recording light signals emitted as a DNA polymerase incorporates fluorescently labelled nucleotides while replicating input DNA. The data from the PacBio platform is stored in a h5 format. This contains information on the base calls and the time it takes to incorporate each base (inter pulse duration). The polymerase takes longer to incorporate nucleotides on methylated input DNA than non-methylated. By comparing the time spent between each incorporation event and comparing it to an in-silico control it is possible to calculate the inter pulse duration ratio (IPD ratio). This makes it possible to detect DNA modification to a single base precision. </p>
+<p>After the location of all methylation sites have been found, the context of these sites are analysed to look for enrichment of particular sequence motifs. If a particular motif is found more than expected by chance, then it is likely a recognition site for an MTase. </p>
+<p><img alt="" src="../../img/methylation_1.jpg" /></p>
+<h2 id="exercise-1-analysing-motif-summary-reports">Exercise 1: Analysing motif summary reports</h2>
+<p>Activate the conda environment, navigate to the methylation practical directory, and take a look at the contents: </p>
+<div class="highlight"><pre><span></span><code>conda activate methylation
+cd ~/data/methylation
+ls
+</code></pre></div>
+<p>There are several files present. We will first take a look at the files ending with <strong>.motif_summary.csv</strong>. We can open these files using excel or a similar program. Linux has an open source package that is quite similar to Excel called <strong>gnumeric</strong>. Let's use it to view the contents of <strong>tb_pb_1.motif_summary.csv</strong>. </p>
+<div class="highlight"><pre><span></span><code>gnumeric tb_pb_1.motif_summary.csv
+</code></pre></div>
+<p>You should now see a spreadsheet containing a number of different columns: </p>
+<ul>
+<li><strong>motifString</strong>: Detected motif sequence for this site such as “GATC”.</li>
+<li><strong>centerPos</strong>: Position in motif of modification (0-based).</li>
+<li><strong>modificationType</strong>: Modification type – a generic tag "modified_base" is used for unidentified bases. For identified bases, m6A, m4C, and m5C are used.</li>
+<li><strong>fraction</strong>: The percent of time this motif is detected as modified in the genome. (Fraction of instances of this motif with modification QV or identification QV above the QV threshold.)</li>
+<li><strong>nDetected</strong>: Number of instances of this motif that are detected as modified. (Number of instances of this motif with modification QV or identification QV above threshold.)</li>
+<li><strong>nGenome</strong>: Number of occurrences of this motif in the reference sequence genome.</li>
+<li><strong>groupTag</strong>: A name identifying the complete double-strand recognition motif. For paired motifs this is “/”, for example “GAGA/TCTC”. For palindromic or unpaired motifs this is the same as motifString.</li>
+<li><strong>partnerMotifString</strong>: motifString of paired motif (motif with reverse-complementary motifString).</li>
+<li><strong>meanScore</strong>: Mean Modification QV of instances of this motif that are detected as modified.</li>
+<li><strong>meanIpdRatio</strong>: Mean IPD ratio of instances of this motif that are detected as modified.</li>
+<li><strong>meanCoverage</strong>: Mean coverage of instances of this motif that are detected as modified.</li>
+<li><strong>objectiveScore</strong>: Score of this motif in the motif finder algorithm. The algorithm considers higher objective scores to be more confidently identified motifs in the genome based on several factors.</li>
+</ul>
+<p>We can see that three unique motifs have been detected (CACGCAG, CTGGAG and CTCCAG). If you look at the second and third motifs you may have noticed that the '<strong>groupTag</strong>' is the same. These sequences are actually palindromic sequences, i.e. the reverse complement of 'CTGGAG' is 'CTCCAG' and vice versa. At these motifs, methylation occurs on both strands of DNA on the same motifs at the A nucleotide. The 'CACGCAG' motif, on the other hand, is only methylated at one position. </p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>Take a look at the fraction column. Is the motif always methylated?
+Is there any relationship between the size of the motif and the number of times it was detected? Why do you think this is? </p>
+</div>
+<p>Using the same method as described above, open up '<strong>tb_pb_3.motif_summary.csv</strong>'. Can you see any new motifs? This isolate has many more motifs that have been reported. You may notice that some motifs use symbols other than the standard nucleotides. The motifs are represented using the IUPAC standard nomenclature for representing nucleotides. For example, in the 'GATNNNNRTAC' motif the <strong>N</strong> represents any nucleotide and the R represents either an A or a G. This means that the MTase which methylates this motif will ignore the 4th-7th positions. </p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Question 1</label><label for="__tabbed_1_2">Answer 1</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>An MTase recognises the motif 'GATNNNNRTAC'. Which of these sequences will it methylate?</p>
+<p>A: CATGTCAATAC</p>
+<p>B: GATGTCAATAC</p>
+<p>C: GATGTCACTAC</p>
+</div>
+<div class="tabbed-block">
+<p>B: GATGTCAATAC</p>
+</div>
+</div>
+</div>
+</div>
+<p>There are several motifs with very low '<strong>fraction</strong>'. If an MTase is active it would be expected to methylate most of the sites in the genome. Motifs with low fraction can potentially represent a false motif. As in variant detection, with these noisy datasets false motifs can be introduced. </p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>Take a look at the '<strong>meanScore</strong>' column. Are they all similar values? Do you see any relationship between '<strong>fraction</strong>' and '<strong>meanScore</strong>'? </p>
+</div>
+<p>We can use the '<strong>meanScore</strong>' column to filter out false motifs. Take a look at a few more <strong>.motif_summary.csv</strong> files and see if you can find any overlaps between the motifs found. </p>
+<p>We can visualise the methylation by plotting the IPD ratio against the motif position. To do this we must: </p>
+<ol>
+<li>Find the locations of the motif in the genome</li>
+<li>Extract the IPD ratio for each motif base in the genome</li>
+<li>Plot the IPD ratio against the position in the motif</li>
+</ol>
+<p>The modifications and motifs pipeline also provides a CSV file containing all the positions in the genome as rows and several columns of information for each position (including the IPD ratio). Take a look at an example: </p>
+<div class="highlight"><pre><span></span><code>zcat tb_pb_14.ipd.csv | head
+</code></pre></div>
+<p>This is a very large file, so we can't open it with <code>gnumeric</code>. The first few lines should look like the example below. </p>
+<div class="admonition terminal">
+<p class="admonition-title">Terminal output</p>
+<div class="highlight"><pre><span></span><code>refName,tpl,strand,base,score,tMean,tErr,modelPrediction,ipdRatio,coverage,frac,fracLow,fracUp
+&quot;WBB445_ARS7496|quiver&quot;,1,0,T,2,0.644,0.189,0.696,0.926,7,,,
+&quot;WBB445_ARS7496|quiver&quot;,1,1,A,0,0.576,0.204,0.882,0.653,8,,,
+&quot;WBB445_ARS7496|quiver&quot;,2,0,T,6,0.766,0.264,0.597,1.283,8,,,
+&quot;WBB445_ARS7496|quiver&quot;,2,1,A,5,0.927,0.237,0.804,1.153,8,,,
+&quot;WBB445_ARS7496|quiver&quot;,3,0,G,7,1.231,0.589,0.689,1.788,9,,,
+&quot;WBB445_ARS7496|quiver&quot;,3,1,C,1,0.425,0.169,0.554,0.768,8,,,
+&quot;WBB445_ARS7496|quiver&quot;,4,0,A,1,0.919,0.260,1.275,0.720,9,,,
+&quot;WBB445_ARS7496|quiver&quot;,4,1,T,1,0.428,0.192,0.696,0.615,9,,,
+&quot;WBB445_ARS7496|quiver&quot;,5,0,C,6,0.936,0.277,0.722,1.296,9,,,
+</code></pre></div>
+</div>
+<p>We will use the <code>analyse_motif_ipd.py</code> script to extract the IPD ratios from this file. We need to provide 1) the ipd.csv file, 2) the motif you would like to analyse and 3) the genome assembly for the sample (to find the motif locations). Let's analyse the 'CTCCAG' motif for tb_pb_14 and tb_pb_16: </p>
+<div class="highlight"><pre><span></span><code>python analyse_motif_ipd.py tb_pb_14.ipd.csv.gz CTCCAG tb_pb_14.assembly.fa
+python analyse_motif_ipd.py tb_pb_16.ipd.csv.gz CTCCAG tb_pb_16.assembly.fa 
+</code></pre></div>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>The script will output the number of times the motif was found in the genome. Why do you think there are differences? </p>
+</div>
+<p>Now we can visualise this with the <code>plot_ipd.R</code> script. We need to provide 1) the sample names, 2) the motif we are analysing and 3) the output file. The output will be in PDF format. </p>
+<div class="highlight"><pre><span></span><code>Rscript plot_ipd.R tb_pb_14,tb_pb_16 CTCCAG CTCCAG.pdf
+</code></pre></div>
+<p>Using the file browser, locate the PDF file ~/data/methylation/. Double click on the CTCCAG.pdf file and it should open in a PDF viewer program. You should be able to see a figure similar to the one below. </p>
+<p><img alt="" src="../../img/methylation_2.jpg" /></p>
+<p>You should be able to see that tb_pb_16 has elevated IPD ratios (indicating methylation) on the 5th position of the motif while tb_pb_14 does not. Check to see if this is concordant with the motif_summary CSV files for these samples. </p>
+<p>We will now create the same plot for the 'GTAYNNNNATC' motif for samples tb_pb_1 and tb_pb_4. </p>
+<div class="highlight"><pre><span></span><code>python analyse_motif_ipd.py tb_pb_2.ipd.csv.gz GTAYNNNNATC tb_pb_2.assembly.fa
+python analyse_motif_ipd.py tb_pb_16.ipd.csv.gz GTAYNNNNATC tb_pb_16.assembly.fa
+Rscript plot_ipd.R tb_pb_16,tb_pb_2 GTAYNNNNATC GTAYNNNNATC.pdf
+</code></pre></div>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Question 2</label><label for="__tabbed_2_2">Answer 2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Which sample has evidence for methylation at the 'GATNNNNRTAC' motif.</p>
+</div>
+<div class="tabbed-block">
+<p>Sample tb_pb_16. There are elevated IPD ratios on the third position (A).</p>
+</div>
+</div>
+</div>
+</div>
+<p><strong>Finally try to follow to same commands to visualise the methylation at 'CACGCAG' for samples tb_pb_16 and tb_pb_2.</strong></p>
+<p>Let's try and combine all the individual datasets into a merged dataset. We have created a script to take the CSV files and create a matrix where the rows represent samples, the columns represent motifs and the cells represents the fraction that the motif is methylated in a particular sample. It takes an input file with the names of all the CSV files which we must first create. </p>
+<p>To do this we can run the following command: </p>
+<div class="highlight"><pre><span></span><code>ls *.motif_summary.csv &gt; files.txt
+</code></pre></div>
+<p>Take a look at the file you just created by running <code>head files.txt</code>.</p>
+<p>It should look something like this: </p>
+<div class="admonition terminal">
+<p class="admonition-title">Terminal output</p>
+<div class="highlight"><pre><span></span><code>tb_pb_1.motif_summary.csv
+tb_pb_10.motif_summary.csv
+tb_pb_11.motif_summary.csv
+tb_pb_12.motif_summary.csv
+tb_pb_13.motif_summary.csv
+tb_pb_14.motif_summary.csv
+tb_pb_15.motif_summary.csv
+tb_pb_16.motif_summary.csv
+tb_pb_17.motif_summary.csv
+tb_pb_2.motif_summary.csv
+</code></pre></div>
+</div>
+<p>We can now pass this file to the <code>combine_motifs.py</code> script: </p>
+<div class="highlight"><pre><span></span><code>python combine_motifs.py files.txt unfiltered_motifs.csv
+</code></pre></div>
+<p>Take a look at the '<strong>unfiltered_motifs.csv</strong>' file using <strong>gnumeric</strong>. There are many motifs which are present in only one sample. These likely represent noise in the data and should be filtered out. Rerun the command with a quality filter: </p>
+<div class="highlight"><pre><span></span><code>python combine_motifs.py files.txt filtered_motifs.csv --min_qual 60
+</code></pre></div>
+<p>We have specified the minimum QV of the motif to be 60. Take a look at the filtered_motifs.csv file using gnumeric and look at the difference. You should now have 5 motifs. This will serve as our final high-quality list of motifs.</p>
+<p>It is evident that some samples have methylation on certain motifs while others do not. We will now try to understand if there is a particular pattern to the methylation seen in the data. The methylation pattern can either be random or specific to a certain strain. To do this we will reconstruct the phylogeny and overlay the methylation information.</p>
+<p>Using the same raw data and the SMRT portal analysis suite we have generated whole genome assemblies for the samples. These were then aligned to the reference and variants were called. The variants from all the samples were merged to a single FASTA formatted file. We can use this file to create the phylogenetic tree. Try to remember the command to create the tree and run it in the terminal using 'pacbio.<abbr title="A format used to store sequence data">fasta</abbr>' as the input <abbr title="A format used to store sequence data">fasta</abbr> and 'pacbio.ML' as the output name. If you need the solution click on the button below. </p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Task 1</label><label for="__tabbed_3_2">Solution 1</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Create a phylogenetic free using the pacbio.<abbr title="A format used to store sequence data">fasta</abbr> file as input.</p>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>iqtree -m GTR+G -s pacbio.fasta -bb 1000
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<p>Open up the tree by launching <code>figtree</code>. Open the tree by clicking on <strong>Open...</strong> and selecting the 'RAxML_bestTree.pacbio.ML' tree. Midpoint root the tree by selecting <strong>Midpoint Root</strong> from the <strong>Tree</strong> menu. Finally, we will load annotations allowing figtree to display which samples do or don't have methylation. Select <strong>Import annotations...</strong> from the <strong>File</strong> menu and select the '<strong>filtered_motifs.tsv</strong>' file. This file was created during the merging step and is simply a tab-separated file with the rows being samples and the columns being motifs. The values in the file are either <strong>0</strong> (representing absence of methylation) or <strong>1</strong> (representing presence of methylation). </p>
+<p>Once the file has been loaded, we can colour the tips by selecting a motif sequence from the 'Colour by' dropdown on the 'Tip labels' panel (shown below). Samples for which methylation is absent will be coloured red. </p>
+<p><a href="../../img/methylation_3.jpg"></a></p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>Look at the different methylation patterns by colouring the tips. Is it random? </p>
+</div>
+<h2 id="methylation-and-mutations">Methylation and mutations</h2>
+<p>Methylation in the five motifs has been linked to the following genes: </p>
+<table>
+<thead>
+<tr>
+<th>Motif</th>
+<th>Genes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CTCCAG/CTGGAG</td>
+<td>mamA</td>
+</tr>
+<tr>
+<td>GTAYNNNNATC/GATNNNNRTAC</td>
+<td>hdsS.1, hsdM and hsdS</td>
+</tr>
+<tr>
+<td>CACGCAG</td>
+<td>mamB</td>
+</tr>
+</tbody>
+</table>
+<p>Loss of function mutations in MTases can lead to the absence of methylation. We are going to take a look at the CTCCAG/CTGGAG motif which is methylated by the mamA MTase. This protein is encoded by the Rv3263 gene. The methylation pattern it shown on the tree below: </p>
+<p><a href="../../img/methylation_4.jpg"></a></p>
+<p>The 'filtered_motifs.csv' file and the phylogenetic tree indicates that three of the samples have no methylation on the motif (tb_pb_10, tb_pb_11 and tb_pb_14). There are a few scenarios which may be possible: </p>
+<ol>
+<li>The isolates all have the same variant which has evolved convergently (where the same mutation has appeared multiple times independently on the tree).</li>
+<li>The isolates all have different mutations</li>
+<li>Some isolates share a common mutation</li>
+</ol>
+<p>The variants found by aligning the whole genome assemblies to the reference are stored in the multi-sample VCF file 'pacbio.vcf.gz'. We will use bcftools to process this file and extract the relevant information we need . </p>
+<h3 id="1-extracting-sample-specific-mutations">1. Extracting sample-specific mutations</h3>
+<p>The first thing we need to do is extract variants which are only present in the three samples. We can do this using the bcftools view command. First let find out how many variants are present in the VCF file: </p>
+<div class="highlight"><pre><span></span><code>bcftools view pacbio.vcf.gz -H | wc -l
+</code></pre></div>
+<p>The command can be broken down into several parts: </p>
+<ul>
+<li><code>bcftools view pacbio.vcf.gz</code>: allows to view contents of the VCF file</li>
+<li><code>-H</code>: This flag prevents header lines present in the file to be output</li>
+<li><code>|</code>: The pipe passes the output from whatever command was written before it and passes it to the next.</li>
+<li><code>wc -l</code>: This command counts the number of lines which are passed to it</li>
+</ul>
+<p>After running the command we should see an output of 9229, i.e. 9229 variants are present across all samples. We will now add two more parameters to the command. We select only variants present in a select number of samples using the -s flag. We can also restrict our analysis to variants which are present exclusively in our samples using the -x flag. The command will be the following: </p>
+<div class="highlight"><pre><span></span><code>bcftools view pacbio.vcf.gz -H  -s tb_pb_10,tb_pb_14,tb_pb_11 -x | wc -l
+</code></pre></div>
+<p>The command will now count 780 variants. </p>
+<h3 id="2-annotating-the-variants">2. Annotating the variants</h3>
+<p>In order to narrow down the number of variants we need to narrow down out search to only variants in the Rv3263 gene. The VCF file currently only contains information on the position of the variants on the chromosome but no information about genes. We can use <code>snpEff</code> to perform the annotation: </p>
+<div class="highlight"><pre><span></span><code>bcftools view pacbio.vcf.gz -s tb_pb_10,tb_pb_14,tb_pb_11 -x | snpEff ann Mycobacterium_tuberculosis_h37rv  -no-upstream -no-downstream | grep Rv3263
+</code></pre></div>
+<p>We have dropped the -H as we are no longer counting lines and the header is needed by the next command. The following new parts have been added:</p>
+<ul>
+<li><code>snpEff ann</code>: This snpEff function annotates a VCF file</li>
+<li><code>Mycobacterium_tuberculosis_h37rv</code>: Provides the database with annotations. There are many different databases available for different organisms. The full list can be seen by running <code>snpEff databases</code></li>
+<li><code>-no-upstream -no-downstream</code>: This flag prevents the annotation of variants which are upstream or downstream of a gene</li>
+<li><code>grep Rv3263</code>: Looks for lines containing 'Rv3263' and prints them</li>
+</ul>
+<p>We can see this command prints out a number of lines. The last two lines represent two variants in VCF format:</p>
+<div class="admonition terminal">
+<p class="admonition-title">Terminal output</p>
+<div class="highlight"><pre><span></span><code>Chromosome      3643985 .       A       C       225.0   PASS    VDB=0.702241;SGB=-0.693147;MQSB=0.911099;MQ0F=0;MQ=57;DP=308;DP4=0,0,150,158;MinDP=28;AN=6;AC=4;ANN=C|missense_variant|MODERATE|Rv3263|Rv3263|transcript|CCP46082|protein_coding|1/1|c.809A&gt;C|p.Glu270Ala|809/1662|809/1662|270/553||      GT:DP:PL:AD     1/1:144:255,255,0:0,144    1/1:164:255,255,0:0,164 0/0:117:.:.
+Chromosome      3644554 .       G       A       225.0   PASS    VDB=0.847222;SGB=-0.693147;MQSB=0.91807;MQ0F=0;MQ=57;DP=145;DP4=0,0,75,70;MinDP=14;AN=6;AC=2;ANN=A|missense_variant|MODERATE|Rv3263|Rv3263|transcript|CCP46082|protein_coding|1/1|c.1378G&gt;A|p.Ala460Thr|1378/1662|1378/1662|460/553||      GT:DP:PL:AD     0/0:14:.:.0/0:121:.:.      1/1:145:255,255,0:0,145
+</code></pre></div>
+</div>
+<h3 id="3-customising-output-format">3. Customising output format</h3>
+<p>This format can be a little difficult to understand so the last part we will add to this command will translate this to a more readable format:</p>
+<div class="highlight"><pre><span></span><code>bcftools view pacbio.vcf.gz -s tb_pb_10,tb_pb_14,tb_pb_11 -x | snpEff ann Mycobacterium_tuberculosis_h37rv  -no-upstream -no-downstream | bcftools query -f &#39;[%POS\t%SAMPLE\t%ANN\n]&#39; | grep Rv3263
+</code></pre></div>
+<p>We have moved the grep command to the end and added in the following parameters:</p>
+<ul>
+<li><code>bcftools query</code>: This command allows conversion of VCF into custom formats</li>
+<li><code>-f '[%POS\t%SAMPLE\t%ANN\n]'</code>: This specifies the format we want (Position, Sample name and annotations)</li>
+</ul>
+<div class="admonition terminal">
+<p class="admonition-title">Terminal output</p>
+<div class="highlight"><pre><span></span><code>3643985 tb_pb_10        1/1     C|missense_variant|MODERATE|Rv3263|Rv3263|transcript|CCP46082|protein_coding|1/1|c.809A&gt;C|p.Glu270Ala|809/1662|809/1662|270/553||
+3643985 tb_pb_14        1/1     C|missense_variant|MODERATE|Rv3263|Rv3263|transcript|CCP46082|protein_coding|1/1|c.809A&gt;C|p.Glu270Ala|809/1662|809/1662|270/553||
+3643985 tb_pb_11        0/0     C|missense_variant|MODERATE|Rv3263|Rv3263|transcript|CCP46082|protein_coding|1/1|c.809A&gt;C|p.Glu270Ala|809/1662|809/1662|270/553||
+3644554 tb_pb_10        0/0     A|missense_variant|MODERATE|Rv3263|Rv3263|transcript|CCP46082|protein_coding|1/1|c.1378G&gt;A|p.Ala460Thr|1378/1662|1378/1662|460/553||
+3644554 tb_pb_14        0/0     A|missense_variant|MODERATE|Rv3263|Rv3263|transcript|CCP46082|protein_coding|1/1|c.1378G&gt;A|p.Ala460Thr|1378/1662|1378/1662|460/553||
+3644554 tb_pb_11        1/1     A|missense_variant|MODERATE|Rv3263|Rv3263|transcript|CCP46082|protein_coding|1/1|c.1378G&gt;A|p.Ala460Thr|1378/1662|1378/1662|460/553||
+</code></pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The 3rd column is the genotype of the sample. Each sample will have a genotype entry for each variant. A value of 0/0 means  reference, and 1/1 means alternate. We can select only samples with an alternate genotype by using the command. Try adding <code>| awk '$3=="1/1"'</code> to the end of the command.</p>
+</div>
+<p>From the output (above) we can see that tb_pb_10 and tb_pb_14 both have the same mutation (270E&gt;270A) while tb_pb_11 has a different mutation (460A&gt;460T). These mutations are good candidates to take towards functional studies to validate the loss of function effect on the MTase.</p>
+<p>You should now know how to analyse and interpret data from the PacBio platform and take it all the way to discovering interesting mutations using BCFtools. This is the end of the practical, but if you want more practice you can try find candidate mutations for the other motifs. Good luck! </p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.tooltips", "navigation.instant", "navigation.tabs", "toc.integrate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

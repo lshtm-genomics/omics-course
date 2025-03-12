@@ -1,0 +1,1753 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../mapping/">
+      
+      
+        <link rel="next" href="../assembly/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Variant detection - LSHTM Omics</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#variant-detection" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="LSHTM Omics" class="md-header__button md-logo" aria-label="LSHTM Omics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LSHTM Omics
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Variant detection
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../intro-to-linux/" class="md-tabs__link">
+          
+  
+  Introduction
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../advanced/phylogenetics/" class="md-tabs__link">
+          
+  
+  Advanced
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../other-omics/microbiome/" class="md-tabs__link">
+          
+  
+  Other omics
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../additional-info/conda/" class="md-tabs__link">
+          
+  
+  Additional info
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../presentations/presentations/" class="md-tabs__link">
+          
+  
+  Presentations
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LSHTM Omics" class="md-nav__button md-logo" aria-label="LSHTM Omics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    LSHTM Omics
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../connecting-github/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Getting connected
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Introduction
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro-to-linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mapping/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mapping
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Variant detection
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Variant detection
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#snp-detection-and-calling" class="md-nav__link">
+    <span class="md-ellipsis">
+      SNP detection and calling
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SNP detection and calling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-1-identifying-single-nucleotide-polymorphisms-snps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 1: Identifying Single Nucleotide Polymorphisms (SNPs)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-2-calling-snps-and-short-indels-using-sambcftools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 2: Calling SNPs and short indels using SAM/BCFtools
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-3-calling-snps-and-short-indels-using-gatk" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 3: Calling SNPs and short indels using GATK
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-4-visualisation-of-variants-in-vcf-files-using-igv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 4: Visualisation of variants (in VCF files) using IGV
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vcf-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      VCF format
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drug-resistance-in-mycobacterium-tuberculosis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drug resistance in Mycobacterium tuberculosis
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#large-structural-variant-sv-detection-and-calling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Large structural variant (SV) detection and calling
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Large structural variant (SV) detection and calling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-5-sv-detection-using-discordant-paired-end-mapping-pem-and-split-read-approaches-delly-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 5: SV detection using discordant paired-end mapping (PEM) and split read approaches (Delly software)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-6-visualisation-of-predicted-structural-variants-using-igv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 6: Visualisation of predicted structural variants using IGV
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assembly/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assembly
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../task/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Task
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Advanced
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/phylogenetics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Phylogenetics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/third-generation-sequencing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Third Generation Sequencing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced/gwas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Genome Wide Association Studies (GWAS)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Other omics
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Other omics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other-omics/microbiome/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Microbiomes Practical
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other-omics/transcriptomics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transcriptomics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other-omics/methylation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Methylation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other-omics/ml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Deep learning (Neural Network)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other-omics/tb-resistance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TB resistance prediction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other-omics/eqtl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    EQTL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Additional info
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Additional info
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/conda/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Conda Environments: Why and How to Use Them
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/software/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Software
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/SettingUpVirtualLinux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Virtual Box: Setting Up Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/faq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Frequently asked questions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Presentations
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Presentations
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../presentations/presentations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Presentations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="variant-detection">Variant detection</h1>
+<h2 id="introduction">Introduction</h2>
+<p>New sequencing technologies are mostly used for re-sequencing, namely when a well-assembled reference genome from the same organism or one very similar is available. Instead of assembling the reads to produce a new genome sequence, re-sequencing projects aim to compare the sampled genome with the reference by read mapping. Short read alignment was considered in the previous practical. Here, we will focus on downstream analyses aiming to identify Single Nucleotide Polymorphisms (SNPs), insertions and deletions (indels) and large structural variants (SVs) in the sequenced sample.</p>
+<p>Most of the software for variant detection and calling require alignment files (e.g. BAM format) as input. We will be using samtools/bcftools and GATK for SNP and small indel discovery.</p>
+<p>Historically, structural variation refers to relatively large polymorphisms that alter the chromosome structure. Indels belong to this group of genetic variation. Among the early methods for discovering structural variants (SVs), whole-genome array comparative hybridisation (Carter<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>) and SNP arrays (Cooper<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>) have been successfully applied despite their resolution limitations.</p>
+<p>The advent of high-throughput sequencing platforms has opened new possibilities in this area. New tools have been developed to detect unusual patterns of reads, or pairs of reads, left by SVs. Such signatures can be broadly grouped into three categories of signature: discordant mapping of read pairs, read splitting, and depth of coverage. SV detection programs implement algorithms aiming to identify such signatures, or combinations of them, from sequence alignment files (Medvedev<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>).</p>
+<h2 id="snp-detection-and-calling">SNP detection and calling</h2>
+<p>Some differences between the reference and the mapped reads are due to sequencing errors. By definition, a quality score of 30 (Q30), refers to, on average, 1 in every 1000 bases in the reads is expected to be incorrect (Q20 1/100, Q40 1/10000 etc.). Nevertheless, the high depth of coverage achieved by current sequencing platforms SNPs can be distinguished from sequencing errors. True SNPs are expected to be shown as mismatches occurring consistently across multiple reads at the same reference position, whereas mismatches found at spurious locations are likely to be caused by sequencing errors. SNP calling tools make use of this fact to calculate statistical significance and filter out false positives.</p>
+<h3 id="exercise-1-identifying-single-nucleotide-polymorphisms-snps">Exercise 1: Identifying Single Nucleotide Polymorphisms (SNPs)</h3>
+<p>Activate the relevant <code>conda</code> environment and open up a new session of <code>igv</code>:</p>
+<div class="highlight"><pre><span></span><code>conda activate day1
+igv
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>You can list all installed environments with <code>conda env list</code>.</p>
+</div>
+<ol>
+<li>Click "Genomes" on the top menu bar followed by "Load Genome From File...". Select the reference <abbr title="A format used to store sequence data">fasta</abbr> file at "~/data/tb/tb.<abbr title="A format used to store sequence data">fasta</abbr>".</li>
+<li>Click "File" on the top menu bar followed by "Load From File...". Select the genome annotation file at "~/data/tb/tb.gff".</li>
+<li>Click "File" on the top menu bar followed by "Load From File...". Select the bam file for sample 1 at "~/data/tb/sample1.bam".</li>
+</ol>
+<p>We are going to check at positions 187,503 and 587,585 in the genome. To zoom into a position in the genome you have to input the location into the search bar in the format of <strong>Chromosome:position</strong> or <strong>Chromosome:start-end</strong> if you want to visualise a range. For example - to go to position 187,503 type in <strong>Chromosome:187503</strong> and hit <span class="keys"><kbd class="key-enter">Enter</kbd></span>. You should see an image similar to the one below.</p>
+<p><img alt="variants_2" src="../../img/variants_2.png" /></p>
+<div class="admonition question">
+<p class="admonition-title">Exercise</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Question 1</label><label for="__tabbed_1_2">Answer 1</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>What does the coverage and alignment track show you? Do you think there is a SNP in this position?
+Go to position 587,585 and check if we have any variants.</p>
+</div>
+<div class="tabbed-block">
+<p>You should be able to see that almost all the reads have a different nucleotide from the reference at potision <strong>187,503</strong> so we can conclude that we have a SNP here.
+For position <strong>587,585</strong> it is a bit more complicated. You might notice that we have both the reference and alternate alleles at this position. Further, it looks like all alternate alleles are located at the very end of reads and alsways in the reads going in the same direction. This is most likely an artefact of alignment and not a real variant.</p>
+<p><img alt="variants_3" src="../../img/variants_3.png" /></p>
+</div>
+</div>
+</div>
+</div>
+<h3 id="exercise-2-calling-snps-and-short-indels-using-sambcftools">Exercise 2: Calling SNPs and short indels using SAM/BCFtools</h3>
+<p>In previous exercises raw reads were mapped onto the reference genome using BWA (Li<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>) for several Mtb samples, resulting in alignment files of BAM format. The combination of SAMtools (Li<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup>) and BCFtools (Danecek<sup id="fnref:6"><a class="footnote-ref" href="#fn:6">6</a></sup>) is a widely established approach to call SNPs and small indels (Li<sup id="fnref2:4"><a class="footnote-ref" href="#fn:4">4</a></sup>). SAMtools gathers information from input BAM files and computes the likelihood of each possible genotype. BCFtools takes SAMtools output and performs the actual genotype calling. Results are stored in files of VCF format (Variant Call Format).</p>
+<p>We had an insight into the SNP detection in the previous practical, using a single c. Let us start by looking at again at bcftools mpileup command options that we will need to change to optimise SNP calling.</p>
+<p>Open up a new terminal window and type:</p>
+<div class="highlight"><pre><span></span><code>bcftools mpileup
+</code></pre></div>
+<p>Table 1 Some bcftools mpileup parameters.</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-C</td>
+<td>INT</td>
+<td>0</td>
+<td>Coefficient for downgrading mapping quality for reads containing excessive mismatches. Given a read with a phred-scaled probability q of being generated from the mapped position, the new mapping quality is about sqrt((INT-q)/INT)*INT. A zero value disables this functionality; if enabled, the recommended value for BWA is 50.</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>INT</td>
+<td>250</td>
+<td>Max per-BAM depth to avoid excessive memory usage.</td>
+</tr>
+<tr>
+<td>-f</td>
+<td>FILE</td>
+<td>null</td>
+<td>The faidx-indexed reference file in the FASTA format. The file can be optionally compressed by gzip.</td>
+</tr>
+<tr>
+<td>-q</td>
+<td>INT</td>
+<td>0</td>
+<td>Minimum mapping quality for an alignment to be used.</td>
+</tr>
+<tr>
+<td>-Q</td>
+<td>INT</td>
+<td>13</td>
+<td>Minimum base quality for a base to be considered.</td>
+</tr>
+</tbody>
+</table>
+<p>Read through the following command (we will execute them later):</p>
+<div class="highlight"><pre><span></span><code># bcftools mpileup -B -Q 23 -d 2000 -C 50 -f ~/data/tb/tb.fasta ~/data/tb/sample1.bam
+</code></pre></div>
+<p>Note that we are considering many more reads (depth) per position (-d) and imposing more strict quality thresholds (-Q). bcftools mpileup output must be piped to the bcftools call command, the second step in SNP calling. To display all available parameters type:</p>
+<div class="highlight"><pre><span></span><code>bcftools call
+</code></pre></div>
+<p>There is no need to understand every single parameter; the options we will need to use are listed in Table 2.</p>
+<p>Table 2 Some bcftools call parameters.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>File Format Options</td>
+<td>--ploidy</td>
+<td>Predefined ploidy of the organism/data.</td>
+</tr>
+<tr>
+<td>Input/Output Options</td>
+<td>-A</td>
+<td>Keep all possible alternate alleles at variant sites.</td>
+</tr>
+<tr>
+<td></td>
+<td>-f</td>
+<td>Output format fields.</td>
+</tr>
+<tr>
+<td></td>
+<td>-V</td>
+<td>Skip indels/snps.</td>
+</tr>
+<tr>
+<td></td>
+<td>-v</td>
+<td>Output variant sites only.</td>
+</tr>
+<tr>
+<td>Consensus/variant Calling Options</td>
+<td>-c</td>
+<td>The original calling method (conflicts with -m)</td>
+</tr>
+<tr>
+<td></td>
+<td>-m</td>
+<td>Alternative model for multiallelic and rare-variant calling.</td>
+</tr>
+<tr>
+<td></td>
+<td>-n</td>
+<td>Likelihood of novel mutation for constrained trio calling (conflicts with –c).</td>
+</tr>
+<tr>
+<td></td>
+<td>-p</td>
+<td>Variant if P(ref|D)</td>
+</tr>
+<tr>
+<td></td>
+<td>-P</td>
+<td>Mutation rate (use bigger for greater sensitivity) use qith –m [1.1 e-3].</td>
+</tr>
+</tbody>
+</table>
+<p>The complete bcftools call command would be as follows (it will be run later):</p>
+<div class="highlight"><pre><span></span><code># bcftools call –m –v –O v &gt; sample1.raw.vcf
+</code></pre></div>
+<p>Having understood bcftools mpileup and bcftools call parameters, we can combine both instructions to perform SNP and short indel calling as follows:</p>
+<div class="highlight"><pre><span></span><code>mkdir ~/data/tb/variants
+cd ~/data/tb/variants/
+bcftools mpileup -B -Q 23 -d 2000 -C 50 -f ~/data/tb/tb.fasta ~/data/tb/sample1.bam | bcftools call --ploidy 1 -m -v -O v - &gt; sample1.raw.vcf
+</code></pre></div>
+<p>As we saw in the Introduction to Linux Practical the character ‘|’ is used to ‘pipe’ bcftools mpileup output into bcftools call as input. We can further filter the resulting variant calls using the vcfutils varFilter command, which like bcftools, is installed as part of the samtools package. Parameters within this tool can be reviewed when executing:</p>
+<div class="highlight"><pre><span></span><code>vcfutils.pl varFilter
+</code></pre></div>
+<div class="admonition terminal">
+<p class="admonition-title">Terminal output</p>
+<div class="highlight"><pre><span></span><code>Usage:   vcfutils.pl varFilter [options] 
+
+Options: -Q INT    minimum RMS mapping quality for SNPs [10]
+        -d INT    minimum read depth [2]
+        -D INT    maximum read depth [10000000]
+        -a INT    minimum number of alternate bases [2]
+        -w INT    SNP within INT bp around a gap to be filtered [3]
+        -W INT    window size for filtering adjacent gaps [10]
+        -1 FLOAT  min P-value for strand bias (given PV4) [0.0001]
+        -2 FLOAT  min P-value for baseQ bias [1e-100]
+        -3 FLOAT  min P-value for mapQ bias [0]
+        -4 FLOAT  min P-value for end distance bias [0.0001]
+        -e FLOAT  min P-value for HWE (plus F&lt;0) [0.0001]
+        -p        print filtered variants
+
+Nb: Some of the filters rely on annotations generated by SAMtools/BCFtools.
+</code></pre></div>
+</div>
+<p>The <code>-D</code> option of varFilter controls the maximum read depth, which should be adjusted at least to approximately twice the average read depth. Finally, type the following commands to obtain a high quality set of variants in VCF format:</p>
+<div class="highlight"><pre><span></span><code>cat sample1.raw.vcf | vcfutils.pl varFilter -d 10 -D 2000 &gt; sample1.filt.vcf
+</code></pre></div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Run the code above for sample2. The bam has already been preprocessed so all you have to do is replace “sample1” in the command with “sample2”.</p>
+</div>
+<h3 id="exercise-3-calling-snps-and-short-indels-using-gatk">Exercise 3: Calling SNPs and short indels using GATK</h3>
+<p>The Genome Analysis Toolkit (GATK) includes a wide variety of tools, with a primary focus on variant discovery and genotyping. The standard GATK data processing pipeline starts by applying the HaplotypeCaller to identify variable sites with respect to the reference. HaplotypeCaller will be set up by default to work on diploid organisms, therefore we will use the <code>--ploidy 1</code> for bacterial genomes like Mycobacterium tuberculosis. We will run GATK for SNPs and small indel calling to complement samtools/bcftools output.</p>
+<p>Run the following two commands to call SNPs and indels using GATK instead of Samtools:</p>
+<div class="highlight"><pre><span></span><code>cd ~/data/tb/variants/
+gatk HaplotypeCaller -R ~/data/tb/tb.fasta -I ~/data/tb/sample1.bam -O sample1.gatk.raw.vcf -ploidy 1
+</code></pre></div>
+<p>Be sure to read the output to make sure that the sample1.gatk.raw.vcf file has been created correctly.</p>
+<h3 id="exercise-4-visualisation-of-variants-in-vcf-files-using-igv">Exercise 4: Visualisation of variants (in VCF files) using IGV</h3>
+<p>We can open the resulting VCF files within the terminal window with the more (or less or head or cat) command:</p>
+<div class="highlight"><pre><span></span><code>less sample1.filt.vcf
+</code></pre></div>
+<div class="admonition terminal">
+<p class="admonition-title">Terminal output</p>
+<p>The output should look like this:
+<div class="highlight"><pre><span></span><code>#CHROM  POS ID  REF ALT QUAL    FILTER  INFO    FORMAT  sample1
+Chromosome  1595    .   G   T   58  .   DP=16;VDB=1.106034e-02;RPB=2.849794e+00;AF1=0.5;AC1=1;DP4=8,4,2,2;MQ=39;FQ=61
+;PV4=0.6,0.11,1,0.027   GT:PL:GQ    0/1:88,0,202:91
+Chromosome  1849    .   C   A   222 .   DP=148;VDB=3.647138e-01;AF1=1;AC1=2;DP4=0,0,77,66;MQ=44;FQ=-282 GT:PL:GQ    1/1:255,255,0:99
+Chromosome  1977    .   A   G   222 .   DP=70;VDB=1.915965e-02;AF1=1;AC1=2;DP4=0,0,14,54;MQ=44;FQ=-232  GT:PL:GQ    1/1:255,205,0:99
+</code></pre></div></p>
+</div>
+<p>Press <span class="keys"><kbd class="key-enter">Enter</kbd></span> to scroll down to the end of the file or ‘q’ to exit back to the prompt.</p>
+<h3 id="vcf-format">VCF format</h3>
+<p>VCF (Variant Call Format) is a text file format employed to store genetic variation with respect to a reference genome. It contains meta-information lines (beginning with ##), a header line (starting with #) and then data lines each containing information about a variable position in the genome. All variants, including SNPs and indels, are defined by the chromosome (CHROM), position (base pairs) in the reference genome (POS), ID, reference allele (REF), alternative allele (ALT) and a quality score for the detected variant (QUAL). The FILTER field contains information about the filters applied, and INFO gathers additional information. A detailed description of VCF format specification can be found at: <a href="http://samtools.github.io/hts-specs/VCFv4.3.pdf">http://samtools.github.io/hts-specs/VCFv4.3.pdf</a></p>
+<p>VCF files can be opened and visualised in genome browsers such as IGV.</p>
+<p>Launch an IGV instances as before (or use the same one if you kept it open) and load sample1.bam and sample2.bam in each of them as explained in Exercise 1.</p>
+<p>In the menu bar, select <strong>Load From File...</strong> and select the VCF files in ~/data/tb/variants for both samples(i.e. sample1.filt.vcf and sample2.filt.vcf).</p>
+<p>Then the SNPs should appear in the VCF track above the reads panel as shown below. On the other hand, sequencing errors are not called SNPs at those positions.
+Making use of search bar to visit the two regions we visited in Exercise 1 (containing positions 187,503 and 587,585 respectively). Remember that we were trying to distinguish real SNPs from sequencing errors. </p>
+<p><img alt="variants_4" src="../../img/variants_4.png" /></p>
+<div class="admonition question">
+<p class="admonition-title">Exercise</p>
+<p>The SNPs called from GATK can be examined in the same way. Try load the VCF files you generated with GATK and check if you get the same calls as with bcftools.</p>
+</div>
+<p>Zoom out to visualise more variants. Double-click on the reads panel to zoom in. Go back to the VCF terminal view, take note of any indels found and try to locate them using IGV. Note that insertions and deletions are represented in a different way in IGV. </p>
+<p>Here is an insertion at 859,131 in sample2. Insertions are represented using purple strips on the reads. You can click on the strip to find out what the sequence of the insertion is.</p>
+<p><img alt="variants_5" src="../../img/variants_5.png" /></p>
+<p>Here is a deletion at position 485,810 in sample1, note that because of how the deletion is labelled in each case (IGV or VCF) they appear shifted in position. This is because the variant falls on top of a homopolymer run of A's (AAA) so we can place the deletion on any of them.</p>
+<p><img alt="variants_6" src="../../img/variants_6.png" /></p>
+<h3 id="drug-resistance-in-mycobacterium-tuberculosis">Drug resistance in </i>Mycobacterium tuberculosis</i></h3>
+<p>One area where polymorphisms are elevated in </i>Mycobacterium tuberculosis</i> is in genes relating to antibiotic action. Resistance to anti-tuberculosis drugs is caused predominantly by point mutations (i.e. SNPs) that arise spontaneously and offer the bacterium survival advantage during (incomplete) drug treatment. Since SNPs conferring drug resistance have been characterised (Sandgren<sup id="fnref:7"><a class="footnote-ref" href="#fn:7">7</a></sup>) it has been proposed that drug susceptibility can be inferred based on the presence/absence of such markers (Peacock, 2013). In this exercise we will be looking at Rifampicin resistance-conferring mutations found in the rpoB gene.</p>
+<table>
+<thead>
+<tr>
+<th>Position</th>
+<th>gene</th>
+<th>Reference Nucleotide</th>
+<th>Alternative Nucleotide</th>
+<th>Reference Codon</th>
+<th>Alternative Codons</th>
+<th>Reference Amino Acid</th>
+<th>Alternative Amino Acid</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>761095</td>
+<td>rpoB</td>
+<td>T</td>
+<td>C</td>
+<td>CTG</td>
+<td>CCG</td>
+<td>L</td>
+<td>P</td>
+</tr>
+<tr>
+<td>761101</td>
+<td>rpoB</td>
+<td>A</td>
+<td>T</td>
+<td>CAA</td>
+<td>CTA</td>
+<td>Q</td>
+<td>L</td>
+</tr>
+<tr>
+<td>761109</td>
+<td>rpoB</td>
+<td>G</td>
+<td>T</td>
+<td>GAC</td>
+<td>TAC</td>
+<td>D</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>761110</td>
+<td>rpoB</td>
+<td>A</td>
+<td>T</td>
+<td>GAC</td>
+<td>GTC</td>
+<td>D</td>
+<td>V</td>
+</tr>
+<tr>
+<td>761128</td>
+<td>rpoB</td>
+<td>C</td>
+<td>T</td>
+<td>TCG</td>
+<td>TTG</td>
+<td>S</td>
+<td>L</td>
+</tr>
+<tr>
+<td>761139</td>
+<td>rpoB</td>
+<td>C</td>
+<td>T;G;A</td>
+<td>CAC</td>
+<td>TAC;GAC;AAC</td>
+<td>H</td>
+<td>Y;D;N</td>
+</tr>
+<tr>
+<td>761140</td>
+<td>rpoB</td>
+<td>A</td>
+<td>G;T</td>
+<td>CAC</td>
+<td>CGC;CTC</td>
+<td>H</td>
+<td>R;L</td>
+</tr>
+<tr>
+<td>761155</td>
+<td>rpoB</td>
+<td>C</td>
+<td>T;G</td>
+<td>TCG</td>
+<td>TTG;TGG</td>
+<td>S</td>
+<td>L;W</td>
+</tr>
+<tr>
+<td>761161</td>
+<td>rpoB</td>
+<td>T</td>
+<td>C</td>
+<td>CTG</td>
+<td>CCG</td>
+<td>L</td>
+<td>P</td>
+</tr>
+</tbody>
+</table>
+<p>Load in the Annotation track, to do so click the File &gt; Load from File and select ~/data/tb/tb.gff. Once loaded you can search for the Rv0667 gene in the Search Box and try to spot one of the above SNPs in the gene. </p>
+<p><img alt="variants_7" src="../../img/variants_7.png" /></p>
+<div class="admonition question">
+<p class="admonition-title">Exercise</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Question 2</label><label for="__tabbed_2_2">Answer 2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>The SNPs called from GATK can be examined in the same way. Try load the VCF files you generated with GATK and check if you get the same calls as with bcftools.</p>
+</div>
+<div class="tabbed-block">
+<p>Sample 2 has a SNP at position 761155. It changes the nucleotide from a C to a T. By looking at the table you can see that this leads to the mutation S450L which is the most prominant resistance mutation for rifampicin. </p>
+<p><img alt="variants_8" src="../../img/variants_8.png" /></p>
+</div>
+</div>
+</div>
+</div>
+<h2 id="large-structural-variant-sv-detection-and-calling">Large structural variant (SV) detection and calling</h2>
+<p>While small indels can be detected by finding gaps within mapped reads, larger structural variation requires alternative approaches. When working with short reads and high depth of coverage, samtools/bcftools and GATK are established pipelines for detection and calling of SNPs and small indels. However, there are other algorithms and software for the identification of larger SVs (Medvedev<sup id="fnref2:3"><a class="footnote-ref" href="#fn:3">3</a></sup>). In the following exercises, we will introduce the main approaches and employ representative tools deploying such strategies. The software’s quality is measured in terms of sensitivity, specificity and accuracy of predicting breakpoint locations.</p>
+<p>Depth of coverage (DOC) methods assume that the number of mapped reads in a given region follow a (modified) Poisson distribution, and are expected to be proportional to the number of times such a region occurs in the sequenced genome. Deleted regions will have much fewer or no reads mapping to it, whereas a duplicated region will have more reads (Chiang<sup id="fnref:9"><a class="footnote-ref" href="#fn:9">9</a></sup>). The larger the event, the stronger the detected signal for these signatures. The main disadvantages of this approach are its inefficacy at detecting weaker signals caused by small events, breakpoint resolution and that gain signatures do not localise where the insertion occurred.</p>
+<h3 id="exercise-5-sv-detection-using-discordant-paired-end-mapping-pem-and-split-read-approaches-delly-software">Exercise 5: SV detection using discordant paired-end mapping (PEM) and split read approaches (Delly software)</h3>
+<p>Mapping of paired-end reads (PEM) and DOC methods were the first to be implemented when reads were much shorter (~35bp). PEM is the most prominent method to detect large SVs (Medvedev<sup id="fnref3:3"><a class="footnote-ref" href="#fn:3">3</a></sup>). DOC signatures also support SVs including a copy number change in the sequenced genome, namely deletions and tandem duplications. Nevertheless, with longer (paired) reads achieved nowadays (up 150bp with Illumina HiSeq machines), read split methods outperform PEM software in terms of breakpoint resolution, higher discovery rates and lower false positives (Suzuki<sup id="fnref:10"><a class="footnote-ref" href="#fn:10">10</a></sup>). Recently published tools, Delly (Rausch<sup id="fnref:11"><a class="footnote-ref" href="#fn:11">11</a></sup>) make use of a complementary strategy under the assumption that SVs supported by different signatures are called with higher confidence. Both aforementioned tools use a split read approach assisted by the PEM. This exercise will combine paired-end and split-read alignment methods to increase sensitivity and specificity in SV calling. In particular we will be using Delly software to detect large structural variants.</p>
+<p>Change to variants directory and run the following commands:</p>
+<div class="highlight"><pre><span></span><code>cd ~/data/tb/variants/
+delly call -o sample1.delly.bcf -q 20 -s 3 -g ~/data/tb/tb.fasta ~/data/tb/sample1.bam
+delly call -o sample2.delly.bcf -q 20 -s 3 -g ~/data/tb/tb.fasta ~/data/tb/sample2.bam
+</code></pre></div>
+<p>It should take no longer than 5 minutes per file. Type the program name to display all options:</p>
+<div class="highlight"><pre><span></span><code>delly
+</code></pre></div>
+<div class="admonition terminal">
+<p class="admonition-title">Terminal output</p>
+<p>The screen output should look like this:
+<div class="highlight"><pre><span></span><code>**********************************************************************
+Program: Delly
+This is free software, and you are welcome to redistribute it under
+certain conditions (GPL); for license details use &#39;-l&#39;.
+This program comes with ABSOLUTELY NO WARRANTY; for details use &#39;-w&#39;.
+
+Delly (Version: 0.7.8)
+Contact: Tobias Rausch (rausch@embl.de)
+**********************************************************************
+
+Usage: delly  
+
+Commands:
+
+    call         discover and genotype structural variants
+    merge        merge structural variants across VCF/BCF files and within a single VCF/BCF file
+    filter       filter somatic or germline structural variants
+</code></pre></div></p>
+</div>
+<p>The software has two sequential steps. First, structural variants are predicted based on PEM signatures, in other words, when mapped pair insert size happens to be greater than expected.</p>
+<p>Paired-end options include, like all PEM-based software, the insert size cut-off (-s). The minimum paired-end mapping quality (-q) has been set to 20, therefore all reads with mapping quality below this threshold will be discarded. Structural variants detected by PEM will be outputted to the file indicated with ‘-o’.
+The specification of the standard deviation units (-s) is probably the most important cut-off for PEM methods. A deletion is detected when the pair mapped distance exceeds the upper threshold defined as s times (s = 3) the standard deviation (σ) over the mean (μ + 3σ).</p>
+<p><img alt="variants_9" src="../../img/variants_9.jpg" /></p>
+<p>Second, Delly makes use of soft-clipped information to find exact breakpoints. Read splitting approaches rely on mapping broken reads that span breakpoints and are located in nearby locations. The structural variant signature in this case consists of one of the reads mapping to the reference and its split mate mapping with one of its parts approximately one insert size away. For insertions, the broken read will have its splits parts adjacent to each other, with a missing middle part of the read. In both cases, breakpoints can be resolved with base-pair precision.</p>
+<p><img alt="variants_10" src="../../img/variants_10.jpg" /></p>
+<p>Split-read options include the reference genome file name (-g), the output file name containing structural variants inferred by split-read method (-b) and other parameters.</p>
+<p>Delly software produces one output file per run, called sample1.delly.bcf and sample2.delly.bcf in our two runs. These are in a BCF-style format.Therefore you should run the following commands to get the VCF formatted files. As with short variants, we can also do some filtering to reduce our list to high-confidence variants.</p>
+<div class="highlight"><pre><span></span><code>bcftools view -i &#39;FILTER=&quot;PASS&quot; &amp;&amp; ALT=&quot;&lt;DEL&gt;&quot; &amp;&amp; (END-POS)&lt;20000&#39; -c 2 sample1.delly.bcf &gt; sample1.delly.vcf
+bcftools view -i &#39;FILTER=&quot;PASS&quot; &amp;&amp; ALT=&quot;&lt;DEL&gt;&quot; &amp;&amp; (END-POS)&lt;20000&#39; -c 2 sample2.delly.bcf &gt; sample2.delly.vcf
+</code></pre></div>
+<p>Bcftools will allow us to perform this filtering using the <code>-i</code> followed by a filtering string. This refers to values that are stored in the VCF file for each variant. Each expression is evaluated and multiple expressions can be chained with <code>&amp;&amp;</code>. Variants will be selected using the following criteria:</p>
+<ol>
+<li>Firstly, using <code>FILTER="PASS"</code> we select all variants which have the FILTER parameter set to <strong>PASS</strong>. This is filter value is generated by delly and is a measure of its confidence in the variant.</li>
+<li>Then we keep only deletions with <code>ALT="&lt;DEL&gt;"</code></li>
+<li>After that, using <code>(END-POS)&lt;20000</code>, we keep variants less than 20kb as larger variants are somewhat unrealistic in Mtb.</li>
+</ol>
+<p>Finally, with <code>-c 2</code> we select variants which delly believes are homozygous alternate. Delly assumes a diploid model and so can have heterozygous homozygous alternate depending on the amount of evidence. This doens't really make sense for Mtb but it is a hack to allow us to select only those with the most evidence.</p>
+<p>Now you should be able to open them in your favourite text viewer/editor (cat, less, nano, more or vim):</p>
+<div class="admonition terminal">
+<p class="admonition-title">Terminal output</p>
+<div class="highlight"><pre><span></span><code>Chromosome 79569 DEL00000002 C &lt;DEL&gt; . PASS PRECISE;SVTYPE=DEL;SVMETHOD=EMBL.DELLYv0.7.8; CHR2=Chromosome;END=83036;PE=73;MAPQ=60;CT=3to5;CIPOS=-6,6; CIEND=-6,6;INSLEN=0;HOMLEN=5;SR=10;SRQ=1; CONSENSUS=CCCGGTGGACCCGGTGGACCCGGTGGACCCGGTGGACGCCGTGGTC GCCGTGGGACGGGCGCGACGGCACGCCGCGGCCGCGTTGCGCTCCGG;CE=1.67548 GT:GL:GQ:FT:RCL:RC:RCR:CN:DR:DV:RR:RV 1/1:-112.094,-9.62652,0:96:PASS:1230:199:1027:0:1:80:0:32
+</code></pre></div>
+</div>
+<h3 id="exercise-6-visualisation-of-predicted-structural-variants-using-igv">Exercise 6: Visualisation of predicted structural variants using IGV</h3>
+<p>So far we have use IGV to visualise SNPs. In this exercise we will run it again to manually annotate larger deletions predicted by Delly tools in Exercise 5.</p>
+<p>SV detection tools output not only potential structural differences, but also a confidence value attach to them. An important threshold is the minimum number of supporting reads (found in Delly output) for an event to be retained. Hits with very few supporting reads (column 5) are expected to be false positives (FP). Repetitive and highly polymorphic regions in the genome are the main sources of such FP events.</p>
+<p>Launch an IGV instances as before (or use the same one if you kept it open) and load sample1.bam and sample2.bam in each of them as explained in Exercise 1.</p>
+<p>Using the same method as before load the VCF files produced by delly. But this time select the compressed VCF files in ~/data/tb/ (i.e. sample1.delly.vcf for the instance with sample1 loaded and sample2.delly.vcf for the instance with sample2 loaded).</p>
+<p>Find the region 77,823-84,798 and establish whether differences in the alignment can be visually identified between samples . Note: The coverage plot can also give you a clear insight.</p>
+<p><img alt="variants_11" src="../../img/variants_11.png" /></p>
+<div class="admonition question">
+<p class="admonition-title">Exercise</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Question 3</label><label for="__tabbed_3_2">Answer 3</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Which characteristic signatures of deletions (gap of coverage, long-spanning read pairs and split-reads) can be identified? (Read the notes below to help answer this question) </p>
+</div>
+<div class="tabbed-block">
+<p>We can see a gap in the coverage and many reads which end abruptly at the same positions (split reads).</p>
+</div>
+</div>
+</div>
+</div>
+<p>References</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Carter, N. (2007). Methods and strategies for analyzing copy number variation using DNA microarrays. Nature genetics, 39, 1–11. doi:10.1038/ng2028.Methods&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Cooper, G. M., Zerr, T., Kidd, J. M., Eichler, E. E., &amp; Nickerson, D. a. (2008). Systematic assessment of copy number variant detection via genome-wide SNP genotyping. Nature genetics, 40(10), 1199–203. doi:10.1038/ng.236&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Medvedev, P., Stanciu, M., &amp; Brudno, M. (2009). Computational methods for discovering structural variation with next-generation sequencing. nature methods, 6(11), S13–S20. doi:10.1038/NMEtH.1374&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:3" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>Li, H., &amp; Durbin, R. (2010). Fast and accurate long-read alignment with Burrows–Wheeler transform. Bioinformatics, 26(5), 589–595. Retrieved from http://www.ncbi.nlm.nih.gov/pubmed/20080505&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>Li, H. (2011). A statistical framework for SNP calling, mutation discovery, association mapping and population genetical parameter estimation from sequencing data. Bioinformatics (Oxford, England), 27(21), 2987–93. doi:10.1093/bioinformatics/btr509&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:6">
+<p>Danecek, P., Auton, A., Abecasis, G., Albers, C. a, Banks, E., DePristo, M. a, … Durbin, R. (2011). The variant call format and VCFtools. Bioinformatics (Oxford, England), 27(15), 2156–8. doi:10.1093/bioinformatics/btr330&#160;<a class="footnote-backref" href="#fnref:6" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:7">
+<p>Sandgren, A., Strong, M., Muthukrishnan, P., Weiner, B. K., Church, G. M., &amp; Murray, M. B. (2009). Tuberculosis drug resistance mutation database. PLoS medicine, 6(2), e2. doi:10.1371/journal.pmed.1000002&#160;<a class="footnote-backref" href="#fnref:7" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+<li id="fn:8">
+<p>Sharon J. Peacock, P. D. (2013). Whole-Genome Sequencing for Rapid Susceptibility Testing of M. tuberculosis. The New England Journal of Medicine.&#160;<a class="footnote-backref" href="#fnref:8" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+</li>
+<li id="fn:9">
+<p>Chiang, D., Getz, G., Jaffe, D., &amp; O’Kelly, M. (2008). High-resolution mapping of copy-number alterations with massively parallel sequencing. Nature methods, 6(1), 99–103. doi:10.1038/nmeth.1276.High-resolution&#160;<a class="footnote-backref" href="#fnref:9" title="Jump back to footnote 9 in the text">&#8617;</a></p>
+</li>
+<li id="fn:10">
+<p>Suzuki, S., Yasuda, T., &amp; Shiraishi, Y. (2011). ClipCrop: a tool for detecting structural variations with single-base resolution using soft-clipping information. BMC, 12(Suppl 14), S7. doi:10.1186/1471-2105-12-S14-S7&#160;<a class="footnote-backref" href="#fnref:10" title="Jump back to footnote 10 in the text">&#8617;</a></p>
+</li>
+<li id="fn:11">
+<p>Rausch, T., Zichner, T., Schlattl, a., Stutz, a. M., Benes, V., &amp; Korbel, J. O. (2012). DELLY: structural variant discovery by integrated paired-end and split-read analysis. Bioinformatics, 28(18), i333–i339. doi:10.1093/bioinformatics/bts378&#160;<a class="footnote-backref" href="#fnref:11" title="Jump back to footnote 11 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.tooltips", "navigation.instant", "navigation.tabs", "toc.integrate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
