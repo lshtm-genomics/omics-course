@@ -138,7 +138,7 @@ The same principals apply to bioinformatic analyses. For example, take a look at
 1. first extract the first 10 lines
 2. take the last two lines of that extract
 
-There are two jobs to be done and the first job passes its data to the second job. This is a good place to use pipes. We can use `head` to get the first 10 lines as we have done above. We will also intoduce `tail` which can be used to print the last lines. Try running this command:
+There are two jobs to be done and the first job passes its data to the second job. This is a good place to use pipes. We can use `head` to get the first 10 lines as we have done above. We will also introduce `tail` which can be used to print the last lines. Try running this command:
 
 ```
 head -n 10 tb.fasta | tail -n 2

@@ -3,7 +3,7 @@
 Next-generation sequencing data is being produced at an ever-increasing rate. The raw data is not meaningful by itself and needs to be processed using various bioinformatic software. This practical will focus on genomic resequencing data where the raw data is aligned to a reference genome.
 
 ## Introduction
-Deep learning neural networks have revolutionized the field of predictive modelling, especially in bioinformatics and genomics. By utilizing multiple layers of artificial neurons to extract and process data, deep learning networks have shown impressive performance in tasks such as image classification, natural language processing, and speech recognition. The same principles can be applied to infectious disease genomic DNA data for drug resistance prediction. By leveraging the inherent complexity and high-dimensional nature of genomic data, deep learning networks can learn to identify subtle patterns and relationships that may be missed by traditional statistical methods. Additionally, deep learning networks can be optimized to handle missing data, noisy data, and varying data types, which are common challenges in genomic data analysis.
+Deep learning neural networks have revolutionized the field of predictive modelling, especially in bioinformatics and genomics. By utilizing multiple layers of artificial neurons to extract and process data, deep learning networks have shown impressive performance in tasks such as image classification, natural language processing, and speech recognition. The same principles can be applied to infectious disease genomic DNA data for drug resistance prediction. By leveraging the inherent complexity and multi-dimensional nature of genomic data, deep learning networks can learn to identify subtle patterns and relationships that may be missed by traditional statistical methods. Additionally, deep learning networks can be optimized to handle missing data, noisy data, and varying data types, which are common challenges in genomic data analysis.
 
 ![mapping_1](../img/ml_1.png)
 
@@ -37,7 +37,7 @@ cd ~/data/ml_workshop/inh_model
 Now type the commands below to train the model with default parameters.
 
 ```
-python inh_model.py -lr 0.001 -dr 0.2
+python inh_model.py -lr 0.0005 -dr 0.2
 ```
 
 !!! Important
@@ -46,16 +46,16 @@ python inh_model.py -lr 0.001 -dr 0.2
 Two graphs are produced in the same folder:
 
 ```
-INH-model_LR:0.001-DR:0.2-ACC.png
-INH-model_LR:0.001-DR:0.2-LOSS.png
+INH-model_LR:0.0001-DR:0.2-ACC.png
+INH-model_LR:0.0001-DR:0.2-LOSS.png
 ```
 
 !!! Information
-    The script is adapted for CPU running (estimated running time of 2.5 minutes). Hence compromises in model accuracy is taken. 
+    The script is adapted for CPU running (estimated running time of 1.5 minutes). Hence compromises in model accuracy is taken. 
 
     Waiting for model to run/train and dealing with these fragmented times is also essential in our lives here are some ground rules:
 
-    - If a model takes < 5 minutes to train, I like to check Instagram to give my brain a break.
+    - If a model takes < 5 minutes to train, I like to catch up oy email for grab some tea to give my brain a break.
     
     - If a model takes 5–30 min to train, I’ll usually spend time reading or writing documentation. Sometimes debugging too.
     
@@ -78,7 +78,7 @@ Similarly, in deep learning, accuracy measures **how often the model's predictio
 
 For example, if a model predicts that an image contains a cat and the true label is also cat, then that prediction is counted as correct. 
 
-**The higher the accuracy, the better the model** is at making correct predictions. However, accuracy can be influenced by factors such as class imbalance (***data problems***) or various different types of errors the model makes (***model problems***). Therefore, it is important to consider other performance metrics in addition to accuracy when evaluating the performance of a deep learning model.
+**The higher the accuracy, the better the model** is at making correct predictions. However, accuracy can be influenced by factors such as class imbalance (***data problems*** e.g. Too many susceptible sample and too little resistant ones might cause the model to incline for predicting the sample to be susceptible) or various different types of errors the model makes (***model problems***). Therefore, it is important to consider other performance metrics in addition to accuracy when evaluating the performance of a deep learning model.
 
 ### LOSS-loss
 In deep learning, the goal of the model is to accurately predict the outcome of a given task, such as image recognition or natural language processing and also in this case sequence processing. 
@@ -161,7 +161,6 @@ If **both the learning rate and dropout rate are high**, the model will learn qu
 
 If the learning rate is low and the dropout rate is high, the model will learn slowly but regularize effectively, leading to good generalization. Finally, if the learning rate is high and the dropout rate is low, the model will learn quickly but may overfit due to insufficient regularization.
 
-
 !!! Question
 
     === "Question"
@@ -177,13 +176,13 @@ If the learning rate is low and the dropout rate is high, the model will learn s
         Not necessarily the optimal, but here are some guiding values to try out:
 
         * Balanced
-            * lr = 0.0005
-            * dr = 0.2
+            * lr = 0.0001
+            * dr = 0.4
         * Underfitting
-            * lr = 0.2
+            * lr = 0.4
             * dr = 0.2
         * Overfitting
-            * lr = 0.0005
+            * lr = 0.0001
             * dr = 0.0
 
 Type the commands below to train the model with different parameters.
@@ -350,5 +349,6 @@ The learning rate and dropout rate and two of the most important hyperparameters
 
 
 ### Full model structure
-In case if you are curious of how the structure of the full model looks like
+In case if you are curious of how the structure of the full model looks like. In here we are using convolutional nerual network. Essentially looking at the DNA seqeunce as a 2D images as it can be one-hot encoded as a 4xN matrix. A window of set size (7-8, often reflecting contig size) screens across the DNA sequnce across the horizontal dimension (dimension of size N), for feature extraction. These features are then fed to the next layer for matrix multiplication (can be thought of as a multiple linear regression function). There features are used to computes the function that best predict drug resistance.
+
 ![mapping_1](../img/ml_4.png)
