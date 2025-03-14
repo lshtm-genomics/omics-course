@@ -333,7 +333,7 @@ The learning rate and dropout rate and two of the most important hyperparameters
 
 
 ### Full model structure
-In case if you are curious of how the structure of the full model looks like. In here we are using convolutional nerual network. Essentially looking at the DNA seqeunce as a 2D images as it can be one-hot encoded as a 4xN matrix. A window of set size (7-8, often reflecting contig size) screens across the DNA sequnce across the horizontal dimension (dimension of size N), for feature extraction. These features are then fed to the next layer for matrix multiplication (can be thought of as a multiple linear regression function). There features are used to computes the function that best predict drug resistance.
+In case if you are curious of how the structure of the full model looks like. In here we are using convolutional nerual network. Essentially looking at the DNA seqeunce as a 2D images as it can be one-hot encoded as a 4xN matrix. A window of set size (7-8, often reflecting k-mer size) screens across the DNA sequnce across the horizontal dimension (dimension of size N), for feature extraction. These features are then fed to the next layer for matrix multiplication (can be thought of as a multiple linear regression function). There features are used to computes the function that best predict drug resistance.
 
 ![mapping_1](../img/ml_4.png)
 
