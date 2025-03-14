@@ -37,7 +37,7 @@ cd ~/data/ml_workshop/inh_model
 Now type the commands below to train the model with default parameters.
 
 ```
-python inh_model.py -lr 0.0005 -dr 0.2
+python inh_model.py -lr 0.0001 -dr 0.2
 ```
 
 !!! Important
@@ -61,7 +61,7 @@ INH-model_LR:0.0001-DR:0.2-LOSS.png
     
     - Upwards of that, and I’ll continue my day as usual and work on another project in the meanwhile.
     
-    In this case you perhaps read on as well. There are some interesting info near at the end.
+    In this case, you shouldn't wait long but while you are waiting, you could perhaps read on as well. There are some interesting info near at the end for more intuition about how a neural network functions.
 
 When the run finishes, you can open the current folder using command ```open . ``` in terminal.
 Double click on the picture files to view them. 
@@ -288,7 +288,7 @@ less  ERR6634978_oh.csv | head
 
 ##Exercise 4: Running full model that predicts for all 13 drug resistances
 
-Now try to use a fully trained model to predict all 13 different types of drug resistance.
+Now try to use a fully trained model to predict all 13 different types of drug resistance. This is a trained model and now we are just doing inference prediction. Machine learning models take some time to train (as we learnt previously), but the trained models can swiftly prediction for drug resistance. In this case the trained model model has been provent to have overall 90% accuracy.
 
 Check if you are in the right directory using ```ls``` and ```pwd``` containing ```full_model.py```.
 
@@ -310,23 +310,7 @@ The output is in binary format (1=positive, 0=negative). What is the drug resist
 ## Additional information
 In case you'd like a more hands on and visualised example of how a neural networks functions.
 <a href=https://playground.tensorflow.org/#activation=tanh&batchSize=10&dataset=circle&regDataset=reg-plane&learningRate=0.03&regularizationRate=0&noise=0&networkShape=4,2&seed=0.58442&showTestData=false&discretize=false&percTrainData=50&x=true&y=true&xTimesY=false&xSquared=false&ySquared=false&cosX=false&sinX=false&cosY=false&sinY=false&collectStats=false&problem=classification&initZero=false&hideText=false>Neural network Playground</a>
-
-### More on regularisation
-Regularization is a technique used in deep learning to prevent overfitting and improve the generalization performance of a model. There are several ways to regularize a deep learning model, including:
-
-1. L1 and L2 Regularization: These are the most common types of regularization used in deep learning. L1 regularization adds a penalty term to the loss function that is proportional to the absolute values of the model parameters, while L2 regularization adds a penalty term that is proportional to the squared values of the model parameters. Both types of regularization encourage the model to learn simpler, more interpretable features by shrinking the magnitude of the parameters.
-2. **Dropout (The one we have applied)**: Dropout is a technique that randomly drops out (i.e., sets to zero) a proportion of the neurons in a layer during training. This helps prevent overfitting by forcing the network to learn more robust features that do not rely on the activation of specific neurons.
-2. Data Augmentation: Data augmentation is a technique that artificially increases the size of the training dataset by creating new examples from the existing ones. This can be done by applying transformations such as rotations, flips, and crops to the original images, or by adding noise to the input data.
-3. Early Stopping: Early stopping is a technique that stops the training process before the model starts to overfit. This is done by monitoring the validation error during training and stopping the training process when the validation error stops improving.
-4. Batch Normalization: Batch normalization is a technique that normalizes the activations of a layer by subtracting the mean and dividing by the standard deviation of the activations in a batch of data. This helps to reduce the internal covariate shift, which can improve the training speed and stability of the model.
-5. Max-Norm Regularization: Max-Norm regularization constrains the magnitude of the weight vector for each neuron to a fixed value. This helps to prevent large weight updates during training, which can lead to overfitting
-6. Label Smoothing: In label smoothing, instead of assigning a one-hot vector to the target labels, a smoothed label distribution is used. This helps prevent overfitting by introducing a small amount of noise into the training targets, which can encourage the model to learn more robust decision boundaries.
-7. Cutout: Cutout is a form of data augmentation that randomly masks out square regions of the input images during training. This helps prevent overfitting by forcing the model to learn more robust features and by increasing the amount of training data.
-8. Mixup: Mixup is a form of data augmentation that involves linearly interpolating pairs of training examples and their corresponding labels. This creates new training examples and encourages the model to learn more generalizable features.
-9.  Shake-Shake Regularization: Shake-Shake regularization is a form of regularization for residual networks that introduces stochastic depth into the network. This helps prevent overfitting by randomly dropping out entire residual blocks during training.
-10. Stochastic Depth: Stochastic Depth is a variant of the Shake-Shake regularization that drops out entire residual blocks with a certain probability. This technique helps prevent overfitting by randomly removing some parts of the network during training.
-11. Focal Loss: Focal loss is a variant of cross-entropy loss that gives more weight to hard-to-classify examples. This can help prevent overfitting by reducing the impact of easy-to-classify examples on the training process.
-
+A more intuitive illustration of CNN (architecture our drug resistance prediction model is based on) regarding feature extraction can be found here: <a href=https://playground.tensorflow.org/#activation=tanh&batchSize=10&dataset=circle&regDataset=reg-plane&learningRate=0.03&regularizationRate=0&noise=0&networkShape=4,2&seed=0.58442&showTestData=false&discretize=false&percTrainData=50&x=true&y=true&xTimesY=false&xSquared=false&ySquared=false&cosX=false&sinX=false&cosY=false&sinY=false&collectStats=false&problem=classification&initZero=false&hideText=false>CNN Playground</a> (implemented on RGB colored images in this case)
 
 
 ### All parameters that affects the model
@@ -352,3 +336,21 @@ The learning rate and dropout rate and two of the most important hyperparameters
 In case if you are curious of how the structure of the full model looks like. In here we are using convolutional nerual network. Essentially looking at the DNA seqeunce as a 2D images as it can be one-hot encoded as a 4xN matrix. A window of set size (7-8, often reflecting contig size) screens across the DNA sequnce across the horizontal dimension (dimension of size N), for feature extraction. These features are then fed to the next layer for matrix multiplication (can be thought of as a multiple linear regression function). There features are used to computes the function that best predict drug resistance.
 
 ![mapping_1](../img/ml_4.png)
+
+
+### More on regularisation
+Regularization is a technique used in deep learning to prevent overfitting and improve the generalization performance of a model. There are several ways to regularize a deep learning model, including:
+
+1. L1 and L2 Regularization: These are the most common types of regularization used in deep learning. L1 regularization adds a penalty term to the loss function that is proportional to the absolute values of the model parameters, while L2 regularization adds a penalty term that is proportional to the squared values of the model parameters. Both types of regularization encourage the model to learn simpler, more interpretable features by shrinking the magnitude of the parameters.
+2. **Dropout (The one we have applied)**: Dropout is a technique that randomly drops out (i.e., sets to zero) a proportion of the neurons in a layer during training. This helps prevent overfitting by forcing the network to learn more robust features that do not rely on the activation of specific neurons.
+2. Data Augmentation: Data augmentation is a technique that artificially increases the size of the training dataset by creating new examples from the existing ones. This can be done by applying transformations such as rotations, flips, and crops to the original images, or by adding noise to the input data.
+3. Early Stopping: Early stopping is a technique that stops the training process before the model starts to overfit. This is done by monitoring the validation error during training and stopping the training process when the validation error stops improving.
+4. Batch Normalization: Batch normalization is a technique that normalizes the activations of a layer by subtracting the mean and dividing by the standard deviation of the activations in a batch of data. This helps to reduce the internal covariate shift, which can improve the training speed and stability of the model.
+5. Max-Norm Regularization: Max-Norm regularization constrains the magnitude of the weight vector for each neuron to a fixed value. This helps to prevent large weight updates during training, which can lead to overfitting
+6. Label Smoothing: In label smoothing, instead of assigning a one-hot vector to the target labels, a smoothed label distribution is used. This helps prevent overfitting by introducing a small amount of noise into the training targets, which can encourage the model to learn more robust decision boundaries.
+7. Cutout: Cutout is a form of data augmentation that randomly masks out square regions of the input images during training. This helps prevent overfitting by forcing the model to learn more robust features and by increasing the amount of training data.
+8. Mixup: Mixup is a form of data augmentation that involves linearly interpolating pairs of training examples and their corresponding labels. This creates new training examples and encourages the model to learn more generalizable features.
+9.  Shake-Shake Regularization: Shake-Shake regularization is a form of regularization for residual networks that introduces stochastic depth into the network. This helps prevent overfitting by randomly dropping out entire residual blocks during training.
+10. Stochastic Depth: Stochastic Depth is a variant of the Shake-Shake regularization that drops out entire residual blocks with a certain probability. This technique helps prevent overfitting by randomly removing some parts of the network during training.
+11. Focal Loss: Focal loss is a variant of cross-entropy loss that gives more weight to hard-to-classify examples. This can help prevent overfitting by reducing the impact of easy-to-classify examples on the training process.
+
