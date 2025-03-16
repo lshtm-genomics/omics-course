@@ -347,7 +347,13 @@ rm sample1_1P.fastq sample1_1U.fastq sample1_2P.fastq sample1_2U.fastq
 
 ## Viewing in IGV
 
-Launch IGV by running the command `igv` on a New Terminal and perform the following steps:
+!!! info
+    Integrative Genomics Viewer (IGV) is a high-performance visualization tool for interactive exploration of large, integrated genomic datasets. It supports a wide variety of data types, including array-based and next-generation sequence data, and genomic annotations.
+
+!!! info
+    Graphical tools in this course should be started using the terminal, but we will need to view the interface using the virtual desktop. To do this, you need to open the desktop using TigerVNC, as described in the previous section. Remember, you need to use "localhost:5901" as the address in TigerVNC.
+
+Launch IGV by running the command `igv` on a terminal and perform the following steps:
 
 1. We first need to load the reference genome. To do this click on **Genomes -> Load Genome from File...**. Navigate to **~/data/tb** and select the **tb.fasta** file.
 2. You can also load the genes by clicking on **File -> Load from File...**, then selecting the **tb.gff** file. 
@@ -450,16 +456,14 @@ Differently coloured nucleotides appear on the stacked reads highlighting every 
 
 !!! question
     === "Question"
-        When you zoom in on position 958145 as far as you can go, you can see a SNP: here, both strain IT and Dd2 have a thymine where the reference (3D7) has an adenine. What is the consequence of this SNP? Can we tell what effect it will have for the clones? Is this the mutation N86Y (or also simply referred to as Y86) that may modulate the degree of resistance to chloroquine? (See e.g. Mula et al. (2011) [PMID: 21810256]) 
+        When you zoom in on position 958145 as far as you can go, you can see the presence of two SNPs. Do both samples have the same variations? What is the consequence of this SNP? Can we tell what effect it will have for the clones (See e.g. Mula et al. (2011) [PMID: 21810256]). These SNPs are located in codon 86 of the MDR1 gene. To view location of codons, you can right click on the blue bar in the annotation section and select "Expanded".
     === "Answer"
-        To answer the question, right-click on the gene track and make sure "expanded" is selected. You can see which amino acids are normally coded for around amino acid position 86. Note also that AAT codes for Asn (N) and TAT codes for Tyr (Y). This SNP modulates resistance to chloroquine.
+        You should see that both variants are located in the same codon.
+        Sample IT has a SNP that changes the amino acid from a N to a Y (AAT codes for Asn (N) and TAT codes for Tyr (Y)). 
+        Sample DDT has  two SNPs that change the codon from AAT (N) to TTT (F), however this is not the full story. It look like the SNP at position 958146 is not completely fixed in the sample (not all the reads containt the SNP). This means that this sample has both F and N at position 86. 
+        There is evidence that  mutation N86Y may modulate the degree of resistance to chloroquine.
 
 
-!!! question
-    === "Question"
-         Now consider the neighbouring position 958146. What could this be? Is it from IT or Dd2? 
-    === "Answer"
-        To answer this question, look at the position in the different bams. It looks like the SNP onle appears in reads from IT
 
 
 !!! information
