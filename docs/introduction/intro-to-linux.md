@@ -6,15 +6,15 @@ Over the duration of this course you will be learning the skills required to ind
 
 In order to learn how to use bioinformatic programs we must first become comfortable with how to use the terminal. This may be daunting if you have never used a command line environment before, but hopefully by the end of this practical session you should have a basic understanding which will be reinforced over the next few sessions.
 
-Let's start by opening a terminal by clicking on the icon on the sidebar. Your screen should now look like the one below:
+Let's start by opening a terminal by left clicking on the desktop and selecting **terminal**. Your screen should now look like the one below:
 
-![](../img/linux_1.jpg)
+![](../img/linux_1.png)
 
-The terminal is very similar to the file explorer in other operating systems. It allows you to see files and interact with them. The only difference is that we have to do this by typing a command into the terminal window. To demonstrate this, let's open up Linux's file explorer by clicking on the icon in the side-bar on the left-hand side of the screen. When you open the file explorer it will go to your home folder and show you all the sub-folders and files present. The home folder is simply the root folder which contains all your files and folders.
+The terminal is very similar to the file explorer in other operating systems. It allows you to see files and interact with them. The only difference is that we have to do this by typing a command into the terminal window. To demonstrate this, let's open up Linux's file explorer by left clicking on the desktop and selecting **File manager**. When you open the file manager it will go to your home folder and show you all the sub-folders and files present. The home folder is simply the root folder which contains all your files and folders.
 
 You can see a number of sub-folders and files present in the file explorer. Let's see if we can find them in the terminal. To do this, we have to type ls into the terminal and hit enter. You should now see a screen similar to the one below. Now you can see the same files and folders in the terminal. 
 
-![](../img/linux_2.jpg)
+![](../img/linux_2.png)
 
 
 In the file explorer double click on the data folder. You will see several new folders which hold the data for the proceeding practicals. Let's try find them using the terminal!
@@ -29,7 +29,7 @@ You will notice that text in front of the $ sign changed when you moved from hom
 
 !!! terminal "Terminal output"
     ```
-    user@user-VirtualBox:~/data$ 
+    (base) @jodyphelan ➜ ~/data $
     ```
 
 The blue text shows the location where the terminal is currently. In this case we are in `~/data`. Another name for this is the current directory. The `~` character is a special character which symbolises your home directory. So, we can interpret this as "We are currently in the data directory which is in the home directory"
