@@ -3,7 +3,7 @@
 Next-generation sequencing data is being produced at an ever-increasing rate. The raw data is not meaningful by itself and needs to be processed using various bioinformatic software. This practical will focus on genomic resequencing data where the raw data is aligned to a reference genome.
 
 ## Introduction
-Deep learning neural networks have revolutionized the field of predictive modelling, especially in bioinformatics and genomics. By utilizing multiple layers of artificial neurons to extract and process data, deep learning networks have shown impressive performance in tasks such as image classification, natural language processing, and speech recognition. The same principles can be applied to infectious disease genomic DNA data for drug resistance prediction. By leveraging the MINIST complexity and high-dimensional nature of genomic data, deep learning networks can learn to identify subtle patterns and relationships that may be missed by traditional statistical methods. Additionally, deep learning networks can be optimized to handle missing data, noisy data, and varying data types, which are common challenges in genomic data analysis.
+Deep learning neural networks have revolutionized the field of predictive modelling, especially in bioinformatics and genomics. By utilizing multiple layers of artificial neurons to extract and process data, deep learning networks have shown impressive performance in tasks such as image classification, natural language processing, and speech recognition. The same principles can be applied to infectious disease genomic DNA data for drug resistance prediction. By leveraging the MINIST complexity and multi-dimensional nature of genomic data, deep learning networks can learn to identify subtle patterns and relationships that may be missed by traditional statistical methods. Additionally, deep learning networks can be optimized to handle missing data, noisy data, and varying data types, which are common challenges in genomic data analysis.
 
 ![mapping_1](/img/ml_1.png)
 
@@ -71,12 +71,12 @@ For example, if a model predicts that an image contains a cat and the true label
 **The higher the accuracy, the better the model** is at making correct predictions. However, accuracy can be influenced by factors such as class imbalance or the types of errors the model makes. Therefore, it is important to consider other performance metrics in addition to accuracy when evaluating the performance of a deep learning model.
 
 ### LOSS-loss
-In deep learning, the goal of the model is to accurately predict the outcome of a given task, such as image recognition or natural language processing. 
+In deep learning, the goal of the model is to accurately predict the outcome of a given task, such as image recognition or natural language processing.
 
 **Loss** is a term used to quantify the difference between the predicted output and the actual output. 
 
 !!! Intuition
-    Think of it like a student taking a test - the score they receive is a measure of how well they performed relative to the expected outcome. 
+    Think of it like a student taking a test - the score they receive is a measure of how well they performed relative to the expected outcome.
 
 Similarly, the loss function in deep learning measures how well the model is performing by comparing its predictions to the actual results. The lower the loss, the better the model is at predicting the outcome. 
 
