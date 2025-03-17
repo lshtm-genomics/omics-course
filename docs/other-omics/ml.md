@@ -337,6 +337,19 @@ In case if you are curious of how the structure of the full model looks like. In
 
 ![mapping_1](../img/ml_4.png)
 
+## Additional Resources
+
+### Main Python Packages for Machine Learning
+
+Familiarizing yourself with these core libraries can greatly enhance your projects:
+
+- **NumPy:** Efficient array operations.
+- **Pandas:** Data manipulation and analysis. (Essential for data preparation)
+- **Scikit-learn:** Traditional machine learning algorithms. (Quick and fast to implement)
+- **PyTorch:** Dynamic deep learning framework. (model from the current tutorial is build using this)
+- **Keras:** High-level API for neural networks.
+- **XGBoost, LightGBM, CatBoost:** Gradient boosting libraries.
+- **Matplotlib & Seaborn:** Data visualization tools.
 
 ### More on regularisation
 Regularization is a technique used in deep learning to prevent overfitting and improve the generalization performance of a model. There are several ways to regularize a deep learning model, including:
