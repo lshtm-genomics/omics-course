@@ -54,7 +54,7 @@ Once you have installed TigerVNC, you can connect to your GitHub Codespace using
 3. Open the command palette by pressing `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (Mac).
 4. Type `Create new Codespace` and select the option.
 5. Enter `jodyphelan/teaching-codespaces` in the repository field.
-6. Select the `mapping` template.
+6. Select the `day1` template.
 7. Select `2 cores, 8GB RAM, 32 GB storage` option.
 
 It should take a few minutes to create the Codespace. Once it's ready, you will be able to access the terminal and files directly from VS Code.
