@@ -1,6 +1,7 @@
 # Transcriptomics
 
-!!! Warning
+!!! Information
+
     Be sure to use the `transcriptomics` Codespace when initiating VM for this practical.
 
 ## Introduction
