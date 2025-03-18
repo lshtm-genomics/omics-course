@@ -284,19 +284,6 @@ The program may take a short while to run. Alignments generally can take a very 
 !!! info   
     Once the program has completed, you should find a file called ‘zika_all_ailigned.fasta’. Open it up in Aliview and inspect the sequences. Comparing this to the unaligned dataset, can you see how easy it is now, to compare each sequence and visualise the diversity across the dataset. With our sequence added to the dataset, we can now move on to the final section of the activity: phylogenetics.
 
-## Optional Activity
-
-!!! info
-    Another functionality of Aliview is being able to translate nucleotide sequences in to amino acid sequences. Using this function, we can look further in to our dataset at significant non-synonymous mutations, which result in a change in the amino acid sequence. Microcephaly and neuropathologies associated with Zika have only been reported recently, most prevalently in the Americas. In our dataset we have some ancestral strains, from the Pacific Islands and South-East Asia. Using the translate function in Aliview, we can assess the diversity of our dataset, and investigate the prevalence of particular significant mutations.
-
-In order to gain a better understanding of the differences between the seemingly more pathogenic South American Zika and the less pathogenic Asian strains, Yuan et al. (2017) investigated recent stable mutations in the genome of contemporary South American Zika strains. Using mouse models and recombinant Zika strains, they studied the in vivo neurovirulence phenotypes of three contemporary ZIKV strains isolated in 2015–2016 in South America, and compared them with the phenotypes of their Asian ancestral strain isolated in Cambodia in 2010. They found a particular mutation, S139N, which in vitro, made the virus more infectious for mouse and human neural progenitor cells and promoted apoptosis. 
-
-**Let’s find this site in our dataset and see if our isolate has the S139N genotype:**
-
-We can translate the dataset by pressing **CTRL + SHIFT + T**. You should now see the same dataset expressed as amino acid sequences. Notice all of the ‘X’ residues in the sequences. These are stop codons, however they should not be there, in fact these residues are ‘nonsense’ – codon changes which result in a stop codon. In order to get the ‘true’ amino acid sequence, we need to select the correct reading frame. Press SHIFT + - (shift and the minus/hyphen key). You should now see fewer stop codons in the alignment, and a change in the amino acid sequence. 
-
-By using the scroll bar at the bottom of the window, we can now navigate to the position in the alignment with the S139N mutation to assess what the genotype of our isolate is. In this instance you will find this mutation at the 138th position, due to our alteration of the reading frame. 
-What can you tell about our 'consensus' isolate? Do you notice any pattern in the geography of the isolates which contain the S genotype?
 
 ## Phylogenetics: iqtree
 
