@@ -1,5 +1,9 @@
 # Deep learning (Neural Network)
 
+!!! Warning
+    Be sure to use the `ml` Codespace when initiating VM for this practical.
+
+
 Next-generation sequencing data is being produced at an ever-increasing rate. The raw data is not meaningful by itself and needs to be processed using various bioinformatic software. This practical will focus on genomic resequencing data where the raw data is aligned to a reference genome.
 
 ## Introduction

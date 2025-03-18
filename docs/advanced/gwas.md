@@ -1,5 +1,9 @@
 # Genome Wide Association Studies (GWAS) 
 
+!!! Warning
+    Be sure to use the `gwas` Codespace when initiating VM for this practical.
+
+
 ## Introduction
 
 The objective of this tutorial is to get you familiar with the basic file format used for GWAS and common tools used for analysis and take you through data quality control (Crucial in any study!). 

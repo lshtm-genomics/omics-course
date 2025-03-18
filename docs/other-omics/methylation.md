@@ -1,5 +1,8 @@
 # Methylation
 
+!!! Warning
+    Be sure to use the `methylation` Codespace when initiating VM for this practical.
+
 ## Objectives
 
 By the end of this practical you should: 
