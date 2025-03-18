@@ -2,6 +2,10 @@
 
 !!! Warning
     Be sure to use the `ont` Codespace when initiating VM for this practical.
+    Also - please use the correct conda environment for this practical:
+    ```
+    conda activate ont
+    ```
 
 
 ## Introduction
