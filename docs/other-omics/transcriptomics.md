@@ -1,5 +1,8 @@
 # Transcriptomics
 
+!!! Warning
+    Be sure to use the `transcriptomics` Codespace when initiating VM for this practical.
+
 ## Introduction
 
 An application of next-generation sequencing is RNA sequencing (Mortazavi et al., 2008; Wang et al., 2009). In particular we will discuss transcriptome (messenger RNA) sequencing. Transcriptome sequencing is a very useful addition to genome sequencing projects as it helps to identify genes and thus aids in genome annotation. In this sense, it is similar to earlier transcriptome sequencing using capillary methods (EST sequencing), but provides much higher coverage of the transcriptome.
