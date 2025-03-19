@@ -52,7 +52,7 @@ The unique identifier of the sequences is shown at the left hand side of the nuc
 In the matrix, we can spot ‘rare’ nucleotide substitutions present in one or more sequences (scroll along the sequence alignment to spot some). These single nucleotide polymorphisms (SNPs) allow us to identify viruses that are genetically related (they share a common SNP) and infer epidemiological linkage between them. If viruses sampled from different individuals have the same SNPs, we can assume that they form a specific strain infecting these individuals. This is the property we use to reconstruct transmission chains from a phylogenetic tree.
 
 ## Tree reconstruction
-**RAxML** [1] is a freely available software used to reconstruct phylogenetic relationships between individuals using a maximum-likelihood (ML) approach. This approach takes into account a substitution model to assess the probability of particular mutations. You can also perform bootstrapping, a method for validating the tree by repeating the analysis a specified number of times to produce pseudoreplicates. This acts as a support for the tree topology of the final tree that is produced by calculating the number of pseudoreplicates in which a given node of a tree is found.
+**IQ-Tree** [1] is a freely available software used to reconstruct phylogenetic relationships between individuals using a maximum-likelihood (ML) approach. This approach takes into account a substitution model to assess the probability of particular mutations. You can also perform bootstrapping, a method for validating the tree by repeating the analysis a specified number of times to produce pseudoreplicates. This acts as a support for the tree topology of the final tree that is produced by calculating the number of pseudoreplicates in which a given node of a tree is found.
 
 Open your command-line terminal and navigate to the folder containing the **H1N1.flu.2009.fas** sequence file.
 ```
@@ -143,7 +143,7 @@ TempEst [2] is a tool designed to investigate the ‘temporal signal’ of molec
 
 ![Figure 3](../img/phylo_1_3.jpg)
 
-Import the ML tree you saved earlier or, if you can’t find it anymore, select the file named **RAxML_bipartitions.H1N1.flu.2009.ML.tre** in your folder. If you are not prompted for the tree when `TempEst` opens, import it using the drop-down menu: `File` > `Open…`
+Import the ML tree you saved earlier or, if you can’t find it anymore, select the file named **H1N1.flu.2009.fas.treefile** in your folder. If you are not prompted for the tree when `TempEst` opens, import it using the drop-down menu: `File` > `Open…`
 
 We now have to tag the sequences with their sampling date. A list of all the sequences in the tree will appear (in the default `Sample Dates` tab). In order to plot root-to-tip genetic distances against sampling time, each sequence has to be associated with its date of sampling. Sampling dates are indicated at the end of the sequences’ name, preceded by the suffix ‘_d’, in the format YYYY-MM-DD. For instance, the sequence named ‘A/Lima/WRAIR1687P/2009_d2009-06-27’ was sampled on the 27th of June 2009.
 

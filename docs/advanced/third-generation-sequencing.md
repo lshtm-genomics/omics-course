@@ -60,7 +60,7 @@ module not found 'pysam'
 This is because the `pysam` module is not installed in the `ont` conda environment. To install it, run the following command:
 
 ```
-conda install -c bioconda pysam
+mamba install -c bioconda pysam
 ```
 
 Now try re-running the `pycoQC` command:
