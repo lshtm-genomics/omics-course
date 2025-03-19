@@ -314,8 +314,7 @@ The output is in binary format (1=positive, 0=negative). What is the drug resist
 ## Additional information
 In case you'd like a more hands on and visualised example of how a neural networks functions.
 <a href=https://playground.tensorflow.org/#activation=tanh&batchSize=10&dataset=circle&regDataset=reg-plane&learningRate=0.03&regularizationRate=0&noise=0&networkShape=4,2&seed=0.58442&showTestData=false&discretize=false&percTrainData=50&x=true&y=true&xTimesY=false&xSquared=false&ySquared=false&cosX=false&sinX=false&cosY=false&sinY=false&collectStats=false&problem=classification&initZero=false&hideText=false>Neural network Playground</a>
-A more intuitive illustration of CNN (architecture our drug resistance prediction model is based on) regarding feature extraction can be found here: <a href=https://playground.tensorflow.org/#activation=tanh&batchSize=10&dataset=circle&regDataset=reg-plane&learningRate=0.03&regularizationRate=0&noise=0&networkShape=4,2&seed=0.58442&showTestData=false&discretize=false&percTrainData=50&x=true&y=true&xTimesY=false&xSquared=false&ySquared=false&cosX=false&sinX=false&cosY=false&sinY=false&collectStats=false&problem=classification&initZero=false&hideText=false>CNN Playground</a> (implemented on RGB colored images in this case)
-
+A more intuitive illustration of CNN (architecture our drug resistance prediction model is based on) regarding feature extraction can be found here: <a href=https://poloclub.github.io/cnn-explainer/>CNN Playground</a> (implemented on RGB colored images in this case). This difference would only in dimension and the fact that the RGB images have two more layers making it 3D rather than 2D which is the case for our one-hot encoded data.
 
 ### All parameters that affects the model
 The learning rate and dropout rate and two of the most important hyperparameters that affect the model's learning.
