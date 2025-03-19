@@ -51,6 +51,24 @@ In order to get the run metrics in to a useful form, we will use an pycoQC to pr
 pycoQC -f ~/data/nanopore_activity/basecalling/fastq/sequencing_summary.txt -o pycoqc_results.html
 ```
 
+You'll notice that the command failed with the following error:
+
+```
+module not found 'pysam'
+```
+
+This is because the `pysam` module is not installed in the `ont` conda environment. To install it, run the following command:
+
+```
+conda install -c bioconda pysam
+```
+
+Now try re-running the `pycoQC` command:
+
+```
+pycoQC -f ~/data/nanopore_activity/basecalling/fastq/sequencing_summary.txt -o pycoqc_results.html
+```
+
 !!! info
     After executing the command you should find a file called 'pycoqc_results.html'. Open them up in the file manager or in the terminal (with the below command) and inspect some of the plots and see what you can find out. As mentioned, the data here are only a small subset of reads, so some of the plots are incomplete. But this should give you a good idea of how this analysis should look.
 
