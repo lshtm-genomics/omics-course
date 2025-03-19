@@ -97,7 +97,7 @@ Since the sequences represent viruses sampled from different individuals, a clad
 
 After looking at your tree with `figtree`, can you answer these questions:
 
-!!! Question
+!!! question
     === "Q1"
 
         How many times was H1N1/2009 introduced in England during the outbreak?
@@ -108,7 +108,7 @@ After looking at your tree with `figtree`, can you answer these questions:
 
         ![Cluster 1](img/phylo_1_Q1.png)
 
-!!! Question
+!!! question
     === "Q2"
 
         What is/are the most likely geographical origins of the English strain(s)? (Take the sampling dates into account in your reasoning)
@@ -162,7 +162,7 @@ Go to the `Root-to-tip` tab to see the root-to-tip linear regression plot. Check
 - **Correlation Coefficient**: A measure of the relationship between time and the number of accumulated mutations (range: -1, 1). A positive/negative value implies a positive/negative linear relationship between time and diversity (i.e., as time increases, so does genetic divergence). A value close to 0 suggests no relationship between time and genetic divergence.
 - **R squared**: A measure of how close the data is to the regression line, i.e., what proportion of the variation in genetic divergence is explained by a strict molecular clock hypothesis.
 
-!!!Question
+!!! question
 
     === "Q3" 
     
@@ -205,7 +205,7 @@ On the lefthand side toolbar, tick the `Node Labels` box. The age of the nodes w
 The age of a node is expressed as the number of days prior to the most recent sampling date in the tree. Here, the most recent sample is A/Lima/WRAIR1687P/2009, sampled on the 27th of June 2009. If, for instance, a node age equals 21 days, it means that the date at this node is the 6th of June 2009.
 
 
-!!! Question
+!!! question
 
     === "Q4" 
         According to the molecular clock dating, what are the date(s) of introduction of H1N1/09 in England (rounded down)?
@@ -235,7 +235,7 @@ On the left hand side toolbar, pull down the `Node Labels` menu and under` Displ
 To` display` the posterior probability of the most likely node location, select **Location.prob** in the Display menu of the `Node Labels`.
 
 
-!!! Question
+!!! question
 
     === "Q5"
         
@@ -244,7 +244,7 @@ To` display` the posterior probability of the most likely node location, select 
     === "Answer"
         The most likely location state at the root of the tree is the US (posterior probability: 0.84).
 
-!!! Question
+!!! question
     === "Q6"
         Where were the English strains of H1N1/09 imported from? How confident are we? How does your answer compare to that of Q4?**
 
