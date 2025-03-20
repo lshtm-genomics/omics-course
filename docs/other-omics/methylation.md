@@ -306,13 +306,13 @@ We can see this command prints out a number of lines. The last two lines represe
 This format can be a little difficult to understand so the last part we will add to this command will translate this to a more readable format:
 
 ```
-bcftools view pacbio.vcf.gz -s tb_pb_10,tb_pb_14,tb_pb_11 -x | snpEff ann Mycobacterium_tuberculosis_h37rv  -no-upstream -no-downstream | bcftools query -f '[%POS\t%SAMPLE\t%ANN\n]' | grep Rv3263
+bcftools view pacbio.vcf.gz -s tb_pb_10,tb_pb_14,tb_pb_11 -x | snpEff ann Mycobacterium_tuberculosis_h37rv  -no-upstream -no-downstream | bcftools query -f '[%POS\t%SAMPLE\t%GT\t%ANN\n]' | grep Rv3263
 ```
 
 We have moved the grep command to the end and added in the following parameters:
 
 * `bcftools query`: This command allows conversion of VCF into custom formats
-* `-f '[%POS\t%SAMPLE\t%ANN\n]'`: This specifies the format we want (Position, Sample name and annotations)
+* `-f '[%POS\t%SAMPLE\t%GT\t%ANN\n]'`: This specifies the format we want (Position, Sample name and annotations)
 
 !!! terminal "Terminal output"
     ```
