@@ -213,7 +213,7 @@ We have specified the minimum QV of the motif to be 60. Take a look at the filte
 
 It is evident that some samples have methylation on certain motifs while others do not. We will now try to understand if there is a particular pattern to the methylation seen in the data. The methylation pattern can either be random or specific to a certain strain. To do this we will reconstruct the phylogeny and overlay the methylation information.
 
-Using the same raw data and the SMRT portal analysis suite we have generated whole genome assemblies for the samples. These were then aligned to the reference and variants were called. The variants from all the samples were merged to a single FASTA formatted file. We can use this file to create the phylogenetic tree. Try to remember the command to create the tree and run it in the terminal using 'pacbio.fasta' as the input fasta and 'pacbio.ML' as the output name. If you need the solution click on the button below. 
+Using the same raw data and the SMRT portal analysis suite we have generated whole genome assemblies for the samples. These were then aligned to the reference and variants were called. The variants from all the samples were merged to a single FASTA formatted file. We can use this file to create the phylogenetic tree. Try to remember the command to create the tree and run it in the terminal using 'pacbio.fasta' as the input fasta. If you need the solution click on the button below. 
 
 !!! question
     === "Task 1"
@@ -223,7 +223,7 @@ Using the same raw data and the SMRT portal analysis suite we have generated who
         iqtree -m GTR+G -s pacbio.fasta -bb 1000
         ```
 
-Open up the tree by launching `figtree`. Open the tree by clicking on **Open...** and selecting the 'RAxML_bestTree.pacbio.ML' tree. Midpoint root the tree by selecting **Midpoint Root** from the **Tree** menu. Finally, we will load annotations allowing figtree to display which samples do or don't have methylation. Select **Import annotations...** from the **File** menu and select the '**filtered_motifs.tsv**' file. This file was created during the merging step and is simply a tab-separated file with the rows being samples and the columns being motifs. The values in the file are either **0** (representing absence of methylation) or **1** (representing presence of methylation). 
+Open up the tree by launching `figtree`. Open the tree by clicking on **Open...** and selecting the 'pacbio.fasta.treefile' tree. Midpoint root the tree by selecting **Midpoint Root** from the **Tree** menu. Finally, we will load annotations allowing figtree to display which samples do or don't have methylation. Select **Import annotations...** from the **File** menu and select the '**filtered_motifs.tsv**' file. This file was created during the merging step and is simply a tab-separated file with the rows being samples and the columns being motifs. The values in the file are either **0** (representing absence of methylation) or **1** (representing presence of methylation). 
 
 Once the file has been loaded, we can colour the tips by selecting a motif sequence from the 'Colour by' dropdown on the 'Tip labels' panel (shown below). Samples for which methylation is absent will be coloured red. 
 
