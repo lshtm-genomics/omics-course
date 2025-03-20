@@ -35,7 +35,7 @@ Here we train a model using <i>katG</i> sequence data from <i>M. tuberculosis</i
 In the terminal navigate to the `ml_workshop/inh_model` directory, by typing:
 
 ```
-cd ~/data/ml_workshop/inh_model
+cd ~/data/ml/inh_model
 ```
 
 Now type the commands below to train the model with default parameters.
@@ -67,10 +67,10 @@ INH-model_LR:0.0001-DR:0.2-LOSS.png
     
     In this case, you shouldn't wait long but while you are waiting, you could perhaps read on as well. There are some interesting info near at the end for more intuition about how a neural network functions.
 
-When the run finishes, you can open the current folder using command ```open . ``` in terminal.
-Double click on the picture files to view them. 
+When the run finishes, you can view the graphs either in  vscode (by navigating using the file explorer) or by opening the file manager within TigerVNC and navigating to the folder.
 
-***Or*** use ```xdg-open <file name>``` in the terminal
+
+
 
 ### ACC-accuracy
 Accuracy is a common performance metric used in deep learning to **evaluate the effectiveness of a model** at predicting the correct output. It measures the proportion of correct predictions made by the model out of the total number of predictions. 
@@ -219,7 +219,7 @@ cd ../full_model
 Now type the commands below to view the first few lines of the original fastq file:
 
 ```
-less ERR6634978_1.fastq.gz | head
+zcat ERR6634978_1.fastq.gz | head
 ```
 
 !!! Reminder
@@ -256,7 +256,7 @@ One hot encoding can be created from alignment files (.bam). As a refresher let'
 bwa index MTB-h37rv_asm19595v2-eg18.fa
 ```
 ```
-bwa mem MTB-h37rv_asm19595v2-eg18.fa ERR6634978_1.subset.fastq.gz ERR6634978_2.subset.fastq.gz | samtools sort - -o ERR6634978.bam
+bwa mem -t 2 MTB-h37rv_asm19595v2-eg18.fa ERR6634978_1.fastq.gz ERR6634978_2.fastq.gz | samtools sort -@ 2 - -o ERR6634978.bam
 ```
 ```
 samtools index ERR6634978.bam
