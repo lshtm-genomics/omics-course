@@ -38,15 +38,24 @@ mkdocs serve
 
 ### Adding new tutorials
 
-If you need add a new tutorial just create a new markdown file in `docs/`. If you are running mkdocs serve your changes will automatically force the browser to refresh.
+If you need add a new tutorial just create a new markdown file in `docs/<subdirectory>`. If you are running mkdocs serve your changes will automatically force the browser to refresh.
 
-If you make some changes then just use:
+Adding the tutorial to the menu is done in `mkdocs.yml` under the `nav` section. Which has the folliwing format:
 
+```yaml
+nav:
+  - Home: 
+    - index.md
+    - connecting-github.md
+  - Introduction: 
+      - introduction/intro-to-linux.md
+      - introduction/mapping.md
+      - introduction/variant-detection.md
+      - introduction/assembly.md
+      - introduction/task.md
 ```
-git add docs/new-tutorial.md
-git commit -am 'added new tutorial'
-git push
-```
+
+To add a new tutorial you can just add a new line under the relevant section. The indentation is important so make sure you keep it the same.
 
 #### Images
 
