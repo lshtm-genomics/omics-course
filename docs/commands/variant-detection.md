@@ -1,5 +1,5 @@
 ``` bash
-conda activate variant_detection
+conda activate day1
 
 mkdir ~/data/tb/variants
 cd ~/data/tb/variants/
