@@ -1,5 +1,5 @@
 ``` bash
-conda activate mapping
+conda activate day1
 cd ~/data/tb/
 bwa index ~/data/tb/tb.fasta
 
