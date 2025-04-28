@@ -59,6 +59,8 @@ _De novo_ assembly is one the most computationally demanding processes in bioinf
 
 ### Quick start and data checks
 
+Its important for this practical to use the codespace with the higher cpu usage, due to the constraints of tools for this practical.
+
 Activate the relevant `conda` environment
 
 ```
@@ -68,13 +70,13 @@ conda activate assembly
 Change to the data directory:
 
 ```
-cd ~/data/assembly/
+cd ~/assembly/assembly
 ```
 
 And list the files there:
 
 ```
-ls
+ls tb_ILL
 ```
 
 Using knowledge of Data QC from previous practicals, run some quality checks on this data set to see if you need to trim or not and proceed from there.
@@ -110,10 +112,10 @@ Spades is implemented in a single program that performs several steps in the ass
 
 You will see that there are many options and the pipeline can be customised extensively. However, for most purposes we can run the tool with the default settings. You only need to supply the reads and an output directory.
 
-An example invocation that takes the fastq formatted paired end files (sample1_1.fastq.gz and sample1_2.fastq.gz) and performs assembly.
+An example invocation that takes the fastq formatted paired end files (sample1_1.fastq.gz and sample1_2.fastq.gz) and performs assembly. This may take a while so in the mean time you can read through the docs of spades to understand the unique parameters that you can use to improve to assembly. https://github.com/ablab/spades.
 
 ```
-spades.py -1  tb_ILL/sample1_1.fastq.gz -2  tb_ILL/sample1_2.fastq.gz -o short/ -k 55 --isolate
+spades.py -1  tb_ILL/sample1_1.fastq.gz -2  tb_ILL/sample1_2.fastq.gz -o short/ -k 55 --isolate -t 4
 ```
 Employing paired-end reads (rather than single-end) increases the assembly quality. In general, libraries with smaller insert size produce more fragmented and shorter assemblies, whilst the genome coverage does not increase that much. The combination of libraries with different insert size always gives the best results.
 
@@ -145,7 +147,7 @@ We can compute these statistics with the help of a tool called quast (made by th
 
 ```
 cd sample1
-quast -r ../tb.fasta -o quast short/scaffolds.fasta 
+quast -r ../tb.fasta -o quast/short short/scaffolds.fasta 
 ```
 
 After it has finished you can examine the outputs. To view the result, open up the html in the browser of your choice.
@@ -171,7 +173,11 @@ You can also assess genome assembly quality using BUSCO (Benchmarking Universal 
 Lets run BUSCO now
 
 ```
-busco -i scaffolds.fasta -l bacteria_odb10 -o busco_output -m genome -c 8
+conda activate busco
+
+busco -i short/scaffolds.fasta -l bacteria_odb10 -o busco_output -m genome -c 4
+
+conda deactivate
 ```
 The `-l` parameter lets you select a specific lineage database to use for BUSCO analysis, and there are many different options available. For example, when assembling the tick genome in previous work, the Arthropoda database was used. To choose the most appropriate database for your genome, visit the NCBI taxonomy page for your organism, find the relevant lineage information, and then select the closest BUSCO database based on that lineage from the busco database [list](https://busco-data.ezlab.org/v5/data/lineages/).
 
@@ -195,10 +201,38 @@ GapCloser uses paired-end reads where each pair has a known insert size (e.g. ~3
 
 Then, GapCloser collects reads whose pairs span these gaps and tries to reconstruct the missing sequence by overlapping them in the gap region — replacing the Ns with real bases based on the consensus of those bridging reads.
 
-Lets run gap closer to see if we can improve the asesmbly. First we need to create a config file, this has been provided for you but if you would like to check out how to make one you can look at the [manual](https://www.animalgenome.org/bioinfo/resources/manuals/SOAP.html). You would need to find your insert size if you were to make one, this is done by mapping the reads to a reference and using `picard CollectInsertSizeMetrics`.
+Lets run gap closer to see if we can improve the asesmbly. First we need to create a config file, we have provided for you a sample one that needs editing, if you would like to know more, check out how to make one you can look at the [manual](https://www.animalgenome.org/bioinfo/resources/manuals/SOAP.html). You would need to find your insert size if you were to make one, this is done by mapping the reads to a reference and using `picard CollectInsertSizeMetrics`.
+
+Lets edit the config file:
 
 ```
-GapCloser -a short/scaffolds.fasta -b gapclosing_config.txt -o short/scaffolds_gapClosed.fasta
+nano gapclosing.txt
+```
+
+We have opened the text file in the terminal using nano, now we can edit the correct parameters for our data. You will see it looks like this:
+
+```
+max_rd_len=150
+
+[LIB]
+avg_ins=500
+reverse_seq=0
+asm_flags=3
+rank=1
+rd_len_cutoff=150
+pair_num_cutoff=1
+map_len=20
+q1=PATH/TO/FILE/sample1_1.fq.gz
+q2=PATH/TO/FILE/sample1_2.fq.gz
+
+```
+We need to change the path of the files to where our illumina data is, for example q1 would be `/home/vscode/assembly/assembly/tb_ILL/sample1_1.fastq.gz`. Edit the file and then close nano using `Ctrl + X`. 
+It will ask you to save so you will press `y` to save and then `Enter` twice to save it as the same file name.
+
+Now we can run the gap closer.
+
+```
+GapCloser -a short/scaffolds.fasta -b gapclosing.txt -o short/scaffolds_gapClosed.fasta
 ```
 
 !!! question
@@ -210,9 +244,6 @@ GapCloser -a short/scaffolds.fasta -b gapclosing_config.txt -o short/scaffolds_g
 
 ## Advanced Topics
 
-**Annotation Transfer**
-
-Once the contigs ordered are against the reference, it is useful to determine the position and function of possible genes. It is possible to implement ab initio gene finding, but an alternative approach is to use the annotation of the reference and adapt it to the new assembly. A tool called RATT (Otto et al., 2011 “Rapid annotation transfer tools”) has been developed to transfer the annotation from a reference to a new assembly. In the first step the similarity between the two sequences is determined and a synteny map is constructed. This map is used to align the annotation of the reference onto the new sequence. In a second step, the algorithm tries to correct gene models. One advantages of RATT is that the complete annotation is transferred, including descriptions. Thus careful manual annotation from the reference becomes available in the newly sequenced genome. Where no synteny exists, no transfer can be performed. An outputted combined “embl” format file with sequence and inferred annotation can be viewed in artemis to assess the quality of the transfer.
 
 **Improving assemblies**
 
@@ -237,100 +268,20 @@ The quality of the assembly is determined by a number of factors, including the 
 All these programs are available through the [PAGIT suite (post assembly genome improvement toolkit)](http://www.sanger.ac.uk/resources/software/pagit/). However they are mostly deprecated and no longer used.
 
 
-## Third generation sequencing and its applications with genome assembly
+**Annotations**
 
-Before continuing we will showcase nanopore long read data, and then proceed to use the long reads to assemble genomes.
+Once we have assembled the genome we can annotate using tools such as `GALBA` or `Augustus`, both implement different ways depending on the data you have. `GALBA` uses protein sequences from your assembly and similar species to find regions of your genome that align with conserved domains or functional motifs from known genes in other species. This approach works well if you have closely related species with well-annotated genomes, allowing you to leverage their protein data for accurate gene prediction.
 
+`Augustus` is more versatile because it can also use RNA-seq data to guide gene prediction. When you provide RNA-seq reads (either aligned or raw), `Augustus` can incorporate this transcriptomic data to improve its gene predictions. This method is especially useful when there is limited or no closely related genomic data to rely on. `Augustus` uses RNA-seq data to identify transcription start sites, exon-intron boundaries, and alternative splicing events by aligning the RNA-seq reads to the genome. The software then uses these alignments to fine-tune the prediction of gene models, ensuring that predicted genes are supported by actual expression data.
 
-## Introduction
-
-Briefly we are going to be looking at data generated by third-generation nanopore sequencing technology. Developed by Oxford Nanopore Technologies (ONT), these platforms, rather than the next-generation 'sequencing-by-synthesis approach', make use of an array of microscopic protein ‘pores’ set in in an electrically resistant membrane which guide strands of DNA or RNA through them. Each nanopore corresponds to its own electrode connected to a channel and sensor chip, which measures the electric current that flows through the nanopore. When a molecule passes through a nanopore, the current is disrupted to produce a characteristic ‘squiggle’. The squiggle is then decoded using basecalling algorithms to determine the DNA or RNA sequence in real time. Oxford Nanopore’s most popular platform is the MinION which is capable of generating single reads of over 4Mb.
-
-![ngs1](../img/ngs1.gif)
-
-The MinION is one of 5 scalable platforms developed by ONT. High-throughput applications such as the GridION and PromethION use an array of nanopore flowcells to produce between 5 to 48 times more data than the MinION alone – outputting up to 48 TB of data in one run. More downscaled solutions such as The Flongle and SmidgION use a smaller, single flowcell to generate data. The MinION is a highly portable sequencing platform, about the size of a large USB flash drive. This technology enables researchers to perform sequencing analyses almost anywhere, providing they have the correct equipment to prepare the DNA libraries and analyse the output data.
-
-![ngs2](../img/ngs2.jpeg)
-
-A complete sequencing run on the MinION platform can generate upwards to of 1TB of raw data, and downstream analyses require a significant amount of computing power, multicore high performance processors and large amounts of RAM. This poses a significant logistical challenge for researchers who want to take advantage of the platform’s portability aspect. Over recent years, the integration of GPUs (graphics processing units) has made it easier to analysis workflows.
-
-![ngs3](../img/ngs3.png)
-
-The long reads that are generated from nanopore are perfect for De novo assembly purposes, due to the way that they span repetitive regions and structural variants, making it easier to reconstruct genomes with fewer gaps and higher contiguity compared to short-read sequencing. So now we will touch on how the dorado tool works, and then run through long read and hybrid assemblies to compare with our previous assemblies using just short reads.
-
-
-## Basecalling
-
-Basecalling is performed with a tool called `dorado`. This tool is used to convert the raw signal data generated by the MinION into a sequence of nucleotides. The basecaller uses a neural network to predict the sequence of bases from the raw signal data. The output of the basecaller is a fastq file, which contains the basecalled sequence, as well as other information about the read, such as the quality scores of the basecalls. 
-
-Basecalling required the use of advanced machine learning models, and can be computationally intensive. For this reason, basecalling is often performed on a high-performance computing cluster with a graphics processing unit. In this activity, we will use a smaller dataset to allow for the basecaller to work on our machines, and run quickly, just to get an idea of how the basecaller works.
-
-![ngs4](../img/ngs4.gif)     ![ngs5](../img/ngs5.png)
-
-```
-cd ~/data/nanopore/basecalling/pod5_pass/
-```
-
-!!! info
-    Use the `ls` command to see what is inside this folder. This directory holds the POD5s that passed from the sequencing process that is done on the MinKNOW software provided with the sequencer. During a sequencing run, the MinKNOW software (or other ONT control software) records the raw electrical signals generated as DNA or RNA molecules pass through the nanopores. This raw signal data, along with metadata about the run, device, and reads, is then structured into Apache Arrow tables and packaged into the POD5 file format. The pod5_pass directory shows which of these signals passed the initial QC, but for basecalling we will use all the pod5s and further filter if needed later on.
-
-## Basecalling: Dorado
-
-We have our pod5's directly from the nanopore sequencer, now its time to basecall the data to get the fastq or bam files depending on the user input. To run dorado correctly, we need a few things
-
-1. The actual sequencing data
-2. The barcoding kit. Important to get right due to the signal interpretation from the model, and the specific barcoding sequences given to each model.
-3. The basecalling model. The machine learning model to decode the nanopore sequencing data. You can learn more about the models here https://dorado-docs.readthedocs.io/en/latest/models/models/. But they essentially come in 3 different versions
-- fast (the fastest and least accurate)
-- hac (high accuracy)
-- sup (super-accurate, the most accurate)
-4. The sample sheet. Information about the samples you're running, must be in the correct format which you can see here https://dorado-docs.readthedocs.io/en/latest/barcoding/sample_sheet/
-
-You will find all of these things in the dorado directory. 
-
-First we move our pod5s into one directory
-
-```
-cd ..
-mv */*.pod5 pod5s/
-```
-
-The basecaller also allows the option to provide a reference to do mapping using minimap2, but we will skip this for now and output a fastq using the `--emit-fastq` option.
-
-Now, let's run Dorado on a small selection of our POD5 files for a quicker demonstration (expect around 5 minutes). Processing the full dataset would typically take approximately 20 minutes, as basecalling is computationally intensive.
-
-```
-dorado basecaller dna_r10.4.1_e8.2_400bps_fast@v4.1.0/ pod5s/ \
---min-qscore 7 \
---kit-name SQK-NBD114-24 \
---sample-sheet sample_sheet.csv \
---trim all \
---emit-fastq \
---output-dir dorado_out
-```
-
-Within our output directory we will have a fastq file, which we can then use to do further analysis. We will use other data for future projects due to the data here being subsetted for use on your computers.
-
-## Basecalling: Quality Control
-
-Before moving on to the analysis steps, it is important to gauge the quality of your sequencing output. There are numerous factors which dictate the quality of the output data, spanning between quality of the input material, library preparation to software and hardware failure. After assembly we will use three tools for quality control;
-
-- pycoQC
-    - A tool to output the quality of the sequencing run
-- chopper/porechop
-    - These tools trim the barcodes, adapters, and the low quality reads
-- Kraken
-    - Trims contaminent data in your sample
-
-
-## Back to Assemblies
+In practice, you can combine both methods: use protein-based annotation from GALBA for structural gene prediction and RNA-seq data for more refined predictions from Augustus. Together, they can provide a comprehensive annotation that benefits from both homology and transcriptomic evidence.
 
 
 ## Exercise 4 Long read assembly
 
-As we have mentioned long reads are ideal for genome assembly, due to its ability to cover large repetitive regions. They significantly reduce the number of contigs in a final assembly, leading to more contiguous and complete genomes. Long reads also enable better resolution of structural variations, such as insertions, deletions, and inversions. Additionally, they improve the assembly of complex genomic regions like GC-rich areas and tandem repeats.
+Long reads generated by third-generation sequencing technologies, such as those developed by Oxford Nanopore Technologies, have revolutionised genome assembly approaches. Unlike short reads, which often struggle to resolve repetitive regions and complex genomic structures, long reads are capable of spanning these challenging areas, providing critical information that improves the accuracy and contiguity of assembled genomes. This ability means that assemblies generated from long-read data typically have fewer gaps, longer contigs, and better representation of the true genome structure. Furthermore, long reads enable the detection and assembly of large structural variants, mobile genetic elements, and previously unresolved regions, which are essential for a comprehensive understanding of genome organisation, evolution, and function. Because of these advantages, long-read sequencing is now considered the gold standard for high-quality de novo assembly, making it possible to reconstruct entire chromosomes and even complete genomes with minimal fragmentation, often without the need for additional scaffolding from short-read data. Long reads also enable better resolution of structural variations, such as insertions, deletions, and inversions. Additionally, they improve the assembly of complex genomic regions like GC-rich areas and tandem repeats.
 
-Here we will be using the same sample we used for the short reads, but that has been sequenced on the minion software as well, so we can compare directly between the two platforms. You fill find this data in the tb_ONT directory. We will be using flye, the most recent and newest long read assembler, that uses the repeat graph method, as well as canu, a slightly older assembler but still good, and we will compare which one performed better.
+Here we will be using the same sample we used for the short reads, but that has been sequenced on the minion software, so we can compare directly between the two platforms. You fill find this data in the tb_ONT directory. We will be using flye, the most recent and newest long read assembler, that uses the repeat graph method, as well as canu, a slightly older assembler but still good, and we will compare which one performed better.
 
 ```
 flye --nano-hq tb_ONT/sample1_ONT.fastq.gz --genome-size 4.1m --threads 8 --read-error 0.06 -o long/
@@ -351,18 +302,26 @@ Dont forget to also run BUSCO to get the BUSCO score.
     === "Answer 5"
         We should have got a much higher N50 value, with far fewer contigs, this is due to ONT being able to bridge the gap across the difficult to map areas. Flye specifically has an algorithm to map the repeats and find the ideal path from the repeats that short read assemblers cannot do
 
-Now there are multiple steps after we can do to improve our assembly.
+After running flye we can also use canu to compare the best assembly, read the docs on canu and create a command to create an assembly https://canu.readthedocs.io/en/latest/quick-start.html#assembling-pacbio-clr-or-nanopore-data .
+
+```
+canu 
+```
+
+Now there are multiple steps after we can do to improve our assembly, and we will be using our flye assembly for further analysis
 
 Scaffolding using long-read data only involves harnessing the long reads' ability to span large genomic distances, which helps connect contigs separated by gaps or repetitive regions. This method does not rely on short-read data and instead uses the length and continuity of long reads to form accurate, large-scale scaffolds, enhancing the overall structure and completeness of the genome assembly.
 
 ```
-ntLink scaffold target=long/assembly.fasta reads=tb_ONT/S21_ONT.fastq.gz G=500 rounds=3 t=32
+ntLink scaffold target=long/assembly.fasta reads=tb_ONT/sample1_ONT.fastq.gz G=500 rounds=3 t=4
 ```
 
 We can now close the gaps between the scaffolds using a tool called tgsgapcloser. Gap closing involves filling the sequence gaps left between contigs in an assembly. This process uses the overlap between neighbouring contigs or additional sequencing reads to infer and fill in missing genomic regions. The aim is to produce a more complete assembly by resolving ambiguities in regions that are difficult to sequence or span, improving both contiguity and accuracy.
 
 ```
-tgsgapcloser --scaff long/assembly.fasta.k32.w100.z1000.stitch.abyss-scaffold.fa --reads tb_ONT/S21_ONT.fastq.gz --output long/gapcloser/tgs_gapcloser --ne
+mkdir long/tgs_gapcloser
+
+tgsgapcloser --scaff long/assembly.fasta.k32.w100.z1000.stitch.abyss-scaffold.fa --reads tb_ONT/sample1_ONT.fastq.gz --output long/gapcloser/tgs_gapcloser --ne
 ```
 After every run, use quast to see how the assembly is improving. Although quast doesnt show much has changed, BUSCO highlights the percentage gaps and we can use it to see how many gaps we have reduced.
 
@@ -377,13 +336,13 @@ cp long/gapcloser/tgs_gapcloser.scaff_seqs long/gapcloser/tgs_gapcloser.scaff_se
 Then we can map the original data to our currenct sequence, this gives us a racon file we can use to polish. By aligning the raw reads to our newly generated sequence, it allows us to identify regions with any gaps that could potentially be removed, this essentially tries to polish and make our genome as robust as possible.
 
 ```
-minimap2 -t 4 -x map-ont long/gapcloser/tgs_gapcloser.scaff_seqs.fa tb_ONT/S21_ONT.fastq.gz > racon.paf
+minimap2 -t 4 -x map-ont long/gapcloser/tgs_gapcloser.scaff_seqs.fa tb_ONT/sample1_ONT.fastq.gz > racon.paf
 ```
 
 Finally we run racon to polish our genome
 
 ```
-racon -u --no-trimming -t 4 tb_ONT/S21_ONT.fastq.gz racon.paf long/gapcloser/tgs_gapcloser.scaff_seqs.fa > final_assembly.fa
+racon -u --no-trimming -t 4 tb_ONT/sample1_ONT.fastq.gz racon.paf long/gapcloser/tgs_gapcloser.scaff_seqs.fa > long/final_assembly.fa
 ```
 !!! question
     === "Question 6"
@@ -392,6 +351,7 @@ racon -u --no-trimming -t 4 tb_ONT/S21_ONT.fastq.gz racon.paf long/gapcloser/tgs
         Not much has improved if you used quast, apart from the the # N's per 100 kbp section, we have drastically reduced our assemblies misalignments or regions with unambiguaty by polishing.
 
 Polishing can be run multiple times in order to get the final assembly to the highest quality, however its important not to over polish and introduce bias into the dataset. One polish can be enough, it is simply up to your dataset and what you feel is best.
+
 
 
 ## Excerise 5 Hybrid assembly
@@ -405,7 +365,7 @@ We will attempt the hybrid approach and see how much better the assembly is.
 First we will once again use spades, however we will give spades the long read data as a third option. This allows spades to apply the BayesHammer approach with both sets of data rather than one, which improves error correction and assembly quality. The method enhances the accuracy of contig formation by taking advantage of long reads' structural information while refining it with the high base-level accuracy of short reads.
 
 ```
-spades.py -1 tb_ILL/sample1_2.fastq.gz -2 tb_ILL/sample1_2.fastq.gz --nanopore tb_ONT/Sample1.fastq.gz -t 32 -o hybrid/spades/
+spades.py -1 tb_ILL/sample1_1.fastq.gz -2 tb_ILL/sample1_2.fastq.gz --nanopore tb_ONT/sample1_ONT.fastq.gz -t 4 -o hybrid/spades/
 ```
 
 Once again we need to check our assembly, at this point you should know how to do it.
@@ -424,8 +384,15 @@ In order to run MaSuRCA we need to create a config file and edit it to where our
 ```
 nano masurca_config
 ```
-From the config we can see we have set the data and the PE insert size information, as well as many other parameters for our assembly, now its time to run it. (This can take a while so you can take a short break).
+From the config we can see we have set the data and the PE insert size information, as well as many other parameters for our assembly, now its time to run it. (This can take a while so you can take a short break or download your quast results to take a look).
 
+First we need to install a dependency that isnt available when setting up the initial codespace
+
+```
+sudo apt-get install file
+```
+
+Now we can run MaSuRCA
 
 ```
 masurca masurca_config
