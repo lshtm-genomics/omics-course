@@ -42,7 +42,7 @@ nav:
       - introduction/task.md
   - Advanced:
       - advanced/phylogenetics.md
-      - advanced/third-generation-sequencing.md
+      - advanced/nanopore.md
       - advanced/gwas.md
   - "Other omics":
       - other-omics/microbiome.md
