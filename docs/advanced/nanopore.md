@@ -70,7 +70,9 @@ firefox kraken/Ecoli_Japan_1_kraken.html
 ```
 Open the files using firefox or view your files on the left-hand side and right click Ecoli_Japan_1_kraken.html and download to your own folder and open the html file in your web browser.
 
-!!! question  What can you determine from the Kraken2 outputs? Is the data clean?  There are a few other genera included in the output — do you think they might be contaminants?
+!!! question  
+
+    What can you determine from the Kraken2 outputs? Is the data clean?  There are a few other genera included in the output — do you think they might be contaminants?
 
 Just in case we will filter our fastq files to remove any contaminants. We won't be too stringent with the filtering- we will use the taxa id from NCBI for Enterobacteriaceae (543). To do this we will use **KrakenTools**:
 
@@ -97,7 +99,9 @@ python ./taxdump/flye --nano-raw "./kraken/Ecoli_Japan_1.kraken_filtered.fq" --g
 Now the assembly is ready we will test its quality using **BUSCO**. BUSCO assesses the quality of genome assemblies by looking at the percentage of conserved genes. Open the short_summary.specific.enterobacteriaceae_odb12.assembly_QC.txt file.
 
 
-!!! question  What do you think, is it a good assembly?
+!!! question  
+    
+    What do you think, is it a good assembly?
 
 ### Step 6. Annotate your assembly
 Ok, so the assembly could be better, but how about we annotate some genes? Genome annotation identifies genes and other important elements within a DNA sequence. It predicts where genes are located and what they might do. This helps scientists understand the biological function of the genome. Annotation is crucial for studying how organisms work and evolve. We will do this using **Prokka**. Prokka is a software tool used for rapid genome annotation of prokaryotic (bacterial and archaeal) genomes. It identifies genes, predicts their functions, and produces standard annotation files. Prokka streamlines the process by using multiple databases and tools in one easy step. It is widely used because it is fast, automated, and produces consistent results. There are lots of other tools for annotating Eukaryotes and beyond, however, this tool is well-developed for bacteria species.
@@ -123,7 +127,9 @@ To identify plasmids:
 ```
 abricate --db plasmidfinder --quiet flye_output/assembly.fasta > abricate_results/plasmid_results.txt
 ```
-!!! question  Take a look at some of the resistance genes and plasmids- why might the blaCTX-M-27 gene be of concern?
+!!! question  
+    
+    Take a look at some of the resistance genes and plasmids- why might the blaCTX-M-27 gene be of concern?
 
 
 ### Step 8. If you have time: Pan-genome Analysis
@@ -139,7 +145,9 @@ roary -e --mafft -p 2 *.gff
 View your files, right click and download  "accessory_binary_genes.fa.newick" and "gene_presence_absence.csv". Open your favourite web browser and load https://jameshadfield.github.io/phandango/#/ to view the roary output files. Drag and drop the "accessory_binary_genes.fa.newick" and "gene_presence_absence.csv" files into phandango. You should get something that looks like this:
 ![image](https://github.com/user-attachments/assets/11f76e30-3125-43ae-9614-59e5cb984cb5)
 
-!!! question  What do you think the blue blocks mean?
+!!! question  
+
+    What do you think the blue blocks mean?
 
 
 ### Can you do this analysis with Illumina data?
