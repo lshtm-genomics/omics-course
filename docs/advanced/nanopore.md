@@ -53,6 +53,7 @@ Open the files using firefox or view your files on the left-hand side and right 
 
 
 !!! question  
+    
     What can you see from the output? How do you think the read lengths compare to Illumina? How does read quality vary over time?
 
 Next we should trim our files and filter for high-quality reads. To trim the nanopore reads we have used **Chopper** (You could also used Porechop_abi, see Tips and Tricks) to identify any adapter sequences and remove them. This is an important step, especially when performing genome assembly. 
