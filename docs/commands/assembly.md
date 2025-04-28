@@ -32,13 +32,13 @@ ntLink scaffold target=long/assembly.fasta reads=tb_ONT/sample1_ONT.fastq.gz G=5
 
 mkdir long/tgs_gapcloser
 
-tgsgapcloser --scaff long/assembly.fasta.k32.w100.z1000.stitch.abyss-scaffold.fa --reads tb_ONT/sample1_ONT.fastq.gz --output long/tgs_gapcloser --ne
+tgsgapcloser --scaff long/assembly.fasta.k32.w100.z1000.ntLink.scaffolds.fa --reads tb_ONT/sample1_ONT.fastq.gz --output long/tgs_gapcloser --ne
 
 cp long/tgs_gapcloser.scaff_seqs long/tgs_gapcloser.scaff_seqs.fa
 
-minimap2 -t 4 -x map-ont long/tgs_gapcloser.scaff_seqs.fa tb_ONT/sample1_ONT.fastq.gz > racon.paf
+minimap2 -t 4 -x map-ont long/tgs_gapcloser.scaff_seqs.fa tb_ONT/sample1_ONT.fastq.gz > long/racon.paf
 
-racon -u --no-trimming -t 4 tb_ONT/sample1_ONT.fastq.gz racon.paf long/tgs_gapcloser.scaff_seqs.fa > long/final_assembly.fa
+racon -u --no-trimming -t 4 tb_ONT/sample1_ONT.fastq.gz long/racon.paf long/tgs_gapcloser.scaff_seqs.fa > long/final_assembly.fa
 
 spades.py -1 tb_ILL/sample1_1.fastq.gz -2 tb_ILL/sample1_2.fastq.gz --nanopore tb_ONT/sample1_ONT.fastq.gz -t 4 -o hybrid/spades/
 

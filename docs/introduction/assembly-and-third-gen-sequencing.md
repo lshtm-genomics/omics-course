@@ -31,7 +31,6 @@ For example, the sequence ATGGCGTGCA can be broken into 3-letter chunks (3-mers)
 
 This method is very efficient for handling millions of short DNA reads, since each k-mer is stored only once no matter how many times it appears. Several programs implement de Bruijn graph algorithms, including Euler (Pevzner, Tang, & Waterman, 2001), Velvet (Zerbino & Birney, 2008), ABySS (Simpson et al., 2009), AllPaths (Butler et al., 2008) and SOAPdenovo (Li et al., 2010).
 
-![assembly_3](../img/assembly_3.jpeg)
 
 Overlap-Layout-Consensus (OLC) assemblers build genomes by first finding overlaps between all pairs of DNA reads. Instead of breaking the reads into smaller pieces like in de Bruijn graphs, OLC compares entire reads to each other to see where they match up.
 
@@ -55,7 +54,7 @@ In conclusion, the de Bruijn graph assemblers are more appropriate for large amo
 
 ## Exercise 1: _De novo_ Comparing different assemblies
 
-_De novo_ assembly is one of the most computationally demanding processes in bioinformatics. Large genomes require many hours or days of processing. A small bacterial genome may take up to several hours to assemble. Here we will assemble M. tuberculosis genomes using Spades (Bankevich et al, 2012). We will compute assembly statistics to check the quality, and review how resulting contigs can be aligned, ordered and orientated along the reference genome using Abacas (Assefa, Keane, Otto, Newbold, & Berriman, 2009).
+_De novo_ assembly is one of the most computationally demanding processes in bioinformatics. Large genomes require many hours or days of processing. A small bacterial genome may take up to several hours to assemble depending on the parameters used. Here we will assemble M. tuberculosis genomes using Spades (Bankevich et al, 2012). We will compute assembly statistics to check the quality, and review how resulting contigs can be aligned, ordered and orientated along the reference genome.
 
 ### Quick start and data checks
 
@@ -90,15 +89,18 @@ Jellyfish is a tool that can estimate the genome size by analysing the frequency
 Let's run jellyfish
 
 ```
-jellyfish count -C -m 21 -s 100M -t 10 -o reads.jf <(zcat tb_ILL/*.fastq.gz)
+jellyfish count -C -m 21 -s 100M -t 2 -o reads.jf <(zcat tb_ILL/*.fastq.gz)
 
 jellyfish histo reads.jf > reads.histo
 ```
 
 Now we have created our reads.histo, we can use it to plot a k-mer frequency distribution plot.
 
-If you have familiarity with a programming language, you can plot these yourself, and calculate the genome size yourself using the above formula. Although, GenomeScope is widely used to plot this and will also tell you your estimated genome size. Load up GenomeScope and take a look http://genomescope.org/genomescope2.0/.
+If you have familiarity with a programming language, you can plot these yourself, and calculate the genome size yourself using the above formula. Although, GenomeScope is widely used to plot this and will also tell you your estimated genome size. Download your reads.histo and load up GenomeScope and take a look http://genomescope.org/genomescope2.0/.
 
+You can download it by right clicking the file on the left of vscode in the explorer, and clicking download (check the image below)
+
+![assembly6](../img/assembly_6.png)
 
 !!! question
     === "Question 1"
@@ -117,7 +119,7 @@ You will see that there are many options and the pipeline can be customised exte
 An example invocation that takes the fastq formatted paired end files (sample1_1.fastq.gz and sample1_2.fastq.gz) and performs assembly. This may take a while so in the mean time you can read through the docs of spades to understand the unique parameters that you can use to improve to assembly. https://github.com/ablab/spades.
 
 ```
-spades.py -1  tb_ILL/sample1_1.fastq.gz -2  tb_ILL/sample1_2.fastq.gz -o short/ -k 55 --isolate -t 4
+spades.py -1  tb_ILL/sample1_1.fastq.gz -2  tb_ILL/sample1_2.fastq.gz -o short/ -k 55 --isolate -t 2
 ```
 Employing paired-end reads (rather than single-end) increases the assembly quality. In general, libraries with smaller insert size produce more fragmented and shorter assemblies, whilst the genome coverage does not increase that much. The combination of libraries with different insert size always gives the best results.
 
@@ -151,10 +153,8 @@ We can compute these statistics with the help of a tool called QUAST (made by th
 quast -r tbdb.fasta -o quast/short short/scaffolds.fasta 
 ```
 
-After it has finished, you can examine the outputs. The `-o` option identifies the output directory, within here you will see a bunch of files relating to your N50 and other statistics. To view the result, open up the report.html in the browser of your choice.
+After it has finished, you can examine the outputs. The `-o` option identifies the output directory, within here you will see a bunch of files relating to your N50 and other statistics. To view the result, open up the report.html in the browser of your choice by once again downloading it to your machine the same way you downloaded the reads.histo file from before.
 
-!!! question
-    See if you can spot the statistics we mentioned above. Compare the size of the reference with the size of the assembly. Are they different?
 
 !!! question
     === "Question 2"
@@ -162,11 +162,6 @@ After it has finished, you can examine the outputs. The `-o` option identifies t
     === "Answer 2"
         QUAST report includes information on statistics N50, Genome fraction and Maximum contig size that were mentioned before as well as additional metrics worth exploring. Average contig size can be additionally calculated by dividing values from fields `Total length (>= 0 bp)` and `# contigs (>= 0 bp)` or directly from FASTA file with external tools for example `seqmagick`. It is advised that you look at a variety of metrics and supporting analyses to determine quality of assembly. 
 
-High depth of coverage is essential to obtain high quality assembled genomes. It is always the case that contig sizes drop when coverage decreases under a certain value, generally considered to be 50x, although such threshold will depend on the size and repeat content of the sequenced genome. A coverage limit is reached above which no improvement in assembly metrics is observed. As shown to the left, coverage greater that 50x does not significantly improve N50 in an assembly, although such thresholds will not necessarily be the same for other genomes, the principles apply for all.
-
-![assembly_3](../img/assembly_3.jpeg)
-
-More data requires more memory too, as the lower graph demonstrates. Again, the figures are genome specific but it is easy to see how large computers can quickly become necessary as coverage and genome size increase. (Illumina, 2009).
 
 You can also assess genome assembly quality using BUSCO (Benchmarking Universal Single-Copy Orthologs). BUSCO evaluates how complete your genome, gene set, or transcriptome is by checking for the presence of conserved genes that are expected to appear as single copies in nearly all organisms within a given lineage. It provides a detailed breakdown of complete, fragmented, and missing orthologs, helping you identify potential gaps or redundancies in your assembly. This makes BUSCO a widely trusted tool for validating both the accuracy and biological completeness of genomic data.
 
@@ -178,7 +173,7 @@ conda deactivate
 
 conda activate busco
 
-busco -i short/scaffolds.fasta -l bacteria_odb10 -o busco_output -m genome -c 4
+busco -i short/scaffolds.fasta -l bacteria_odb10 -o busco_output -m genome -c 2
 
 conda deactivate
 ```
@@ -192,9 +187,16 @@ The `-m` parameter in BUSCO specifies the mode of analysis, which determines the
     === "Answer 3"
         We get a good result from BUSCO, with ~97% of BUSCO groups found
     === "Question 4"
-        Using the -m information above, can you find a more specific database we can search against to get a better BUSCO score relative to our genome.
+        Using the -l information above, can you find a more specific database we can search against to get a better BUSCO score relative to our genome.
     === "Answer 4"
         Yes, following the lineage tree that ncbi provides we can see that mycobacteriaceae_odb12 exists, so we can use that to check our BUSCO score rather than the broad bacteria one.
+
+
+Our data has quite high coverage, and high depth of coverage is essential to obtain high quality assembled genomes. It is always the case that contig sizes drop when coverage decreases under a certain value, generally considered to be 50x, although such threshold will depend on the size and repeat content of the sequenced genome. A coverage limit is reached above which no improvement in assembly metrics is observed. As shown to the left, coverage greater that 50x does not significantly improve N50 in an assembly, although such thresholds will not necessarily be the same for other genomes, the principles apply for all.
+
+![assembly_3](../img/assembly_3.jpeg)
+
+More data requires more memory too, as the upper graph demonstrates. Again, the figures are genome specific but it is easy to see how large computers can quickly become necessary as coverage and genome size increase. (Illumina, 2009).
 
 ## Exercise 3: Gap closing
 
@@ -275,11 +277,15 @@ All these programs are available through the [PAGIT suite (post assembly genome 
 
 **Annotations**
 
-Once we have assembled the genome we can annotate using tools such as `GALBA` or `Augustus`, both implement different ways depending on the data you have. `GALBA` uses protein sequences from your assembly and similar species to find regions of your genome that align with conserved domains or functional motifs from known genes in other species. This approach works well if you have closely related species with well-annotated genomes, allowing you to leverage their protein data for accurate gene prediction.
+Once we have assembled the genome, we can annotate using tools such as `GALBA`, `Augustus`, or, primarily for bacteria, `Prokka`. They all implement different strategies depending on the data you have.
+
+`Prokka` is widely used for bacterial genome annotation because it is fast, automated, and relies heavily on homology-based approaches. It uses a database of known bacterial proteins and RNAs (like rRNA, tRNA) to annotate genes by finding matches in your genome. `Prokka` is very effective when you have a relatively clean bacterial assembly and want a quick, standardised set of annotations.
+
+`GALBA` uses protein sequences from your assembly and similar species to find regions of your genome that align with conserved domains or functional motifs from known genes in other species. This approach works well if you have closely related species with well-annotated genomes, allowing you to leverage their protein data for accurate gene prediction.
 
 `Augustus` is more versatile because it can also use RNA-seq data to guide gene prediction. When you provide RNA-seq reads (either aligned or raw), `Augustus` can incorporate this transcriptomic data to improve its gene predictions. This method is especially useful when there is limited or no closely related genomic data to rely on. `Augustus` uses RNA-seq data to identify transcription start sites, exon-intron boundaries, and alternative splicing events by aligning the RNA-seq reads to the genome. The software then uses these alignments to fine-tune the prediction of gene models, ensuring that predicted genes are supported by actual expression data.
 
-In practice, you can combine both methods: use protein-based annotation from GALBA for structural gene prediction and RNA-seq data for more refined predictions from Augustus. Together, they can provide a comprehensive annotation that benefits from both homology and transcriptomic evidence.
+In practice, you can combine both methods: use protein-based annotation from `GALBA` for structural gene prediction, RNA-seq data for more refined predictions with `Augustus`, and for bacterial genomes, run `Prokka` to rapidly generate a full annotation including coding sequences, RNAs, and functional descriptions.
 
 
 ## Exercise 4 Long read assembly
@@ -289,14 +295,14 @@ Long reads generated by third-generation sequencing technologies, such as those 
 Here we will be using the same sample we used for the short reads, but that has been sequenced on the MinION software, so we can compare directly between the two platforms. You will find this data in the tb_ONT directory. We will be using flye, the most recent and newest long read assembler, that uses the repeat graph method, as well as canu, a slightly older assembler but still good, and we will compare which one performed better.
 
 ```
-flye --nano-hq tb_ONT/sample1_ONT.fastq.gz --genome-size 4.1m --threads 8 --read-error 0.06 -o long/
+flye --nano-hq tb_ONT/sample1_ONT.fastq.gz --genome-size 4.1m --threads 2 --read-error 0.06 -o long/
 ```
 Providing the expected genome size improves the performance of Flye. Ideally, this information would come from a closely related reference species. However, we can also use the genome size estimate we previously generated to guide Flye in producing an assembly of the appropriate length.
 
 Now we have run flye we can check out our N50 using QUAST again.
 
 ```
-quast -r tbdb.fasta -o quast_long long/scaffolds.fasta 
+quast -r tbdb.fasta -o quast_long long/assembly.fasta 
 ```
 
 Don't forget to also run BUSCO to get the BUSCO score.
@@ -318,7 +324,7 @@ Now there are multiple steps we can take after to improve our assembly, and we w
 Scaffolding using long-read data only involves harnessing the long reads' ability to span large genomic distances, which helps connect contigs separated by gaps or repetitive regions. This method does not rely on short-read data and instead uses the length and continuity of long reads to form accurate, large-scale scaffolds, enhancing the overall structure and completeness of the genome assembly.
 
 ```
-ntLink scaffold target=long/assembly.fasta reads=tb_ONT/sample1_ONT.fastq.gz G=500 rounds=3 t=4
+ntLink scaffold target=long/assembly.fasta reads=tb_ONT/sample1_ONT.fastq.gz G=500 rounds=3 t=2
 ```
 
 We can now close the gaps between the scaffolds using a tool called tgsgapcloser. Gap closing involves filling the sequence gaps left between contigs in an assembly. This process uses the overlap between neighbouring contigs or additional sequencing reads to infer and fill in missing genomic regions. The aim is to produce a more complete assembly by resolving ambiguities in regions that are difficult to sequence or span, improving both contiguity and accuracy.
@@ -326,7 +332,7 @@ We can now close the gaps between the scaffolds using a tool called tgsgapcloser
 ```
 mkdir long/tgs_gapcloser
 
-tgsgapcloser --scaff long/assembly.fasta.k32.w100.z1000.stitch.abyss-scaffold.fa --reads tb_ONT/sample1_ONT.fastq.gz --output long/tgs_gapcloser --ne
+tgsgapcloser --scaff long/assembly.fasta.k32.w100.z1000.ntLink.scaffolds.fa --reads tb_ONT/sample1_ONT.fastq.gz --output long/tgs_gapcloser --ne
 ```
 After every run, use QUAST to see how the assembly is improving. Although QUAST doesn't show much change or it doesn't indicate significant improvement, BUSCO highlights the percentage gaps and we can use it to see how many gaps we have reduced.
 
@@ -341,13 +347,13 @@ cp long/tgs_gapcloser.scaff_seqs long/tgs_gapcloser.scaff_seqs.fa
 Then we can map the original data to our current sequence, this gives us a racon file we can use to polish. By aligning the raw reads to our newly generated sequence, it allows us to identify regions with any gaps that could potentially be removed, this essentially tries to polish and make our genome as robust as possible.
 
 ```
-minimap2 -t 4 -x map-ont long/tgs_gapcloser.scaff_seqs.fa tb_ONT/sample1_ONT.fastq.gz > racon.paf
+minimap2 -t 2 -x map-ont long/tgs_gapcloser.scaff_seqs.fa tb_ONT/sample1_ONT.fastq.gz > long/racon.paf
 ```
 
 Finally we run racon to polish our genome
 
 ```
-racon -u --no-trimming -t 4 tb_ONT/sample1_ONT.fastq.gz racon.paf long/tgs_gapcloser.scaff_seqs.fa > long/final_assembly.fa
+racon -u --no-trimming -t 4 tb_ONT/sample1_ONT.fastq.gz long/racon.paf long/tgs_gapcloser.scaff_seqs.fa > long/final_assembly.fa
 ```
 !!! question
     === "Question 6"
@@ -370,7 +376,7 @@ We will attempt the hybrid approach and see how much better the assembly is.
 First we will once again use spades, however we will give spades the long read data as a third option. This allows spades to apply the BayesHammer approach with both sets of data rather than one, which improves error correction and assembly quality. The method enhances the accuracy of contig formation by taking advantage of long reads' structural information while refining it with the high base-level accuracy of short reads.
 
 ```
-spades.py -1 tb_ILL/sample1_1.fastq.gz -2 tb_ILL/sample1_2.fastq.gz --nanopore tb_ONT/sample1_ONT.fastq.gz -t 4 -o hybrid/spades/
+spades.py -1 tb_ILL/sample1_1.fastq.gz -2 tb_ILL/sample1_2.fastq.gz --nanopore tb_ONT/sample1_ONT.fastq.gz -t 2 -o hybrid/spades/
 ```
 
 Once again we need to check our assembly, you should now be familiar with this process..
