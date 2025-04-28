@@ -329,7 +329,7 @@ rm sample1_1P.fastq sample1_1U.fastq sample1_2P.fastq sample1_2U.fastq
 
         ```
         cd ~/data/tb
-        trimmomatic PE sample1_1.fastq.gz sample1_2.fastq.gz -baseout sample1.fastq LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:36
+        trimmomatic PE sample2_1.fastq.gz sample2_2.fastq.gz -baseout sample2.fastq LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:36
         bwa mem -R "@RG\tID:sample2\tSM:sample2\tPL:Illumina" ~/data/tb/tb.fasta sample2_1P.fastq sample2_2P.fastq | samtools view -b - | samtools sort -o sample2.bam -
         ```
 
