@@ -38,7 +38,7 @@ nav:
       - introduction/intro-to-linux.md
       - introduction/mapping.md
       - introduction/variant-detection.md
-      - introduction/assembly.md
+      - introduction/assembly-and-third-gen-sequencing.md
       - introduction/task.md
   - Advanced:
       - advanced/phylogenetics.md

@@ -24,7 +24,7 @@ cd ~/data/tb/task
 Your tasks are below:
 
 1. Perform suitable research, what types of drug resistance are there with TB and what causes them. 
-2. Decide whether to map with or without a reference. If you choose mapping you will need to find a suitable reference genome.
+2. Map to the reference.
 3. Call the variants and find the SNPs that are within the genes you found earlier that are known to cause drug resistance.
 4. Identify the individuals that struggled to fight infection and what antibiotics were they using at the hospital.
 5. Find the strain (lineage type) that comes with each patient by finding these deletions.
