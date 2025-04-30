@@ -2,9 +2,9 @@
 
 ## Introduction
 
-As we transition from our foundational lectures into practical application, it is crucial to evaluate your understanding and proficiency in the core bioinformatics processes of mapping, variant calling, and assembly. These tools are the cornerstone of genomic analysis and have wide-reaching implications in the field of infectious diseases, including tuberculosis. This test will simulate a real-world scenario where you will analyze raw sequencing data to extract meaningful insights that can inform treatment decisions and deepen our understanding of pathogen genomics.
+As we transition from our foundational lectures into practical application, it is crucial to evaluate your understanding and proficiency in the core bioinformatics processes of mapping and variant calling. These tools are the cornerstone of genomic analysis and have wide-reaching implications in the field of infectious diseases, including tuberculosis. This test will simulate a real-world scenario where you will analyse raw sequencing data to extract meaningful insights that can inform treatment decisions and deepen our understanding of pathogen genomics.
 
-So your task is to utilize your bioinformatics expertise to uncover the genetic factors that may explain the variability in clinical outcomes among these patients. By analyzing the sequencing data, you will identify crucial genetic variations—specifically, single nucleotide polymorphisms (SNPs) in drug-resistance genes and lineage-defining deletions. Your findings will not only classify the TB strains infecting each patient but also predict their resistance to commonly used medications, ultimately guiding more effective treatment strategies. This exercise will test your ability to apply genome mapping and variant analysis to real-world infectious disease challenges.
+So your task is to utilise your bioinformatics expertise to uncover the genetic factors that may explain the variability in clinical outcomes among these patients. By analysing the sequencing data, you will identify crucial genetic variations—specifically, single nucleotide polymorphisms (SNPs) in drug-resistance genes and lineage-defining deletions. Your findings will not only classify the TB strains infecting each patient but also predict their resistance to commonly used medications, ultimately guiding more effective treatment strategies. This exercise will test your ability to apply genome mapping and variant analysis to real-world infectious disease challenges.
 
 These genomes are larger than what you have been working on as we have only given you a snippet of the genome. Now you will work on the whole genome so it will take a bit of time!
 
@@ -12,35 +12,37 @@ These genomes are larger than what you have been working on as we have only give
 
 Six People have come into the local hospital and presented with symptoms of TB. Samples were taken, and were confirmed to be TB infection so antibiotics were given, however some patients are still not responding toward the antibiotics and are struggling to fight off infection. 
 
-TB can also have certain deletions on the genome that can identify the lineage of the strain (check out TB lineages and locations across the world) such as an entire deletion on the PPE50 gene in lineage 1 strains and Rv0072 for lineage 2 strains. This is not the only identifies but it is what we will use for this test.
+TB can also have certain deletions on the genome that can identify the lineage of the strain (check out TB lineages and locations across the world) such as an entire deletion on the PPE50 gene in lineage 1 strains and Rv0072 for lineage 2 strains. This is not the only identifications but it is what we will use for this test.
 
-You will find the patients data within the following directory:
+We have provided some tools to run the task, but you may have to install other tools using conda `conda install **your packages**`
+
+You will find your information in the `task codespace` and the tb directory.
+
 
 ```
-cd ~/data/tb/task
+conda activate task
+cd ~/tb
 
 ```
 
 Your tasks are below:
 
-1. Perform suitable research, what types of drug resistance are there with TB and what causes them. 
+1. Read the sample list, and download the data from NCBI or ENA.
 2. Map to the reference.
-3. Call the variants and find the SNPs that are within the genes you found earlier that are known to cause drug resistance.
-4. Identify the individuals that struggled to fight infection and what antibiotics were they using at the hospital.
-5. Find the strain (lineage type) that comes with each patient by finding these deletions.
+3. Call the variants to find the SNPs.
+4. Use the drug resistance information in the csv file to identify which drug has been used.
+5. Find the strain (lineage type) that comes with each patient by finding deletions in the txt file provided.
 
 ### Tips
 
 ???+ note "Tips for Mtb Genomic Analysis"
 
-    - **NCBI Datasets**: Obtain datasets from [NCBI Taxonomy](https://www.ncbi.nlm.nih.gov/taxonomy). Required files: fasta and gff.
+    - You can search the sample code on ENA or NCBI and use tools like wget to download your sequences.
 
-    - **Reference Mapping**: Map your data with a reference genome for alignment.
+    - You can google other variant callers but the ones we have used are acceptable
 
-    - **Rifampicin Resistance**: Investigate genes impacting Rifampicin resistance. Use the antibiotic information to focus your search.
+    - Check the drug resistance list to find locations however you wish.
 
-    - **Gene Viewing**: Annotate with snpEff for gene positioning, or view vcfs/bams in [IGV](https://software.broadinstitute.org/software/igv/).
-
-    - **Strain Identification**: Examine regions containing Rv0072 and PPE50. Apply similar methods as in variant detection for strain identification.
+    - You can use structural variant caller to identify SV's or you can look at the positions in IGV to find the lineage information.
 
 
