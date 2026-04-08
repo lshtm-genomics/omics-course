@@ -2,7 +2,7 @@
 
 ### Introduction
 
-There are three comonents you will need to understand before we get connected.
+There are three components you will need to understand before we get connected.
 
 ####  GitHub Codespaces
 
