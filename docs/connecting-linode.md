@@ -11,7 +11,7 @@ Install using instructions provided.
 
 ## 2. Start TigerVNC 
 
-Start TigerVNC and enter the IP address followed by **:5901** that you have been provided and click connect. For example if you IP address is **178.79.189.111** then enter such as in the screenshot below
+Start TigerVNC and enter the IP address followed by **:5901** that you have been provided and click connect. For example if your IP address is **178.79.189.111** then enter such as in the screenshot below
 
 ![](img/tiger_vnc_1.png){: style="width:50%"}
 
