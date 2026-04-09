@@ -251,7 +251,7 @@ python 3_train_evaluate.py \
     --prefix    run_DT_nolimit
 ```
 
-> **Note:** `--max_depth 0` means no limit (fully grown tree). You should observe clear overfitting — high training performance, lower test performance.
+> **Note:** `--max_depth 0` means no limit (fully grown tree). You may observe overfitting — high training performance, lower test performance.
 
 ---
 
