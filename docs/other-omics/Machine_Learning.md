@@ -142,7 +142,7 @@ The environment is pre-installed in your Codespace. The following tools are used
 ### File structure
 
 ```
-workshop/
+machine_learning/
 ├── data/
 │   ├── samples.vcf.gz          # Multi-sample VCF (provided)
 │   └── phenotypes.csv          # Drug susceptibility labels (provided)
