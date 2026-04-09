@@ -34,7 +34,7 @@ Head over to https://github.com/ and sign up for an account. You can skip this s
 
 ### 2. Download Visual Studio Code
 
-Get the latest version of vscode from https://code.visualstudio.com/ and follow install instructions from the website.
+Get the latest version of vscode from https://code.visualstudio.com/ and follow install instructions from the website. Please note the default version is for Windows, ensure to click additional options if using Mac.
 
 ### 3. Download TigerVNC 
 
