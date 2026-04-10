@@ -1,5 +1,5 @@
 # Machine Learning for Antimicrobial Resistance Prediction
-### A Practical Workshop - Please use the ML workshop codespace
+### A Practical Workshop - Please use the ml-amr-workshop codespace
 *Mycobacterium tuberculosis · Genotype-to-Phenotype Prediction*
 
 ---
