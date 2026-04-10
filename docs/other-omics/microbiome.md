@@ -41,10 +41,6 @@ wget https://raw.githubusercontent.com/lshtm-genomics/codespaces/microbiome/.dev
 
 After activating the conda environment for this practical with `conda activate microbiome`, go into the module directory with `cd ~/data/microbiome` and have a look at its contents with `ls`. There should be a directory with the 16S sequencing data (in fastq), a 16S database (in db), and a CSV file with our metadata. Let's check if our reads are there with `ls fastq`. We can also have a look at the filesizes with `du -sh fastq/* | sort -h` (it can't hurt to get a feeling for these things). 
 
-Let's quickly install fastqc to practice using conda!
-
-Now run fastqc!
-
 ```
 conda activate microbiome
 
@@ -269,7 +265,7 @@ The resulting visualisation at species level ("Level 7") looks like this in [htt
 ![](../img/microbiome_5.png)
 
 !!! info
-    You can adjust the with of the bars with the slider above the plot. 
+    You can adjust the width of the bars with the slider above the plot. 
 
 !!! question
     We can see that some samples are dominated by Lactobacillus iners (green), whereas for others the situation looks very different. Double check with the metadata to find out if this is associated with BV-status. 
@@ -316,7 +312,7 @@ done
 
 Again, we got a visualisation for each metric. Have a look at them in [https://view.qiime2.org/](https://view.qiime2.org/). What do you find? Are all of them in agreement this time? 
 
-This concludes today's practical. If you are interested in differentially abundant taxa between the BV and non-BV samples, have a look at qiime's' ANCOM function. 
+This concludes today's practical. If you are interested in differentially abundant taxa between the BV and non-BV samples, have a look at qiime's ANCOM function. 
 
 Acknowledgements: Many thanks to Dr. Suzanna Francis for providing the data and Ernest Diez-Benavente and Julian Lisebber-Egger for designing the practical materials.
 
