@@ -428,7 +428,7 @@ To visualise the diffences in expression we are going to plot a heatmap using th
 ```
 counts_heatmap <- counts(dds, normalized = TRUE)
 idx <- rownames(resOrdered)[1:17]
-counts_heatmap <- counts_heatmap[rownames(counts_heatmap)%in%idx,]
+counts_heatmap <- counts_heatmap[rownames(counts_heatmap) %in% idx,]
 ```
 
 If we type:
