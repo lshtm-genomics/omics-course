@@ -33,8 +33,15 @@ One idiosyncrasy of QIIME2 is the use of so-called "artefacts". These are zip-ar
 
 After activating the conda environment for this practical with `conda activate microbiome`, go into the module directory with `cd ~/data/microbiome` and have a look at its contents with `ls`. There should be a directory with the 16S sequencing data (in fastq), a 16S database (in db), and a CSV file with our metadata. Let's check if our reads are there with `ls fastq`. We can also have a look at the filesizes with `du -sh fastq/* | sort -h` (it can't hurt to get a feeling for these things). 
 
+Let's quickly install fastqc to practice using conda!
+
 ```
 conda activate microbiome
+conda install fastqc
+```
+Now run fastqc!
+
+```
 mkdir fastqc_reports
 
 fastqc -o fastqc_reports -q -t 1 fastq/*
