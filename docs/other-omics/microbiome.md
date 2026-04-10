@@ -29,19 +29,25 @@ For this practical we are considering 12 samples of vaginal swab that were taken
 Out of all tookits aiming at the unification of the analysis of microbiome data, QIIME (pronounced "chime") and its successor QIIME2 have grown the largest user base in recent years (mostly due to the ease of use and comprehensive online documentation). QIIME2 wraps an extensive suite of third party tools (covering most of the "standard" microbiome pipeline from preprocessing and filtering of raw sequencing reads to statistical tests on diversity metrics and analyses on differential abundance of single taxa) into a single command line interface. In addition, it also provides a GUI as well as a python API for both less and more technically inclined users. We will stay on the middle ground by using the CLI today.
 One idiosyncrasy of QIIME2 is the use of so-called "artefacts". These are zip-archives with a special file extension (.qza for data artefacts and .qzv for visualisation artefacts) that hold bulk data in addition to unique IDs and provenance metadata, which describe all steps that lead to the creation of that particular artefact. This has the advantage that for every intermediate or final result of qiime it is perfectly clear how it was generated from start to finish. There is a small downside, though, since we have to import our data into the QIIME2 format prior to running any analyses. However, before we do that, let's have a look at the quality of our reads (qiime also provides functionality for sequencing data quality control, but it is not as detailed as the output of some dedicated tools like FastQC). 
 
+## Installation
+As it turns out, QIIME2 is quite difficult to install. However, this presents a great opportunity to practice using conda (or mamba) to install packages into an environment. QIIME2 has lots of dependencies, we have popped this and some of the other software required for the practical into an env.txt file. Run the following steps to install the conda environment.
+
+```
+wget https://raw.githubusercontent.com/lshtm-genomics/codespaces/microbiome/.devcontainer/env.txt
+/home/vscode/miniforge3/condabin/mamba create --name microbiome --file env.txt 
+```
+
 ## Quality control
 
 After activating the conda environment for this practical with `conda activate microbiome`, go into the module directory with `cd ~/data/microbiome` and have a look at its contents with `ls`. There should be a directory with the 16S sequencing data (in fastq), a 16S database (in db), and a CSV file with our metadata. Let's check if our reads are there with `ls fastq`. We can also have a look at the filesizes with `du -sh fastq/* | sort -h` (it can't hurt to get a feeling for these things). 
 
 Let's quickly install fastqc to practice using conda!
 
-```
-conda activate microbiome
-conda install fastqc
-```
 Now run fastqc!
 
 ```
+conda activate microbiome
+
 mkdir fastqc_reports
 
 fastqc -o fastqc_reports -q -t 1 fastq/*
