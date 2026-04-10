@@ -431,7 +431,8 @@ bcftools index sample2.filt.vcf.gz
 Now you can use the `bcftools merge` command to merge the two VCF files into a single multi-sample VCF file. Here is how to do it:
 
 ```
-bcftools merge -o merged.vcf sample1.filt.vcf.gz sample2.filt.vcf.gz
+bcftools merge -Oz -o merged.vcf.gz sample1.filt.vcf.gz sample2.filt.vcf.gz
+bcftools index merged.vcf.gz
 ```
 
 This will create a new VCF file called merged.vcf that contains all the variants from both samples. You can then use this file for further analysis or visualization.
