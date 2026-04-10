@@ -125,7 +125,7 @@ This exercise is similar to the one performed before in the Visualisation module
 
 ### Including more lineages
 
-One interesting feature of the IGV viewer is the possibility to see more than one BAM file at the same time, which enables to comapre coverage from different samples. Hence, next we want to include more lineages, in this case we will add another sample belonging to the lineage 4 of Mtb.
+One interesting feature of the IGV viewer is the possibility to see more than one BAM file at the same time, which enables us to compare coverage from different samples. Hence, next we want to include more lineages, in this case we will add another sample belonging to the lineage 4 of Mtb.
 
 To do it, we will need first to follow the previous steps in order to get the sorted and index bam files. Therefore, map it with BWA as before, the fastq files are in the directory ~/data/transcriptomics and are called Mtb_L4_1.fastq.gz and Mtb_L4_2.fastq.gz.
 
@@ -154,7 +154,7 @@ Now go to gene Rv2161c (position 2422271).
         Would you think that this gene is differentially expressed?
 
 
-## Exercse 3: Differential expression
+## Exercise 3: Differential expression
 
 There are tools that calculate the differential expression, like the R packages DESeq or EdgeR. They take the reads mapped to each gene, normalize the resulting quantities of mapped reads (coverage), and then estimate if any genes are differentially expressed. In general, the results are more credible and significant if biological replicates are included.
 
@@ -240,7 +240,7 @@ To exit this view you just need to type 'q'.
 
 ### Finding differentially expressed genes with DESeq2
 
-Now we are going to perform a differential expression analysis in order to look for genes with variable expression between lineages. To do it we will use 6 sequenced samples, 3 from lineage 1 and 3 from lineage 4. Two of them will be the two analysed in the previous steps. We are going to use an R package for the anaylsis of the differential gene expression called DESeq2.
+Now we are going to perform a differential expression analysis in order to look for genes with variable expression between lineages. To do it we will use 6 sequenced samples, 3 from lineage 1 and 3 from lineage 4. Two of them will be the two analysed in the previous steps. We are going to use an R package for the analysis of the differential gene expression called DESeq2.
 
 A differential expression analysis is used to compare gene expression levels, given by the number of reads per gene (obtained by HTSeq-count) between samples (for example, between 2 lineages of Mtb). In order to accurately ascertain which genes are differentially expressed, and the amount of expression, it is necessary to use replicated data. As with all biological experiments doing it once may simply not be enough. There is no simple way to decide how many replicates to do, it is usually a compromise of statistical power and cost. By determining how much variability there is in the sample preparation and sequencing reactions we can better assess whether genes are really expressed and more accurately determine any differences. The key to this is performing biological rather than technical replicates. This means, for instance in tuberculosis, growing up three cultures of bacteria, treating them all identically, extracting RNA from each and sequencing the three samples separately. Technical replicates, whereby the same sample is sequenced three times do not account for the variability that really exists in biological systems or the experimental error between cultures of bacteria and RNA extractions. More replicates will help to improve statistical power for genes that are already detected at high levels, while deeper sequencing will improve power to detect differential expression for genes which are expressed at low levels. In this exercise we will consider the 3 L1 and the 3 L4 samples as biological replicates.
 
@@ -324,7 +324,7 @@ And we are going to set up the condition for the analysis in two levels which ar
 dds$condition <- factor(dds$condition, levels = c("l1","l4"))
 ```
 
-We can then run the differential expression anaylisis by calling the function DESeq(), which will normalise the data and compare between the two groups established (l1 and l4). We can store the results in a variable called 'res':
+We can then run the differential expression analysis by calling the function DESeq(), which will normalise the data and compare between the two groups established (l1 and l4). We can store the results in a variable called 'res':
 
 ```
 dds <- DESeq(dds)
@@ -416,7 +416,7 @@ Some of the p-values in our results might be NA values, which can be due to extr
 res <- res[!is.na(res$padj),]
 ```
 
-Let's now order the results by p value, so we see the top genes with the highest statistial significance. Take a look at the results again.
+Let's now order the results by p value, so we see the top genes with the highest statistical significance. Take a look at the results again.
 
 ```
 resOrdered <- res[order(res$pvalue),]
@@ -536,7 +536,7 @@ Take a look at the first 5 genes in the plot. As you might assume by the numbers
 
 As we have just seen, differential expression analysis results is a list of genes which show differences between two conditions. It can be daunting trying to determine what the results mean. On one hand you may find that due to there being no real differences or there being too much noise in your experiment, you have no significant differences. On the other hand, you may find thousands of genes are differentially expressed. What can you say about that?
 
-Other than looking for genes you expect to be different or unchanged, one of the first things to do is look at Gene Ontology (GO) term enrichment. There are many different algorithms for this, but you should annotate your genes with functional terms from GO using for instance Bast2GO (Conesa et al., 2005) and then use perhaps TopGO (Alexa et al., 2006) to determine whehter any particular sorts of genes occur more than expected in your differentially expressed genes.
+Other than looking for genes you expect to be different or unchanged, one of the first things to do is look at Gene Ontology (GO) term enrichment. There are many different algorithms for this, but you should annotate your genes with functional terms from GO using for instance Blast2GO (Conesa et al., 2005) and then use perhaps TopGO (Alexa et al., 2006) to determine whether any particular sorts of genes occur more than expected in your differentially expressed genes.
 
 ## References
 
