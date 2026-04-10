@@ -1,5 +1,5 @@
 # Machine Learning for Antimicrobial Resistance Prediction
-### A Practical Workshop 
+### A Practical Workshop - Please use the ML workshop codespace
 *Mycobacterium tuberculosis · Genotype-to-Phenotype Prediction*
 
 ---
@@ -160,6 +160,7 @@ machine_learning/
 Convert the multi-sample VCF into a binary SNP matrix. This uses bcftools to query raw genotype calls and encodes them numerically in Python.
 
 ```bash
+conda activate ml-amr
 python 1_encode_features.py \
     --vcf data/samples.vcf.gz \
     --out_csv features.csv
