@@ -406,7 +406,7 @@ Next, read files (both forward/reverse) are mapped against the reference
 bwa mem ~/data/malaria/Pf3D7_05.fasta ~/data/malaria/IT.Chr5_1.fastq.gz ~/data/malaria/IT.Chr5_2.fastq.gz | samtools view -b - | samtools sort -o IT.Chr5.bam -
 ```
 
-The details of where each IT clone read has been mapped is now stored in the file IT.Chr5.bam. We are going to view the mapped reads in IGV. Before we can proceed, however, we must index the BAM file to allow programs suchh as IGV quick access to different sections of the file. 
+The details of where each IT clone read has been mapped is now stored in the file IT.Chr5.bam. We are going to view the mapped reads in IGV. Before we can proceed, however, we must index the BAM file to allow programs such as IGV quick access to different sections of the file. 
 
 ```
 samtools index IT.Chr5.bam
