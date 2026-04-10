@@ -1,4 +1,5 @@
 # Genome Assembly
+Please connect to the 'Assembly' codespace. We will be using the 4 core machine for this practical.
 
 ## Introduction
 
