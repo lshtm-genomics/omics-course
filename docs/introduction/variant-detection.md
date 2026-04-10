@@ -111,7 +111,7 @@ Table 2 Some bcftools call parameters.
 The complete bcftools call command would be as follows (it will be run later):
 
 ```
-# bcftools call –m –v –O v > sample1.raw.vcf
+# bcftools call -m -v -O v > sample1.raw.vcf
 ```
 
 Having understood bcftools mpileup and bcftools call parameters, we can combine both instructions to perform SNP and short indel calling as follows:
@@ -159,7 +159,7 @@ cat sample1.raw.vcf | vcfutils.pl varFilter -d 10 -D 2000 > sample1.filt.vcf
 
 ### Exercise 3: Calling SNPs and short indels using GATK
 
-The Genome Analysis Toolkit (GATK) includes a wide variety of tools, with a primary focus on variant discovery and genotyping. The standard GATK data processing pipeline starts by applying the HaplotypeCaller to identify variable sites with respect to the reference. HaplotypeCaller will be set up by default to work on diploid organisms, therefore we will use the `--ploidy 1` for bacterial genomes like Mycobacterium tuberculosis. We will run GATK for SNPs and small indel calling to complement samtools/bcftools output.
+The Genome Analysis Toolkit (GATK) includes a wide variety of tools, with a primary focus on variant discovery and genotyping. The standard GATK data processing pipeline starts by applying the HaplotypeCaller to identify variable sites with respect to the reference. HaplotypeCaller will be set up by default to work on diploid organisms, therefore we will use the `--ploidy 1` for bacterial genomes like Mycobacterium tuberculosis. We will run GATK for SNPs and small indel calling to complement samtools/bcftools output. Note that prior to running HaplotypeCaller, samtools faidx and gatk CreateSequenceDictionary have already been run for you.
 
 Run the following two commands to call SNPs and indels using GATK instead of Samtools:
 
