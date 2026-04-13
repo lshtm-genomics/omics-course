@@ -161,6 +161,7 @@ Convert the multi-sample VCF into a binary SNP matrix. This uses bcftools to que
 
 ```bash
 conda activate ml-amr
+cd machine_learning
 python 1_encode_features.py \
     --vcf data/samples.vcf.gz \
     --out_csv features.csv
