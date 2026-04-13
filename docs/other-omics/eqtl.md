@@ -8,7 +8,7 @@ In the picture below a typical eQTL analysis is represented. Different SNPs with
 
 ![](../img/eqtl_1.png)
 
-In the diagram below we can see ploted the expression levels of the samples with the different SNPs and the frequency of appearance of these SNPs. Therefore, both polymorphisms (AG and AA alleles) will be associated with the underexpression of the gene studied compared to the reference allele (GG). Thereby, these SNPs could be considered as eQTLs.
+In the diagram below we can see plotted the expression levels of the samples with the different SNPs and the frequency of appearance of these SNPs. Therefore, both polymorphisms (AG and AA alleles) will be associated with the underexpression of the gene studied compared to the reference allele (GG). Thereby, these SNPs could be considered as eQTLs.
 
 ![](../img/eqtl_2.png)
 
@@ -279,7 +279,7 @@ Here we have the table with the 6 top associations found by the analysis just ca
 !!! question
     With how many SNPs is it associated the variable expression of Rv2162c?
 
-To summarise, we ran a statistical analysis in order to see whether the SNPs present in our samples are associated with differential gene expression. We therefore got a table where we can see the SNP (its position, in snps column) associated with the differential expression of the gene (gene column). A high p-value association is established when a determined SNP is present in all the samples that have a determined gene under- or over-expressed.
+To summarise, we ran a statistical analysis in order to see whether the SNPs present in our samples are associated with differential gene expression. We therefore got a table where we can see the SNP (its position, in snps column) associated with the differential expression of the gene (gene column). A statistical association is established when a determined SNP is present in all the samples that have a determined gene under- or over-expressed (low P-value).
 
 However, not all the associations found will be real. cis-eQTLs are more likely to be located within the promoter region of a gene, which is the upstream region where the transcription starts. For instance, a SNP in this promoter region might change the recognition patterns for transcriptional regulators and therefore alter gene expression.
 
@@ -292,7 +292,7 @@ snps_table <- read.table("~/data/eqtl/snps_eqtl_table.txt", sep="\t", header=T)
 snps_table[snps_table$POS==2423785 | snps_table$POS==2424864,]
 ```
 
-!!! termainl "Terminal output"
+!!! terminal "Terminal output"
     ```
           POS REF ALT L1_1 L4_2 L1_3 L1_4 L4_5 L4_6 L1_7 L1_8 L4_9 L1_10 L1_11
     4 2423785   C   T    1    0    1    1    0    0    1    1    0     1     1
@@ -331,7 +331,7 @@ We can see the Rv2162c gene (or PE_PGRS38) represented in purple in the Mycobrow
 !!! question
     Is the SNP (A2424864G) in the downstream or upstream region?
 
-The SNP (A2424864G) is located in the promoter region of the Rv2162c, therefore it is a good candiate for being an eQTL. As the association showed a high p-value, we can expect that in all the samples carrying the SNP (in this case the lineage 1 samples) the Rv2162c gene would be under- or over-expressed. Looking at the expression table we could see this difference in expression, but a more visual way to do it is through a boxplot.
+The SNP (A2424864G) is located in the promoter region of the Rv2162c, therefore it is a good candidate for being an eQTL. As the association showed a high p-value, we can expect that in all the samples carrying the SNP (in this case the lineage 1 samples) the Rv2162c gene would be under- or over-expressed. Looking at the expression table we could see this difference in expression, but a more visual way to do it is through a boxplot.
 
 To plot it we need to load a table with the expression of the Rv2162c:
 
