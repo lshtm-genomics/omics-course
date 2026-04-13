@@ -14,7 +14,7 @@ By the end of this practical you should:
 
 ## Introduction
 
-Over the last few practicals we have dealt with Illlumina and MinION data. Now we are going to have a look at another platform called **Pacific Biosciences Single Molecule Real Time Sequencing** (PacBio SMRT sequencing). This is another third-generation platform which produces long reads, similar to Oxford Nanopore. Like other long-read platforms the error rate is much higher than short-read platforms such as Illumina. As a consequence, the methods required to analyse the data also differ. 
+Over the last few practicals we have dealt with Illumina and MinION data. Now we are going to have a look at another platform called **Pacific Biosciences Single Molecule Real Time Sequencing** (PacBio SMRT sequencing). This is another third-generation platform which produces long reads, similar to Oxford Nanopore. Like other long-read platforms the error rate is much higher than short-read platforms such as Illumina. As a consequence, the methods required to analyse the data also differ. 
 
 PacBio technology has many applications, but is particularly useful for: 
 
@@ -42,7 +42,7 @@ Although this is an important function of methylation, it is also thought to mod
 
 PacBio technology works by recording light signals emitted as a DNA polymerase incorporates fluorescently labelled nucleotides while replicating input DNA. The data from the PacBio platform is stored in a h5 format. This contains information on the base calls and the time it takes to incorporate each base (inter pulse duration). The polymerase takes longer to incorporate nucleotides on methylated input DNA than non-methylated. By comparing the time spent between each incorporation event and comparing it to an in-silico control it is possible to calculate the inter pulse duration ratio (IPD ratio). This makes it possible to detect DNA modification to a single base precision. 
 
-After the location of all methylation sites have been found, the context of these sites are analysed to look for enrichment of particular sequence motifs. If a particular motif is found more than expected by chance, then it is likely a recognition site for an MTase. 
+After the location of all methylation sites have been found, the contexts of these sites are analysed to look for enrichment of particular sequence motifs. If a particular motif is found more than expected by chance, then it is likely a recognition site for an MTase. 
 
 ![](../img/methylation_1.jpg)
 
@@ -252,11 +252,11 @@ The 'filtered_motifs.csv' file and the phylogenetic tree indicates that three of
 2. The isolates all have different mutations
 3. Some isolates share a common mutation
 
-The variants found by aligning the whole genome assemblies to the reference are stored in the multi-sample VCF file 'pacbio.vcf.gz'. We will use bcftools to process this file and extract the relevant information we need . 
+The variants found by aligning the whole genome assemblies to the reference are stored in the multi-sample VCF file 'pacbio.vcf.gz'. We will use bcftools to process this file and extract the relevant information we need. 
 
 ### 1. Extracting sample-specific mutations
 
-The first thing we need to do is extract variants which are only present in the three samples. We can do this using the bcftools view command. First let find out how many variants are present in the VCF file: 
+The first thing we need to do is extract variants which are only present in the three samples. We can do this using the bcftools view command. First let's find out how many variants are present in the VCF file: 
 
 ```
 bcftools view pacbio.vcf.gz -H | wc -l
@@ -266,7 +266,7 @@ The command can be broken down into several parts:
 
 
 * `bcftools view pacbio.vcf.gz`: allows to view contents of the VCF file
-* `-H`: This flag prevents header lines present in the file to be output
+* `-H`: This flag prevents header lines present in the file being output
 * `|`: The pipe passes the output from whatever command was written before it and passes it to the next.
 * `wc -l`: This command counts the number of lines which are passed to it
 
@@ -280,7 +280,7 @@ The command will now count 780 variants.
 
 ### 2. Annotating the variants
 
-In order to narrow down the number of variants we need to narrow down out search to only variants in the Rv3263 gene. The VCF file currently only contains information on the position of the variants on the chromosome but no information about genes. We can use `snpEff` to perform the annotation: 
+In order to narrow down the number of variants we need to narrow down our search to only variants in the Rv3263 gene. The VCF file currently only contains information on the position of the variants on the chromosome but no information about genes. We can use `snpEff` to perform the annotation: 
 
 ```
 bcftools view pacbio.vcf.gz -s tb_pb_10,tb_pb_14,tb_pb_11 -x | snpEff ann Mycobacterium_tuberculosis_h37rv  -no-upstream -no-downstream | grep Rv3263
