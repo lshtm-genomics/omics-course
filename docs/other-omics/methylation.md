@@ -280,15 +280,17 @@ The command will now count 780 variants.
 
 ### 2. Annotating the variants
 
-In order to narrow down the number of variants we need to narrow down our search to only variants in the Rv3263 gene. The VCF file currently only contains information on the position of the variants on the chromosome but no information about genes. We can use `snpEff` to perform the annotation: 
+In order to narrow down the number of variants we need to narrow down our search to only variants in the Rv3263 gene. The VCF file currently only contains information on the position of the variants on the chromosome but no information about genes. We can use `bcftools csq' or `snpEff` to perform the annotation. We don't have access to the snpEff database on the codespace so we will use bcftools csq for now: 
 
 ```
-bcftools view pacbio.vcf.gz -s tb_pb_10,tb_pb_14,tb_pb_11 -x | snpEff ann Mycobacterium_tuberculosis_h37rv  -no-upstream -no-downstream | grep Rv3263
+bcftools view pacbio.vcf.gz -s tb_pb_10,tb_pb_14,tb_pb_11 -x | \
+  bcftools csq -f tb_genome.fasta -g tb_genome.gff | \
+  grep Rv3263
 ```
 
 We have dropped the -H as we are no longer counting lines and the header is needed by the next command. The following new parts have been added:
 
-* `snpEff ann`: This snpEff function annotates a VCF file
+* `bcftools csq`: This function annotates a VCF file
 * `Mycobacterium_tuberculosis_h37rv`: Provides the database with annotations. There are many different databases available for different organisms. The full list can be seen by running `snpEff databases`
 * `-no-upstream -no-downstream`: This flag prevents the annotation of variants which are upstream or downstream of a gene
 * `grep Rv3263`: Looks for lines containing 'Rv3263' and prints them
@@ -306,7 +308,10 @@ We can see this command prints out a number of lines. The last two lines represe
 This format can be a little difficult to understand so the last part we will add to this command will translate this to a more readable format:
 
 ```
-bcftools view pacbio.vcf.gz -s tb_pb_10,tb_pb_14,tb_pb_11 -x | snpEff ann Mycobacterium_tuberculosis_h37rv  -no-upstream -no-downstream | bcftools query -f '[%POS\t%SAMPLE\t%GT\t%ANN\n]' | grep Rv3263
+bcftools view pacbio.vcf.gz -s tb_pb_10,tb_pb_14,tb_pb_11 -x | \
+  bcftools csq -f tb_genome.fasta -g tb_genome.gff | \
+  bcftools query -f '[%POS\t%SAMPLE\t%GT\t%TBCSQ\n]' | \
+  grep Rv3263
 ```
 
 We have moved the grep command to the end and added in the following parameters:
