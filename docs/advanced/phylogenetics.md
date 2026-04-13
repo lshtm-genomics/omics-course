@@ -36,7 +36,7 @@ The file **‘H1N1.flu.2009.fas’** is a multi-FASTA file containing 50 full-le
 We will use AliView to manually inspect the FASTA file:
 
 Activate the correct environment with `conda activate phylo`.
-Open AliView by running the commmand `aliview`.
+Open AliView by running the command `aliview`.
 Import the sequence file: **File > Open File**, navigate to **~/data/phylogenetics** and select the file **H1N1.flu.2009.fas**.
 
 !!! Important
@@ -308,9 +308,9 @@ In the Sites tab, select **GTR** from the ‘**Substitution model**’ dropdown 
 ![BEAUti Substitution Model](../img/phylo_1_7.jpg)
 
 1.5 Set a clock model.
-The **‘Clocks’** tab will allow us to set the molecular clock for mutations along each branch of the tree. If we set this to **‘Strick clock’** this specifies that the mutation rate along each branch will be invariable. As we have shown in the TempEst analysis that our data varies significantly from a strict molecular clock, we will select a relaxed clock to allow for rate variation across branches in our tree.
+The **‘Clocks’** tab will allow us to set the molecular clock for mutations along each branch of the tree. If we set this to **‘Strick Clock’** this specifies that the mutation rate along each branch will be invariable. As we have shown in the TempEst analysis that our data varies significantly from a strict molecular clock, we will select a relaxed clock to allow for rate variation across branches in our tree.
 
-In the Clocks tab, select **‘Uncorrelated relaxed clock’** from the **‘Clock Type’** dropdown box and keep the **‘Relaxed Distribution’** option as **‘Lognormal**’.
+In the Clocks tab, select **‘Uncorrelated relaxed clock’** from the **‘Clock Type’** dropdown box and keep the **‘Relaxed Distribution’** option as **‘Lognormal'**.
 
 ![BEAUti Substitution Model](../img/phylo_1_8.jpg)
 
@@ -369,7 +369,7 @@ Load in the ‘**H1N1.flu.2009.trees**’ file to TreeAnnotator through `Choose 
 
 You can also set the number of burnin states (The number of initial MCMC runs to discard).
 
-Then select `Run `to produce a single maximum clade credibility tree.
+Then select `Run`to produce a single maximum clade credibility tree.
 ![BEAUti Substitution Model](../img/phylo_1_12.jpg)
 
 <hr>
