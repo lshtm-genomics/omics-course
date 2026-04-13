@@ -1,0 +1,256 @@
+Slide 1 — Title Slide
+
+Machine Learning for Bioinformaticians
+Delivered by Nina Billows (Nina.Billows@lshtm.ac.uk), London School of Hygiene & Tropical Medicine
+This lecture bridges general ML concepts with specific applications in bioinformatics and infectious disease research
+Why this lecture matters: ML is increasingly central to modern bioinformatics — from drug resistance prediction to geographic origin tracing. Understanding the foundations allows you to critically evaluate published methods and apply them appropriately in your own research
+
+
+Slide 2 — Overview
+
+Four learning goals for the session:
+
+Understand the basic concepts of machine learning
+Know the types of ML models and what each is used for
+Familiarise yourself with popular ML libraries
+Learn about applications of ML for bioinformatics
+
+
+Practical session: train your own ML models for drug-resistance prediction in Tuberculosis
+Why this structure: the lecture deliberately builds from theory → tools → applications → hands-on practice. You cannot sensibly choose or evaluate a model without first understanding what it is doing — the conceptual sections are prerequisites for the practical
+
+
+Slide 3 — Section Header: Machine Learning
+
+Slide 4 — Types of Machine Learning Models
+
+Two key categories of ML models:
+
+Unsupervised learning: uses unlabelled data to find hidden patterns — useful for clustering and dimensionality reduction. No "correct answer" is provided to the algorithm
+Supervised learning: uses labelled data — the algorithm learns patterns that predict a known outcome. Requires a training dataset where the correct answer (label) is already known
+
+
+Why the distinction between supervised and unsupervised matters: they answer fundamentally different questions. Unsupervised learning asks "what structure exists in my data?" — useful for exploration. Supervised learning asks "can I predict X from Y?" — useful for classification and regression tasks. Choosing the wrong type for your question will produce meaningless results regardless of how well the model is tuned
+
+
+Slide 5 — Unsupervised Learning
+
+Several unsupervised methods exist:
+
+Gaussian Mixture Models (GMM): soft clustering — assigns each data point a probability of belonging to each cluster rather than a hard assignment
+Manifold Learning (e.g. t-SNE): non-linear dimensionality reduction — useful for visualising complex relationships like epistasis that linear methods cannot capture
+Clustering (e.g. K-Means): hard clustering — assigns each data point to exactly one cluster
+Principal Component Analysis (PCA): linear dimensionality reduction — finds axes of maximum variance in high-dimensional data
+
+
+Example: PCA applied to the Iris dataset — 150 flower samples, 4 measurements (sepal/petal length and width), 3 species. PCA reduces 4 dimensions to 2 for visualisation while preserving most variance
+Why use unsupervised methods in bioinformatics: genomic datasets are often high-dimensional (thousands of variants, genes, or features) with no obvious structure. Unsupervised methods help you explore the data, identify subgroups, and generate hypotheses before committing to a supervised approach. PCA in particular is routinely used to detect and correct for population stratification in genomic studies
+Why GMM over K-Means: K-Means forces every sample into exactly one cluster with equal confidence. GMM gives probabilistic assignments — more honest when cluster boundaries are fuzzy, which is common in biological data
+
+
+Slide 6 — Supervised Learning (concepts)
+
+Supervised learning predicts an outcome or label from input features — either:
+
+Classification: predicting a discrete category (e.g. resistant vs. susceptible)
+Regression: predicting a continuous value (e.g. minimum inhibitory concentration)
+
+
+Five key steps before you can predict anything:
+
+Feature Selection/Encoding: choose the most relevant input variables and convert them to numeric format — ML algorithms require numerical input
+Data Splitting: divide data into ~80% training and ~20% testing — the model never sees test data during training
+Model Training: fit the model on the training dataset, optimising internal parameters
+Assess Predictive Performance: evaluate on the held-out test dataset using metrics:
+
+Classification: Accuracy, F1-Score, Sensitivity, Specificity, Precision
+Regression: R², RMSE, MAE, MSE
+
+
+Feature Importance: identify which input variables drove predictions — critical for biological interpretation
+
+
+Why feature selection comes first: including irrelevant or redundant features adds noise, increases computational cost, and can degrade model performance — especially in high-dimensional genomic data where there are often far more features than samples (the "curse of dimensionality")
+Why a strict train/test split is non-negotiable: evaluating model performance on the same data it was trained on will always give an overoptimistic result. The test set simulates genuinely unseen data and gives an honest estimate of how the model will perform in the real world
+
+
+Slide 7 — Supervised Learning (Iris example)
+
+Concrete worked example using the Iris dataset:
+
+Feature Selection: sepal length, sepal width, petal length, petal width selected to predict species (Setosa, Versicolor, Virginica)
+Data Splitting: 120 samples for training, 30 held back for testing
+Model Training: Logistic Regression fitted to learn which measurements distinguish each species
+Assess Predictive Performance: 97% accuracy on the 30 unseen test samples
+Feature Importance: petal length and petal width are the strongest predictors — sepal measurements contribute comparatively little
+
+
+Why the Iris dataset is a useful teaching example: it is small, well-understood, and has clearly separable classes — making it ideal for demonstrating the pipeline without computational complexity obscuring the concepts. The 97% accuracy and clear feature importance make the output interpretable and credible
+Why feature importance matters beyond accuracy: knowing that petal dimensions drive classification is biologically informative. In real infectious disease applications, feature importance reveals which mutations, genes, or variants are associated with a phenotype — directly guiding wet lab follow-up and biological interpretation
+
+
+Slide 8 — How Do We Optimise ML Models? (overfitting)
+
+Every ML model has hyperparameters that must be tuned — these are settings chosen before training (e.g. tree depth, regularisation strength, number of neighbours)
+During training, parameters are updated iteratively to improve predictive performance on the training data
+Overfitting: the model learns the training data too well — including noise and sample-specific quirks — and loses the ability to generalise to new data
+
+Signs: very high training accuracy, much lower test accuracy
+
+
+Underfitting: the model is too simple to capture meaningful patterns — performs poorly on both training and test data
+Solution: Cross-Validation (especially k-fold CV):
+
+Divide training data into k subsets (folds)
+Train on k-1 folds, test on the remaining fold
+Repeat k times — every sample is used for testing once
+Average performance across folds gives a more reliable estimate of generalisation
+
+
+Why overfitting is a critical concern in bioinformatics: genomic datasets often have many more features (variants, genes) than samples — a model can easily memorise training labels without learning anything biologically real. In drug resistance prediction, an overfitted model would appear accurate in the lab but fail on clinical samples from a different population
+Why cross-validation rather than a single train/test split: a single split can be lucky or unlucky depending on which samples end up in which set. Cross-validation averages over many splits, giving a more stable and trustworthy performance estimate — especially important with small datasets common in infectious disease research
+
+
+Slide 9 — How Do We Optimise ML Models? (cat example I)
+
+Intuitive visual example: a model trained to predict cats from photographs, where training data is mostly images of a tabby cat
+Four scenarios tested with novel images (a tabby cat, a non-tabby cat, a teddy bear, a non-cat):
+
+Predicts "cat" for the tabby → well generalised — model recognises a cat it has seen before
+Does NOT predict "cat" for a non-tabby cat → overfitted — model only recognises tabby-coloured cats, not cats in general
+Predicts "cat" for a teddy bear → underfitted — model has learned something too general (e.g. "furry thing")
+Does NOT predict "cat" for a non-cat → well generalised — correctly rejects a non-cat
+
+
+Why this analogy works pedagogically: it makes abstract concepts (overfitting, underfitting, generalisation) concrete and memorable. It also highlights that overfitting is not always obvious — a model can look accurate on familiar examples while failing completely on slight variations
+
+
+Slide 10 — How Do We Optimise ML Models? (cat example II — interpretability)
+
+Same cat example revisited, now focusing on what the model has actually learned:
+
+Predicts cat for tabby → model has learned ears and whiskers — correct features
+Does NOT predict cat for non-tabby → model may have learned colour only — wrong feature, overfit to tabby colouring
+Predicts cat for teddy bear → model may be using mammalian shape or teddy bear colour — too general
+
+
+Key takeaway: a model can be right for the wrong reasons — high accuracy does not mean the model has learned meaningful features
+Interpretability and Explainability of ML models is therefore critically important
+Why interpretability matters in a biological/clinical context: in bioinformatics, we don't just want a prediction — we want to understand the biology. A drug resistance model that achieves 95% accuracy by learning a spurious correlation (e.g. a batch effect or population structure) rather than causal resistance mutations is scientifically useless and potentially dangerous if deployed clinically. Interpretability tools (e.g. SHAP values, feature importance) allow you to audit what the model has actually learned
+
+
+Slide 11 — Types of Supervised ML Models
+
+Overview of the main model families and their use cases:
+
+ModelBest ForKey StrengthsLinear ModelsRegression & ClassificationFast, interpretable, good baseline — assumes linear relationshipsTree-Based Models (Random Forest, XGBoost)Regression & ClassificationHandles non-linear relationships, missing data, mixed feature types — among the most powerful off-the-shelf modelsSupport Vector Machines (SVM)Classification & RegressionEffective in high-dimensional spaces (e.g. genomics, text) — works well when classes are clearly separableK-Nearest Neighbours (KNN)Classification & RegressionSimple, intuitive, no training phase — predicts based on similarity to nearby samplesNaive BayesClassificationVery fast, works with small datasets and text — handles high-dimensional input gracefullyNeural NetworksRegression & ClassificationExtremely flexible, learns complex non-linear patterns — best with large datasets
+
+Why start with a simple model: linear models and decision trees should always be tried first. If a simple model performs nearly as well as a complex one, prefer simplicity — it is faster, more interpretable, and less prone to overfitting. Complex models like neural networks are only justified when simpler models demonstrably fall short
+Why tree-based ensembles (Random Forest, XGBoost) dominate tabular bioinformatics data: genomic datasets are typically tabular (samples × variants), contain non-linear interactions between features (epistasis), and often have missing data. Tree-based ensembles handle all of these naturally without requiring extensive preprocessing
+Why SVMs suit genomic data: genomics datasets are high-dimensional (many more features than samples) — SVMs are specifically designed to work well in this regime by finding the maximum-margin boundary between classes
+
+
+Slide 12 — ML Toolkit
+
+Key software libraries for ML:
+
+ToolLanguagePrimary Usescikit-learnPythonGo-to for classical ML — linear models, trees, SVM, KNN, preprocessing, cross-validationXGBoost / LightGBM / CatBoostPython/RGradient boosting — extremely fast and accurate on tabular dataTensorFlow / KerasPythonDeep learning at scalePyTorchPythonDeep learning research — flexible, dynamic computation graphstatsmodelsPythonStatistical modelling — hypothesis testing, regression with p-valuescaret / tidymodelsRR equivalents of scikit-learn — tidymodels is the modern R standardMLflow / Weights & BiasesPythonExperiment tracking — logs models, metrics, and parameters across runs
+
+Why scikit-learn is the recommended starting point: consistent API across all model types, excellent documentation, and built-in tools for the full pipeline (preprocessing, cross-validation, evaluation). Learning scikit-learn gives you transferable skills applicable to almost any classical ML task
+Why experiment tracking tools (MLflow, W&B) matter: in research, you will run dozens or hundreds of model variants. Without systematic logging, it becomes impossible to reproduce your best results or understand what changed between runs — critical for scientific reproducibility and for communicating methods in publications
+
+
+Slide 13 — Discussion Prompt
+
+"Can you think of any applications of ML for bioinformatics / infectious disease research?"
+This is a class discussion slide — encourage students to think broadly before revealing the answer slides
+Possible student responses to prompt: antimicrobial resistance prediction, variant classification, outbreak detection, drug target identification, protein structure prediction, phylogenetic classification, vaccine design
+
+
+Slide 14 — Section Header: Applications of ML for Bioinformatics
+
+Transitions into real-world case studies
+Why applications follow theory: having learned what ML models are and how they work, students can now critically evaluate how they are applied — rather than just accepting results at face value
+
+
+Slide 15 — AI-Based Geographic Origin Prediction (pipeline overview)
+
+Application: predicting the geographic origin of Plasmodium falciparum (malaria parasite) samples from genomic data
+Dataset: ~25,000 global P. falciparum samples
+Full pipeline shown:
+
+Bioinformatic analysis of raw genomic data
+Population genetics and statistical analysis — identify geographically informative markers (high Fst variants — variants that differ substantially between populations)
+ML model training — learn which markers predict geographic origin
+Results — new drug-resistance candidates and geographical markers identified
+Update Malaria-Profiler — implement model for profiling new clinical samples
+
+
+Why geographic origin prediction matters in malaria: knowing where a sample originated is critical for tracking parasite movement, identifying emerging drug-resistant strains crossing borders, and targeting interventions. Traditional epidemiological data is often incomplete in high-burden regions — genomic prediction fills this gap
+
+
+Slide 16 — AI-Based Geographic Origin Prediction (ML workflow)
+
+Detailed ML workflow for the geographic prediction model:
+
+Dataset: ~16,000 global P. falciparum samples
+Feature Selection: geographical markers with high Fst (variants that differ most between geographic populations)
+Data Split: 80% training/validation, 20% testing
+Model: Multi-task Convolutional Neural Network (CNN) — optimised jointly for predicting both region and country simultaneously
+Evaluation metrics: AUC, F1, Sensitivity, Specificity, Predictive Probabilities
+Output: implement model in production pipeline for new sample classification
+
+
+Why a CNN rather than a simpler model: CNNs can capture spatial/positional patterns in genomic data — variants near each other on the genome may co-occur due to linkage disequilibrium, and CNNs can learn these local patterns automatically. A random forest treating each variant independently would miss this structure
+Why multi-task learning (predicting region AND country simultaneously): predicting at multiple geographic scales jointly allows the model to share information between tasks — knowing a sample is from Sub-Saharan Africa constrains which country it could be from, and vice versa. This typically improves accuracy at both levels compared to training separate models
+
+
+Slide 17 — Multi-task CNN for Predicting Region and Country
+
+Visualisation of the CNN architecture and prediction outputs for regional and country-level geographic classification
+The model takes genomic variant data as input and outputs probability distributions over regions and countries simultaneously
+Why visualising model architecture matters: understanding the structure of a neural network — how many layers, what type of operations — helps you understand what kinds of patterns it can and cannot learn, and informs decisions about when this approach is appropriate vs. overkill
+
+
+Slide 18 & 19 — Predicting Drug-Resistant TB
+
+Application: predicting drug resistance in Mycobacterium tuberculosis from genomic data
+TB drug resistance is a major global health challenge — genomic prediction enables faster diagnosis than traditional culture-based methods
+The model learns which genetic variants (mutations) predict resistance to specific anti-TB drugs
+Why ML for TB drug resistance prediction: traditional drug susceptibility testing (DST) requires growing the bacteria in culture, which takes weeks. Whole-genome sequencing followed by ML-based resistance prediction can provide results in hours — enabling faster appropriate treatment and reducing transmission of resistant strains
+Why this is a good supervised learning problem: resistance/susceptibility is a clear binary label, known resistance-associated mutations provide interpretable features, and large labelled datasets (e.g. from the CRyPTIC consortium) are available for training
+
+
+Slide 20 — Discussion Prompt
+
+"Can you think of any challenges associated with ML for bioinformatics / infectious disease?"
+Again a class discussion slide — useful to surface before revealing the challenges slide
+Prompts students to think critically about limitations, not just applications
+
+
+Slide 21 — Challenges
+
+Ten key challenges in applying ML to bioinformatics:
+
+ChallengeWhy It MattersData QualityGarbage in, garbage out — poor quality sequences or phenotype calls produce unreliable modelsMissing DataMany genomic datasets have gaps — some models handle this better than othersRepresentative SamplingModels trained on non-representative data fail when deployed on different populations — a major issue given global under-sampling of African and Asian pathogen diversityDataset SizeComplex models (neural networks) require large datasets — hard to achieve for rare pathogens or emerging outbreaksComputational Resources (GPU)Deep learning requires significant compute — a barrier in resource-limited research settingsOverfittingEspecially dangerous in high-dimensional genomic data with few samplesClass ImbalanceIf 95% of samples are drug-susceptible, a model predicting "susceptible" for everything achieves 95% accuracy but is clinically uselessHigh DimensionalityMany more features than samples — increases overfitting risk and computational costInterpretability / Black Box ModelsNeural networks in particular give predictions without explanation — problematic for clinical trust and biological insightReproducibilityRandom seeds, data splits, and software versions must all be reported for results to be reproducible
+
+Why class imbalance deserves special attention in infectious disease: resistance is often rare in a population — a model naive to imbalance will simply predict the majority class. This is dangerous clinically. Solutions include oversampling (SMOTE), undersampling, class-weighted loss functions, and using metrics like F1 and AUC-ROC rather than raw accuracy
+Why reproducibility is a growing crisis in ML research: many published ML models cannot be reproduced because insufficient detail is given about data splits, random seeds, preprocessing steps, or software versions. This is particularly harmful in clinical applications where non-reproducible results may influence treatment guidelines
+
+
+Slide 22 — Practical Session
+
+Task: predicting Tuberculosis drug resistance from rpoB gene mutations
+Background: Rifampicin resistance in M. tuberculosis is driven by mutations in RNA polymerase subunit genes — ML can learn which mutation combinations predict resistance
+Six key steps to be completed in the practical:
+
+Input Data — load the labelled genomic dataset
+Feature Encoding — convert genetic variants into numerical format suitable for ML
+Train/Test Split — divide data to enable honest performance evaluation
+Model Training — fit a supervised ML model to the training data
+Model Performance — evaluate on the held-out test set using appropriate metrics
+Feature Importance — identify which rpoB mutations most strongly predict resistance
+
+
+Why rpoB is a good practical dataset: it is well-characterised, clinically relevant, manageable in size, and produces interpretable results that connect directly to known biology. Students can verify that the mutations identified as important match the established literature — a satisfying validation that the method is working correctly
+Why feature importance is included as a practical step: it reinforces the message from the cat example that accuracy alone is insufficient — you must understand what your model has learned and whether it makes biological sense
