@@ -108,7 +108,7 @@ This produces a file named fail_imiss_het_qc.txt
 
 To identify duplicate & related individuals, create an Identity-by-State (IBS) matrix – calculated for each pair of individuals based on the shared proportion of alleles. 
 
-To reduce the computational complexity, first prune the dataset so that no pair of SNPs (within a given window e.g 200kb) has linkage disequilibrium (r² > 0.2). Type 
+To reduce the computational complexity, first prune the dataset so that no pair of SNPs (within a given window e.g 200kb) has linkage disequilibrium (e.g. r² > 0.2, we use 0.5 below). Type 
 
 ```
 plink --bfile MD --indep-pairwise 200 5 0.5 --out MD
@@ -223,9 +223,9 @@ This generates clean.MD.lmiss.pdf
 
 ![](../img/gwas_4.jpg)
 
-We chose to a call-rate threshold of 5% (these SNPs will be removed later in the protocol). 
+We chose a call-rate threshold of 5% (these SNPs will be removed later in the protocol). 
 
-### Test markers for different genotype call rates between cases and contols 
+### Test markers for different genotype call rates between cases and controls 
 
 To test all markers for differences in call rate between cases and controls, at the Unix prompt type: 
 
