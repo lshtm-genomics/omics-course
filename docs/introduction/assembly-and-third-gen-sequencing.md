@@ -174,7 +174,7 @@ conda deactivate
 
 conda activate busco
 
-busco -i short/scaffolds.fasta -l bacteria_odb10 -o busco_output -m genome -c 2
+busco -i short/scaffolds.fasta -l bacteria_odb12 -o busco_output -m genome -c 2 --offline
 
 conda deactivate
 ```
