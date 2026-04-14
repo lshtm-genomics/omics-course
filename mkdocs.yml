@@ -39,7 +39,6 @@ nav:
       - introduction/mapping.md
       - introduction/variant-detection.md
       - introduction/assembly-and-third-gen-sequencing.md
-      - introduction/task.md
   - Advanced:
       - advanced/phylogenetics.md
       - advanced/nanopore.md
@@ -59,3 +58,7 @@ nav:
       - additional-info/faq.md
   - Presentations:
       - presentations/presentations.md
+  - Tasks:
+      - tasks/intro-to-linux.md
+      - tasks/variant-calling-task.md
+
