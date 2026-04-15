@@ -1,5 +1,9 @@
 # Task
 
+!!! Warning
+
+    Be sure to use the `task1` Codespace when initiating VM for this practical.
+
 ## Introduction
 
 As we transition from our foundational lectures into practical application, it is crucial to evaluate your understanding and proficiency in the core bioinformatics processes of mapping and variant calling. These tools are the cornerstone of genomic analysis and have wide-reaching implications in the field of infectious diseases, including tuberculosis. This test will simulate a real-world scenario where you will analyse raw sequencing data to extract meaningful insights that can inform treatment decisions and deepen our understanding of pathogen genomics.

@@ -1,5 +1,9 @@
 # Phylo Task
 
+!!! Warning
+
+    Be sure to use the `phylo_task` Codespace when initiating VM for this practical.
+
 ## Introduction
 
 Welcome to the **Phylo analysis practical**, where you will reconstruct evolutionary relationships between Mycobacterium tuberculosis isolates starting from raw sequencing data.

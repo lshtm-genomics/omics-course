@@ -62,4 +62,5 @@ nav:
       - tasks/intro-to-linux.md
       - tasks/variant-calling-task.md
       - tasks/basic-phylogeny-task.md
+      - tasks/tb-transcriptomics-task.md
 

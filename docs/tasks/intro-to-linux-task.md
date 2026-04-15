@@ -1,5 +1,9 @@
 # Task
 
+!!! Warning
+
+    Be sure to use the `linux_hunt` Codespace when initiating VM for this practical.
+
 ## Introduction
 
 Welcome to the **Linux Treasure Hunt**, a practical exercise designed to strengthen your command-line navigation and file manipulation skills. In real-world bioinformatics and data science work, much of your time is spent moving through complex directory structures, inspecting files, running scripts, and organising outputs efficiently. This task simulates that environment in a fun, exploratory way.
