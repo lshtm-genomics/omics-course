@@ -1,4 +1,4 @@
-# Task
+# Variant Discovery Task
 
 !!! Warning
 

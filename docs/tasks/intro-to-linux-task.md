@@ -1,4 +1,4 @@
-# Task
+# Intro to Linux task
 
 !!! Warning
 
@@ -72,7 +72,8 @@ Inside it will contain the final message confirming completion of the challenge.
 
 ### Hints
 
-If you are stuck:
-- Re-read the last clue carefully
-- Check file contents again using `cat`
-- Search large files using `grep`
+???+ note "If you are stuck"
+
+    - Re-read the last clue carefully
+    - Check file contents again using `cat`
+    - Search large files using `grep`

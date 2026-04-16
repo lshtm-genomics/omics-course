@@ -137,13 +137,15 @@ Upload your tree to **iTOL (Interactive Tree of Life)**. We have provided an ann
 
 ## Key Hints
 
-- Keep sample names consistent across all files
-- Low-quality samples may break downstream clustering
-- Might need to remove some samples
-- The tree reflects **genetic distance, not just lineage**
-- Lineage labels are metadata overlays, not the result itself
-- Parsnp builds a core-genome alignment, not just SNPs
-- Interpretation is more important than execution
+???+ note "Tips for Mtb Phylo Analysis"
+    
+    - Keep sample names consistent across all files
+    - Low-quality samples may break downstream clustering
+    - Might need to remove some samples
+    - The tree reflects **genetic distance, not just lineage**
+    - Lineage labels are metadata overlays, not the result itself
+    - Parsnp builds a core-genome alignment, not just SNPs
+    - Interpretation is more important than execution
 
 ---
 

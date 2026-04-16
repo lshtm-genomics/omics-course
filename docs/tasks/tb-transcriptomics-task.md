@@ -71,18 +71,20 @@ You will complete the following stages:
 
 ## Tips
 
-- Ensure sample names are consistent across FASTQ files, count files, and metadata before running DESeq2.
+???+ note "Tips for Mtb Transcriptomic Analysis"
 
-- Always verify that the last column of featureCounts files is used as the expression count matrix.
+    - Ensure sample names are consistent across FASTQ files, count files, and metadata before running DESeq2.
 
-- Lineage is your primary experimental variable; treat it as a factor in DESeq2.
+    - Always verify that the last column of featureCounts files is used as the expression count matrix.
 
-- If samples do not align properly in R, check ordering before constructing the DESeq dataset.
+    - Lineage is your primary experimental variable; treat it as a factor in DESeq2.
 
-- Low-count genes add noise—filter them before running DESeq2.
+    - If samples do not align properly in R, check ordering before constructing the DESeq dataset.
 
-- Heatmaps work best with normalised counts (`counts(dds, normalized=TRUE)`).
+    - Low-count genes add noise—filter them before running DESeq2.
 
-- PCA is a useful first step to confirm whether lineages separate biologically.
+    - Heatmaps work best with normalised counts (`counts(dds, normalized=TRUE)`).
 
-- One mislabelled sample can break the entire analysis, so validate metadata carefully before proceeding.
+    - PCA is a useful first step to confirm whether lineages separate biologically.
+
+    - One mislabelled sample can break the entire analysis, so validate metadata carefully before proceeding.
