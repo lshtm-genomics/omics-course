@@ -59,7 +59,7 @@ nav:
   - Presentations:
       - presentations/presentations.md
   - Tasks:
-      - tasks/intro-to-linux.md
+      - tasks/intro-to-linux-task.md
       - tasks/variant-calling-task.md
       - tasks/basic-phylogeny-task.md
       - tasks/tb-transcriptomics-task.md
