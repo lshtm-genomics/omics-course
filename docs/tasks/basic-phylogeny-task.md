@@ -3,6 +3,9 @@
 !!! Warning
 
     Be sure to use the `phylo_task` Codespace when initiating VM for this practical.
+    This task you will also need to wget the data
+    `wget -O - http://genomics.lshtm.ac.uk/phylo_task.tar.gz | tar -xvz`
+    
 
 ## Introduction
 
