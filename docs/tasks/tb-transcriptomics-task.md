@@ -54,6 +54,7 @@ All other samples have been counted already due to space constraints
 Finally, instead of manually inputting the lineage, you are provided with lineage information in a txt file which needs to be read into R and the table manipulated to fit the dds object similar to the practical
 
 - `tb_profiler.txt`
+
 ---
 
 ## Workflow Overview
