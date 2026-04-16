@@ -50,6 +50,7 @@ And given an annotation file to use in Itol at the end
 These will need to be downloaded using 
 
 - `wget -O - http://genomics.lshtm.ac.uk/phylo_task.tar.gz | tar -xvz`
+
 ---
 
 ## Workflow Overview
