@@ -51,9 +51,12 @@ All other samples have been counted already due to space constraints
 
 - `*counts.txt`
 
-Finally, instead of manually inputting the lineage, you are provided with lineage information in a txt file which needs to be read into R and the table manipulated to fit the dds object similar to the practical
+Finally, instead of manually inputting the lineage, you are provided with lineage information in:
 
 - `tb_profiler.txt`
+
+This needs to be read into R and used to construct the DESeq2 metadata table.
+
 
 ---
 

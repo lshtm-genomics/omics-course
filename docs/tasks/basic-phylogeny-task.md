@@ -18,6 +18,7 @@ This workflow mirrors real outbreak genomics pipelines used to:
 - compare genomic relationships between isolates
 
 You will move from raw reads to a final phylogenetic tree and visualise it using iTOL.
+
 ---
 
 ## Goal
