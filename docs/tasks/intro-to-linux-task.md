@@ -2,7 +2,7 @@
 
 !!! Warning
 
-    Be sure to use the `linux_hunt` Codespace when initiating VM for this practical.
+    Be sure to use the `linux_test` Codespace when initiating VM for this practical.
 
 ## Introduction
 
