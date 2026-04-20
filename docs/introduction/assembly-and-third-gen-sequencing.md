@@ -333,7 +333,11 @@ We can now close the gaps between the scaffolds using a tool called tgsgapcloser
 ```
 mkdir long/tgs_gapcloser
 
-tgsgapcloser --scaff long/assembly.fasta.k32.w100.z1000.ntLink.scaffolds.fa --reads tb_ONT/sample1_ONT.fastq.gz --output long/tgs_gapcloser --ne
+tgsgapcloser \
+  --scaff long/assembly.fasta.k32.w100.z1000.stitch.abyss-scaffold.fa \
+  --reads tb_ONT/sample1_ONT.fastq.gz \
+  --output long/tgs_gapcloser \
+  --ne
 ```
 After every run, use QUAST to see how the assembly is improving. Although QUAST doesn't show much change or it doesn't indicate significant improvement, BUSCO highlights the percentage gaps and we can use it to see how many gaps we have reduced.
 
