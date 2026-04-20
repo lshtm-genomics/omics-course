@@ -214,3 +214,10 @@ conda env list
 
 !!! question
     Try activate the tb-profiler environment. Did it work?
+
+
+### Linux test
+
+If you feel confident in Linux skills, check out the test you can do to find the secret passcode:
+
+https://lshtm-genomics.github.io/omics-course/tasks/intro-to-linux-task/
