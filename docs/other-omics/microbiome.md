@@ -60,11 +60,7 @@ mkdir fastqc_combined
 multiqc -o fastqc_combined fastqc_reports
 ```
 
-With `ls fastqc_combined` you can see that an HTML file, which we can view in a browser, has been created. Open the HTML file by right clicking and downloading the file to your downloads: 
-<img width="1474" height="1008" alt="image" src="https://github.com/user-attachments/assets/0089eea0-07c4-494b-aada-5c01935d70d3" />
-
-
-
+With `ls fastqc_combined` you can see that an HTML file, which we can view in a browser, has been created. Open the HTML file by right clicking and downloading the file to your downloads (on VS Code go to Explorer > VScode > data/microbiome > fastqc_reports).
 
 Scroll through the report and make note of the sequence counts barplots and the quality histograms. 
 
