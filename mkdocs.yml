@@ -38,10 +38,10 @@ nav:
       - introduction/intro-to-linux.md
       - introduction/mapping.md
       - introduction/variant-detection.md
-      - introduction/assembly-and-third-gen-sequencing.md
   - Advanced:
-      - advanced/phylogenetics.md
       - advanced/nanopore.md
+      - introduction/assembly-and-third-gen-sequencing.md
+      - advanced/phylogenetics.md
       - advanced/gwas.md
   - "Other omics":
       - other-omics/microbiome.md
@@ -54,8 +54,9 @@ nav:
   - "Additional info":
       - additional-info/conda.md
       - additional-info/software.md
-      - additional-info/SettingUpVirtualLinux.md
       - additional-info/faq.md
+      - additional-info/settingUpYourMachines.md
+    #   - additional-info/SettingUpVirtualLinux.md
   - Presentations:
       - presentations/presentations.md
   - Tasks:
