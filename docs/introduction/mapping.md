@@ -104,8 +104,12 @@ First we will activate the software environment using:
 conda activate day1
 ```
 
-Open up a new terminal window and then type: `fastqc`
-Once the program is running, select `File > Open` to open one or more Sequence files (see below). Browse to `~/data/tb/` to choose `sample1_1.fastq` and click  `OK`. 
+To use FastQC type the following in the terminal of your `day1` environment:
+
+```
+fastqc ~/data/tb/sample1_1.fastq.gz
+```
+1. Download the html `~/data/tb/sample1_1_fastqc.html` to view.
 
 FastQC supports FASTQ files (all quality encoding variants), GZip compressed FastQ and alignment files (SAM and BAM formats). 
 
@@ -353,11 +357,12 @@ rm sample1_1P.fastq sample1_1U.fastq sample1_2P.fastq sample1_2U.fastq
 !!! info
     Graphical tools in this course should be started using the terminal, but we will need to view the interface using the virtual desktop. To do this, you need to open the desktop using TigerVNC, as described in the previous section. Remember, you need to use "localhost:5901" as the address in TigerVNC.
 
-Launch IGV by running the command `igv` on a terminal and perform the following steps:
+Launch IGV on your machine and perform the following steps:
 
-1. We first need to load the reference genome. To do this click on **Genomes -> Load Genome from File...**. Navigate to **~/data/tb** and select the **tb.fasta** file.
-2. You can also load the genes by clicking on **File -> Load from File...**, then selecting the **tb.gff** file. 
-3. Finally you can load the bam file by clicking **File -> Load from File...** and selecting the bam file you wish to load, in our case it will be **sample1.bam**. 
+1. Download the following files from your terminal to your machine: **tb.fasta**, **tb.gff**, **sample1.bam**, **sample.bam.bai**
+2.  We first need to load the reference genome into IGV. To do this click on **Genomes -> Load Genome from File...**. Navigate to where you saved the files in Step 1 e.g. **~/User/downloads/** and select the **tb.fasta** file.
+3. You can also load the genes by clicking on **File -> Load from File...**, then selecting the **tb.gff** file. 
+4. Finally you can load the bam file by clicking **File -> Load from File...** and selecting the bam file you wish to load, in our case it will be **sample1.bam**. 
 
 There is a lot going on on the screen so have a look at the image below which explains some of the most important features.
 
@@ -420,6 +425,31 @@ samtools view IT.Chr5.bam | grep "IL39_6014:8:61:7451:18170"
 
 ![mapping_1](../img/Mapping_18.jpg)
 
+!!! Exercise
+
+    === "Task"
+
+        Execute all previous commands for to get a bam file for the next sample `DD2.Chr5`
+
+    === "Hints"
+
+        You need to run through the following steps:
+        
+        1. No need to index the reference (we already did this).
+        2. Map the forward and reverse reads against the reference. 
+        3. Index the bam file. 
+
+    === "Cheats"
+
+        Here is the code you need to use:
+
+        ```
+        cd ~/data/malaria
+        bwa mem ~/data/malaria/Pf3D7_05.fasta ~/data/malaria/DD2.Chr5_1.fastq.gz ~/data/malaria/DD2.Chr5_2.fastq.gz | samtools view -b - | samtools sort -o DD2.Chr5.bam -
+        samtools index DD2.Chr5.bam
+        ```
+
+
 ### Viewing the mapped reads in IGV
 
 We will now examine the read mapping in IGV using the BAM view feature.
@@ -450,7 +480,7 @@ Once IGV has started running on your screen navigate to the mdr1 gene locus usin
 
 ### Identifying Single Nucleotide Polymorphisms
 
-Let us have a look at SNPs now. To do so, zoom in on the mdr1 gene and make sure you are in Strand Stack view and have Show SNP marks selected. As mentioned before, in addition to true SNPs some differences between the reference sequence and the mapped reads are due to sequencing errors. On average, 1 in every 100 bases in the reads is expected to be incorrect. In particular, some sequencing errors may be due to a systematic problem as illustrated below. 
+Let us have a look at SNPs now. To do so, zoom in on the mdr1 gene and make sure you are in Strand Stack view (double-click on the tracks and select 'Colour alignments by -> read strand') and have Show SNP marks (double-click on the tracks, select 'show mismatched based') selected. As mentioned before, in addition to true SNPs some differences between the reference sequence and the mapped reads are due to sequencing errors. On average, 1 in every 100 bases in the reads is expected to be incorrect. In particular, some sequencing errors may be due to a systematic problem as illustrated below. 
 
 Differently coloured nucleotides appear on the stacked reads highlighting every base in a read which does not match to the reference. If you zoom in you can distinguish real SNPs as vertical coloured lines, while the random sequencing errors are more disperse. 
 
