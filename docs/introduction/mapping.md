@@ -109,7 +109,7 @@ To use FastQC type the following in the terminal of your `day1` environment:
 ```
 fastqc ~/data/tb/sample1_1.fastq.gz
 ```
-1. Download the html `~/data/tb/sample1_1_fastqc.html` to view.
+1. Download the html `~/data/tb/sample1_1_fastqc.html` to your machine and open the html to view.
 
 FastQC supports FASTQ files (all quality encoding variants), GZip compressed FastQ and alignment files (SAM and BAM formats). 
 
@@ -318,7 +318,7 @@ rm sample1_1P.fastq sample1_1U.fastq sample1_2P.fastq sample1_2U.fastq
 
     === "Task"
 
-        Execute all previous commands for to get a bam file for sample 2
+        Execute all previous commands to get a bam file for sample 2
 
     === "Hints"
 
