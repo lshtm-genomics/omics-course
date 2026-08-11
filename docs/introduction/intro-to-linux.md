@@ -12,7 +12,7 @@ Let's start by opening a terminal by left clicking on the desktop and selecting 
 
 The terminal is very similar to the file explorer in other operating systems. It allows you to see files and interact with them. The only difference is that we have to do this by typing a command into the terminal window. To demonstrate this, let's open up Linux's file explorer by left clicking on the desktop and selecting **File manager**. When you open the file manager it will go to your home folder and show you all the sub-folders and files present. The home folder is simply the root folder which contains all your files and folders.
 
-You can see a number of sub-folders and files present in the file explorer. Let's see if we can find them in the terminal. To do this, we have to type ls into the terminal and hit enter. You should now see a screen similar to the one below. Now you can see the same files and folders in the terminal. 
+You can see a number of sub-folders and files present in the file explorer. Let's see if we can find them in the terminal. To do this, we have to type `ls` into the terminal and hit enter. You should now see a screen similar to the one below. Now you can see the same files and folders in the terminal. 
 
 ![](../img/linux_2.png)
 
