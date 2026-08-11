@@ -13,7 +13,7 @@ GitHub Codespaces is a cloud-based development environment that allows users to 
 VS Code is a lightweight yet powerful code editor that supports multiple programming languages. It also allows users to connect to GitHub Codespaces, allowing users to work on cloud-based VMs as if they were local files.
 Users will launch GitHub Codespaces via VS Code, enabling them to interact with their virtual machine through a familiar coding interface.
 
-![](../img/VScode.png)
+![](img/VScode.png)
 
 - Explorer (the left panel): here you will find all your folders and files e.g. ~/data/
 - Terminal (bottom panel): here you can run code and commands.
