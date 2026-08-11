@@ -16,16 +16,7 @@ Some differences between the reference and the mapped reads are due to sequencin
 
 ### Exercise 1: Identifying Single Nucleotide Polymorphisms (SNPs)
 
-Activate the relevant `conda` environment and open up a new session of `igv`:
-
-```
-conda activate day1
-igv
-```
-
-!!! info
-    You can list all installed environments with `conda env list`.
-
+Open IGV on your machine:
  
 1. Click "Genomes" on the top menu bar followed by "Load Genome From File...". Select the reference fasta file at "~/data/tb/tb.fasta".
 2. Click "File" on the top menu bar followed by "Load From File...". Select the genome annotation file at "~/data/tb/tb.gff".
@@ -197,9 +188,9 @@ VCF (Variant Call Format) is a text file format employed to store genetic variat
 
 VCF files can be opened and visualised in genome browsers such as IGV.
 
-Launch an IGV instances as before (or use the same one if you kept it open) and load sample1.bam and sample2.bam in each of them as explained in Exercise 1.
+Launch IGV as before (or use the same one if you kept it open) and load sample1.bam and sample2.bam in each of them as explained in Exercise 1. Ensure the VCF files (i.e. sample1.filt.vcf and sample2.filt.vcf) in your terminal are downloaded to your machine. 
 
-In the menu bar, select **Load From File...** and select the VCF files in ~/data/tb/variants for both samples(i.e. sample1.filt.vcf and sample2.filt.vcf).
+In the menu bar, select **Load From File...** and select the VCF files from where you saved them e.g. ~/User/Downloads for both samples (i.e. sample1.filt.vcf and sample2.filt.vcf).
 
 Then the SNPs should appear in the VCF track above the reads panel as shown below. On the other hand, sequencing errors are not called SNPs at those positions.
 Making use of search bar to visit the two regions we visited in Exercise 1 (containing positions 187,503 and 587,585 respectively). Remember that we were trying to distinguish real SNPs from sequencing errors. 
@@ -345,9 +336,9 @@ So far we have use IGV to visualise SNPs. In this exercise we will run it again 
 
 SV detection tools output not only potential structural differences, but also a confidence value attach to them. An important threshold is the minimum number of supporting reads (found in Delly output) for an event to be retained. Hits with very few supporting reads (column 5) are expected to be false positives (FP). Repetitive and highly polymorphic regions in the genome are the main sources of such FP events.
 
-Launch an IGV instances as before (or use the same one if you kept it open) and load sample1.bam and sample2.bam in each of them as explained in Exercise 1.
+Launch IGV as before (or use the same one if you kept it open) and load sample1.bam and sample2.bam in each of them as explained in Exercise 1.
 
-Using the same method as before load the VCF files produced by delly. But this time select the compressed VCF files in ~/data/tb/ (i.e. sample1.delly.vcf for the instance with sample1 loaded and sample2.delly.vcf for the instance with sample2 loaded).
+Using the same method as before load the VCF files produced by delly (ensure these delly VCF files are downloaded to your machine). But this time select the compressed VCF files from your machine e.g. inside ~/User/Downloads/ (i.e. sample1.delly.vcf for the instance with sample1 loaded and sample2.delly.vcf for the instance with sample2 loaded).
 
 Find the region 77,823-84,798 and establish whether differences in the alignment can be visually identified between samples . Note: The coverage plot can also give you a clear insight.
 
