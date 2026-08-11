@@ -34,23 +34,25 @@ nav:
   - Home: 
     - index.md
     - connecting-github.md
-  - Introduction: 
-      - introduction/intro-to-linux.md
-      - introduction/mapping.md
-      - introduction/variant-detection.md
-  - Advanced:
-      - advanced/nanopore.md
-      - introduction/assembly-and-third-gen-sequencing.md
-      - advanced/phylogenetics.md
-      - advanced/gwas.md
+  - Day1: 
+      - day1/intro-to-linux.md
+      - day1/mapping.md
+      - day1/variant-detection.md
+  - Day2:
+      - day2/nanopore.md
+      - day2/assembly-and-third-gen-sequencing.md
+      - day2/transcriptomics.md
   - "Other omics":
-      - other-omics/microbiome.md
-      - other-omics/transcriptomics.md
-      - other-omics/methylation.md
-      - other-omics/machine_learning.md
-      - other-omics/tb-resistance.md
-      - other-omics/eqtl.md
-      # - other-omics/task.md
+      - day3/microbiome.md
+      - day3/methylation.md
+      - day3/eqtl.md
+  - "Day 4":
+      - day4/phylogenetics.md
+      - day4/machine_learning.md
+      - day4/gwas.md
+      - day4/tb-resistance.md
+
+
   - "Additional info":
       - additional-info/conda.md
       - additional-info/software.md
