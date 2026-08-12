@@ -29,23 +29,31 @@ We will identify transmission chains of H1N1/09, reconstruct their migration pat
 
 
 ## Section 1 - Phylogenetic reconstruction
-We will use the packages **AliView** and **RAxML** to view genetic sequence files and build a maximum-likelihood (ML) phylogenetic tree.
+We will use the tool **Alv** to view genetic sequence files and build a maximum-likelihood (ML) phylogenetic tree.
+
+<details>
+<summary>Optional: view the alignment in a GUI instead</summary>
+
+If you'd rather inspect the alignment visually, you can use **aliview** ([download](https://ormbunkar.se/aliview/downloads/)). Download **H1N1.flu.2009.fas** from vscode, then **File > Open File** and select it.
+
+</details>
 
 The file **‘H1N1.flu.2009.fas’** is a multi-FASTA file containing 50 full-length influenza A H1N1/09 genomes. These nucleotide sequences correspond to influenza viruses sampled in Canada (n = 5), China (n = 3), England (n = 23), Mexico (n = 4), Peru (n = 1), and the United States of America (USA; n = 14) between April and June 2009. The sequences are 12,735 nucleotides long.
 
-We will use AliView to manually inspect the FASTA file:
+We will use Alv to manually inspect the FASTA file:
 
 Activate the correct environment with `conda activate phylo`.
-Open AliView by running the command `aliview`.
-Import the sequence file: **File > Open File**, navigate to **~/data/phylogenetics** and select the file **H1N1.flu.2009.fas**.
+```
+alv -t dna -k --color-scheme terminal H1N1.flu.2009.fas | less -R
+```
 
 !!! Important
 
-    To infer the phylogenetic relationship of a set of sequences, these need to be ‘aligned’. That is, nucleotide positions need to be arranged in columns to ensure that we compare homologous positions to one another. In evolutionary biology, homology means similarity due to descent from a common ancestor. Two genes are homologous if they descend from an ancestral gene. Likewise, two nucleotides in different sequences are homologous if they correspond to the same nucleotide position in the ancestral gene. Note that two objects can be ‘similar’ without being ‘identical’. The sequences shown here have been aligned but if your data are not, it will need to be aligned. This can be done in AliView, as well as in other programs including MUSCLE, ClustalW and MAFFT.
+    To infer the phylogenetic relationship of a set of sequences, these need to be ‘aligned’. That is, nucleotide positions need to be arranged in columns to ensure that we compare homologous positions to one another. In evolutionary biology, homology means similarity due to descent from a common ancestor. Two genes are homologous if they descend from an ancestral gene. Likewise, two nucleotides in different sequences are homologous if they correspond to the same nucleotide position in the ancestral gene. Note that two objects can be ‘similar’ without being ‘identical’. The sequences shown here have been aligned but if your data is not, it will need to be aligned. This can be done in AliView, as well as in other programs including MUSCLE, ClustalW and our recommendation **MAFFT**. This has been done before because these steps can take a while to run.
 
 The sequence alignment is displayed as a matrix, where rows correspond to viral samples and columns to nucleotide positions (see **Figure 1**). Cells are coloured by type of nucleotides (A, C, G or T) and missing information, or gaps, are indicated by a dash (“-“).
 
-![Figure 2](../img/phylo_1_1.jpg)
+![Figure 1](../img/phylo_1.png)
 
 The unique identifier of the sequences is shown at the left hand side of the nucleotide matrix and contains the strain name (e.g. A/England/247/2009) followed by the date of sampling (e.g. d2009-05-31) in the format dYYYY-MM-DD.
 
@@ -68,15 +76,15 @@ iqtree -m GTR+G -s H1N1.flu.2009.fas -bb 1000
 - **s H1N1.flu.2009.fas**: This is your input file.
 -**-bb 1000**: This specifies the number of bootstrap runs.
 
-Once the software has finished running, the file `H1N1.flu.2009.fas.treefile` will contain the ML tree with bootstrap supports. Add the extension .tre to the file:
+Once the software has finished running, the file `H1N1.flu.2009.fas.treefile` will contain the ML tree with bootstrap supports.
 
-And open the tree to view in the program FigTree, for this run the command:
-```
-figtree
-```
-FigTree is a tree editor with a graphic interface and is freely available at [http://tree.bio.ed.ac.uk/software/figtree](http://tree.bio.ed.ac.uk/software/figtree). It runs on all operating systems.
+Download this file from the codespace, then upload it to [iTOL](https://itol.embl.de/) to view the phylogeny. 
 
-When prompted at opening, name the bootstrap values “bootstrap support”. You can now view the ML tree with bootstrap support values. Click on the **node labels** section on the left of the viewer and select **bootstrap support** from the **Display** drop down box. This will display the bootstrap support for each of the nodes of the tree. Go to **Trees** > **Increasing Node Order** to display the tree by increasing node order.
+![Figure 2](../img/phylo_2_1.png)
+![Figure 2](../img/phylo_2_2.png)
+
+
+In iTOL, open the **Advanced** tab in the control panel, and find the Bootstraps / metadata option in the **Branch metadata display** section. Set it to Display, then choose the bootstrap values as the **data source**. The support value for each node will now appear on the branches. You can also increase the font size to make it clearer and addign a **Label background** to make it even more clearer. iTOL sorts clades by size automatically, giving laddered, top-to-bottom order. If the tree doesn't look sorted, check that Leaf sorting is enabled in the display options.
 
 !!!Note
     Note. Many of the values shown are low (the scale is 0 [no support] to 100 [full support]). Typically values over 70% (in this case a bootstrap value of 70) are taken as showing strong support. Low values here may suggest that you need to change the substitution model or run the analysis with more bootstrap runs. For the purposes of time for this exercise, we will continue with the trees produced here.
@@ -87,14 +95,15 @@ When prompted at opening, name the bootstrap values “bootstrap support”. You
 Take a few minutes to familiarize yourself with the tree.
 
 !!! reminder
-    The components of a phylogenetic tree are shown in Figure 2. The sequences, or taxa (plural for taxon), are positioned at the end of the external branches. Related sequences are linked by a node (their most recent common ancestor). Two or more sequences descending from a node form a ‘clade’ (or cluster). The length of a branch represents the genetic distance between two nodes or between a node and a taxon, i.e., the number of mutations accumulated since divergence. The root corresponds to the common ancestor of all the taxa.
+    The components of a phylogenetic tree are shown in Figure 3. The sequences, or taxa (plural for taxon), are positioned at the end of the external branches. Related sequences are linked by a node (their most recent common ancestor). Two or more sequences descending from a node form a ‘clade’ (or cluster). The length of a branch represents the genetic distance between two nodes or between a node and a taxon, i.e., the number of mutations accumulated since divergence. The root corresponds to the common ancestor of all the taxa.
 
-![Figure 2](../img/phylo_1_2.jpg)
+![Figure 3](../img/phylo_1_2.jpg)
 
 Since the sequences represent viruses sampled from different individuals, a clade in the tree corresponds to a transmission chain. The number of sequences in a clade reflects the number of infections sampled from that transmission chain. The root of the tree corresponds to the origin of the epidemic.
 
+Now we can upload an annotation file to view the england strains highlighted as red, which has been provided for you. This file is called `first_tree_anno.txt`, and to upload it we select **Datasets** in the iTOL control panel, and choose **Upload annotation files**.
 
-After looking at your tree with `figtree`, can you answer these questions:
+After looking at your tree with `iTOL`, can you answer these questions:
 
 !!! Question
     === "Q1"
@@ -105,7 +114,7 @@ After looking at your tree with `figtree`, can you answer these questions:
 
         Q1. The viruses sampled in England form 3 distinct clades, suggesting 3 introduction events (colored in red in the figure below). The first one involves 18 cases (top of the tree), the second 2 cases (A/England/247/2009 and A/England/251/2009), and the third one 3 cases (A/England/247/2009, A/England/312/2009, and A/England/415/2009).
 
-        ![Cluster 1](../img/phylo_1_Q1.png)
+        ![Cluster 1](../img/phylo_1_Q1_itol.png)
 
 !!! Question
     === "Q2"
@@ -128,39 +137,31 @@ We will now estimate the time frame of these migration events. This time frame c
 The first step of this procedure involves testing whether the genomes in the tree have evolved at a constant rate over time or not. This is called testing the **molecular clock hypothesis**.
 
 If the molecular clock is constant or **strict**, the genetic distance between two sequences will be proportional to the time since these sequences last shared a common ancestor (as in the example given above). If the molecular clock is not constant, the correlation between genetic distance and time since divergence is weaker. The molecular clock is then said to be **relaxed**. Assuming a strict or relaxed molecular clock will have an impact on the dating of phylogenetic nodes. We will, therefore, test the molecular clock hypothesis before dating the tree.
-
 ## Molecular Clock Testing
 
-Open the software TempEst by running the following command:
+Molecular clock testing is normally done with a GUI tool called [TempEst](https://tree.bio.ed.ac.uk/software/tempest/), but to keep everything on the command line we'll reproduce its core function which is root-to-tip regression, with a custom Python script, `roottotip.py`.
 
-```
-tempest
-```
+**What is it doing?** The script tests the ‘temporal signal’ of the phylogeny: whether there is enough genetic change between sampling times to reconstruct a statistical relationship between genetic divergence and time, which is the essence of a molecular clock in your data.
 
-TempEst [2] is a tool designed to investigate the ‘temporal signal’ of molecular phylogenies. It tests whether there is sufficient genetic change between sampling times to reconstruct a statistical relationship between genetic divergence and time, which is the essence of a molecular clock in your data. You can download the software for free from [http://tree.bio.ed.ac.uk/software/tempest](http://tree.bio.ed.ac.uk/software/tempest).
-
-<u>How does it work?</u> TempEst performs ‘root-to-tip’ linear regressions, which can be used as a simple diagnostic tool for molecular clock models. It implies plotting the genetic divergence of the sequences (i.e., the sum of the branch lengths from a sequence - the tip - to the root of the tree) against the sampling time of the sequences (Figure 3). A linear trend with few residuals indicates that evolution follows a strict molecular clock. The same trend with greater scatter from the regression line suggests that a relaxed molecular clock model may be most appropriate. No trend at all indicates that the data contains little temporal signal and is unsuitable for inference using phylogenetic molecular clock models.
+<u>How does it work?</u> It performs a ‘root-to-tip’ linear regression, a simple diagnostic for molecular clock models. It plots the genetic divergence of each sequence (the sum of branch lengths from that tip back to the root) against its sampling time (Figure 3). A linear trend with few residuals indicates evolution follows a strict molecular clock. The same trend with greater scatter suggests a relaxed molecular clock model is more appropriate. No trend at all means the data contains little temporal signal and is unsuitable for molecular-clock inference.
 
 ![Figure 3](../img/phylo_1_3.jpg)
 
-Import the ML tree you saved earlier or, if you can’t find it anymore, select the file named **H1N1.flu.2009.fas.treefile** in your folder. If you are not prompted for the tree when `TempEst` opens, import it using the drop-down menu: `File` > `Open…`
+The sampling date of each sequence is encoded at the end of its name, preceded by the suffix `_d`, in the format YYYY-MM-DD. For instance, `A/Lima/WRAIR1687P/2009_d2009-06-27` was sampled on the 27th of June 2009. The script reads these dates automatically.
 
-We now have to tag the sequences with their sampling date. A list of all the sequences in the tree will appear (in the default `Sample Dates` tab). In order to plot root-to-tip genetic distances against sampling time, each sequence has to be associated with its date of sampling. Sampling dates are indicated at the end of the sequences’ name, preceded by the suffix ‘_d’, in the format YYYY-MM-DD. For instance, the sequence named ‘A/Lima/WRAIR1687P/2009_d2009-06-27’ was sampled on the 27th of June 2009.
+Run the regression on the ML tree you built earlier:
 
-In the Sample Date tab, click on `Parse Dates`. In the `Parse Dates for Taxa` window, select the following options:
+```
+python3 roottotip.py H1N1.flu.2009.fas.treefile --prefix _d --seqlen 12735 --out roottotip.png
+```
 
-- The date is given by a numerical field in the taxon label that is defined by a prefix and its order (Order: **Last**; Prefix: **_d**)
-- Parse as a calendar date (Date format: **yyyy-MM-dd**)
-
-Click `OK`, and the time of sampling will appear in the **Date** column.
-
-Go to the `Root-to-tip` tab to see the root-to-tip linear regression plot. Check the box marked **Best-fitting root**. Summary statistics of the plot are shown in the left-hand side window:
+This does the equivalent of Tempest’s **Parse Dates** (prefix `_d`, format `yyyy-MM-dd`) and **Best-fitting root** steps automatically: it parses each tip’s date, finds the root position that maximises the fit, runs the regression, and writes the plot to `roottotip.png` (open it from the file browser). It also prints the summary statistics to the terminal, for both the as-is root and the best-fitting root — read the **best-fitting root** values:
 
 - **Date range**: the maximum time interval between two sampled sequences.
-- **Slope**: The slope of the regression line; corresponds to the rate of evolution, here the average number of nucleotide substitutions per unit of time (here, per year).
-- **X-intercept**: the time at which the viral population had no genetic diversity, which corresponds to the time of the most recent common ancestor of the sampled population (tMRCA).
-- **Correlation Coefficient**: A measure of the relationship between time and the number of accumulated mutations (range: -1, 1). A positive/negative value implies a positive/negative linear relationship between time and diversity (i.e., as time increases, so does genetic divergence). A value close to 0 suggests no relationship between time and genetic divergence.
-- **R squared**: A measure of how close the data is to the regression line, i.e., what proportion of the variation in genetic divergence is explained by a strict molecular clock hypothesis.
+- **Slope**: the slope of the regression line; the rate of evolution, average number of nucleotide substitutions per site per year.
+- **X-intercept (tMRCA)**: the time at which the population had no genetic diversity, i.e. the time of the most recent common ancestor of the sampled population.
+- **Correlation coefficient**: the strength of the relationship between time and accumulated mutations (range -1 to 1). A positive value means genetic divergence increases with time; a value near 0 means no relationship.
+- **R²**: how close the data sit to the regression line,  the proportion of variation in genetic divergence explained by a strict molecular clock.
 
 !!!Question
 
@@ -170,11 +171,11 @@ Go to the `Root-to-tip` tab to see the root-to-tip linear regression plot. Check
 
     === "Answer" 
     
-        The root-to-tip linear regression plot shows a positive correlation between time and divergence (correlation coefficient = 0.71; see the figure above). This suggests that the phylogeny has sufficient temporal signal to conduct a molecular clock analysis on this dataset.
+        The root-to-tip linear regression plot shows a positive correlation between time and divergence (correlation coefficient = 0.71; see the figure and statistics in the terminal). This suggests that the phylogeny has sufficient temporal signal to conduct a molecular clock analysis on this dataset.
 
         However, there is a certain degree of scatter from the regression line, and only 51% of the variation in genetic divergence is explained by a strict molecular clock hypothesis (R squared = 0.51). We will, therefore, assume significant variation from a strict molecular clock in this dataset and opt for a relaxed molecular clock (i.e., the rate of evolution varies over time and across lineages). This is despite a relatively short sampling interval (about 3 months) and moderate genetic diversity in the sampled population.
 
-        ![Figure 3](../img/phylo_1_Q3.png)
+        ![Figure 3](../img/phylo_1_Q3_1.png)
 
 
 ## Dating Migration Events
@@ -187,36 +188,33 @@ Now that the properties of the molecular clock in our dataset have been establis
 
 The reconstruction of dated phylogenetic trees is computationally intense and could not be achieved within the time imparted for this practical. A dated H1N1/09 phylogeny was therefore built prior to the session, under the appropriate molecular clock model, using the Bayesian MCMC approach implemented in the software **BEAST** v.1.8 [3]. The resulting dated tree is in your folder under the name **H1N1.flu.2009.mol_clock.tre**. A more detailed example of how to set up a BEAST v1.8. analysis, including producing the input files and analysing the output is shown in the **Appendix**.
 
-How does it work? Each tip of the tree has a known time, given by the sampling date of the sequence. Internal nodes are given arbitrary starting times consistent with their order in the tree (from the tips to the root). An additional parameter, the evolution rate, is used to scale these times into expected number of nucleotide substitutions per site. Markov chain Monte Carlo integration is then used to summarize the probability density function of a model tested against the data, providing a representative sample of parameter values of the chosen model. The model includes the tree topology, the times of internal nodes and the evolution rate.
+How does it work? Each tip of the tree has a known time, given by the sampling date of the sequence. Internal nodes are given arbitrary starting times consistent with their order in the tree (from the tips to the root). An additional parameter, the evolution rate, is used to scale these times into expected number of nucleotide substitutions per site. Markov chain Monte Carlo integration is then used to summarise the probability density function of a model tested against the data, providing a representative sample of parameter values of the chosen model. The model includes the tree topology, the times of internal nodes and the evolution rate.
 
-We will use the program **FigTree** to display the dated tree and its annotations.
+We will use the **iTOL** again to display the dated tree and its annotations.
 
-Open **FigTree** by running the command:
-```
-figtree
-```
+Open **iTOL** from the [url](https://itol.embl.de/) again.
 
-Import the dated tree: `File `> `Open…` > **H1N1.flu.2009.mol_clock.2.tre**
 
-A phylogeny will appear. Again, go to `Tree` > `Increasing Node Order` to display the tree in the same way as the one you generated with RAxML. This will ease comparison. Note that the major clusters do not change, just the order in which the clusters are organised from top to bottom. The dated tree should be very similar to the ML tree you reconstructed in Session 1. However, in this tree, the branch lengths represent days rather than genetic distances. Notice the scale at the bottom of the tree.
+Upload the file **H1N1.flu.2009.mol_clock.2.tre** in the same way as before.
 
-On the lefthand side toolbar, tick the `Node Labels` box. The age of the nodes will appear.
+You can also upload the file **second_tree_anno.txt** in the **Datasets** section to highlight the England strains, this will ease comparison. The dated tree should be very similar to the ML tree you reconstructed in Session 1. However, in this tree, the branch lengths represent days rather than genetic distances. 
 
-The age of a node is expressed as the number of days prior to the most recent sampling date in the tree. Here, the most recent sample is A/Lima/WRAIR1687P/2009, sampled on the 27th of June 2009. If, for instance, a node age equals 21 days, it means that the date at this node is the 6th of June 2009.
+
+Once again we can select **Advanced** and choose **Bootstraps / metadata** inside the control panel, but this time there is a lot more options to choose from, such as **height** which is the estimated age or **location.prob** which is the probability of the location given. Lets have a look at **height** and make sure to select **Text** instead of **Symbol** to view the actual numbers. You can increase the font size to make it clearer and add a label background. You can now answer the following question.
 
 
 !!! Question
 
     === "Q4" 
-        According to the molecular clock dating, what are the date(s) of introduction of H1N1/09 in England (rounded down)?
+        According to the molecular clock dating, what are the date(s) of introduction of H1N1/09 in England ?
         Tip: If mental arithmetic is not your thing, you can use the 2009 calendar provided as Appendix to back-calculate the date of the nodes.
 
     === "Answer" 
-        The most recent viral sequence (A/Lima/WRAIR1687P/2009) was sampled on 27/06/2009. The ancestral node of Cluster 1 has an age of 63 days (rounded down) prior to the most recent sample. The estimated date of the first introduction of H1N1/09 in England is thus 25/04/2009.
+        The most recent viral sequence (A/Lima/WRAIR1687P/2009) was sampled on 27/06/2009. The ancestral node of Cluster 1 has an age of 61 days prior to the most recent sample. The estimated date of the first introduction of H1N1/09 in England is thus 25/04/2009.
 
-        The ancestral node of Cluster 2 has an age of 57 days (rounded down) prior to the most recent sample. The estimated date of the second introduction of H1N1/09 in England is thus 01/05/2009.
+        The ancestral node of Cluster 2 has an age of 58 days prior to the most recent sample. The estimated date of the second introduction of H1N1/09 in England is thus 01/05/2009.
 
-        The ancestral node of Cluster 3 has an age of 40 days (rounded down) prior to the most recent sample. The estimated date of the third introduction of H1N1/09 in England is thus 18/05/2009.
+        The ancestral node of Cluster 3 has an age of 41 days  prior to the most recent sample. The estimated date of the third introduction of H1N1/09 in England is thus 18/05/2009.
 
 ## Identifying the geographical origin(s) of the H1N1/09 strains imported in England
 
@@ -226,13 +224,13 @@ We will finally reconstruct the migration pathways of these H1N1/09 strains.
 
     When individuals are infected in one location and then move to another, or infect someone whilst travelling, this is apparent as a “change” in the location ascribed to one branch of the tree. These changes in location along a phylogenetic tree can be inferred from the location values at the tips and the shape of the tree (see Figure 4). To do so, a model of location exchange process is fitted to the data and the most likely location of the viral strain positioned at the nodes of the tree, together with its probability, can be estimated using a MCMC sampling procedure similar to the one used in Section 2.
 
-![Figure 3](../img/phylo_1_4.jpg)
+![Figure 4](../img/phylo_1_4.jpg)
 
 This approach was applied to the H1N1/09 phylogeny, using an asymmetric continuous-time Markov chain [5], as implemented in the program BEAST. The asymmetric model uses separate parameters for forward and reverse rates of movement between each pair of locations. The tree file we used for the molecular clock analysis (**H1N1.flu.2009.mol_clock.2.tre**) also contains the result of the inferred migration patterns.
 
-On the left hand side toolbar, pull down the **Node Labels** menu and under **Display**, select **Location**. The most likely location of the ancestral virus located at the nodes will appear.
+On the control panel we will now selection **location** in the control panel under **Bootstraps / metadata** to see the most likely location of the ancestral virus.
 
-To display the posterior probability of the most likely node location, select **Location.prob** in the Display menu of the **Node Labels**.
+To display the posterior probability of the most likely node location, select **Location.prob** once again selecting **Text** and changing the font-size in the control panel.
 
 
 !!! Question
@@ -268,11 +266,16 @@ To display the posterior probability of the most likely node location, select **
 
 ### Phylogenetic Tree Building with BEAST
 
+!!! Important
+
+    You dont need to run this step as it takes a while, this is just incase you wish to attempt it yourself.
+
+    
 (Note: This example is for initializing a BEAST v.1.8 analysis; BEAST2 has a different interface.)
 
 **1. Creating a BEAST Input File Using BEAUti**
 
-Launch BEAUti by typing `beauti` into the command line or opening it from the dashboard.
+You can download BEAST and Beauti [here](https://github.com/beast-dev/beast-mcmc/releases/tag/v10.5.0). Once downloaded you first open Beauti
 
 1.1. Load the FASTA sequence file **H1N1.flu.2009.fas** by clicking the `+` button or going to `File` > `Open…`.
 
