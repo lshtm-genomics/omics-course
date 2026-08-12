@@ -47,12 +47,12 @@ nav:
   - Home: 
     - index.md
     - connecting-github.md
-  - Introduction: 
-      - introduction/intro-to-linux.md
-      - introduction/mapping.md
-      - introduction/variant-detection.md
-      - introduction/assembly.md
-      - introduction/task.md
+  - Day1: 
+      - day1/intro-to-linux.md
+      - day1/mapping.md
+      - day1/variant-detection.md
+      - day1/assembly.md
+      - day1/task.md
 ```
 
 To add a new tutorial you can just add a new line under the relevant section. The indentation is important so make sure you keep it the same.
