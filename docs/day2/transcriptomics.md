@@ -538,6 +538,10 @@ As we have just seen, differential expression analysis results is a list of gene
 
 Other than looking for genes you expect to be different or unchanged, one of the first things to do is look at Gene Ontology (GO) term enrichment. There are many different algorithms for this, but you should annotate your genes with functional terms from GO using for instance Blast2GO (Conesa et al., 2005) and then use perhaps TopGO (Alexa et al., 2006) to determine whether any particular sorts of genes occur more than expected in your differentially expressed genes.
 
+# Extra 
+
+We have a task specifically designed to test your knowledge on what you have learned here under the **Tasks** section at the top. If you feel confident you can give it a go.
+
 ## References
 
 Mortazavi A, Williams BA, McCue K, Schaeffer L, Wold B. (2008). Mapping and quantifying mammalian transcriptomes by RNA-Seq. Nat Methods 5(7):621-8. doi: 10.1038/nmeth.1226

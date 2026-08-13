@@ -66,4 +66,5 @@ nav:
       - tasks/variant-calling-task.md
       - tasks/basic-phylogeny-task.md
       - tasks/tb-transcriptomics-task.md
+      - tasks/methylation-task.md
 

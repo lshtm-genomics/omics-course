@@ -216,7 +216,7 @@ conda env list
     Try activate the tb-profiler environment. Did it work?
 
 
-### Linux test
+# Linux test
 
 If you feel confident in Linux skills, check out the test you can do to find the secret passcode:
 

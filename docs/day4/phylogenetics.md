@@ -262,6 +262,12 @@ To display the posterior probability of the most likely node location, select **
 4. N. R. Faria et al., ‘The early spread and epidemic ignition of HIV-1 in human populations’, *Science*, vol. 346, no. 6205, pp. 56–61, Mar. 2014.
 5. P. Lemey, A. Rambaut, A. J. Drummond, and M. A. Suchard, ‘Bayesian phylogeography finds its roots’, *PLoS Comput. Biol.*, vol. 5, no. 9, p. e1000520, Sep. 2009.
 
+
+# Extra
+
+Like other practicals we also have a task set out for this practical, once again the **Tasks** tab at the top and the **Phylo task** is the one related to this practical. If you feel confident you can give it a go.
+
+
 ## Appendix
 
 ### Phylogenetic Tree Building with BEAST
@@ -270,7 +276,7 @@ To display the posterior probability of the most likely node location, select **
 
     You dont need to run this step as it takes a while, this is just incase you wish to attempt it yourself.
 
-    
+
 (Note: This example is for initializing a BEAST v.1.8 analysis; BEAST2 has a different interface.)
 
 **1. Creating a BEAST Input File Using BEAUti**

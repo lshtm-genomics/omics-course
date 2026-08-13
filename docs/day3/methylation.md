@@ -7,44 +7,46 @@
 
 By the end of this practical you should: 
 
-* Understand the file formats used to represent methylation data from PacBio technology
+* Understand the file formats used to represent methylation data from both PacBio, and Nanopore technology
 * Know how to merge and perform quality control
 * Visualise methylation data
-* Analyse multi sample BCF files
+* Analyse multi sample VCF files
 
 ## Introduction
 
-Over the last few practicals we have dealt with Illumina and MinION data. Now we are going to have a look at another platform called **Pacific Biosciences Single Molecule Real Time Sequencing** (PacBio SMRT sequencing). This is another third-generation platform which produces long reads, similar to Oxford Nanopore. Like other long-read platforms the error rate is much higher than short-read platforms such as Illumina. As a consequence, the methods required to analyse the data also differ. 
+In the previous practicals, we have worked with sequencing data generated using Illumina and Oxford Nanopore technologies. In this practical, we will focus on long-read sequencing technologies, specifically Pacific Biosciences (PacBio) Single Molecule Real-Time (SMRT) sequencing and Oxford Nanopore sequencing.
 
-PacBio technology has many applications, but is particularly useful for: 
+Both PacBio and Nanopore can produce long sequencing reads, which provide several advantages over short-read technologies such as Illumina, particularly for genome assembly and the analysis of complex genomic regions. The two platforms also generate data that can be used to investigate DNA methylation, although the approaches used to detect methylation differ between technologies.
+
+In this practical, we will explore applications of both PacBio and Nanopore sequencing, with a particular focus on:
 
 * Genome assembly
-* Analysing methylation
+* DNA methylation analysis
+* Comparing approaches for analysing long-read sequencing data
 
-## Genome assembly
-
-In the previous practical we looked at using Illumina data to assemble the genome of several M. tuberculosis isolates. Although this helped with reconstructing some of the regions for which mapping doesn't work, it is not perfect. Genome reconstructions are often broken up into many contigs using short read data and are subject to errors in highly repetitive regions. Ultimately, the completeness of the assembly is limited by the length of the read. If the read is shorter than the length of the repeat there is no way of resolving how many copies of the repeat are present. This is where the read length of PacBio comes in handy. 
-
-PacBio produces read lengths averaging 15Kb, with some reads greater than 100Kb in size. For most microbial genomes the read lengths will be much larger than any repeat sequence and therefore this often results in assemblies producing a complete chromosome in one contig. 
-
-With complete genome assemblies, it is possible to identify:
-
-* SNPs
-* Small indels
-* Large structural variants
-* Novel insertions
 
 ## Methylation
 
-Methylation refers to the mechanism by which methyl groups (CH3) are added to DNA. This is often referred to as epigenetic modification. Methylation of DNA is facilitated by DNA methyltransferases (MTase), which mostly are part of restriction-modification systems. Restriction enzymes cut unmethylated DNA at a specific motifs (recognition sites), while the paired methyltransferase methylates the same motif. Traditionally, DNA methylation in bacteria has been seen as a primitive immune mechanism to fight against invading phages. When a bacterium is invaded by foreign DNA, its restriction enzyme will cut it if the recognition site is present on the DNA, thus neutralising the threat. There is one problem however. The restriction enzyme is not specific to foreign DNA and will also cut its own genome. The solution comes from the MTase. The MTase will methylate the same motif on the bacterium's genome, preventing the restriction enzyme from cutting. 
+Methylation refers to the addition of methyl groups (CH₃) to DNA and is an important form of epigenetic modification. In bacteria, DNA methylation is often carried out by DNA methyltransferases (MTases), many of which are part of restriction-modification systems.
 
-Although this is an important function of methylation, it is also thought to modulate the binding of other DNA-binding proteins and play a role in gene expression which is important in the interaction of a pathogen with its environment. 
+Restriction enzymes recognise specific DNA sequences and cut DNA at these sites. The paired MTase methylates the same recognition sites in the bacterial genome, protecting the bacterium's own DNA from being cut. This provides a defence mechanism against foreign DNA, such as bacteriophages. Methylation can also affect the binding of other DNA-binding proteins and influence gene expression, which can be important for interactions between pathogens and their environment.
 
-PacBio technology works by recording light signals emitted as a DNA polymerase incorporates fluorescently labelled nucleotides while replicating input DNA. The data from the PacBio platform is stored in a h5 format. This contains information on the base calls and the time it takes to incorporate each base (inter pulse duration). The polymerase takes longer to incorporate nucleotides on methylated input DNA than non-methylated. By comparing the time spent between each incorporation event and comparing it to an in-silico control it is possible to calculate the inter pulse duration ratio (IPD ratio). This makes it possible to detect DNA modification to a single base precision. 
+### Detecting methylation with PacBio
 
-After the location of all methylation sites have been found, the contexts of these sites are analysed to look for enrichment of particular sequence motifs. If a particular motif is found more than expected by chance, then it is likely a recognition site for an MTase. 
+PacBio SMRT sequencing records the activity of a DNA polymerase as it incorporates fluorescently labelled nucleotides. In addition to base calls, the data records the inter-pulse duration (IPD), which is the time between successive nucleotide incorporations. Methylated bases can cause the polymerase to take longer to incorporate nucleotides. By comparing observed IPD values with an in silico control, an IPD ratio can be calculated and used to identify modified bases.
 
-![](../img/methylation_1.jpg)
+Once methylation sites have been identified, their surrounding sequence can be analysed to identify enriched sequence motifs, which may correspond to MTase recognition sites.
+
+### Detecting methylation with Nanopore
+
+Oxford Nanopore detects methylation using a different approach. As native DNA passes through a protein nanopore, it causes changes in an ionic electrical current. Methylated bases alter this current compared with unmethylated bases.
+
+These changes in the electrical signal can be detected using machine-learning models, allowing DNA methylation to be identified directly from the sequencing data without chemical conversion. Thus, PacBio detects methylation through changes in polymerase kinetics, while Nanopore detects it through changes in electrical current.
+
+![Figure 1](../img/methylation_1_1.jpg)
+![Figure 1](../img/methylation_1_2.webp)
+
+# Pacbio
 
 ## Exercise 1: Analysing motif summary reports
 
@@ -52,15 +54,12 @@ Activate the conda environment, navigate to the methylation practical directory,
 
 ```
 conda activate methylation
-cd ~/data/methylation
+cd ~/data/methylation/pacbio
 ls
 ```
 
-There are several files present. We will first take a look at the files ending with **.motif_summary.csv**. We can open these files using excel or a similar program. Linux has an open source package that is quite similar to Excel called **gnumeric**. Let's use it to view the contents of **tb_pb_1.motif_summary.csv**. 
+There are several files present. We will first take a look at the files ending with **.motif_summary.csv**. We can open these files using vscode by selecting the file on the left hand side. Let's view the contents of **tb_pb_1.motif_summary.csv**. 
 
-```
-gnumeric tb_pb_1.motif_summary.csv
-```
 
 You should now see a spreadsheet containing a number of different columns: 
 
@@ -117,7 +116,7 @@ The modifications and motifs pipeline also provides a CSV file containing all th
 zcat tb_pb_14.ipd.csv | head
 ```
 
-This is a very large file, so we can't open it with `gnumeric`. The first few lines should look like the example below. 
+This is a very large file, so its better to just view the first few lines in the terminal. The first few lines should look like the example below. 
 
 !!! terminal "Terminal output"
     ```
@@ -151,7 +150,7 @@ Rscript plot_ipd.R tb_pb_14,tb_pb_16 CTCCAG CTCCAG.pdf
 
 Using the file browser, locate the PDF file ~/data/methylation/. Double click on the CTCCAG.pdf file and it should open in a PDF viewer program. You should be able to see a figure similar to the one below. 
 
-![](../img/methylation_2.jpg)
+![Figure 2](../img/methylation_2.jpg)
 
 You should be able to see that tb_pb_16 has elevated IPD ratios (indicating methylation) on the 5th position of the motif while tb_pb_14 does not. Check to see if this is concordant with the motif_summary CSV files for these samples. 
 
@@ -203,7 +202,7 @@ We can now pass this file to the `combine_motifs.py` script:
 python combine_motifs.py files.txt unfiltered_motifs.csv
 ```
 
-Take a look at the '**unfiltered_motifs.csv**' file using **gnumeric**. There are many motifs which are present in only one sample. These likely represent noise in the data and should be filtered out. Rerun the command with a quality filter: 
+Take a look at the '**unfiltered_motifs.csv**' file. There are many motifs which are present in only one sample. These likely represent noise in the data and should be filtered out. Rerun the command with a quality filter: 
 
 ```
 python combine_motifs.py files.txt filtered_motifs.csv --min_qual 60
@@ -213,7 +212,13 @@ We have specified the minimum QV of the motif to be 60. Take a look at the filte
 
 It is evident that some samples have methylation on certain motifs while others do not. We will now try to understand if there is a particular pattern to the methylation seen in the data. The methylation pattern can either be random or specific to a certain strain. To do this we will reconstruct the phylogeny and overlay the methylation information.
 
-Using the same raw data and the SMRT portal analysis suite we have generated whole genome assemblies for the samples. These were then aligned to the reference and variants were called. The variants from all the samples were merged to a single FASTA formatted file. We can use this file to create the phylogenetic tree. Try to remember the command to create the tree and run it in the terminal using 'pacbio.fasta' as the input fasta. If you need the solution click on the button below. 
+Using the same raw data and the SMRT portal analysis suite we have generated whole genome assemblies for the samples. These were then aligned to the reference and variants were called. The variants from all the samples were merged to a single FASTA formatted file. We can use this file to create the phylogenetic tree, but first lets go to the `tree` directory.
+
+```
+cd ~/data/methylation/tree
+```
+
+Try to remember the command to create the tree and run it in the terminal using 'pacbio.fasta' as the input fasta. If you need the solution click on the button below. 
 
 !!! question
     === "Task 1"
@@ -223,14 +228,24 @@ Using the same raw data and the SMRT portal analysis suite we have generated who
         iqtree -m GTR+G -s pacbio.fasta -bb 1000
         ```
 
-Open up the tree by launching `figtree`. Open the tree by clicking on **Open...** and selecting the 'pacbio.fasta.treefile' tree. Midpoint root the tree by selecting **Midpoint Root** from the **Tree** menu. Finally, we will load annotations allowing figtree to display which samples do or don't have methylation. Select **Import annotations...** from the **File** menu and select the '**filtered_motifs.tsv**' file. This file was created during the merging step and is simply a tab-separated file with the rows being samples and the columns being motifs. The values in the file are either **0** (representing absence of methylation) or **1** (representing presence of methylation). 
+Open up the tree by launching `iTol`, we have provided an annotation file to use. 
 
-Once the file has been loaded, we can colour the tips by selecting a motif sequence from the 'Colour by' dropdown on the 'Tip labels' panel (shown below). Samples for which methylation is absent will be coloured red. 
+Download the files ``pacbio.fasta.treefile`` and ``pacbio_annotation_itol.txt`` from the codespace, then upload the tree to [iTOL](https://itol.embl.de/) to view the phylogeny. 
 
-[](../img/methylation_3.jpg)
+![Figure 3](../img/phylo_2_1.png)
+![Figure 3](../img/phylo_2_2.png)
+
+
+Once uploaded into iTOL, open the **Datasets** tab in the control panel, and select the annotation file ``pacbio_annotation_itol.txt``.
+
+Midpoint root the tree by selecting **Midpoint Root** from the **Advanced** menu in the control panel near the bottom. 
+
+
+
+[Figure 4](../img/methylation_3.png)
 
 !!! question
-    Look at the different methylation patterns by colouring the tips. Is it random? 
+    Look at the different methylation patterns by the colouring. Is it random? 
 
 ## Methylation and mutations
 
@@ -242,9 +257,9 @@ Methylation in the five motifs has been linked to the following genes:
 | GTAYNNNNATC/GATNNNNRTAC | hdsS.1, hsdM and hsdS |
 | CACGCAG | mamB |
 
-Loss of function mutations in MTases can lead to the absence of methylation. We are going to take a look at the CTCCAG/CTGGAG motif which is methylated by the mamA MTase. This protein is encoded by the Rv3263 gene. The methylation pattern it shown on the tree below: 
+Loss of function mutations in MTases can lead to the absence of methylation. We are going to take a look at the CTCCAG/CTGGAG motif which is methylated by the mamA MTase. This protein is encoded by the Rv3263 gene. The methylation pattern is shown on the tree below: 
 
-[](../img/methylation_4.jpg)
+[Figure 5](../img/methylation_4.png)
 
 The 'filtered_motifs.csv' file and the phylogenetic tree indicates that three of the samples have no methylation on the motif (tb_pb_10, tb_pb_11 and tb_pb_14). There are a few scenarios which may be possible: 
 
@@ -256,10 +271,11 @@ The variants found by aligning the whole genome assemblies to the reference are 
 
 ### 1. Extracting sample-specific mutations
 
-The first thing we need to do is extract variants which are only present in the three samples. We can do this using the bcftools view command. First let's find out how many variants are present in the VCF file: 
+The first thing we need to do is extract variants which are only present in the three samples. We can do this using the bcftools view command. First let's go back to the pacbio directory and find out how many variants are present in the VCF file: 
 
 ```
-bcftools view pacbio.vcf.gz -H | wc -l
+cd ../pacbio
+bcftools view pacbio.ann.vcf.gz -H | wc -l
 ```
 
 The command can be broken down into several parts: 
@@ -273,62 +289,70 @@ The command can be broken down into several parts:
 After running the command we should see an output of 9229, i.e. 9229 variants are present across all samples. We will now add two more parameters to the command. We select only variants present in a select number of samples using the -s flag. We can also restrict our analysis to variants which are present exclusively in our samples using the -x flag. The command will be the following: 
 
 ```
-bcftools view pacbio.vcf.gz -H  -s tb_pb_10,tb_pb_14,tb_pb_11 -x | wc -l
+bcftools view pacbio.ann.vcf.gz -H  -s tb_pb_10,tb_pb_14,tb_pb_11 -x | wc -l
 ```
 
 The command will now count 780 variants. 
 
 ### 2. Annotating the variants
 
-In order to narrow down the number of variants we need to narrow down our search to only variants in the Rv3263 gene. The VCF file currently only contains information on the position of the variants on the chromosome but no information about genes. We can use `bcftools csq' or `snpEff` to perform the annotation. We don't have access to the snpEff database on the codespace so we will use bcftools csq for now: 
+In order to narrow down the number of variants we need to narrow down our search to only variants in the Rv3263 gene. The VCF file currently only contains information on the position of the variants on the chromosome but no information about genes. We can use `bcftools csq` or `snpEff` to perform the annotation. 
+
+
+<details>
+<summary>How to create snpEff custom databases</summary>
+
+We have annotated your genome for you already using snpEff by creating a custom database so you dont have to but if you wanted to do so in the future you can follow these steps:
+
+First make the snpEff_config directory
+```
+mkdir -p snpEff_config/
+```
+Then move the files needed to that directory and creating a config file
 
 ```
-bcftools view pacbio.vcf.gz -s tb_pb_10,tb_pb_14,tb_pb_11 -x | \
-  bcftools csq -f tb_genome.fasta -g tb_genome.gff | \
-  grep Rv3263
+cp mtb_annotation_file.gff snpEff_config/genes.gff
+cp mtb_ref_genome.fa        snpEff_config/sequences.fa
+echo "tb.genome : Mycobacterium_tuberculosis" >> snpEff.config
+```
+Build the database 
+
+```
+snpEff build -gff3 -v tb
+```
+
+And run snpEff (you need Java installed as well). You can run it with the snpEff.jar file which is downloadable, or conda install it.
+
+```
+java -jar snpEff.jar ann -no-downstream -no-upstream -no-intergenic -no-utr  -c snpEff.config  -dataDir snpEff_config/ tb original_vcf_file.vcf.gz > annotated_vcf_file.vcf
+```
+
+</details>
+
+```
+bcftools view pacbio.ann.vcf.gz -s tb_pb_10,tb_pb_14,tb_pb_11 \
+  | bcftools query -f '[%POS\t%SAMPLE\t%GT\t%ANN\n]' \
+  | grep -E '^(3643985|3644554)'
 ```
 
 We have dropped the -H as we are no longer counting lines and the header is needed by the next command. The following new parts have been added:
 
-* `bcftools csq`: This function annotates a VCF file
-* `Mycobacterium_tuberculosis_h37rv`: Provides the database with annotations. There are many different databases available for different organisms. The full list can be seen by running `snpEff databases`
-* `-no-upstream -no-downstream`: This flag prevents the annotation of variants which are upstream or downstream of a gene
-* `grep Rv3263`: Looks for lines containing 'Rv3263' and prints them
+* `view -s`: Only view these specific samples
+* `query -f '[%POS\t%SAMPLE\t%GT\t%ANN\n]'`: Only view these specific fields within the vcf file and filter out all others
+* `grep -E '^(3643985|3644554)'`: Looks for lines containing '3643985' or '3644554' and prints them
 
 We can see this command prints out a number of lines. The last two lines represent two variants in VCF format:
 
 !!! terminal "Terminal output"
     ```
-    Chromosome      3643985 .       A       C       225.0   PASS    VDB=0.702241;SGB=-0.693147;MQSB=0.911099;MQ0F=0;MQ=57;DP=308;DP4=0,0,150,158;MinDP=28;AN=6;AC=4;ANN=C|missense_variant|MODERATE|Rv3263|Rv3263|transcript|CCP46082|protein_coding|1/1|c.809A>C|p.Glu270Ala|809/1662|809/1662|270/553||      GT:DP:PL:AD     1/1:144:255,255,0:0,144    1/1:164:255,255,0:0,164 0/0:117:.:.
-    Chromosome      3644554 .       G       A       225.0   PASS    VDB=0.847222;SGB=-0.693147;MQSB=0.91807;MQ0F=0;MQ=57;DP=145;DP4=0,0,75,70;MinDP=14;AN=6;AC=2;ANN=A|missense_variant|MODERATE|Rv3263|Rv3263|transcript|CCP46082|protein_coding|1/1|c.1378G>A|p.Ala460Thr|1378/1662|1378/1662|460/553||      GT:DP:PL:AD     0/0:14:.:.0/0:121:.:.      1/1:145:255,255,0:0,145
+    3643985 tb_pb_10        1/1     C|missense_variant|MODERATE|Rv3263|gene:gene3340|transcript|transcript:gene3340|protein_coding|1/1|c.809A>C|p.Glu270Ala|809/1662|809/1662|270/553||
+    3643985 tb_pb_14        1/1     C|missense_variant|MODERATE|Rv3263|gene:gene3340|transcript|transcript:gene3340|protein_coding|1/1|c.809A>C|p.Glu270Ala|809/1662|809/1662|270/553||
+    3643985 tb_pb_11        0/0     C|missense_variant|MODERATE|Rv3263|gene:gene3340|transcript|transcript:gene3340|protein_coding|1/1|c.809A>C|p.Glu270Ala|809/1662|809/1662|270/553||
+    3644554 tb_pb_10        0/0     A|missense_variant|MODERATE|Rv3263|gene:gene3340|transcript|transcript:gene3340|protein_coding|1/1|c.1378G>A|p.Ala460Thr|1378/1662|1378/1662|460/553||
+    3644554 tb_pb_14        0/0     A|missense_variant|MODERATE|Rv3263|gene:gene3340|transcript|transcript:gene3340|protein_coding|1/1|c.1378G>A|p.Ala460Thr|1378/1662|1378/1662|460/553||
+    3644554 tb_pb_11        1/1     A|missense_variant|MODERATE|Rv3263|gene:gene3340|transcript|transcript:gene3340|protein_coding|1/1|c.1378G>A|p.Ala460Thr|1378/1662|1378/1662|460/553||
     ```
 
-### 3. Customising output format
-
-This format can be a little difficult to understand so the last part we will add to this command will translate this to a more readable format:
-
-```
-bcftools view pacbio.vcf.gz -s tb_pb_10,tb_pb_14,tb_pb_11 -x | \
-  bcftools csq -f tb_genome.fasta -g tb_genome.gff | \
-  bcftools query -f '[%POS\t%SAMPLE\t%GT\t%TBCSQ\n]' | \
-  grep Rv3263
-```
-
-We have moved the grep command to the end and added in the following parameters:
-
-* `bcftools query`: This command allows conversion of VCF into custom formats
-* `-f '[%POS\t%SAMPLE\t%GT\t%ANN\n]'`: This specifies the format we want (Position, Sample name and annotations)
-
-!!! terminal "Terminal output"
-    ```
-    3643985 tb_pb_10        1/1     C|missense_variant|MODERATE|Rv3263|Rv3263|transcript|CCP46082|protein_coding|1/1|c.809A>C|p.Glu270Ala|809/1662|809/1662|270/553||
-    3643985 tb_pb_14        1/1     C|missense_variant|MODERATE|Rv3263|Rv3263|transcript|CCP46082|protein_coding|1/1|c.809A>C|p.Glu270Ala|809/1662|809/1662|270/553||
-    3643985 tb_pb_11        0/0     C|missense_variant|MODERATE|Rv3263|Rv3263|transcript|CCP46082|protein_coding|1/1|c.809A>C|p.Glu270Ala|809/1662|809/1662|270/553||
-    3644554 tb_pb_10        0/0     A|missense_variant|MODERATE|Rv3263|Rv3263|transcript|CCP46082|protein_coding|1/1|c.1378G>A|p.Ala460Thr|1378/1662|1378/1662|460/553||
-    3644554 tb_pb_14        0/0     A|missense_variant|MODERATE|Rv3263|Rv3263|transcript|CCP46082|protein_coding|1/1|c.1378G>A|p.Ala460Thr|1378/1662|1378/1662|460/553||
-    3644554 tb_pb_11        1/1     A|missense_variant|MODERATE|Rv3263|Rv3263|transcript|CCP46082|protein_coding|1/1|c.1378G>A|p.Ala460Thr|1378/1662|1378/1662|460/553||
-
-    ```
 
 !!! tip "Tip"
     The 3rd column is the genotype of the sample. Each sample will have a genotype entry for each variant. A value of 0/0 means  reference, and 1/1 means alternate. We can select only samples with an alternate genotype by using the command. Try adding `| awk '$3=="1/1"'` to the end of the command.
@@ -336,4 +360,148 @@ We have moved the grep command to the end and added in the following parameters:
 
 From the output (above) we can see that tb_pb_10 and tb_pb_14 both have the same mutation (270E>270A) while tb_pb_11 has a different mutation (460A>460T). These mutations are good candidates to take towards functional studies to validate the loss of function effect on the MTase.
 
-You should now know how to analyse and interpret data from the PacBio platform and take it all the way to discovering interesting mutations using BCFtools. This is the end of the practical, but if you want more practice you can try find candidate mutations for the other motifs. Good luck! 
+# Nanopore
+
+Now we can look at how to analyse Nanopore data that comes from dorado. We have mentioned dorado before and how to get pod5 files to fastq or bam, but to ensure methylation is ran you need to add `--modified-bases` and the methylation you are looking for when running the basecaller. Methylation tags are stored inside the **BAM** files. Motifs are discovered in Nanopore by using a dedicated toolkit that comes from Oxford Nanopore Technologies themselves called **ModKit**. We have run modkit on a few samples already as it takes a while but there is still one last one to be run which is for barcode09, so lets do it now.
+
+## Discovering methylation tags 
+
+First lets go to the Nanopore directory.
+
+```
+cd ~/data/methylation/nanopore/
+```
+
+Here if you type ``ls`` you will see a ``bams`` folder which is where our methylation tags are stored. Lets have a look inside these bams to see if methylation actually exists.
+
+```
+samtools view bams/barcode09.aln.sort.bam | head -1 | grep -o 'MM:Z:[^[:space:]]*'
+```
+This looks for the `MM` tag inside the bams which is Nanopores way of identifying the modification an the type of modification. Lets have a look at the output.
+
+!!! terminal "Terminal output"
+    ```
+    MM:Z:A+a.,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,2,0,0,0,0,0,0,1,0,0,4,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,5,8,0,6,1,0,0,0,0,4,0,0,0,0,2,0,0,0,0,0,0,0,0,0,2,0,0,6,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,1,0,4,0,0,0,0,0,0,0,0,0,1,3,0,1,6,0,10,1,17,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,2,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,2,0,22,4,0,1,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,0,0,2,0,0,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,2,23,0,0,6,5,0,0,0,0,0,0,7,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,4,1,0,4,3,1,0,0,0,0,0,3,0,0,0,0,0,4,0,0,1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,18,0,0,0,2,0,6,0,0,2,1,2,2,1,0,4,5,0,0,5,0,0,0,0,0,0,3,0,0,1,2,5,1,4,0,0,13,0,5,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,3,0,0,0,0,0,0,0,0,0,4,3,26,0,1,11,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,2,0,0,0,0,0,0,0,0,0,14,2,13,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,9,0,0,0,0,0,0,0,0,0,0,0,4,1,0,4,2,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,2,15,21,12,5,0,0,0;C+h.,0,18,1,16,0,0,24,22,2,12,2,54,0,0,4,37,1,11,0,5,15,19,7,38,19,5,9,54,30,0,0,0,0,0,10,12,18,4,4,1,14,8,19,12,7,21,0,0,5,25,0,0,6,32,57,23,0,77,115,0,0,1,2,4,0,0,0,0,2,17,1,0,4,5,12,0,0,0,0,16,26,28,0,0,4,6,25,3,18,36,0,0,0,29,0,6,29,4,7,5,4,61,13,8,81,42,0,0,4,15,8,6,9,36,52,14,0,1,15,9,3,0,0,1,4,4,6,10,0,28,0,15,11,26,3,43;C+m.,0,18,1,16,0,0,24,22,2,12,2,54,0,0,4,37,1,11,0,5,15,19,7,38,19,5,9,54,30,0,0,0,0,0,10,12,18,4,4,1,14,8,19,12,7,21,0,0,5,25,0,0,6,32,57,23,0,77,115,0,0,1,2,4,0,0,0,0,2,17,1,0,4,5,12,0,0,0,0,16,26,28,0,0,4,6,25,3,18,36,0,0,0,29,0,6,29,4,7,5,4,61,13,8,81,42,0,0,4,15,8,6,9,36,52,14,0,1,15,9,3,0,0,1,4,4,6,10,0,28,0,15,11,26,3,43;
+    ```
+
+The string after MM:Z: is a compact, machine-readable list of which bases carry a modification. The codes at the start of each block are the useful part which might be hard to see here but there are: A+a = 6mA, C+m = 5mC, C+h = 5hmC, so this read has all three modifications called. The long list of numbers is a space-saving encoding of which A (or C) positions are modified (each number is how many bases to skip to the next modified one), with the confidence scores stored separately in the paired ML tag. You never read these by hand, modkit decodes them for us and turns them into the tidy per-position bedmethyl table in the next step.
+
+First we will get the methylation and output it to a **bedmethyl** file.
+
+```
+modkit pileup bams/barcode09.aln.sort.bam bedmethyls/barcode09.bedmethyl --ref ../mtb.fa -t4 --modified-bases 6mA --no-filtering
+```
+
+Then we can find specific motifs in our bedmethyl files, so we end up with similar files to Pacbio.
+
+```
+modkit find-motifs -i bedmethyls/barcode09.bedmethyl -r ../mtb.fa -o motifs/barcode09.motifs.tsv --threads 4 \
+  --high-thresh 0.4 --low-thresh 0.1 --min-sites 10 \
+  --known-motif CACGCAG 5 a --known-motif CTCCAG 4 a --known-motif CTGGAG 4 a \
+  --known-motif GATNNNNRTAC 1 a --known-motif GTAYNNNNATC 2 a
+```
+Here we have put `--known-motif` in which is there beceause we have a subset bam so it would be harder for the tool to find if it was not identified. If you know the motifs you are looking for for your own data then this option is ideal.
+
+Lets take a look inside the motifs.tsv to see what we are looking at.
+
+```
+cat motifs/barcode09.motifs.tsv
+```
+
+!!! terminal "Terminal output"
+    ```  
+    mod_code        motif   offset  frac_mod        high_count      low_count       mid_count       status  closest_known_motif
+    a       CACGCAG 5       0.9947917       191     1       1       equal   CACGC[a]G
+    a       GTAYNNNNATC     2       0.97590363      81      2       1       equal   GT[a]YNNNNATC
+    a       GATNNNNRTAC     1       0.97590363      81      2       1       equal   G[a]TNNNNRTAC
+    a       RNNAGTAYNNNNAT  6       0.875   14      2       1       intersect       GT[a]YNNNNATC
+    ```
+
+* `mod_code`: We are looking at the modification for 6mA only in our samples.
+* `motif`: The motif that was found
+* `offset`: The position that the methylation occured in the motif
+* `frac_mod`: The fraction of sites matching this motif that were methylated (0–1)
+* `high_count`: How many times it was highly modified
+* `low_count`: How many times it was weakly modified
+* `mid_count`: In between the high and low.
+* `status`: The status column is the relationship of the set of sequences described by the motifs. Say you have two motifs A and B they represent a set of sequences A and B . For example, the motif [a] represents all sequences with at least one A primary base, whereas the set of sequences represented by G[a]TC is only {GATC}. The status fills in the blank in the statement: A ? B
+* `closest_known_motif`: only specified if you have put `--known-motifs` and describes the motif it is most simlar to.
+
+If you look at barcode01 where known_motifs were not specified you will be missing the last 2 columns.
+
+Overall, this is pretty conclusive that the sample has similar methylation patterns to some of our pacbio samples.
+
+## Analysing motifs
+
+We can now analyse the motifs. This dataset has some additional metadata that comes with our samples which might give us extra information as to why we have methylation on certain samples. If you want you can have a quick peek inside metadata.txt to see what differences there are between samples.
+
+```
+cat metadata.txt
+```
+
+We can use our motifs and bedmethyl files to do lots of cool things, so now we are going to create a heatmap to visualise the motifs across our barcodes.
+
+```
+python motif_heatmap.py
+```
+
+We can clearly see certain motifs appear in some barcodes and not others as explained in the figure below
+![Figure 6](../img/methylation_6.png)
+
+
+!!! question
+    
+    === "Question 3"
+        Using the metadata information, can you find out which lineages have which motifs?
+        
+    === "Answer 3"
+        Motif : CTCCAG / CTGGAG found only in lineage 4 and lineage 1.2.1 so missing in Lineage 2 strains and 1.1.1
+        Motif : CGTAYNNNNATC , RNNAGTAYNNNNAT, TNNNNGATNNCNNTAC not found in Lineage 4.5 strains.
+
+## Further exploration
+
+### Looking for mutations
+
+This we have already done for Pacbio so we can now do the same for Nanopore as well, we will follow the exact same steps for Pacbio by looking at the same position but across our barcodes. Once again we are looking for mutations in MTases which can lead to the absence of methylation. This protein is encoded by the Rv3263 gene.
+
+!!! question
+
+    === "Question 4"
+        Can you now run the same command for our nanopore vcf file to look for the same mutation. It will be a similar command to our pacbio vcf but the vcf we are looking at now is `nanopore.ann.vcf.gz`
+        
+    === "Answer 4"
+         bcftools view nanopore.ann.vcf.gz    | bcftools query -f '[%POS\t%SAMPLE\t%GT\t%ANN\n]'   | grep -E '^(3643985|3644554)'
+
+
+
+!!! terminal "Terminal output"
+    ```
+    3643985 barcode01.aln.sort.bam  .       C|missense_variant|MODERATE|Rv3263|gene:gene3340|transcript|transcript:gene3340|protein_coding|1/1|c.809A>C|p.Glu270Ala|809/1662|809/1662|270/553||
+    3643985 barcode02.aln.sort.bam  .       C|missense_variant|MODERATE|Rv3263|gene:gene3340|transcript|transcript:gene3340|protein_coding|1/1|c.809A>C|p.Glu270Ala|809/1662|809/1662|270/553||
+    3643985 barcode04.aln.sort.bam  .       C|missense_variant|MODERATE|Rv3263|gene:gene3340|transcript|transcript:gene3340|protein_coding|1/1|c.809A>C|p.Glu270Ala|809/1662|809/1662|270/553||
+    3643985 barcode07.aln.sort.bam  .       C|missense_variant|MODERATE|Rv3263|gene:gene3340|transcript|transcript:gene3340|protein_coding|1/1|c.809A>C|p.Glu270Ala|809/1662|809/1662|270/553||
+    3643985 barcode08.aln.sort.bam  1       C|missense_variant|MODERATE|Rv3263|gene:gene3340|transcript|transcript:gene3340|protein_coding|1/1|c.809A>C|p.Glu270Ala|809/1662|809/1662|270/553||
+    3643985 barcode09.aln.sort.bam  1       C|missense_variant|MODERATE|Rv3263|gene:gene3340|transcript|transcript:gene3340|protein_coding|1/1|c.809A>C|p.Glu270Ala|809/1662|809/1662|270/553||
+    ```
+Once again there are specific mutations to be found within these positions, particularly on the lineage2 strain samples.
+
+### Creating the phylogenetic tree
+
+Again similar to pacbio, we have a multi nanopore fasta that we can do to make a tree using `iqtree` and look at in `iTOL`. First lets go back to the tree location.
+
+```
+cd ~/data/methylation/tree
+```
+
+!!! question
+
+    === "Question 5"
+        How do we run the `iqtree` command for our `nanopore.fasta` file
+        
+    === "Answer 5"
+        iqtree -m GTR+G -s nanopore.fasta -bb 1000
+
+Once we have created our tree we can once again download our `.tree` file and the `nanopore_annotation_itol.txt` file to upload to `iTOL` and to visualise our motifs for nanopore.
+
+You should now know how to analyse and interpret data from the PacBio and Nanopore platforms and take it all the way to discovering interesting mutations using BCFtools. This is the end of the practical, but if you want more practice you can do the **methylation task** under the tasks option at the top.
+

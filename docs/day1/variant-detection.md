@@ -468,6 +468,11 @@ Index and compress the joint.vcf file as you did before. You can then use the `b
 
 Did you output match the one above? 
 
+
+# Extra
+
+Fantastic you have completed the practical, but if you feel this wasnt enough and was too easy then we have a task for you complete under the **Tasks** tab at the top, this is the **Variant discovery Task**. If you feel up for it then give it a go.
+
 # References
 
 [^1]: Carter, N. (2007). Methods and strategies for analyzing copy number variation using DNA microarrays. Nature genetics, 39, 1–11. doi:10.1038/ng2028.Methods
