@@ -1,6 +1,7 @@
 # Genome Wide Association Studies (GWAS) 
 
 !!! Warning
+
     Be sure to use the `gwas` Codespace when initiating VM for this practical.
 
 

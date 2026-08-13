@@ -1,5 +1,9 @@
 # EQTL
 
+!!! Warning
+
+    Be sure to use the `eQTL` Codespace when initiating VM for this practical.
+
 ## Introduction
 
 An eQTL or expression Quantitative Trait Loci analysis is a statistical analysis through which the association of genomic DNA sequence variants and gene expression levels can be explored. An eQTL is therefore considered a locus that explains a fraction of the gene expression variance found in a phenotype through direct association tests between genetic markers and gene expression levels (Nika & Dermitzakis, 2013).

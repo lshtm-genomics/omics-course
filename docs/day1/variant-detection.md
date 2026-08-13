@@ -1,5 +1,9 @@
 # Variant detection
 
+!!! Warning
+
+    Be sure to use the `mapping` Codespace you were using early when initiating VM for this practical.
+
 ## Introduction
 
 New sequencing technologies are mostly used for re-sequencing, namely when a well-assembled reference genome from the same organism or one very similar is available. Instead of assembling the reads to produce a new genome sequence, re-sequencing projects aim to compare the sampled genome with the reference by read mapping. Short read alignment was considered in the previous practical. Here, we will focus on downstream analyses aiming to identify Single Nucleotide Polymorphisms (SNPs), insertions and deletions (indels) and large structural variants (SVs) in the sequenced sample.

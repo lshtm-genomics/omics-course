@@ -43,7 +43,9 @@ The file **‘H1N1.flu.2009.fas’** is a multi-FASTA file containing 50 full-le
 We will use Alv to manually inspect the FASTA file:
 
 Activate the correct environment with `conda activate phylo`.
+
 ```
+cd ~/data/phylogenetics/
 alv -t dna -k --color-scheme terminal H1N1.flu.2009.fas | less -R
 ```
 
@@ -63,9 +65,7 @@ In the matrix, we can spot ‘rare’ nucleotide substitutions present in one or
 **IQ-Tree** [1] is a freely available software used to reconstruct phylogenetic relationships between individuals using a maximum-likelihood (ML) approach. This approach takes into account a substitution model to assess the probability of particular mutations. You can also perform bootstrapping, a method for validating the tree by repeating the analysis a specified number of times to produce pseudoreplicates. This acts as a support for the tree topology of the final tree that is produced by calculating the number of pseudoreplicates in which a given node of a tree is found.
 
 Open your command-line terminal and navigate to the folder containing the **H1N1.flu.2009.fas** sequence file.
-```
-cd ~/data/phylogenetics/
-```
+
 Run the following command (This may take a few minutes to complete):
 ```
 iqtree -m GTR+G -s H1N1.flu.2009.fas -bb 1000 
@@ -145,7 +145,7 @@ Molecular clock testing is normally done with a GUI tool called [TempEst](https:
 
 <u>How does it work?</u> It performs a ‘root-to-tip’ linear regression, a simple diagnostic for molecular clock models. It plots the genetic divergence of each sequence (the sum of branch lengths from that tip back to the root) against its sampling time (Figure 3). A linear trend with few residuals indicates evolution follows a strict molecular clock. The same trend with greater scatter suggests a relaxed molecular clock model is more appropriate. No trend at all means the data contains little temporal signal and is unsuitable for molecular-clock inference.
 
-![Figure 3](../img/phylo_1_3.jpg)
+![Figure 4](../img/phylo_1_3.jpg)
 
 The sampling date of each sequence is encoded at the end of its name, preceded by the suffix `_d`, in the format YYYY-MM-DD. For instance, `A/Lima/WRAIR1687P/2009_d2009-06-27` was sampled on the 27th of June 2009. The script reads these dates automatically.
 
@@ -175,7 +175,7 @@ This does the equivalent of Tempest’s **Parse Dates** (prefix `_d`, format `yy
 
         However, there is a certain degree of scatter from the regression line, and only 51% of the variation in genetic divergence is explained by a strict molecular clock hypothesis (R squared = 0.51). We will, therefore, assume significant variation from a strict molecular clock in this dataset and opt for a relaxed molecular clock (i.e., the rate of evolution varies over time and across lineages). This is despite a relatively short sampling interval (about 3 months) and moderate genetic diversity in the sampled population.
 
-        ![Figure 3](../img/phylo_1_Q3_1.png)
+        ![Figure 5](../img/phylo_1_Q3_1.png)
 
 
 ## Dating Migration Events

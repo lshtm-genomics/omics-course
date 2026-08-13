@@ -1,5 +1,8 @@
 # Genome Assembly
-Please connect to the 'Assembly' codespace. We will be using the 4 core machine for this practical.
+
+!!! Warning
+
+    Be sure to use the `assembly` Codespace when initiating VM for this practical.
 
 ## Introduction
 

@@ -1,5 +1,9 @@
 # Linux
 
+!!! Warning
+
+    Be sure to use the `day1` Codespace when initiating VM for this practical.
+
 Most bioinformatic software is written for Unix-type systems and is usually operated from the command line. This means that these programs are intended to be used by typing commands and they don't have a graphical user interface (GUI). There are many reasons for this, but two important ones are that command line programs are quicker to develop and also very easy to automate. To get from raw sequences to final results often requires many steps. Imagine processing thousands of isolates: this would potentially involve hundreds of hours and even more mouse clicks if performed with a GUI. Using a command line tool, a workflow can be defined by chaining a series of commands together in a script which can then be rapidly applied to thousands of isolates without much effort. 
 
 Over the duration of this course you will be learning the skills required to independently undertake bioinformatic projects. By the end of this course you should be comfortable to go all the way from raw data to biological insights.

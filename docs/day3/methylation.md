@@ -242,7 +242,7 @@ Midpoint root the tree by selecting **Midpoint Root** from the **Advanced** menu
 
 
 
-[Figure 4](../img/methylation_3.png)
+![Figure 4](../img/methylation_3.png)
 
 !!! question
     Look at the different methylation patterns by the colouring. Is it random? 
@@ -259,7 +259,7 @@ Methylation in the five motifs has been linked to the following genes:
 
 Loss of function mutations in MTases can lead to the absence of methylation. We are going to take a look at the CTCCAG/CTGGAG motif which is methylated by the mamA MTase. This protein is encoded by the Rv3263 gene. The methylation pattern is shown on the tree below: 
 
-[Figure 5](../img/methylation_4.png)
+![Figure 5](../img/methylation_4.png)
 
 The 'filtered_motifs.csv' file and the phylogenetic tree indicates that three of the samples have no methylation on the motif (tb_pb_10, tb_pb_11 and tb_pb_14). There are a few scenarios which may be possible: 
 
@@ -400,7 +400,7 @@ modkit find-motifs -i bedmethyls/barcode09.bedmethyl -r ../mtb.fa -o motifs/barc
   --known-motif CACGCAG 5 a --known-motif CTCCAG 4 a --known-motif CTGGAG 4 a \
   --known-motif GATNNNNRTAC 1 a --known-motif GTAYNNNNATC 2 a
 ```
-Here we have put `--known-motif` in which is there beceause we have a subset bam so it would be harder for the tool to find if it was not identified. If you know the motifs you are looking for for your own data then this option is ideal.
+Here we have put `--known-motif` in which is there beceause we have a subset bam so it would be harder for the tool to find if it was not identified.
 
 Lets take a look inside the motifs.tsv to see what we are looking at.
 
@@ -456,6 +456,7 @@ We can clearly see certain motifs appear in some barcodes and not others as expl
         
     === "Answer 3"
         Motif : CTCCAG / CTGGAG found only in lineage 4 and lineage 1.2.1 so missing in Lineage 2 strains and 1.1.1
+
         Motif : CGTAYNNNNATC , RNNAGTAYNNNNAT, TNNNNGATNNCNNTAC not found in Lineage 4.5 strains.
 
 ## Further exploration
@@ -470,7 +471,7 @@ This we have already done for Pacbio so we can now do the same for Nanopore as w
         Can you now run the same command for our nanopore vcf file to look for the same mutation. It will be a similar command to our pacbio vcf but the vcf we are looking at now is `nanopore.ann.vcf.gz`
         
     === "Answer 4"
-         bcftools view nanopore.ann.vcf.gz    | bcftools query -f '[%POS\t%SAMPLE\t%GT\t%ANN\n]'   | grep -E '^(3643985|3644554)'
+         `bcftools view nanopore.ann.vcf.gz    | bcftools query -f '[%POS\t%SAMPLE\t%GT\t%ANN\n]'   | grep -E '^(3643985|3644554)'`
 
 
 
