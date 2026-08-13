@@ -500,7 +500,7 @@ cd ~/data/methylation/tree
         How do we run the `iqtree` command for our `nanopore.fasta` file
         
     === "Answer 5"
-        iqtree -m GTR+G -s nanopore.fasta -bb 1000
+        `iqtree -m GTR+G -s nanopore.fasta -bb 1000`
 
 Once we have created our tree we can once again download our `.tree` file and the `nanopore_annotation_itol.txt` file to upload to `iTOL` and to visualise our motifs for nanopore.
 
