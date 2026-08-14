@@ -26,7 +26,7 @@ You can also download files straight from VS Code to your machine which we will 
 
 ![](img/VScode2.png)
 
-#### How These Work Together:
+#### How does codespaces and VS code Work Together:
 
 1. Users launch GitHub Codespaces to create a cloud-based virtual machine.
 2. They connect to the VM using VS Code, accessing the terminal and code files.
@@ -60,7 +60,7 @@ You can connect to your GitHub Codespace using the following steps:
 6. Select the `day1` template.
 7. Select `2 cores, 8GB RAM, 32 GB storage` option.
 
-It should take a few minutes to create the Codespace. Once it's ready, you will be able to access the terminal and files directly from VS Code.
+It should take a few minutes to create the Codespace. Once it's ready, you will be able to access the terminal and files directly from VS Code. Most practicals have different codespaces, and we will tell you which codespace to run at the start of each practical.
 
 !!! danger "Important"
     When you are finished working, make sure to stop the Codespace to using up your free hours. You can do this by opening up the command palette (`Cmd+Shift+P` or `Ctrl+Shift+P`) and typing `Codespaces: Stop Current Codespace`. You will be able to restart that Codespace at any time by selecting `Codespaces: Connect to Codespace` from the command palette.

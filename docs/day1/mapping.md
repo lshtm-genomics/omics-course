@@ -3,7 +3,7 @@
 
 !!! Warning
 
-    Be sure to use the `mapping` Codespace when initiating VM for this practical.
+    Be sure to use the `day1` Codespace you were using early when initiating VM for this practical.
 
 Next-generation sequencing data is being produced at an ever-increasing rate. The raw data is not meaningful by itself and needs to be processed using various bioinformatic software. This practical will focus on genomic resequencing data where the raw data is aligned to a reference genome.
 
@@ -364,8 +364,8 @@ rm sample1_1P.fastq sample1_1U.fastq sample1_2P.fastq sample1_2U.fastq
 
 Launch IGV on your machine and perform the following steps:
 
-1. Download the following files from the side panel in vs code to your machine: **tb.fasta**, **tb.gff**, **sample1.bam**, **sample.bam.bai**
-2.  We first need to load the reference genome into IGV. To do this click on **Genomes -> Load Genome from File...**. Navigate to where you saved the files in Step 1 e.g. **~/User/downloads/** and select the **tb.fasta** file.
+1. Download the following files from the side panel in vs code to your machine: **tb.fasta**, **tb.fasta.fai**, **tb.gff**, **sample1.bam**, **sample.bam.bai**. Make sure they are saved within the same location.
+2.  We first need to load the reference genome into IGV. To do this click on **Genomes -> Load Genome from File...**. Navigate to where you downloaded your files in Step 1 and select the **tb.fasta** file.
 3. You can also load the genes by clicking on **File -> Load from File...**, then selecting the **tb.gff** file. 
 4. Finally you can load the bam file by clicking **File -> Load from File...** and selecting the bam file you wish to load, in our case it will be **sample1.bam**. 
 
@@ -416,7 +416,7 @@ Next, read files (both forward/reverse) are mapped against the reference
 bwa mem ~/data/malaria/Pf3D7_05.fasta ~/data/malaria/IT.Chr5_1.fastq.gz ~/data/malaria/IT.Chr5_2.fastq.gz | samtools view -b - | samtools sort -o IT.Chr5.bam -
 ```
 
-The details of where each IT clone read has been mapped is now stored in the file IT.Chr5.bam. We are going to view the mapped reads in IGV. Before we can proceed, however, we must index the BAM file to allow programs such as IGV quick access to different sections of the file. 
+The details of where each IT clone read has been mapped is now stored in the file **IT.Chr5.bam**. We are going to view the mapped reads in IGV. Before we can proceed, however, we must index the BAM file to allow programs such as IGV quick access to different sections of the file. 
 
 ```
 samtools index IT.Chr5.bam
@@ -459,7 +459,9 @@ samtools view IT.Chr5.bam | grep "IL39_6014:8:61:7451:18170"
 
 We will now examine the read mapping in IGV using the BAM view feature.
 
-Launch IGV. We first need to load the reference genome. To do this click on `Genomes -> Load Genome from File...`. Navigate to `~/data/malaria` and select the `Pf3D7_05.fasta` file. You can also load the genes by clicking on `File -> Load from File...`, then selecting the `Pf3D7_05.gff` file. Finally you can load the bam file by clicking `File -> Load from File...` and selecting the bam file you wish to load, in our case it will be `IT.Chr5.bam`. 
+We will need to download the **Pf3D7_05.fasta**, **Pf3D7_05.fasta.fai**, **Pf3D7_05.gff**, **IT.Chr5.bam**, and **IT.Chr5.bam.bai**.
+
+Launch IGV. We first need to load the reference genome. To do this click on `Genomes -> Load Genome from File...`. Navigate to where you downloaded your files and select the `Pf3D7_05.fasta` file. You can also load the genes by clicking on `File -> Load from File...`, then selecting the `Pf3D7_05.gff` file. Finally you can load the bam file by clicking `File -> Load from File...` and selecting the bam file you wish to load, in our case it will be `IT.Chr5.bam`. 
 
 !!! question
     === "Question"

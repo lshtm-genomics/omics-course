@@ -14,14 +14,18 @@ A terminal should already be open once you open the codespace. Your screen shoul
 
 ![](../img/linux_1_vs.png)
 
-The terminal is very similar to the file explorer in other operating systems. It allows you to see files and interact with them. The only difference is that we have to do this by typing a command into the terminal window. To demonstrate this, let's open up Linux's file explorer that vscode has on the left hand side. 
+If a terminal hasnt opened you can do so by selecting `Terminal` at the top of the screen and choosing `New terminal` or by pressing `Ctrl + Shift + '`
+
+The terminal is very similar to the file explorer in other operating systems. It allows you to see files and interact with them. The only difference is that we have to do this by typing a command into the terminal window. To demonstrate this, we can see our files in the vscode left hand panel. If you dont have a panel you can press `Ctrl + B` to open and close it. 
 
 You can see a number of sub-folders and files present in the left hand panel. Let's see if we can find them in the terminal. To do this, we have to type `ls` into the terminal and hit enter. You should now see a screen similar to the one below. Now you can see the same files and folders in the terminal. 
 
-![](../img/linux_2_vs.png)
-
 
 We will have to navigate through the folders on the left panel by using the terminal. To do this, type in `cd data` and hit enter. Now try using ls again to produce the same list of folders that you see in the panel.
+
+![](../img/linux_2_vs.png)
+
+You will see that now our terminal reads `tb` and `malaria`, this matches the left hand panel of the folder inside data.
 
 !!! info 
     Folders are often referred to as directories in Linux. We will use directory from now on, but the two words are synonymous. 
@@ -215,7 +219,7 @@ conda env list
 ```
 
 !!! question
-    Try activate the tb-profiler environment. Did it work?
+    What environments were listed? Can you activate one of them?
 
 
 # Linux test

@@ -2,7 +2,7 @@
 
 !!! Warning
 
-    Be sure to use the `mapping` Codespace you were using early when initiating VM for this practical.
+    Be sure to use the `day1` Codespace you were using early when initiating VM for this practical.
 
 ## Introduction
 
@@ -22,9 +22,9 @@ Some differences between the reference and the mapped reads are due to sequencin
 
 Open IGV on your machine:
  
-1. Click "Genomes" on the top menu bar followed by "Load Genome From File...". Select the reference fasta file at "~/data/tb/tb.fasta".
-2. Click "File" on the top menu bar followed by "Load From File...". Select the genome annotation file at "~/data/tb/tb.gff".
-3. Click "File" on the top menu bar followed by "Load From File...". Select the bam file for sample 1 at "~/data/tb/sample1.bam".
+1. Click "Genomes" on the top menu bar followed by "Load Genome From File...". Select the reference fasta file you downloaded before **tb.fasta**.
+2. Click "File" on the top menu bar followed by "Load From File...". Select the genome annotation file at **tb.gff**.
+3. Click "File" on the top menu bar followed by "Load From File...". Select the bam file for sample 1 at **sample1.bam**(make sure **sample1.bam.bai** is also downloaded).
 
 We are going to check at positions 187,503 and 587,585 in the genome. To zoom into a position in the genome you have to input the location into the search bar in the format of **Chromosome:position** or **Chromosome:start-end** if you want to visualise a range. For example - to go to position 187,503 type in **Chromosome:187503** and hit ++enter++. You should see an image similar to the one below.
 
@@ -194,7 +194,7 @@ VCF files can be opened and visualised in genome browsers such as IGV.
 
 Launch IGV as before (or use the same one if you kept it open) and load sample1.bam and sample2.bam in each of them as explained in Exercise 1. Ensure the VCF files (i.e. sample1.filt.vcf and sample2.filt.vcf) in your terminal are downloaded to your machine. 
 
-In the menu bar, select **Load From File...** and select the VCF files from where you saved them e.g. ~/User/Downloads for both samples (i.e. sample1.filt.vcf and sample2.filt.vcf).
+In the menu bar, select **Load From File...** and select the VCF files from where you saved them for both samples (i.e. sample1.filt.vcf and sample2.filt.vcf).
 
 Then the SNPs should appear in the VCF track above the reads panel as shown below. On the other hand, sequencing errors are not called SNPs at those positions.
 Making use of search bar to visit the two regions we visited in Exercise 1 (containing positions 187,503 and 587,585 respectively). Remember that we were trying to distinguish real SNPs from sequencing errors. 
@@ -342,7 +342,7 @@ SV detection tools output not only potential structural differences, but also a 
 
 Launch IGV as before (or use the same one if you kept it open) and load sample1.bam and sample2.bam in each of them as explained in Exercise 1.
 
-Using the same method as before load the VCF files produced by delly (ensure these delly VCF files are downloaded to your machine). But this time select the compressed VCF files from your machine e.g. inside ~/User/Downloads/ (i.e. sample1.delly.vcf for the instance with sample1 loaded and sample2.delly.vcf for the instance with sample2 loaded).
+Using the same method as before load the VCF files produced by delly (ensure these delly VCF files are downloaded to your machine). But this time select the compressed VCF files from your machine, (i.e. sample1.delly.vcf for the instance with sample1 loaded and sample2.delly.vcf for the instance with sample2 loaded).
 
 Find the region 77,823-84,798 and establish whether differences in the alignment can be visually identified between samples . Note: The coverage plot can also give you a clear insight.
 
