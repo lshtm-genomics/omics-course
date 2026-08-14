@@ -1,27 +1,25 @@
 # Linux
 
-!!! Warning
-
-    Be sure to use the `day1` Codespace when initiating VM for this practical.
-
 Most bioinformatic software is written for Unix-type systems and is usually operated from the command line. This means that these programs are intended to be used by typing commands and they don't have a graphical user interface (GUI). There are many reasons for this, but two important ones are that command line programs are quicker to develop and also very easy to automate. To get from raw sequences to final results often requires many steps. Imagine processing thousands of isolates: this would potentially involve hundreds of hours and even more mouse clicks if performed with a GUI. Using a command line tool, a workflow can be defined by chaining a series of commands together in a script which can then be rapidly applied to thousands of isolates without much effort. 
 
 Over the duration of this course you will be learning the skills required to independently undertake bioinformatic projects. By the end of this course you should be comfortable to go all the way from raw data to biological insights.
 
 In order to learn how to use bioinformatic programs we must first become comfortable with how to use the terminal. This may be daunting if you have never used a command line environment before, but hopefully by the end of this practical session you should have a basic understanding which will be reinforced over the next few sessions.
 
-A terminal should already be open once you open the codespace. Your screen should look like this:
+Let's start by opening a terminal by left clicking on the desktop and selecting **terminal**. Your screen should now look like the one below:
 
-![](../img/linux_1_vs.png)
+![](../img/linux_1.png)
 
-The terminal is very similar to the file explorer in other operating systems. It allows you to see files and interact with them. The only difference is that we have to do this by typing a command into the terminal window. To demonstrate this, let's open up Linux's file explorer that vscode has on the left hand side. 
+The terminal is very similar to the file explorer in other operating systems. It allows you to see files and interact with them. The only difference is that we have to do this by typing a command into the terminal window. To demonstrate this, let's open up Linux's file explorer by left clicking on the desktop and selecting **File manager**. When you open the file manager it will go to your home folder and show you all the sub-folders and files present. The home folder is simply the root folder which contains all your files and folders.
 
-You can see a number of sub-folders and files present in the left hand panel. Let's see if we can find them in the terminal. To do this, we have to type `ls` into the terminal and hit enter. You should now see a screen similar to the one below. Now you can see the same files and folders in the terminal. 
+You can see a number of sub-folders and files present in the file explorer. Let's see if we can find them in the terminal. To do this, we have to type `ls` into the terminal and hit enter. You should now see a screen similar to the one below. Now you can see the same files and folders in the terminal. 
 
-![](../img/linux_2_vs.png)
+![](../img/linux_2.png)
 
 
-We will have to navigate through the folders on the left panel by using the terminal. To do this, type in `cd data` and hit enter. Now try using ls again to produce the same list of folders that you see in the panel.
+In the file explorer double click on the data folder. You will see several new folders which hold the data for the proceeding practicals. Let's try find them using the terminal!
+
+When we double clicked on the data folder we effectively moved from the home folder to the data folder. We will have to do the same using the terminal. To do this, type in `cd data` and hit enter. Now try using ls again to produce the same list of folders that you see in the file explorer.
 
 !!! info 
     Folders are often referred to as directories in Linux. We will use directory from now on, but the two words are synonymous. 

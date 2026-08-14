@@ -72,11 +72,9 @@ pycoQC -f ~/data/nanopore_activity/basecalling/fastq/sequencing_summary.txt -o p
 !!! info
     After executing the command you should find a file called 'pycoqc_results.html'. Open them up in the file manager or in the terminal (with the below command) and inspect some of the plots and see what you can find out. As mentioned, the data here are only a small subset of reads, so some of the plots are incomplete. But this should give you a good idea of how this analysis should look.
 
-```
-firefox ~/data/nanopore_activity/basecalling/fastq/pass/pycoqc_results.html
-```
 
-Before continuing, quit firefox by clicking the X in the top right corner of the web-browser window.
+We can download the html file and open it with your preferred browser like firefox or google chrome.
+
 
 !!! question
     === "Question 1"

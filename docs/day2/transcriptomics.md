@@ -91,7 +91,7 @@ The output will be located in the Mapping_Mtb folder, which is in the transcript
 
 Now we will examine the reads mapping in IGV. Follow the steps as before:
 
-Launch IGV by running the command `igv` on a New Terminal and perform the following steps:
+Launch IGV from where you downloaded it and perform the following steps:
 
 1. We first need to load the reference genome. To do this click on **Genomes -> Load Genome from File...**. Navigate to **~/data/transcriptomics/** and select the **H37Rv.fa** file.
 2. You can also load the genes by clicking on **File -> Load from File...**, then selecting the **Mtb.gtf** file. 

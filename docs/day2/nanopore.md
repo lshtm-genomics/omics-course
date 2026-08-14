@@ -52,9 +52,9 @@ Let's first check the quality of the nanopore fastq data. To do this we use a 's
 ```
 mkdir pycoqc
 pycoQC -f sequencing_summary.txt -o pycoqc/Ecoli_Japan_1_PycoQC.html
-firefox pycoqc/Ecoli_Japan_1_PycoQC.html
+
 ```
-Open the files using firefox or view your files on the left-hand side and right click PycoQC.html and download to your own folder and open the html file in your web browser.
+To download the files they are on the left-hand side. Simply right click PycoQC.html and download to your own folder and open the html file in a web browser of your choice.
 
 
 !!! question  
@@ -71,9 +71,9 @@ We should also check to see if the sequence contains any contaminants. We have u
 mkdir kraken
 pip install recentrifuge
 rcf -n ./taxdump/ -k Ecoli_Japan_1.koutput.txt -o kraken/Ecoli_Japan_1_kraken.html
-firefox kraken/Ecoli_Japan_1_kraken.html
+
 ```
-Open the files using firefox or view your files on the left-hand side and right click Ecoli_Japan_1_kraken.html and download to your own folder and open the html file in your web browser.
+To download the files they are on the left-hand side. Simply right click PycoQC.html and download to your own folder and open the html file in a web browser of your choice.
 
 !!! question  
 

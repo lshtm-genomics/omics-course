@@ -20,6 +20,12 @@ Users will launch GitHub Codespaces via VS Code, enabling them to interact with 
   - The `+` icon next to `bash` allows you to open multiple terminals at once.
 - File (top left): You can use this to create new files to store code and scripts. 
 
+The left-hand panel is very useful, because you can create images and files from commands in the terminal and view them directly in vs-code by selecting the image or file created.
+
+You can also download files straight from VS Code to your machine which we will be doing a lot this course. Simply click the files in the left-hand panel and right click the file or folder you want to download to your machine.
+
+![](img/VScode2.png)
+
 #### How These Work Together:
 
 1. Users launch GitHub Codespaces to create a cloud-based virtual machine.
@@ -38,7 +44,11 @@ Head over to https://github.com/ and sign up for an account. You can skip this s
 
 Get the latest version of vscode from https://code.visualstudio.com/ and follow install instructions from the website. Please note the default version is for Windows, ensure to click additional options if using Mac.
 
-### 3. Get connected
+### 3. Download IGV
+
+For the course we have a few sections where we view alignments, variants, and more in IGV. Therefore, we need to make sure we have IGV installed, you can do so by clicking [here](https://igv.org/doc/desktop/). You might be prompted to install java as well which if you are then it is recommended to do so.
+
+### 4. Get connected
 
 You can connect to your GitHub Codespace using the following steps:
 
