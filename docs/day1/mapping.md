@@ -405,10 +405,11 @@ The files for this exercise are in the `~/data/malaria` directory:
 cd ~/data/malaria/
 ```
 
-First we need to index the reference (the algorithm needs to access specific positions in the reference in an efficient way). 
+First we need to index the reference (the algorithm needs to access specific positions in the reference in an efficient way). We will also index the fasta using 'samtools faidx' as the index needs to be in a slightly different format for loading into IGV.
 
 ```
 bwa index ~/data/malaria/Pf3D7_05.fasta
+samtools faidx ~/data/malaria/Pf3D7_05.fasta
 ```
 
 Next, read files (both forward/reverse) are mapped against the reference 
