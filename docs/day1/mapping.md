@@ -361,7 +361,7 @@ rm sample1_1P.fastq sample1_1U.fastq sample1_2P.fastq sample1_2U.fastq
 
 Launch IGV on your machine and perform the following steps:
 
-1. Download the following files from the side panel in vs code to your machine: **tb.fasta**, **tb.fasta.fai**, **tb.gff**, **sample1.bam**, **sample.bam.bai**. Make sure they are saved within the same location. Note, if you cannot find the 'tb.fasta.fai' file simply run: 
+1. Download the following files from the side panel in vs code to your machine: **tb.fasta**, **tb.fasta.fai**, **tb.gff**, **sample1.bam**, **sample1.bam.bai**. Make sure they are saved within the same location. Note, if you cannot find the 'tb.fasta.fai' file simply run: 
 
 ```
 samtools faidx ~/data/tb/tb.fasta
