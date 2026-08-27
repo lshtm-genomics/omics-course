@@ -361,9 +361,11 @@ rm sample1_1P.fastq sample1_1U.fastq sample1_2P.fastq sample1_2U.fastq
 Launch IGV on your machine and perform the following steps:
 
 1. Download the following files from the side panel in vs code to your machine: **tb.fasta**, **tb.fasta.fai**, **tb.gff**, **sample1.bam**, **sample.bam.bai**. Make sure they are saved within the same location. Note, if you cannot find the 'tb.fasta.fai' file simply run: 
+
 ```
-bwa index ~/data/tb/tb.fasta
+samtools faidx ~/data/tb/tb.fasta
 ```
+
 2.  We first need to load the reference genome into IGV. To do this click on **Genomes -> Load Genome from File...**. Navigate to where you downloaded your files in Step 1 and select the **tb.fasta** file.
 3. You can also load the genes by clicking on **File -> Load from File...**, then selecting the **tb.gff** file. 
 4. Finally you can load the bam file by clicking **File -> Load from File...** and selecting the bam file you wish to load, in our case it will be **sample1.bam**. 
