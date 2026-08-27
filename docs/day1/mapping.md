@@ -171,10 +171,6 @@ Normal results are marked with green ticks, slightly abnormal with orange exclam
     
         All of the FASTQ files look ok except sample3_1.fastq.gz. If you look at the 'Per base sequence quality' graph, you will see that many bases fall into the low quality zone (Q<20).
 
-### Saving a report
-
-We can keep a record of the FastQC results. To create a report simply select File > Save Report from the main menu. This will create a folder containing the images from the analyses, an HTML version of module results and text files containing results numeric data. 
-
 You may find useful the information in the following links:
 
 1. http://www.bioinformatics.babraham.ac.uk/projects/fastqc/
@@ -210,7 +206,7 @@ trimmomatic PE sample1_1.fastq.gz sample1_2.fastq.gz -baseout sample1.fastq LEAD
 
 ## Alignment of short reads
 
-A major step in most sequence analysis pipelines involves the alignment of reads against a reference genome, a requisite stage for downstream analyses. Traditional alignment software have become obsolete when dealing with the large amounts of short reads (millions) produced by NGS platforms and, during the last few years, software particularly designed to map short queries onto a long reference sequence have been produced. 
+A major step in most sequence analysis pipelines involves the alignment of reads against a reference genome, a prequisite stage for downstream analyses. Traditional alignment software have become obsolete when dealing with the large amounts of short reads (millions) produced by NGS platforms and, during the last few years, software particularly designed to map short queries onto a long reference sequence have been produced. 
 
 Currently popular alignment tools are summarised in Li & Homer (2010). As shown in column 5 in the Table below, most of them allow gaps in alignments. Effective gapped aligners avoid calling false SNPs predicted due to the presence of insertions and deletions (indels). Furthermore, software including paired-end information are capable of mapping repeat reads with uniquely mapped mates; they also correct alignment errors that are inconsistent with the constraints imposed by mate pairs in terms of distance and orientation. Base quality in reads has also been exploited by programs like MAQ improving alignment accuracy. 
 
