@@ -86,10 +86,20 @@ python ./taxdump/extract_kraken_reads.py --include-children --fastq-output -t 54
 ```
 
 ### Step 3. Mapping and Variant Calling
-The mapping and variant calling tools for Nanopore are different than those typically used with Illumina data. Now that we have verified a successful sequencing run, our data are ready to go, we will now map the reads on to a reference genome and perform variant calling. Nanopore fastq data can be mapped to an E.coli reference genome using **Minimap2**. Notice the '-ax map-ont' signalling we are using Nanopore data. Minimap2 creates a SAM file, a type of alignment file. We need to convert this to a BAM file to make the alignment compatible with other software (see tips and tricks). We do this using **samtools**, but you are not required to do this as a part of this practical.
+The mapping and variant calling tools for Nanopore are different than those typically used with Illumina data. Now that we have verified a successful sequencing run, our data are ready to go, we will now map the reads on to a reference genome and perform variant calling. Nanopore fastq data can be mapped to an E.coli reference genome using **Minimap2**. Notice the '-ax map-ont' signalling we are using Nanopore data. Minimap2 creates a SAM file, a type of alignment file. We need to convert this to a BAM file to make the alignment compatible with other software (see tips and tricks). We do this using **samtools**.
 ```
 minimap2 -ax map-ont Ecoli_reference.fasta ./kraken/Ecoli_Japan_1.kraken_filtered.fq > Ecoli_Japan_1_aln.sam
+samtools view -bS -o Ecoli_Japan_1_aln.bam Ecoli_Japan_1_aln.sam
+samtools index Ecoli_Japan_1_aln.bam
+samtools faidx  Ecoli_reference.fasta
+
 ```
+Download the Ecoli_reference.fasta, Ecoli_reference.fasta.fai, Ecoli_Japan_1_aln.bam and Ecoli_Japan_1_aln.bam.bai files and load them into IGV.
+
+!!! question  
+
+    How do you think the alignments compare to what we observed with Illumina sequenced data yesterday?
+
 For variant calling we tend to use variant callers that have been designed specifically for Nanopore data. This includes **Clair3** and **Freebayes**, which can generate outputs that are generally compatible with GATK-based workflows. These tools can be fairly slow so feel free to trial them in your own time!
 
 ### Step 4. Assembly
