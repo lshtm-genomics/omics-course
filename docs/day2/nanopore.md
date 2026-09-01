@@ -63,7 +63,6 @@ To download the files they are on the left-hand side. Simply right click PycoQC.
 
 Next we should trim our files and filter for high-quality reads. To trim the nanopore reads we have used **Chopper** (You could also use Porechop_abi, see Tips and Tricks) to identify any adapter sequences and remove them. This is an important step, especially when performing genome assembly. 
 ```
-cd pycoqc
 gunzip -c Ecoli_Japan_1.fastq.gz | chopper -q 10 -l 500 --headcrop 50 --tailcrop 50 | gzip > Ecoli_Japan_1_trim.fastq.gz
 ```
 
