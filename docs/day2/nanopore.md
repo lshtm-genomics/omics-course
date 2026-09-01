@@ -77,7 +77,7 @@ To download the files they are on the left-hand side. Simply right click PycoQC.
 
 !!! question  
 
-    What can you determine from the Kraken2 outputs? Is the data clean?  There are a few other genera included in the output — do you think they might be contaminants?
+    What can you determine from the Kraken2 outputs? Is the data clean? Do you think there are contaminants?
 
 Just in case we will filter our fastq files to remove any contaminants. We won't be too stringent with the filtering- we will use the taxa id from NCBI for Enterobacteriaceae (543). To do this we will use **KrakenTools**:
 
