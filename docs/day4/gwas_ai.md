@@ -1,4 +1,4 @@
-# TB Genomics: GWAS & Machine Learning
+# GWAS & Machine Learning
 
 
 ## What you're doing today
