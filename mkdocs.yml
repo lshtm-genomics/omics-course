@@ -49,7 +49,7 @@ nav:
   - "Day 4":
       - day4/phylogenetics.md
       - day4/gwas_ai.md
-
+      - day4/gwas.md
 
   - "Additional information":
       - additional-info/conda.md
