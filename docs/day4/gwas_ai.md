@@ -275,7 +275,7 @@ other way around.
 
 ---
 
-## Part 4 — A "proper" GWAS with GEMMA (~15 min)
+## Part 4 — A "proper" GWAS with GEMMA
 
 `logistic_gwas.py` treated every sample as statistically independent —
 which you now know is false. GEMMA fits a **linear mixed model (LMM)**
@@ -486,7 +486,7 @@ stops improving.
 
 ---
 
-## Part 7 — Comparing model types (~10 min)
+## Part 7 — Comparing model types
 
 `Quick` was a single decision tree. Now try a **regularised logistic
 regression** — a fundamentally different kind of model that fits a
