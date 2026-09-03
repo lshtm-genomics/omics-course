@@ -48,9 +48,7 @@ nav:
       - day3/eqtl.md
   - "Day 4":
       - day4/phylogenetics.md
-      - day4/machine_learning.md
-      - day4/gwas.md
-      - day4/tb-resistance.md
+      - day4/gwas_ai.md
 
 
   - "Additional information":
