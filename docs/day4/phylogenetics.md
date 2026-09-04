@@ -200,7 +200,7 @@ Upload the file **H1N1.flu.2009.mol_clock.2.tre** in the same way as before.
 You can also upload the file **second_tree_anno.txt** in the **Datasets** section to highlight the England strains, this will ease comparison. The dated tree should be very similar to the ML tree you reconstructed in Session 1. However, in this tree, the branch lengths represent days rather than genetic distances. 
 
 
-Once again we can select **Advanced** and choose **Bootstraps / metadata** inside the control panel, but this time there is a lot more options to choose from, such as **height** which is the estimated age or **location.prob** which is the probability of the location given. Lets have a look at **height** and make sure to select **Text** instead of **Symbol** to view the actual numbers. You can increase the font size to make it clearer and add a label background. You can now answer the following question.
+Once again we can select **Advanced** and choose **Bootstraps / metadata** inside the control panel, but this time there is a lot more options to choose from, such as **height** which is the estimated age or **location.prob** which is the probability of the location given. Lets have a look at **height** and make sure to select **Text** instead of **Symbol** to view the actual numbers. You can increase the font size to make it clearer and add a label background. You can now answer the following question. Here, Cluster 1 is located towards the bottom of the tree, Cluster 2 is in the middle and Cluster 3 is at the top, all shown in red!
 
 
 !!! Question
@@ -210,11 +210,12 @@ Once again we can select **Advanced** and choose **Bootstraps / metadata** insid
         Tip: If mental arithmetic is not your thing, you can use the 2009 calendar provided as Appendix to back-calculate the date of the nodes.
 
     === "Answer" 
-        The most recent viral sequence (A/Lima/WRAIR1687P/2009) was sampled on 27/06/2009. The ancestral node of Cluster 1 has an age of 61 days prior to the most recent sample. The estimated date of the first introduction of H1N1/09 in England is thus 25/04/2009.
+        Note dates may vary due to rounding!
+        The most recent viral sequence (A/Lima/WRAIR1687P/2009) was sampled on 27/06/2009. The ancestral node of Cluster 1 has an age of ~63 days prior to the most recent sample. The estimated date of the first introduction of H1N1/09 in England is thus 25/04/2009.
 
-        The ancestral node of Cluster 2 has an age of 58 days prior to the most recent sample. The estimated date of the second introduction of H1N1/09 in England is thus 01/05/2009.
+        The ancestral node of Cluster 2 has an age of ~58 days prior to the most recent sample. The estimated date of the second introduction of H1N1/09 in England is thus 01/05/2009.
 
-        The ancestral node of Cluster 3 has an age of 41 days  prior to the most recent sample. The estimated date of the third introduction of H1N1/09 in England is thus 18/05/2009.
+        The ancestral node of Cluster 3 has an age of ~41 days  prior to the most recent sample. The estimated date of the third introduction of H1N1/09 in England is thus 18/05/2009.
 
 ## Identifying the geographical origin(s) of the H1N1/09 strains imported in England
 
