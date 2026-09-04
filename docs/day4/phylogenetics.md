@@ -149,11 +149,22 @@ Molecular clock testing is normally done with a GUI tool called [TempEst](https:
 
 The sampling date of each sequence is encoded at the end of its name, preceded by the suffix `_d`, in the format YYYY-MM-DD. For instance, `A/Lima/WRAIR1687P/2009_d2009-06-27` was sampled on the 27th of June 2009. The script reads these dates automatically.
 
-Run the regression on the ML tree you built earlier:
+Before running the regression on the ML tree, we first need to install two dependencies required by the analysis. This is a common situation you may encounter in your own work, where additional software packages are needed to run a tool.
+
+Install the required dependencies with:
+
+```
+pip install dendropy
+pip install matplotlib
+```
+
+Once both dependencies have been installed, we can run the root-to-tip regression on the ML tree generated earlier:
 
 ```
 python3 roottotip.py H1N1.flu.2009.fas.treefile --prefix _d --seqlen 12735 --out roottotip.png
 ```
+
+This will perform the regression analysis and save the resulting plot as roottotip.png.
 
 This does the equivalent of Tempest’s **Parse Dates** (prefix `_d`, format `yyyy-MM-dd`) and **Best-fitting root** steps automatically: it parses each tip’s date, finds the root position that maximises the fit, runs the regression, and writes the plot to `roottotip.png` (open it from the file browser). It also prints the summary statistics to the terminal, for both the as-is root and the best-fitting root — read the **best-fitting root** values:
 
