@@ -2,7 +2,7 @@
 
 !!! Warning
 
-    Be sure to use the `microbiome` Codespace when initiating VM for this practical.
+    Be sure to use the `microbiome` Codespace when initiating VM for this practical. Note if instructed to use 'microbiome_lite' please type 'source ~/.bashrc' into the terminal after it loads.
 
 Bacterial vaginosis (BV) is a dysbiotic condition caused by excessive growth of certain bacteria replacing the regular vaginal microbiome. Common symptoms include increased discharge, burning with urination, and itching. BV increases the risk of infection by a number of sexually transmitted infections including HIV/AIDS as well as the risk of early delivery when pregnant. The changed composition of the microbiome leads to a higher pH and a hundred to thousand-fold increase in the total number of bacteria present.
 
