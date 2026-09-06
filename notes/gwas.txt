@@ -1,0 +1,483 @@
+Slide 1 — Title Slide
+
+Genome-Wide Association Studies (GWAS)
+London School of Hygiene & Tropical Medicine
+This lecture covers the theory, workflow, and real-world applications of GWAS in the context of infectious disease genomics
+Why GWAS matters: understanding why some individuals get sick and others don't — even when exposed to the same pathogen — requires understanding the genetic basis of susceptibility. GWAS is the primary tool for identifying host genetic variants contributing to disease risk at population scale
+
+
+Slide 2 — Purpose of Genetic Association Studies
+
+Three core goals of genetic association studies:
+
+Heritability: determine whether there is a genetic component contributing to a phenotype (i.e. is the disease partly heritable?)
+Association hit: identify the specific genetic region, gene, or polymorphism responsible
+Effect size: quantify how much that genetic variant contributes to disease risk
+
+
+Downstream impacts branch in two directions:
+
+Novel biological insights → Clinical advances → Therapeutic targets, biomarkers, prevention
+Improved measures of aetiological processes → Personalised medicine → Diagnostics, prognostics, therapeutic optimisation
+
+
+Why effect size matters as much as the association itself: a variant can be statistically associated with disease but explain only a tiny fraction of risk. Effect size (e.g. odds ratio, relative risk) determines whether a finding is clinically actionable — a variant with OR of 1.05 is interesting biologically but unlikely to drive therapeutic development, whereas OR of 3+ might justify targeted screening or drug development
+Why the two downstream pathways are both important: biological insight and personalised medicine are complementary goals. Some GWAS hits directly reveal drug targets (e.g. a gene encoding a protein that can be inhibited); others primarily stratify patients for more precise treatment
+
+
+Slide 3 — Genome-Wide Association Studies (GWAS) — What is it?
+
+GWAS is a high-throughput approach scanning genetic markers across the entire genome to link genotype to phenotype
+Relies on dense sets of genetic markers — primarily SNPs (Single Nucleotide Polymorphisms): single base-pair differences between individuals at specific genome positions
+SNPs can have 2, 3 or 4 alleles — but the vast majority are biallelic (two possible bases at that position)
+SNP chips or whole-genome sequencing can genotype millions of SNPs simultaneously
+Also uses SNP tags — proxy SNPs that capture variation at nearby untyped sites via linkage disequilibrium (LD)
+Standard design: case-control — compare SNP frequencies between affected (cases) and unaffected (controls) individuals
+Goal: identify SNPs with statistically significant associations to the disease phenotype
+Why SNPs are the preferred marker type: they are the most common form of genetic variation in the human genome, stable across generations, amenable to high-throughput genotyping, and their LD structure means a subset of SNPs can effectively tag most common variation across the genome — making genome-wide surveys feasible without sequencing every base
+Why case-control rather than family-based designs for common diseases: case-control studies are more statistically powerful for common diseases with many risk variants of small effect, and are logistically easier to scale to the large sample sizes (tens of thousands) that GWAS requires
+
+
+Slide 4 — Lots of Success
+
+GWAS has been enormously productive since its introduction in the mid-2000s
+By May 2021 (at genome-wide significance threshold of p ≤ 5×10⁻⁸):
+
+>5,700 studies completed
+>3,300 traits examined
+>70,000 trait associations identified (Uffelmann et al., 2021)
+
+
+The graph shows exponential growth in cumulative significant SNPs discovered from before 2008 to 2016, with key traits identified at each wave (Crohn's disease, LDL cholesterol, height, inflammatory bowel disease, Alzheimer's, educational attainment)
+Reference: Visscher et al. 2017 — "10 Years of GWAS Discovery: Biology, Function, and Translation"
+NHGRI GWAS Catalog: www.genome.gov/GWAStudies; www.ebi.ac.uk/fgpt/gwas/
+Why the p ≤ 5×10⁻⁸ threshold is used: GWAS tests ~1 million SNPs simultaneously. To control for false positives from multiple testing, a Bonferroni correction for ~1 million tests gives a threshold of 0.05/1,000,000 = 5×10⁻⁸. This is now the field-wide standard for claiming genome-wide significance
+Why the growth in discoveries is not just about more studies: larger sample sizes, better genotyping arrays, improved QC, imputation using larger reference panels, and trans-ethnic meta-analysis have all dramatically improved power to detect smaller effect size variants — driving the exponential increase in associations
+
+
+Slide 5 — Variant Identification
+
+Different types of disease have different allele frequency and effect size profiles — this determines the best study design:
+
+Mendelian diseases (top-left): very rare variants, very large effect sizes, single gene — family-based approach, highly penetrant. Examples: cystic fibrosis, Huntington's
+Sporadic diseases (middle): rare variants (~1% frequency), moderate to substantial effect sizes — intermediate between Mendelian and common disease
+Common diseases (bottom-right): common variants (>1% frequency), small individual effect sizes, many genes involved — this is the domain of GWAS
+
+
+Key study design considerations:
+
+Sample size: larger samples are needed to detect small effect sizes with adequate power
+Age of onset and types of controls: poorly matched controls or age effects can confound results
+Interest in other factors: environmental exposures, pathogen diversity, and survival effects may all confound or modify genetic associations
+
+
+Why common disease requires a different approach from Mendelian disease: with Mendelian disease, a single highly penetrant variant explains disease in affected families — linkage analysis in pedigrees works well. For common disease, hundreds of variants each contribute a small amount to risk — no single variant is necessary or sufficient, so family-based approaches have low power and population-level case-control GWAS is required
+Why study design decisions made upfront are critical: choices about sample size, control selection, and phenotype definition cannot be easily corrected after data collection. An underpowered study will miss real associations; poorly matched controls will generate false positives; a heterogeneous phenotype will dilute true signals
+
+
+Slide 6 — Multifactorial Determinants of Pathogenesis & Clinical Outcome
+
+Infectious disease outcomes are determined by the interaction of three factors: Host, Pathogen, and Environment
+Environment factors: co-infection, immunosuppression, lifestyle and socioeconomic factors
+Pathogen questions: what is the extent of genome diversity? Is there a genotype-phenotype link? What are the transmission patterns?
+Host questions (most relevant to this lecture):
+
+Does host genetics contribute to susceptibility to infection or disease outcome?
+How do host genetic variants influence pathogen biological function?
+
+
+Why we must consider all three factors, not just host genetics: a GWAS that ignores pathogen diversity or environmental confounders may identify spurious associations. For example, a host variant may appear protective against disease but actually reflects differential exposure to a particular pathogen strain or a socioeconomic factor correlated with both genotype and outcome. Robust infectious disease GWAS requires careful phenotype definition accounting for pathogen and environmental heterogeneity
+
+
+Slide 7 — GWAS of Infectious Diseases
+
+GWAS can be applied to a range of infectious disease phenotypes:
+
+Case-control: susceptibility to infection, severity, pathogen clearance, vaccination response
+Quantitative traits: antibody response levels, viral load, cell counts
+
+
+Manhattan plot shown: a composite of multiple infectious disease GWAS results, with key hits labelled:
+
+MHC/HLA region (chromosome 6): associated with Dengue, EBV, HBV, HCV, HIV, leprosy — the single most consistently associated genomic region across infectious diseases
+HBB (haemoglobin beta locus): associated with malaria — the sickle cell locus
+IL28B: associated with HCV clearance — one of the earliest and most actionable GWAS findings
+CXCR6: HIV control; CFH: meningococcal sepsis; IL23R, NOD2, RAB32 etc.: leprosy
+
+
+Hits meeting genome-wide significance (P = 5×10⁻⁸, dashed line) are considered robust
+Why the HLA region dominates infectious disease GWAS: HLA genes encode the proteins that present pathogen-derived peptides to T cells — they are fundamentally involved in immune recognition of every pathogen. The extraordinary diversity of the HLA region and its central role in adaptive immunity makes it the most immunologically important part of the genome for infectious disease susceptibility
+Why a single GWAS hit (like IL28B for HCV) can have immediate clinical impact: IL28B genotype predicts response to interferon-based HCV therapy with sufficient accuracy to guide treatment decisions — demonstrating that GWAS findings can directly enter clinical practice when effect sizes are large enough
+
+
+Slide 8 — For TB Host Susceptibility, GWAS Hits Have Not Been Replicated
+
+Case study: Gambian & Ghanaian TB case-control study (n=11,425; Thye et al. 2010)
+Used the Affymetrix 500K chip (~500,000 SNPs)
+Top hit: rs4331426 on chromosome 18, between genes CTAGE1 and RBBP8, P = 6.8×10⁻⁹ — surpasses genome-wide significance threshold
+Regional association plot (locus zoom) shown — coloured by LD with the lead SNP
+However: this hit has not been robustly replicated in independent TB cohorts
+Why replication failure matters and what it tells us: a single GWAS hit, even at p < 5×10⁻⁸, can be a false positive — especially if the study has uncontrolled confounding (e.g. residual population stratification) or if the phenotype definition varies between studies. The TB example illustrates that genome-wide significance is a necessary but not sufficient criterion for a true association — independent replication is essential
+Why TB GWAS has been particularly challenging: TB susceptibility may be predominantly determined by pathogen strain diversity, environmental exposures (crowding, malnutrition, HIV co-infection), and rare host variants of larger effect — making common variant GWAS less powerful than for non-infectious diseases. Additionally, study populations are almost exclusively from Africa and South/East Asia, where LD patterns and allele frequencies differ substantially from populations represented in early reference panels
+
+
+Slide 9 — GWAS Workflow
+
+Full GWAS pipeline shown (left to right):
+
+Sample Collection & Phenotype Determination: recruit cases and controls, carefully define the phenotype (e.g. severe malaria vs. uncomplicated malaria vs. any malaria)
+Genotyping or Whole Genome Sequencing: genotype with SNP chip (hundreds of thousands of probes) or sequence entire genome
+Quality Control: both sample-level and SNP-level QC (detailed in next slides)
+GWAS: statistical association testing — QQ plot to check for inflation, Manhattan plot to visualise results, validation study to replicate findings
+Post-GWAS: meta-analysis across cohorts, functional analysis (EMSA, reporter assay), other downstream analyses (gene-based analysis, pathway analysis, polygenic risk scoring, SNP-SNP interaction)
+
+
+Why each stage is necessary before proceeding to the next: the pipeline is strictly sequential — genotyping errors not caught in QC will produce false associations; population stratification not corrected before association testing will inflate p-values genome-wide; associations not validated in an independent cohort will likely be false positives. Skipping or rushing any step undermines the entire analysis
+
+
+Slide 10 — Need for High Quality Data
+
+Core principle: "Junk in → junk out"
+With millions of variants assayed simultaneously, errors and genotype miscalls inevitably occur — even small error rates across millions of SNPs produce many false signals
+If problematic samples (e.g. DNA degradation, contamination, sex mismatches) are not identified and removed, they bias results
+If SNPs with erroneous genotyping are not excluded, they produce false positive association signals
+Solution: perform rigorous QC on both samples and SNPs before any association analysis
+Why QC is the single most important step in GWAS: a beautifully powered, well-designed study can be completely invalidated by poor quality control. Conversely, careful QC transforms imperfect genotyping data into a reliable dataset. The association analysis itself is straightforward — it is the QC that distinguishes a publishable, replicable result from a paper full of false positives
+
+
+Slide 11 — Quality Checks
+
+Comprehensive table of QC variables:
+
+VariableWhy It MattersGenotyping Call RateLow call rate correlates with error — samples or SNPs failing to genotype reliably should be excluded, though some low call rate samples may still be validGenotyping QualityLower GenCall scores correlate strongly with higher error rates — quality thresholds filter out unreliable callsSex ConcordanceX chromosome heterozygosity and Y marker presence should match reported sex — mismatches indicate sample swaps or contaminationSample RelatednessRelated samples violate the independence assumption — relatedness can be expected (family studies) or unexpected (undisclosed relatives in a case-control study)Mendelian Inheritance ErrorsIn family/trio data, impossible inheritance patterns identify problematic samples and can estimate error rateReplicate ConcordanceDuplicate samples should have identical genotype calls — discordance indicates errorBatch EffectsSystematic differences in genotype calls between processing plates can create artificial case-control differencesHardy-Weinberg Equilibrium (HWE)Violation genome-wide suggests error; violation at a specific SNP in controls can indicate genotyping error; violation in cases may indicate true associationPopulation StratificationAncestry differences between cases and controls confound association — must be assessed genome-wide using PCA
+
+Why HWE is a special case: HWE violations in controls almost always indicate genotyping error and warrant SNP exclusion. However, HWE violations in cases at a specific locus can be a legitimate signal of association (especially for recessive traits) — so the decision requires careful thought rather than blanket exclusion
+
+
+Slide 12 — Effects of Population Stratification
+
+Population stratification: systematic differences in ancestry between cases and controls that create spurious genetic associations unrelated to the disease
+Diagram shows: if cases are predominantly from Population A and controls from Population B, any variant that differs in frequency between these populations will appear associated with disease — even if it has no biological relationship to the phenotype
+Example: chi-squared test combining both populations gives χ² = 16.33 (p < 0.001) — highly significant but entirely spurious
+When analysed within each population separately: χ² = 2.14 (p = 0.343) and χ² = 1.57 (p = 0.456) — no real association
+Why stratification is the most dangerous confounder in GWAS: unlike technical errors (which produce random noise), population stratification produces systematic, consistent false positives across entire genomic regions — particularly in regions that differ in frequency between ancestral populations. These can look convincingly like real associations and survive initial QC unless ancestry is explicitly modelled. For infectious disease GWAS in Africa, where multiple distinct ethnic groups may be recruited, this is especially critical
+
+
+Slide 13 — QQ-Plot for a GWAS Affected by Population Structure
+
+QQ-plot (Quantile-Quantile plot): diagnostic tool comparing observed -log₁₀ p-values against those expected under the null hypothesis (no association)
+Under null: points should fall on the diagonal line
+Inflation (upward curve from the diagonal across many SNPs) = systematic false positives — hallmark of uncorrected population stratification
+Inflation factor (λ): ratio of observed to expected median chi-squared statistic
+
+λ = 1.0: no inflation — perfect
+λ = 1.25 (shown): substantial inflation — lots of false positive associations
+λ > 1.05 is generally considered unacceptable for publication
+
+
+Why the QQ-plot must be examined before any results are interpreted: if λ is substantially elevated, no individual association can be trusted — the entire association landscape is biased upward. Identifying and correcting stratification before examining Manhattan plots prevents chasing false signals. A clean QQ-plot (λ ≈ 1.0 with only a few points departing at the extreme right) is a prerequisite for credible GWAS results
+
+
+Slide 14 — Principal Component Analysis Can Give Insights into Population Structure
+
+PCA applied to genome-wide SNP data reveals population structure by reducing genetic variation to its major axes
+Example from Jallow et al. 2010: Gambian samples from multiple ethnic groups (Mandinka, Fula, Jola, Wollof, Serahuli, Serere, Manjago, Aku)
+Left plot (PC1 vs PC2): clearly separates Jola (bottom left), Mandinka (top), and Fula (bottom right)
+Right plot (PC2 vs PC3): further separates Wollof from others
+Solutions:
+
+Adjust for top PCs as covariates in the association model — absorbs ancestry differences statistically
+Stratify by self-reported ethnic or language group — analyse each subgroup separately
+
+
+Why PCA is the standard tool for population structure assessment: PCA requires no prior knowledge of ancestry — it discovers structure purely from the genetic data. It can detect subtle structure that self-reported ethnicity misses (e.g. admixed individuals, mislabelled samples). Including the top 10-20 PCs as covariates is now standard practice in all GWAS analyses
+
+
+Slide 15 — QQ-Plots after Correcting for Population Structure
+
+Three QQ-plots showing progressive improvement in inflation factor:
+
+Unstratified: λ = 1.25 — severe inflation, many false positives
+Stratified (by ethnic group): λ = 1.07 — substantial improvement, some residual inflation
+Principal components-corrected: λ = 1.03 — close to ideal, highlighted in green
+
+
+Why PC correction outperforms simple stratification: stratification by reported group treats ancestry as discrete categories, which is an oversimplification — individuals within an ethnic group are not genetically homogeneous, and admixed individuals don't fit neatly into one category. PCs capture continuous variation in ancestry, providing finer-grained correction. The difference between λ = 1.07 and λ = 1.03 may seem small but can translate to hundreds of fewer false positives across a million-SNP scan
+
+
+Slide 16 — Association Signals across the Genome (Manhattan Plot)
+
+Manhattan plot: standard visualisation for GWAS results
+
+x-axis = chromosomal position (chromosomes 1–22)
+y-axis = -log₁₀ p-value for each SNP
+Each dot = one SNP
+Horizontal line = genome-wide significance threshold (P ≤ 5×10⁻⁸)
+
+
+Example: severe malaria GWAS (n=2,500), Affymetrix 500K chip (Jallow et al. 2009)
+Regions of note:
+
+Very interesting peaks (above significance line) — strong signals worth following up, but some may still be false positives
+Quite interesting peaks (below significance line but elevated) — may include real signals missed due to insufficient power (false negatives)
+One circled region: likely false positive despite high signal
+
+
+Why the Manhattan plot is called a "Manhattan" plot: the vertical peaks of association signals resemble the Manhattan skyline — a useful memory aid
+Why false negatives are as important a concern as false positives: a real protective variant (like HbS for malaria) that fails to reach significance in a single underpowered study may delay life-saving biological understanding for years. This motivates larger sample sizes and meta-analysis — to push real signals above the significance threshold
+
+
+Slide 17 — Sickle Trait is the Strongest Known Determinant of Severe Malaria Risk
+
+HbS (sickle cell trait, AS genotype): heterozygous carriers of the sickle cell mutation have dramatically reduced risk of severe malaria
+Relative risk in children with HbS AS genotype:
+
+Gambia: 0.11 (89% risk reduction)
+Kenya: 0.17 (83% risk reduction)
+Malawi: 0.08 (92% risk reduction)
+Combined: P = 2×10⁻³¹ (n=3,630) — extraordinarily strong signal
+
+
+However: genetic factors overall determine ~25% of malaria risk in Kenyan children, yet sickle trait accounts for only ~2% of total variation (Mackinnon et al. 2005)
+Why the "missing heritability" gap between sickle trait and total genetic risk matters: even the strongest known protective variant explains only a small fraction of heritable risk — implying many other host genetic variants remain undiscovered. This motivates continued GWAS with larger, more diverse samples. It also highlights that even biologically powerful variants may have limited utility as individual risk predictors at population level
+Why the consistency of the sickle cell effect across African populations (Gambia, Kenya, Malawi) is significant: effect sizes that replicate across diverse populations with different genetic backgrounds, pathogen strains, and environmental conditions are much more likely to be real causal effects rather than population-specific artefacts
+
+
+Slide 18 — Association Studies: Direct Association
+
+Direct association: the genotyped SNP is itself the variant directly responsible for causing the disease
+The LD plot (heatmap showing pairwise correlations between SNPs across a genomic region) is shown — red/dark blocks = high LD between SNP pairs, grey = low LD
+One SNP is highlighted (circled in red) as a direct causal variant
+Why direct association is the ideal but not the norm: direct association requires that the causal variant itself is present on the genotyping array or sequencing panel. For rare variants or variants in poorly tagged regions, this may not be the case — and indirect association through LD is the more common scenario in GWAS
+
+
+Slide 19 — Association Studies: Direct vs. Indirect Association
+
+Indirect association: the genotyped SNP is not itself causal but is in linkage disequilibrium (LD) with the true causal variant — i.e. they co-occur together on the same chromosomal haplotype more often than expected by chance
+Two variants are highlighted in the LD plot — one is the direct causal variant (red circle), one is a nearby SNP in LD with it (blue circle) — both show association signals because they are correlated
+In GWAS, most detected associations are indirect — the significant SNP tags the causal variant via LD rather than being causal itself
+Why understanding direct vs. indirect association matters for follow-up: a GWAS hit is rarely the functional variant. Fine-mapping, sequencing of the associated region, and functional studies are needed to identify which specific variant is causing the biological effect. Treating the GWAS tag SNP as causal can lead to wasted effort characterising the wrong variant
+
+
+Slide 20 — Each Population Has a Distinct Pattern of Genome Variation (LD and SNPs)
+
+Linkage disequilibrium (LD): the tendency for nearby SNPs to be inherited together as a unit (haplotype) more often than expected by chance
+Most SNPs are correlated with surrounding SNPs — shown as coloured blocks in the LD heatmap (red/dark = strong LD, grey = weak LD)
+LD structure defines haplotype blocks — regions where a small number of tag SNPs can capture most of the common variation
+Each population has its own distinct LD pattern and haplotype structure — shaped by its unique evolutionary history, founder effects, and population size
+Why LD patterns vary between populations: African populations have shorter LD blocks and greater haplotype diversity due to their larger effective population size and longer evolutionary history. European and Asian populations have longer LD blocks due to founder effects when humans migrated out of Africa. This means a tag SNP that captures a causal variant well in Europeans may not tag it at all in West Africans — making direct population-matched reference panels essential
+
+
+Slide 21 — Haplotypes
+
+Haplotype: an observed sequence of variants (alleles at multiple SNP positions) that tend to be inherited together
+Each population has its own characteristic pattern of common haplotypes
+Example sequences shown: different individuals carry different combinations of alleles across a genomic region — these co-inherited combinations are haplotypes
+Key insight: knowing the haplotype structure of a population allows us to impute (statistically infer) genotypes at untyped positions — if we know which haplotype a sample is on, we can predict the allele at a nearby untyped SNP
+Why haplotypes are the foundation of imputation: rather than genotyping every single variant in every individual (impractical at large scale), we genotype a subset and use known haplotype patterns from reference populations to fill in the rest. This is only possible because variants don't segregate independently — they travel in haplotype blocks
+
+
+Slide 22 — Why is LD Important in Humans?
+
+Before large-scale whole-genome sequencing was routine (pre-~2012): the human genome contains >15 million genetic variants — far too many to genotype individually at affordable cost
+LD means you don't need to genotype every variant — a representative subset of tag SNPs captures most common variation efficiently → SNP chips
+With the increasing availability of affordable whole-genome sequencing on large cohorts, LD becomes less critical as a cost-saving mechanism — but remains important for:
+
+Imputation: filling in variants not directly typed on a chip using LD-based statistical inference
+Fine-mapping: narrowing down which variant in an associated region is truly causal
+
+
+Why LD still matters even in the whole-genome sequencing era: WGS data from study participants still needs to be compared against reference panels to ensure consistency, and imputation remains essential for combining datasets genotyped on different chips in meta-analysis. Understanding LD is also fundamental for interpreting which variants are truly associated vs. correlated bystanders
+
+
+Slide 23 — Imputation (concept)
+
+Imputation: using known haplotype patterns from a large reference panel to predict (impute) genotypes at SNP positions not directly typed in your study
+Reference panel (e.g. 1000 Genomes Project): contains complete sequence data for hundreds/thousands of individuals across multiple populations — their haplotypes are fully known
+Your genotyped individual: has only a subset of SNPs typed (shown as known positions with gaps)
+Process: match your individual's known SNPs to the most similar haplotypes in the reference panel → use those reference haplotypes to fill in the missing positions
+Why imputation quality depends critically on the reference panel: if the reference panel doesn't contain haplotypes similar to your study population, imputation will be inaccurate — predicting the wrong allele at untyped positions. This is why population-matched or population-specific reference panels are so important, especially for under-represented African populations
+
+
+Slide 24 & 25 — Imputation (step-by-step)
+
+Step-by-step illustration of the imputation process:
+
+Start with: reference panel haplotypes (fully known sequences) and your genotyped individual (partial data, gaps shown as dots)
+Match the individual's known alleles to the most compatible reference haplotypes
+Infer the most likely alleles at untyped positions based on which reference haplotypes best match
+Output: imputed individual — full genotype across all reference panel positions, with statistical confidence scores attached to imputed calls
+
+
+Why imputed genotypes have uncertainty attached: unlike directly genotyped calls, imputed calls are probabilistic — the software outputs dosage values (e.g. 0.97 copies of the A allele) rather than hard calls. Association analysis should use these dosages to propagate imputation uncertainty rather than converting to hard calls and discarding that information
+
+
+Slide 26 — Why Impute?
+
+Four key reasons to perform imputation:
+
+Predict missing genotypes not directly typed — allows analysis of variants absent from your chip
+Increased power: the reference panel is likely to contain the true causal variant (or a better tag SNP) than the GWAS array alone — closer proximity to the causal variant means stronger association signal
+Fine-mapping: imputation provides high-resolution coverage across an associated locus — allows narrowing down from a region to a specific candidate variant
+Meta-analysis: imputation harmonises datasets genotyped on different arrays — all studies can be brought to the same set of variants (those in the reference panel), enabling valid pooling across cohorts
+
+
+Why imputation is now considered essential rather than optional in GWAS: without imputation, comparisons between studies using different chips are limited to the small overlap of directly genotyped SNPs. Meta-analysis — which requires combining thousands of samples across studies — is nearly impossible without imputation. The dramatic improvement in GWAS power seen over the last decade is partly attributable to better imputation using larger, more diverse reference panels
+
+
+Slide 27 — Imputing to Find the "Causal" Polymorphisms
+
+Practical example: severe malaria GWAS (Jallow et al. 2009), Affymetrix 500K chip
+HbS SNP (the sickle cell variant) is NOT on the chip — it was not directly genotyped
+Manhattan plot before imputation: strong signals on chromosome 11 but the HbS variant itself appears with only a modest p-value (it's captured only weakly by nearby tag SNPs on the array)
+Imputation using a population-matched reference panel recovers the HbS signal at its true location with much stronger evidence
+Why the causal variant being absent from the chip is a common problem: SNP chip content is designed based on common variants in European or East Asian populations. African-specific variants, functionally important but lower-frequency variants, and structural variants are often poorly represented. Imputation from African-specific reference panels (like the African Genome Variation Project) is essential for GWAS in African populations
+
+
+Slide 28 — Signals of Malaria Association in Chromosome 11 — Wrong Reference Panel
+
+Chromosome 11 regional association plot before imputation: only directly genotyped SNPs shown (black dots) — HbS location marked by dashed vertical line, but the signal is weak at that position
+Critical question raised: what happens when we impute using a reference panel from a population with a different haplotypic structure?
+Why this matters: the HbS mutation arose on a specific African haplotype background. If you impute using European reference haplotypes, the African-specific haplotype carrying HbS is not well represented → imputation incorrectly fills in that position → the true signal is missed or diluted
+Why this is a major equity issue in genomics: the majority of early GWAS reference panels (HapMap, early 1000 Genomes) were heavily biased towards European haplotypes. GWAS in African populations using these panels had reduced imputation accuracy and therefore reduced power — systematically disadvantaging research into diseases that disproportionately affect African populations (malaria, TB, HIV)
+
+
+Slide 29 — Chromosome 11 — HapMap Yoruba Reference Panel
+
+Same chromosome 11 region, now with imputation using HapMap Yoruba (YRI) sequences as reference — a West African population more closely related to Gambians than European HapMap panels
+Additional imputed SNPs (grey dots) fill in the region — signal around HbS location improves substantially compared to genotyped SNPs alone
+But: the HbS SNP is still not perfectly recovered because Gambian and Yoruba haplotype structures differ — the specific haplotype background of HbS in The Gambia is not fully captured by Yoruba data
+Established haplotype variation at the HBB locus across African populations (Hanchard et al. 2007) — different African populations carry HbS on different haplotype backgrounds, further complicating imputation
+
+
+Slide 30 — Chromosome 11 — Population-Matched Gambian Reference Panel
+
+Same region, now with imputation using sequence data from 48 sequenced Gambians as reference
+The HbS SNP now achieves P ~ 10⁻¹⁴ — a dramatically stronger and more precise signal (pink dot at the dashed line)
+This is the correct, population-matched approach — and with only 48 sequenced reference individuals, the improvement over the HapMap Yoruba panel is striking
+Why this result is so important methodologically: it demonstrates that even a small population-specific reference panel dramatically outperforms a larger but ancestry-mismatched panel. The lesson is clear: for GWAS in any population, the reference panel for imputation must be ancestry-matched, even if this requires generating new sequencing data. This has driven major investment in African-specific sequencing initiatives (H3Africa, African Genome Variation Project)
+
+
+Slide 31 — Going Beyond GWAS
+
+GWAS is a starting point, not an endpoint — further steps are essential:
+
+Replication studies and meta-analysis: confirm the finding in independent samples
+Fine-mapping the causal variant: if using genotyping arrays, identify which specific variant in the associated region is functional (targeted resequencing, dense imputation)
+Targeted resequencing: sequence the associated region in detail to identify all variants
+Trans-ethnic mapping: replicate and refine signals across populations with different LD patterns — if the same signal appears in diverse populations on different haplotype backgrounds, this narrows down the causal variant to the shared element
+Functional studies: determine the biological mechanism by which the variant exerts its effect
+
+
+Why trans-ethnic mapping is particularly powerful for fine-mapping: different populations have different LD patterns, so a causal variant will be in LD with different tag SNPs in each population. The causal variant is the one that is consistently associated across all populations — it is effectively pinpointed by the intersection of LD blocks from multiple ancestries. This reduces the candidate causal region from hundreds of correlated SNPs to a handful
+
+
+Slide 32 — Replication
+
+After an initial GWAS, a targeted replication study tests the top hits in an independent sample:
+
+Assay a small subset of SNPs from the GWAS scan (the top hits only — no need for genome-wide genotyping)
+Ideally replicate in the same population — but this is often logistically difficult
+Aim to replicate with a similarly defined phenotype in other populations
+
+
+Population structure concerns in replication:
+
+Without genome-wide data, you cannot fully assess confounding — must rely on available surrogates (self-reported ethnicity, language, location)
+Differences in LD patterns between populations may mean the tag SNP doesn't capture the causal variant equally well in the replication population — attenuating the signal even if the association is real
+
+
+Why replication in the same population is the gold standard but is rarely achieved: the original discovery cohort represents all available cases collected over years of study — there simply are not enough additional patients from the same population for an independent replication. This forces replication in different populations, which introduces the complications noted above
+
+
+Slide 33 — Meta-Analysis
+
+Meta-analysis: combine results from multiple independent GWAS of the same phenotype to dramatically increase sample size and power
+Key requirements:
+
+Consistent phenotypic definition across studies — combining severe malaria with mild malaria would dilute signals
+Genome-wide pooling is preferred over publication-based pooling (less publication bias — unpublished null results are included)
+
+
+Benefits:
+
+Increased power to detect new loci and pathways, including variants at lower allele frequencies
+Reveals study heterogeneity — if effect sizes differ dramatically between studies, this itself is informative (may indicate gene-environment interactions, population-specific effects, or phenotype heterogeneity)
+Heterogeneity may reflect differences in study design, population structure, environmental exposures, or pathogen diversity — all biologically interesting
+
+
+Example shown: G6PD 202A and severe malaria — forest plot across Gambia, Kenya, Malawi, Ghana by sex — consistent protective effect across sites, summary OR < 1
+Why pathogen diversity as a source of heterogeneity is uniquely important in infectious disease GWAS: the same host genotype may have different effects depending on which pathogen strain is circulating — a host variant that protects against one parasite strain may not protect against another. Ignoring pathogen genomic data when conducting host GWAS means missing gene-by-pathogen interactions that could be crucial for understanding immunity
+
+
+Slide 34 — Host-Pathogen Interactions
+
+Returns to the three-way model: Host × Pathogen × Environment
+Key unanswered questions framing the next generation of GWAS:
+
+Pathogen side: extent of genome diversity, genotype-phenotype links, transmission patterns
+Host side: does host genetics contribute to susceptibility? How do host variants influence pathogen biology?
+
+
+Why studying host-pathogen interactions jointly rather than separately is the frontier: classical GWAS tests host variants against host outcomes — but the outcome (e.g. disease severity) is shaped by both host AND pathogen genotype. A more complete model simultaneously considers variation in both genomes. This "genome-to-genome" approach is now computationally feasible and represents a major methodological advance
+
+
+Slide 35 — TB Host–M. tuberculosis Interactome through Genome-to-Genome Analysis
+
+Reference: Phelan et al. Nature Communications 2023
+Dataset: 720 TB patients from Thailand with paired human and M. tuberculosis DNA
+Both genomes analysed:
+
+Human genome: ~2,900 Mb, standard chromosomes 1–22
+Mtb genome: ~4.4 Mb, with 3 distinct lineages identified by phylogenetic clustering
+
+
+Method: GWAS approach guided by a phylogenetic tree of Mtb sequences — tests interactions between human SNPs and Mtb genetic variants
+Result: 8 specific genetic interaction points identified at genome-wide significance (P < 5×10⁻⁸)
+Circos plot (right): coloured lines connect human genomic positions (outer ring, chromosomes) to Mtb genomic positions (inner ring) — showing which human-pathogen genomic pairs interact
+Why a phylogenetic tree is needed to guide the Mtb GWAS: Mtb strains are not independently segregating — they are related by descent (like a phylogeny). Analysing Mtb variants without accounting for phylogenetic structure would produce false positive associations due to population structure in the pathogen, analogous to the population stratification problem in host GWAS
+
+
+Slide 36 — TB Host–M. tuberculosis Interactome: Results
+
+Manhattan plot of the genome-to-genome GWAS results (Phelan et al. 2023)
+Three significant human loci identified above the genome-wide significance threshold (dashed line):
+
+RIMS3 (chromosome 2): linked to IFNγ cytokine signalling and the host immune system
+FSTL5 (chromosome 4): previously associated with TB susceptibility
+DAP (chromosome 5): also linked to IFNγ pathway
+
+
+These hits suggest that host immune response via IFNγ — a central cytokine in anti-mycobacterial immunity — is modulated by specific Mtb genetic variants interacting with specific host variants
+Why finding IFNγ-related loci in a host-pathogen interaction study is biologically meaningful: IFNγ is the master regulator of macrophage activation against intracellular pathogens like Mtb. That both human loci interact with specific Mtb genomic variants suggests the pathogen is co-evolving to evade or modulate this key host defence mechanism — a discovery that could guide vaccine and immunotherapy development
+Why this genome-to-genome approach represents the future of infectious disease genomics: it moves beyond asking "which host variants affect outcome?" to asking "which host-pathogen combinations determine outcome?" — capturing the biological reality that infectious disease is fundamentally an interaction between two evolving genomes
+
+
+Slide 37 — GWAS Design and Analysis: Recap
+
+Full pipeline summary diagram (Uffelmann et al. 2021 style):
+
+(a) Data collection: recruit cases and controls
+(b) Genotyping: SNP chip genotyping
+(c) Quality control: PCA to detect and correct population stratification
+(d) Imputation: fill in untyped variants using reference panel haplotypes
+(e) Association testing: Manhattan plot — identify significant loci
+(f) Meta-analysis: combine across cohorts (Cohort A + B + C)
+(g) Replication: validate in independent sample
+(h) Post-GWAS analyses: functional characterisation, pathway analysis, polygenic risk scoring, network analysis
+
+
+Why the pipeline must be followed in full: each step builds on the last. Skipping QC produces unreliable associations; skipping imputation misses causal variants; skipping replication leaves findings unconfirmed; skipping post-GWAS analysis means the biological meaning of hits remains unknown. The pipeline is designed to ensure that by the end, you have a finding that is technically robust, statistically validated, and biologically interpretable
+
+
+Slide 38 — Useful GWAS Analysis Tools
+
+Key software resources organised by task:
+
+SNP calling: Samtools, GATK, OptiCall — convert raw sequencing or array data to genotype calls
+Data Imputation: Impute2, Beagle, Sanger Imputation Server — fill in untyped variants
+Public reference datasets: 1000 Genomes, ExAC, UK10K, HRC, African Genome Variation Project, UK Biobank — reference panels and summary statistics
+Association analysis: PLINK, SNPtest, GEMMA, R packages (SNPassoc), GCTA — core statistical analysis tools
+
+
+Why knowing multiple tools matters: different tools have different strengths — PLINK is fast and widely used for standard analyses, GEMMA handles mixed model corrections for relatedness, GCTA estimates heritability and performs conditional analyses. No single tool does everything optimally. Being familiar with the ecosystem allows you to choose the right tool for each analysis step and critically evaluate methods sections in published GWAS papers

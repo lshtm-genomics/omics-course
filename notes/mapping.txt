@@ -1,0 +1,194 @@
+Mapping
+
+Slide 1 — Title
+
+Welcome to the Sequence Mapping and Visualisation lecture, part of the Infectious Disease Omics course
+This lecture bridges the gap between raw sequencing data and biological interpretation
+By the end you will understand how reads are aligned to a reference and how to assess the quality of that alignment
+
+
+Slide 2 — Outline
+
+We will cover three main areas today
+First, the mechanics of how sequencing reads are mapped to a reference genome
+Second, how we assess the quality of that mapping and identify potential problems
+Third, we will put this into practice in the hands-on session that follows
+
+
+Slide 3 — Sequencing Data is More Available Than Ever
+
+The cost of sequencing has fallen dramatically over the past two decades — far faster than Moore's Law, which predicts a halving of computing costs every 18 months
+The cost of sequencing a human genome has dropped from around $100 million in 2001 to under $1,000 today
+The cost per megabase of raw sequence has fallen even more steeply
+At the same time, the volume of sequencing data being generated globally is growing exponentially — currently doubling roughly every 7 months
+This growth has been driven by major projects like the 1000 Genomes project, ExAC, and TCGA, alongside falling instrument costs
+The result is that sequencing data is now widely accessible, and the challenge has shifted from generating data to analysing it
+
+
+Slide 4 — Next Generation Sequencing
+
+Sequencing technology has gone through three major generations
+First generation — Sanger or capillary sequencing — was developed in the 1970s and dominated genomics for three decades, but run times were measured in months
+Next generation sequencing arrived in the early 2000s and transformed the field through massive parallelisation — running millions of reactions simultaneously and reducing run times to hours
+Illumina remains the most widely used next generation platform and is what we focus on in this course
+Third generation sequencing — from Oxford Nanopore Technologies and Pacific Biosciences — has been available since around 2014 and produces much longer reads, also in hours
+Each generation has its own strengths and appropriate use cases
+
+
+Slide 5 — Illumina Sequencing Produces Short Read Data
+
+Illumina sequencing involves four key steps
+First, library preparation — the genome is fragmented into pieces and adapters are ligated to each end to allow binding to the flow cell
+Second, bridge amplification — also called cluster generation — each fragment is amplified into a cluster of identical copies on the flow cell surface, which amplifies the signal during sequencing
+Third, sequencing by synthesis — fluorescently labelled nucleotides are added one at a time, and the colour of the incorporated base is recorded at each cycle
+Fourth, alignment and data analysis — the resulting short reads are overlapped and assembled into contigs
+The key output is millions of short reads, typically 100–300 base pairs in length
+
+
+Slide 6 — FASTQ Files Contain the Read Data
+
+The raw output from Illumina sequencing is stored in FASTQ format
+Each sequenced cluster produces one entry in the FASTQ file
+For paired-end sequencing, two FASTQ files are produced — R1 and R2 — one for each end of the fragment
+Each entry in a FASTQ file consists of exactly four lines: a sequence identifier starting with @, the DNA sequence of bases, a separator line with a + sign, and a string of quality scores
+The quality scores encode the confidence in each base call using ASCII characters — higher characters represent higher confidence
+These files can be very large — a single Illumina run can produce tens of gigabytes of FASTQ data
+
+
+Slide 7 — Illumina Produces Millions of Read Fragments
+
+Because Illumina reads are short — typically 100 base pairs — each read covers only a small portion of the genome
+In paired-end sequencing, each DNA fragment of around 500 base pairs is sequenced from both ends, leaving an unsequenced middle portion of around 300 base pairs
+The key insight is that by generating tens to hundreds of millions of these overlapping fragments, we can reconstruct the genome sequence through their overlaps
+When a reference genome is available, we don't need to assemble from scratch — we simply align each read back to its most likely position on the reference
+The depth of coverage — how many reads overlap any given position — determines our confidence in the sequence at that position
+
+
+Slide 8 — Reads are Aligned to a Reference
+
+This slide shows a real alignment viewed in LookSeq, a browser-based visualisation tool
+Each horizontal line represents a single read or read pair aligned to the reference genome shown at the bottom
+Single reads are shown in green and paired-end reads in blue — you can see the two reads of a pair connected by a line spanning the insert
+The coverage track at the top shows the depth of reads at each position — taller peaks mean more reads overlapping that position
+The gaps between paired reads represent the unsequenced insert — if this distance is abnormal, it can indicate a structural variant
+
+
+Slide 9 — Read Alignment Can Be Done with Several Tools
+
+There are many tools available for each step of the alignment pipeline
+For aligning reads to a reference, the most widely used tools are BWA and Bowtie — we will use BWA in the practicals
+The output of alignment is stored in SAM, BAM, or CRAM format
+Visualisation tools include Tablet, Artemis, and IGV — all of which we will encounter during the course
+For variant calling, small variants like SNPs and indels are called using tools like GATK or FreeBayes, producing VCF files
+Larger structural variants require specialised tools such as Pindel, Delly, or Lumpy
+When no reference is available, de novo assembly tools such as Velvet can be used instead
+
+
+Slide 10 — Quality Control is Essential
+
+Before and after alignment, thorough quality control is critical — poor QC leads to unreliable results downstream
+Contamination screening should be performed first — tools like Kraken can classify reads against large databases to identify unexpected organisms
+Read quality should be assessed using FastQC, which plots quality scores across every base position in the read
+Low quality read ends can be trimmed — hard clipping permanently removes the bases, while soft clipping retains them in the file but excludes them during alignment
+Duplicate reads arising from PCR amplification should be marked and removed using Picard tools — duplicates inflate coverage and bias variant calling
+After alignment, mapping statistics should be checked — samtools flagstat reports the percentage of reads mapped, and tools like mosdepth or sambamba report genome coverage depth
+
+
+Slide 11 — Example Kraken Report (clean sample)
+
+This is an example of a Kraken contamination report visualised using the Recentrifuge tool
+The circular plot shows the taxonomic breakdown of reads in the sample
+In this case the sample is predominantly Anopheles gambiae — the malaria mosquito — as expected
+There are small proportions of other organisms, but these are at low levels and likely represent background noise rather than true contamination
+This is a relatively clean sample — the dominant organism matches what was expected
+
+
+Slide 12 — Example Kraken Report: Contamination
+
+This second example shows a clear contamination problem
+37% of reads were classified as Brachionus — a genus of planktonic rotifers, tiny aquatic invertebrates
+This is entirely unexpected for a mosquito sample and indicates significant environmental contamination, likely during sample collection or DNA extraction
+This level of contamination would severely compromise any downstream analysis — those reads would either fail to map or map incorrectly
+This is exactly why contamination screening is a required step before proceeding with alignment
+
+
+Slide 13 — FastQC: Quality Scores
+
+FastQC plots the distribution of quality scores at each base position across all reads in the file
+The y-axis shows the Phred quality score — Q30 means 1 error per 1,000 bases, Q40 means 1 error per 10,000 bases
+The green zone represents good quality, the orange zone is acceptable, and the red zone is poor
+In this example, quality is high at the start of reads but drops towards position 26 — this is typical for Illumina data
+A score of at least Q20 is generally considered acceptable — anything below this should be trimmed
+In this case we would trim from position 26 onwards using Trimmomatic, a widely used hard-clipping tool
+
+
+Slide 14 — Different Factors Contribute to Poor Mapping
+
+Even with good quality reads, mapping efficiency can be affected by several factors
+Poor DNA quality or high sequencing error rates will reduce the number of reads that align confidently
+Using an inappropriate reference genome — one that is too divergent from the sample — will also reduce mapping rates
+Repetitive regions of the genome cause reads to align to multiple locations equally well, making it impossible to assign them to a unique position
+Extreme base composition such as very high AT content — the P. falciparum genome is 85% AT — can affect cluster generation during sequencing and coverage uniformity
+The box plots shown here illustrate how coverage varies dramatically across coding, intergenic, non-coding, and repeat regions, and across different nucleotide compositions
+
+
+Slide 15 — Alignment File Formats
+
+After alignment, the results are stored in one of three related formats
+SAM — Sequence Alignment Map — is a human-readable tab-delimited text format that includes a header section with metadata and an alignment section with one line per read
+It contains all the information from the original FASTQ file plus mapping information such as position, mapping quality, and CIGAR string
+BAM is the binary compressed version of SAM — it contains identical information but is much smaller and faster to process, and is the format used by most downstream tools
+CRAM is a highly compressed format that uses reference-based compression to reduce file sizes even further — particularly useful for large-scale data archiving
+In practice you will work primarily with BAM files during the course
+
+
+Slide 16 — Samtools
+
+Samtools is the primary toolkit for working with alignment files and is an essential part of any bioinformatics pipeline
+It was published by Li et al. in 2009 and remains the standard tool for BAM file processing
+Key commands you will use during the course include samtools index, which creates an index of the BAM file to enable rapid random access to any genomic region
+Samtools view extracts reads from a specific genomic region of interest
+Samtools flagstat produces a summary of mapping statistics including total reads, mapped reads, paired reads, and duplicate rates
+Samtools mpileup generates a pileup of reads across the genome, which is then passed to bcftools for variant calling
+
+
+Slide 17 — Aligning Reads in M. tuberculosis
+
+This slide shows a real example of read alignment for a Lisboa strain of M. tuberculosis viewed in Artemis
+The reference genome used is H37Rv, which has a GC content of approximately 65.6%
+Around 97% of reads mapped uniquely to the reference, giving coverage of 300 to 500 times across the genome — this is very high and provides excellent confidence for variant calling
+However, you can see a region highlighted in pink — this is a repeat region where reads from multiple genomic locations align ambiguously
+These repeat regions are a known challenge in M. tuberculosis genomics and must be handled carefully to avoid false variant calls
+
+
+Slide 18 — What if We Cannot Map to a Reference?
+
+Mapping breaks down in highly repetitive regions as shown here — reads in the repeat region between Rv1587c and Rv1588c cannot be uniquely placed
+There are three main solutions to this problem
+De novo assembly of the unmapped reads — rather than discarding them, they can be assembled into contigs independently of the reference
+Using long-read technologies such as Oxford Nanopore or PacBio — reads that span entire repeat regions can be placed unambiguously even if the repeat itself is complex
+Using population-specific reference genomes — a reference that is more closely related to the sample reduces divergence and improves mapping rates, particularly in variable regions
+
+
+Slide 19 — Browsing, Visualising and Interpreting Data
+
+There are many tools available for visualising alignment data — the choice depends on your needs
+For visualising genome assemblies, tools such as EagleView, HawkEye, and Tablet are commonly used — we will use Tablet in the practicals
+For viewing read alignments alongside genome annotation, the main options are LookSeq, IGV, IGB, BamView within Artemis, and GenoViewer — we will use IGV and Artemis
+Some browsers also include built-in variant detection and annotation capabilities, such as MagicViewer and Savant
+The tools highlighted in bold — Tablet, IGV, and Artemis — are the ones you will use during this course
+
+
+Slide 20 — References
+
+This slide lists the key references for the visualisation tools discussed
+These are worth bookmarking for your own future work
+Full citations are given for Tablet, LookSeq, IGV, IGB, MagicViewer, Savant, BamView, and Artemis
+
+
+Slide 21 — Mapping Practical
+
+The lecture is now complete and it's time to put everything into practice
+In the practical session you will work with real sequencing data from two organisms — Plasmodium falciparum and Mycobacterium tuberculosis
+You will run the alignment pipeline, assess mapping quality, and visualise your results in genome browsers
+Instructions are in the practical guide — please ask if you get stuck at any point

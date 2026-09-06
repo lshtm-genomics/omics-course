@@ -1,0 +1,65 @@
+EQTLs
+
+Here are notes for each slide:
+Slide 2 – Pacific Biosciences SMRT Sequencing
+
+PacBio SMRT sequencing works by observing a single DNA polymerase molecule in real time as it synthesises a new strand. Each incoming nucleotide is fluorescently labelled, and as it is incorporated, a brief pulse of light is emitted and detected. The key advantage over short-read sequencing is that the kinetics of incorporation — specifically the time the polymerase pauses — can reveal not just the sequence but also chemical modifications on the template bases.
+Note: "Florescence" should be "Fluorescence."
+
+Slide 3 – Finishing Genomes
+
+A major limitation of short-read assemblies is fragmentation — many bacterial genomes sequenced with Illumina exist as hundreds of contigs rather than a single complete chromosome. PacBio long reads can span repetitive regions that cause assembly breaks, enabling complete "finished" genome sequences. The bar chart shows that while the number of draft genomes grew rapidly from 1998–2012, finished genomes remained a small fraction — demonstrating the scale of the problem that long-read sequencing addresses.
+
+Slide 4 – Methylation (mechanism)
+
+A unique capability of SMRT sequencing is the direct detection of base modifications without any additional chemical treatment. When a methylated base passes through the polymerase, the enzyme pauses slightly longer than at an unmodified base — this is visible as an extended inter-pulse duration (IPD) in the fluorescence trace. The example shows a 6-methyladenine (6mA) producing a characteristic delayed signal, distinct from surrounding unmodified bases on both strands.
+
+Slide 5 – Methylation in M. tuberculosis
+
+Three methyltransferases have been identified in virulent M. tuberculosis, each recognising a specific DNA sequence motif and methylating the adenine (A) within it. These are orphan enzymes — they have no paired restriction endonuclease, suggesting their role is regulatory rather than part of a restriction-modification defence system. Disruption of mamA leads to reduced expression of multiple downstream genes, indicating that adenine methylation directly influences transcriptional regulation in TB — potentially relevant to virulence and pathogenicity.
+Note: "Gene expressioDifferent mechanisms proposed...n regulated by methylation" appears to be a text formatting error — it should read as two separate bullet points: "Gene expression regulated by methylation" and "Different mechanisms proposed (methylation in coding regions/promoter regions)."
+
+Slide 6 – Methylation Analysis
+
+SMRT sequencing across 22 M. tuberculosis samples identified all three previously reported methylation motifs. The two mamA motifs (CTCCAG/CTGGAG) appear ~1,934–1,935 times each in the genome, mamB (CACGCAG) ~813 times, and the hsdM motifs ~357 times each. The mamA and mamB motifs are methylated on both strands (partner motifs), while hsdM is hemi-methylated. Other apparent modifications were identified but were concluded to be largely false positives based on whole-genome sequencing validation.
+Note: The gene-to-locus mappings for mamB and hsdM appear swapped compared to slide 5 — mamB is listed as Rv2024c here but Rv2756c on slide 5, and hsdM as Rv2756c here but Rv2024c on slide 5. Worth checking against the primary literature.
+
+Slide 7 – Modification Coverage vs Score
+
+These four plots show the relationship between per-strand sequencing coverage and the Modification Quality Value (QV) for each of the four base types (A, C, G, T). The QV is a Phred-scaled score: QV 30 corresponds to a p-value of 0.001. A minimum strand coverage of 20 is required to make reliable modification calls. Adenine modifications (pink panel) show the highest and most confident QV scores, consistent with the known m6A methylation system in this organism.
+
+Slide 8 – IPD Ratio Distribution
+
+The IPD (Inter-Pulse Duration) ratio compares the observed polymerase pause at each base against an expected in silico control — a ratio significantly above 1 indicates a modification. The known motifs (CTCCAG, CTGGAG, CACGCAG, and the GATN₄RTAC/GTAYN₄ATC pair) all show IPD ratios of 3–10, indicating high-confidence m6A modifications. The large "no_motif" category shows low IPD ratios, consistent with unmodified bases, while a small proportion carry other modifications not associated with the identified motifs.
+
+Slide 9 – eQTL (introduction)
+
+eQTL (expression Quantitative Trait Loci) analysis integrates genomic and transcriptomic data to identify SNPs that statistically associate with variation in gene expression levels. A cis-eQTL is a SNP that affects expression of a nearby gene (typically within 1 Mb of the transcription start site), while a trans-eQTL acts at a distance, potentially on a different chromosome. The inclusion of methylation data as an additional variable opens the possibility of identifying epigenetic regulators of gene expression alongside sequence-level variants.
+
+Slide 10 – eQTL (diagram)
+
+This diagram illustrates the analytical framework. A window of SNPs surrounding a gene's transcription start site (TSS) is tested for association with that gene's expression level. Where different genotypes (e.g. GG, AG, AA) produce clearly separated expression distributions, a significant eQTL is identified. The distinction between cis- and trans-eQTLs is important: cis-eQTLs most commonly reflect direct regulatory effects (e.g. promoter variants), while trans-eQTLs may implicate transcription factors or other long-range regulatory elements.
+
+Slide 11 – eQTL in M. tuberculosis
+
+In the context of M. tuberculosis, eQTL analysis is particularly powerful because different lineages carry distinct SNP profiles and show different transcriptome signatures. By combining lineage-specific genotype data with RNA-Seq expression data, it is possible to identify which genetic variants drive transcriptional differences between lineages — potentially explaining observed differences in transmissibility, virulence, or drug tolerance. The circos plot shows the distribution of lineage-specific SNPs across the M. tuberculosis genome, and the heatmap shows corresponding lineage-specific expression differences.
+
+Slide 12 – SMRT Portal (setup)
+
+The SMRT Portal is PacBio's web-based analysis platform for processing raw SMRT sequencing data. To run methylation analysis, a job is configured by selecting the RS_Modification_and_Motif_Analysis protocol and specifying the appropriate reference genome. The portal then handles all downstream steps including read filtering, mapping, kinetic analysis, and motif detection.
+
+Slide 13 – SMRT Portal (protocol settings)
+
+Within the protocol, the key settings are: enabling modification identification, setting the minimum Modification QV threshold (30 by default, corresponding to p < 0.001), and choosing whether to use a physical control sample or rely on in silico expected kinetics as the baseline. The pipeline detects 6mA and 4mC modifications, and optionally 5mC if TET-converted samples are used. The Motif Finder module then clusters detected modifications into sequence motifs associated with methyltransferase recognition sites.
+
+Slide 14 – SMRT Portal (kinetic detections output)
+
+The output plots from the kinetic detection step show modification QV against per-strand coverage (left) and the distribution of bases by modification QV score (right). The dominant red cloud (adenine) sitting at high QV values across a broad coverage range indicates confident, reproducible m6A methylation signal. The other bases cluster at lower QV values, consistent with background kinetic noise rather than true modification signal.
+
+Slide 15 – SMRT Portal (genome browser view)
+
+The SMRT Portal genome browser visualises modifications directly on the reference sequence. The upper track shows IPD ratio across the genome, with orange spikes indicating positions of elevated polymerase pause — i.e. likely methylated bases. The table on the right lists individual detected modifications with their genomic coordinates, type, QV, and coverage. The inset at the bottom shows a zoom into a specific GATC motif on the reverse strand, confirmed as m6A with an IPD ratio of 5.67 and 91.5% of sites detected as modified.
+
+Slide 16 – SMRT Portal (motif summary table)
+
+This summary table presents the final output of the motif analysis. The top three confirmed m6A motifs are GCACNNNNNNGTT/AACNNNNNNGTGC (100% detected, paired strands), and GATC (99.91% detected). The remaining motifs have unknown modification types and lower detection rates, suggesting they may represent lower-confidence or context-dependent modifications. The histogram reinforces that the confirmed m6A motifs have consistently high QV scores, while the unknown motifs are distributed at lower confidence levels.

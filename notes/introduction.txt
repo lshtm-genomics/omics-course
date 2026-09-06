@@ -1,0 +1,229 @@
+Introduction
+
+Slide 1 — Title
+
+Welcome to the Infectious Disease Omics course at the London School of Hygiene and Tropical Medicine
+This course will introduce you to the computational approaches used to analyse genomic data from infectious disease pathogens
+By the end of the week you will have hands-on experience with the full sequencing data analysis pipeline
+
+
+Slide 2 — Course Outline (first view)
+
+The course follows a logical pipeline starting from raw sequencing data
+We begin with alignment — mapping reads to a reference genome
+From the alignment we assess coverage — how well the genome is represented
+Finally we catalogue genomic variants — the differences between our sample and the reference
+An alternative route is de novo assembly, where we reconstruct the genome without a reference
+
+
+Slide 3 — Course Outline (with skills)
+
+Alongside the biological concepts, you will also develop two key practical skills
+First, basic Linux command line skills — all the tools we use run in a terminal environment
+Second, familiarity with visualisation software — being able to look at and interpret your data visually is a crucial part of the workflow
+Don't worry if you have no Linux experience — we will walk through everything step by step
+
+
+Slide 4 — Omics Cascade
+
+The term 'omics' refers to the comprehensive study of a particular class of biological molecule
+The cascade starts at the genome — the complete DNA sequence of an organism
+DNA is transcribed into RNA, giving us the transcriptome — which genes are being expressed
+RNA is translated into proteins, giving us the proteome — which proteins are being produced
+Proteins drive metabolism, generating metabolites that make up the metabolome
+All of these layers ultimately influence phenotype — what an organism looks and behaves like
+In this course we will focus primarily on the genome and transcriptome, highlighted in the diagram
+We will also touch on the microbiome — the community of microorganisms associated with a host
+
+
+Slide 5 — Sanger Sequencing
+
+Before next-generation sequencing, all genomic data was generated using Sanger or capillary sequencing
+This first-generation technology was used to sequence the first human genome, the M. tuberculosis H37Rv reference, and the P. falciparum 3D7 malaria genome
+Sanger sequencing produces long reads of around 700 base pairs, which is an advantage
+However it required cloning of DNA fragments, was expensive at around $500 per megabase, produced low coverage, and took months to complete a genome
+Despite its limitations it was transformative — it gave us our first reference genomes, which we still use today
+
+
+Slide 6 — Platform Comparison Table
+
+Next-generation sequencing has revolutionised genomics by dramatically increasing throughput and reducing cost
+This table compares several sequencing platforms available today
+Illumina platforms dominate the field — the HiSeq X can produce up to 900 gigabases in 3 days at just $7 per gigabase
+PacBio and Oxford Nanopore produce much longer reads — up to 20kb and 200kb respectively — at the cost of lower throughput and higher per-gigabase cost
+Compared to Sanger sequencing, modern platforms represent a more than 10,000-fold increase in data per run, a 1,000-fold drop in cost, and a 10 million-fold increase in throughput
+The choice of platform depends on your research question — short reads for variant calling, long reads for assembly and structural variation
+
+
+Slide 7 — Next Generation Platforms
+
+This slide highlights three of the key platforms you will encounter throughout the course
+Oxford Nanopore's MinION is a portable, pocket-sized device capable of generating reads hundreds of kilobases long — it was famously used for sequencing in remote field settings
+Pacific Biosciences uses single molecule real-time sequencing to generate long reads of more than 10 kilobases, and can also detect DNA methylation directly
+Illumina's HiSeq X Ten — a set of ten ultra-high-throughput instruments — brought the cost of sequencing a human genome down to $1,000 for the first time
+All three platforms have their strengths and we will encounter data from several of them during the course
+
+
+Slide 8 — Platform Comparison (Nature Protocols)
+
+This comprehensive table from Nature Protocols gives a broader overview of sequencing platforms and their applications
+454/Roche was one of the first NGS platforms but has since been discontinued — it was widely used for bacterial and viral genome sequencing
+Illumina remains the most widely used platform for RNA-seq, genome-wide association studies, and clinical applications
+ABI SOLiD and Ion Torrent offer alternatives but are less commonly used in current infectious disease research
+Pacific Biosciences is particularly valuable for methylation detection and complex genome assembly
+Oxford Nanopore stands out for its portable form factor and suitability for pathogen surveillance and field sequencing
+The key takeaway is that no single platform is best for everything — understanding the tradeoffs is important when designing a study
+
+
+Slide 9 — Sequence Read Archive
+
+All next-generation sequencing data generated in publicly funded research is deposited in publicly accessible databases
+The two main archives are the NCBI Sequence Read Archive and the European Nucleotide Archive at the EBI
+These databases contain petabytes of sequencing data covering thousands of organisms and studies
+Being able to access and reuse public data is a core skill in bioinformatics — many important discoveries have been made by reanalysing existing datasets
+During this course we will work with data downloaded from these archives as well as data generated locally
+
+
+Slide 10 — The Course (raw data highlighted)
+
+Now let's look at the first step of the pipeline in more detail — raw sequence data
+This is what comes off the sequencing machine — millions of short DNA sequence reads stored in fastq format
+Before we can do anything useful with it, we need to understand what it looks like and how to assess its quality
+
+
+Slide 11 — Raw Sequence Data (fastq)
+
+Illumina sequencing works by fragmenting DNA into pieces of around 300 base pairs and sequencing both ends — these are called paired-end reads
+Each fragment generates a Read 1 and a Read 2, separated by the insert — the unsequenced middle portion
+The sequencer produces between 50 and 100 million of these short fragments, each around 100 base pairs long
+The data is stored in fastq format — each read consists of four lines: an identifier, the DNA sequence, a separator, and a quality score string
+The quality scores encode the confidence the sequencer has in each base call
+The central challenge is: how do we reconstruct a genome from millions of these tiny fragments?
+
+
+Slide 12 — Alignment to a Reference
+
+The answer — when a reference genome is available — is alignment
+Each read is compared to the reference genome and placed at the position it most likely came from
+This produces a pile-up view, as shown here using the LookSeq visualisation tool
+You can see how millions of short reads stack up along the reference, with paired reads shown as connected pairs
+This is the foundation for everything that follows — coverage analysis, variant calling, and structural variant detection
+
+
+Slide 13 — The Course (alignment highlighted)
+
+We now move to the alignment step in the pipeline
+The output of alignment is a set of files — SAM, BAM, and pileup files — that we will work with throughout the practicals
+These files contain not just the sequence but information about mapping quality, position, and read orientation
+
+
+Slide 14 — Central Dogma and Sequencing
+
+This diagram brings together the central dogma of molecular biology with the sequencing workflow
+Part A shows the flow from DNA to RNA to protein, with methylation as an additional layer of regulation influencing gene expression
+Part B shows how sequencing fits in — DNA is extracted and sequenced, producing raw reads which are then aligned to a reference
+From the alignment we can call variants — positions where our sample differs from the reference — producing a table of positions, reference bases, and alternate bases
+This is the core of genomic epidemiology — identifying variants that distinguish strains, confer drug resistance, or affect virulence
+
+
+Slide 15 — Alignment and Beyond
+
+This slide summarises the full pipeline from raw data to variant lists, showing the files, tools, and quality control steps at each stage
+Raw fastq files are checked for quality using FastQC, screened for contamination using fastq_screen, and problematic reads removed using Picard tools
+Alignment tools include BWA, Smalt, Bowtie, and Novoalign — we will use BWA in the practicals
+The alignment produces SAM and BAM files, which are assessed for mapping rate and genome coverage using samtools flagstat
+Variant calling uses tools like samtools mpileup for SNPs and indels, and Pindel, CNVnator, or Breakdancer for structural variants
+The final output is a VCF file — a standardised format listing all variants with quality scores and genotype information
+
+
+Slide 16 — FastQC Quality Scores
+
+FastQC is one of the first tools we run on any new dataset — it gives a rapid overview of read quality
+The plot shows quality scores at each position along the read — the higher the score, the more confident the base call
+Q20 means 1 error per 100 bases, Q30 means 1 per 1000, and Q40 means 1 per 10,000
+You can see that quality tends to drop towards the end of reads — this is characteristic of Illumina sequencing
+Reads showing poor quality towards the end can be trimmed using Trimmomatic — this is called hard clipping
+Alternatively, alignment software can soft-clip low-quality bases during the mapping step itself
+
+
+Slide 17 — Types of Variants
+
+Once we have aligned reads, we can detect several types of genetic variation
+SNPs — single nucleotide polymorphisms — are single base changes, such as an A changing to a G
+Indels are insertions or deletions of one or more bases — even a single base indel can disrupt a protein's reading frame
+Copy number variation involves larger duplications or deletions — sometimes spanning entire genes as shown here with gene B
+Each type of variant requires different tools and filtering strategies to detect reliably
+
+
+Slide 18 — Pile-up View: Detecting SNPs
+
+This is a real example of a SNP detected in a Lisboa strain of M. tuberculosis
+In the pile-up view you can see a C to T change at a single position within the Rv0245 gene
+The vast majority of reads show T at this position, giving us high confidence this is a true variant rather than a sequencing error
+This kind of view is also useful for detecting mixed infections — if two different strains are present, you would see roughly equal numbers of reads supporting each allele at heterozygous positions
+
+
+Slide 19 — VCF Format
+
+After variant calling, results are stored in VCF — Variant Call Format
+Each row represents a single variant, with columns for chromosome, position, reference allele, alternate allele, and quality score
+Additional fields contain information about read depth, mapping quality, and genotype calls
+VCF files can represent data from a single sample or multiple samples simultaneously — multi-sample VCFs are particularly useful for comparing strains in a population
+These files are generated from BAM files using Samtools and BCFtools, which we will use in the practicals
+
+
+Slide 20 — Using Paired End Mapping
+
+Paired-end sequencing is particularly powerful for detecting structural variants like large deletions
+This example shows a deletion in the Pfrbp2b gene in P. falciparum
+In the region of the deletion there is zero coverage — no reads map there
+However, read pairs that span the deletion show an abnormally large insert size — the two reads are much further apart than expected
+This discordant read pair signal, combined with the coverage drop, allows us to confidently call large deletions even when individual reads don't span the entire deleted region
+
+
+Slide 21 — Using Read Depth
+
+Read depth or coverage is another powerful signal for detecting structural variation
+Low or zero coverage at a region suggests that the sequence is deleted in the sample
+Excess coverage — significantly more reads than expected — suggests that a region has been duplicated
+This example shows the MDR1 gene in a malaria isolate from Thailand compared to the 3D7 reference
+The Thai isolate shows dramatically elevated coverage over this region, indicating amplification of the MDR1 gene — a known mechanism of drug resistance in malaria
+
+
+Slide 22 — The Course (de novo highlighted)
+
+When mapping to a reference is not possible or appropriate, we turn to de novo assembly
+This is particularly important for novel organisms, highly divergent strains, or regions of the genome that cannot be reliably mapped
+
+
+Slide 23 — What if We Cannot Map to a Reference?
+
+Mapping breaks down in regions of high repetition — as shown here in the Rv1587/8c repeat region of an M. tuberculosis Lisboa strain
+Reads from repetitive regions map to multiple locations, making it impossible to place them accurately
+The solution is de novo or reference-free assembly — reconstructing the genome sequence directly from the reads without using a reference
+We will cover de novo assembly in detail later in the course
+
+
+Slide 24 — The Course (visualisation highlighted)
+
+Throughout the course we will use visualisation software to inspect our data at every stage
+Being able to look at your alignment, your coverage, and your variants visually is essential for quality control and biological interpretation
+
+
+Slide 25 — Tablet
+
+Tablet is a genome browser designed specifically for viewing next-generation sequencing alignments
+It displays the coverage track at the top, showing how many reads cover each position
+Below that is the read panel — the individual reads laid out against the reference
+On the left you can navigate between chromosomes or contigs
+The gene track shows annotated features, and nucleotide and amino acid sequences can be viewed at high zoom
+Tablet is fast, easy to use, and works well for large BAM files
+
+
+Slide 26 — Artemis
+
+Artemis is a more fully featured genome browser developed at the Sanger Institute
+It displays coverage by region at the top, making it easy to spot deletions or duplications
+It uses inferred mapping distance — the span between paired reads — to help visualise insertions and deletions
+Clicking on individual reads gives detailed mapping information including mapping quality, flags, and CIGAR string
+Artemis is particularly well suited to bacterial genome analysis and annotation, and we will use it in several of the practicals
