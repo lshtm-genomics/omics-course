@@ -181,7 +181,7 @@ busco -i short/scaffolds.fasta -l bacteria_odb12 -o busco_output -m genome -c 2 
 
 conda deactivate
 ```
-The `-l` parameter lets you select a specific lineage database to use for BUSCO analysis, and there are many different options available. For example, when assembling the tick genome in previous work, the Arthropoda database was used. To choose the most appropriate database for your genome, visit the NCBI taxonomy page for your organism, find the relevant lineage information, and then select the closest BUSCO database based on that lineage from the BUSCO database [list](https://busco-data.ezlab.org/v5/data/lineages/).
+The `-l` parameter lets you select a specific lineage database to use for BUSCO analysis, and there are many different options available. For example, when assembling the tick genome in previous work, the Arthropoda database was used. To choose the most appropriate database for your genome, visit the NCBI taxonomy page for your organism, find the relevant lineage information, and then select the closest BUSCO database based on that lineage from the BUSCO database [list](https://busco-data.ezlab.org/v6/data/lineages/).
 
 The `-m` parameter in BUSCO specifies the mode of analysis, which determines the type of input data being assessed. It can take three main values: genome, transcriptome, and proteins. The genome mode is used for genome assemblies, the transcriptome mode is for RNA-seq data, and the proteins mode is for analysing protein sequences. Choosing the correct mode ensures that BUSCO searches for the appropriate set of single-copy orthologs based on the type of data you're analysing.
 
@@ -247,9 +247,9 @@ GapCloser -a short/scaffolds.fasta -b gapclosing.txt -o short/scaffolds_gapClose
 ```
 
 !!! question
-    === "Question 4"
+    === "Question 5"
         Run the same checks as above on this assembly and see if it improved, if not, why did it not improve?
-    === "Answer 4"
+    === "Answer 5"
         MTB has highly repetitive regions, which makes gap closing challenging. Even with high-quality paired-end reads, this is the limitation of short-read assemblies. 
 
 
@@ -312,9 +312,9 @@ quast -r tbdb.fasta -o quast_long long/assembly.fasta
 Don't forget to also run BUSCO to get the BUSCO score.
 
 !!! question
-    === "Question 5"
+    === "Question 6"
         Check out the N50 value, is it better or worse than the short reads assembly, why is this the case
-    === "Answer 5"
+    === "Answer 6"
         We should have got a much higher N50 value, with far fewer contigs, this is due to ONT being able to bridge the gap across the difficult to map areas. Flye specifically has an algorithm to map the repeats and find the ideal path from the repeats that short read assemblers cannot do
 
 After running flye we can also use canu to compare the best assembly, read the docs on canu and create a command to create an assembly https://canu.readthedocs.io/en/latest/quick-start.html#assembling-pacbio-clr-or-nanopore-data .
@@ -364,9 +364,9 @@ Finally we run racon to polish our genome
 racon -u --no-trimming -t 4 tb_ONT/sample1_ONT.fastq.gz long/racon.paf long/tgs_gapcloser.scaff_seqs.fa > long/final_assembly.fa
 ```
 !!! question
-    === "Question 6"
+    === "Question 7"
         Check out the final BUSCO and QUAST results, what are the differences between the previous results and this one, has it improved?
-    === "Answer 6"
+    === "Answer 7"
         Not much has improved if you used QUAST, apart from the the # N's per 100 kbp section, we have drastically reduced our assemblies misalignments or regions with ambiguity by polishing.
 
 Polishing can be run multiple times in order to get the final assembly to the highest quality, however it's important not to over polish and introduce bias into the dataset. One round of polishing may be enough, it is simply up to your dataset and what you feel is best.
@@ -390,9 +390,9 @@ spades.py -1 tb_ILL/sample1_1.fastq.gz -2 tb_ILL/sample1_2.fastq.gz --nanopore t
 Once again we need to check our assembly, you should now be familiar with this process..
 
 !!! question
-    === "Question 7"
+    === "Question 8"
         How is the N50 value, is it better than both the long and short read approaches?
-    === "Answer 7"
+    === "Answer 8"
         You will see that the result is an N50 less than what we hoped for. We have improved our assembly with a higher N50 than short reads, however the N50 is still lower than our long read only. This is because spades uses a short read primary approach and long reads to complement.
 
 Now its time for another hybrid assembler to see if we get a better result. This tool is called MaSuRCA, a popular hybrid assembler due to its uniqueness of creating "super reads" by combining the data from short and long reads, which are then used to improve the assembly. These super reads enhance the error correction and assembly accuracy, leveraging the long reads for their structural information and the short reads for their higher base-level accuracy. This approach helps to generate a more complete and accurate assembly by correcting errors in long reads and scaffolding contigs. The tool uses these data in parallel, ensuring optimal use of both types of sequencing.
