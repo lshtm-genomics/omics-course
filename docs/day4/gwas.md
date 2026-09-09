@@ -117,7 +117,7 @@ This creates the graph MD.imiss-vs-het.pdf (see below).
 
     Here we will exclude all individuals with a genotype failure rate ≥ 0.0185 (vertical dashed line) and/or heterozygosity rate ± 3 standard deviations from the mean (horizontal dashed lines). 
 
-Add the family ID and individual ID of all the failing this QC using:
+Add the family ID and individual ID of all the failing this QC. Let's open R again.
 
 ```
 R CMD BATCH imiss_het_fail.Rscript
@@ -161,10 +161,25 @@ perl run-IBD-QC.pl MD
 !!! info
     The code also looks at the individual call rates stored in MD.imiss and outputs the ID of the individual with the lower call rate to **fail_IBD-QC.txt** for each pair of related individuals. 
 
-To visualise the IBD rates, type: 
+To visualise the IBD rates, you will need to reopen R:
 
 ```
-R CMD BATCH  plot-IBD.Rscript
+R 
+```
+Now type:
+
+```
+data <- read.table("MD.genome", h=T)
+
+pdf("MD.IBD-hist.pdf")
+hist(data$PI_HAT, ylim=c(0,600), col="BLUE", breaks=100,
+     xlab="Estimated mean pairwise IBD", main="")
+dev.off()
+
+out <- which(data$PI_HAT > 0.185)
+write.table(data[out,], "fail_IBD-check.txt", col.names=F, row.names=F, sep="")
+
+quit()
 ```
 
 This generates MD.IBD-hist.pdf 
