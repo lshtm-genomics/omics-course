@@ -499,8 +499,10 @@ We can see the table with the normalised counts for each sample and each of the 
 To plot the heatmap copy the following script:
 
 ```
+pdf("heatmap_mtb.pdf", width = 8, height = 10)
 colnames(counts_heatmap) <- c("L4_1","L1_2","L1_3","L4_4","L1_5","L4_6")
 heatmap.2(as.matrix(counts_heatmap), scale="row", col=greenred(75), Rowv=NA, dendrogram = "col", trace="none", density.info = "none")
+dev.off()
 ```
 
 You should get a plot like this:
