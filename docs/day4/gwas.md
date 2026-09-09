@@ -177,7 +177,7 @@ hist(data$PI_HAT, ylim=c(0,600), col="BLUE", breaks=100,
 dev.off()
 
 out <- which(data$PI_HAT > 0.185)
-write.table(data[out,], "fail_IBD-check.txt", col.names=F, row.names=F, sep="")
+write.table(data[out,], "fail_IBD-check.txt", col.names=F, row.names=F, sep="\t")
 
 quit()
 ```
