@@ -1,0 +1,1831 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Third Generation Sequencing - LSHTM Omics</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#third-generation-sequencing" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="LSHTM Omics" class="md-header__button md-logo" aria-label="LSHTM Omics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LSHTM Omics
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Third Generation Sequencing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../day1/intro-to-linux/" class="md-tabs__link">
+          
+  
+  
+  Day 1
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../nanopore/" class="md-tabs__link">
+          
+  
+  
+  Day 2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../day3/microbiome/" class="md-tabs__link">
+          
+  
+  
+  Day 3
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../day4/phylogenetics/" class="md-tabs__link">
+          
+  
+  
+  Day 4
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../additional-info/conda/" class="md-tabs__link">
+          
+  
+  
+  Additional information
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../presentations/presentations/" class="md-tabs__link">
+          
+  
+  
+  Presentations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tasks/intro-to-linux-task/" class="md-tabs__link">
+          
+  
+  
+  Tasks
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LSHTM Omics" class="md-nav__button md-logo" aria-label="LSHTM Omics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    LSHTM Omics
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../connecting-github/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting connected
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Day 1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/intro-to-linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/mapping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mapping
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/variant-detection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variant detection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 2
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Day 2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nanopore/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Third Generation Sequencing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assembly-and-third-gen-sequencing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Genome Assembly
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transcriptomics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transcriptomics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 3
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Day 3
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/microbiome/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microbiomes Practical
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/methylation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Methylation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/eqtl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EQTL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 4
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Day 4
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/phylogenetics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phylogenetics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/gwas_ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GWAS &amp; Machine Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/gwas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Genome Wide Association Studies (GWAS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Additional information
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Additional information
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/conda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conda Environments: Why and How to Use Them
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/software/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frequently asked questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/settingUpYourMachines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setting up your machines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Presentations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Presentations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../presentations/presentations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Presentations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tasks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tasks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tasks/intro-to-linux-task/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intro to Linux task
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tasks/variant-calling-task/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variant Discovery Task
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tasks/basic-phylogeny-task/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phylo Task
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tasks/tb-transcriptomics-task/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transcriptomics Task
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tasks/methylation-task/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Methylation Task: Lineage Assignment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="third-generation-sequencing">Third Generation Sequencing</h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Be sure to use the <code>ont</code> Codespace when initiating VM for this practical.
+Also - please use the correct conda environment for this practical:
+<div class="highlight"><pre><span></span><code>conda activate ont
+</code></pre></div></p>
+</div>
+<h2 id="introduction">Introduction</h2>
+<p>In this session we are going to be looking at data generated by third-generation nanopore sequencing technology. Developed by Oxford Nanopore Technologies (ONT), these platforms, rather than the next-generation 'sequencing-by-synthesis approach', make use of an array of microscopic protein ‘pores’ set in in an electrically resistant membrane which guide strands of DNA or RNA through them. Each nanopore corresponds to its own electrode connected to a channel and sensor chip, which measures the electric current that flows through the nanopore. When a molecule passes through a nanopore, the current is disrupted to produce a characteristic ‘squiggle’. The squiggle is then decoded using basecalling algorithms to determine the DNA or RNA sequence in real time. Oxford Nanopore’s most popular platform is the MinION which is capable of generating single reads of up to <a href="https://ib.bioninja.com.au/_Media/genome-size-table_med.jpeg">2.3 Mb</a> (2.3 million bases).</p>
+<p><img alt="ngs1" src="../../img/ngs1.gif" /></p>
+<p>The MinION is one of 5 scalable platforms developed by ONT. High-throughput applications such as the GridION and PromethION use an array of nanopore flowcells to produce between 5 to 48 times more data than the MinION alone – outputting up to 48 TB of data in one run. More downscaled solutions such as The Flongle and SmidgION use a smaller, single flowcell to generate data. The MinION is a highly portable sequencing platform, about the size of a large USB flash drive. This technology enables researchers to perform sequencing analyses almost anywhere, providing they have the correct equipment to prepare the DNA libraries and analyse the output data.</p>
+<p><img alt="ngs2" src="../../img/ngs2.jpeg" /></p>
+<p>A complete sequencing run on the MinION platform can generate upwards to of 1TB of raw data, and downstream analyses require a significant amount of computing power, multicore high performance processors and large amounts of RAM. This poses a significant logistical challenge for researchers who want to take advantage of the platform’s portability aspect. Over recent years, the integration of GPUs (graphics processing units) has made it easier to analysis workflows.</p>
+<p><img alt="ngs3" src="../../img/ngs3.png" /></p>
+<h2 id="activity-briefing">Activity Briefing</h2>
+<p>Today we will be working with data generated by the <a href="https://www.zibraproject.org/">ZIBRA project Faria et al., 2017</a>. The ZIBRA group used real-time portable sequencing during the 2015 South American Zika virus (ZIKV) outbreak to provide a surveillance framework for tracking ZIKV spread into other geographic regions. With data generated using the MinION during the outbreak, we will follow a typical nanopore data analysis pipeline to produce a whole-genome Zika virus sequence to explore the capabilities of nanopore sequencing and the kind of data it can produce. We will then use maximum-likelihood (ML) techniques for phylogeographic reconstruction, to try and find out where our isolate came from and place it in the context of the wider South American Zika.</p>
+<h2 id="basecalling">Basecalling</h2>
+<p>Basecalling is performed with a tool called <code>dorado</code>. This tool is used to convert the raw signal data generated by the MinION into a sequence of nucleotides. The basecaller uses a neural network to predict the sequence of bases from the raw signal data. The output of the basecaller is a fastq file, which contains the basecalled sequence, as well as other information about the read, such as the quality scores of the basecalls. </p>
+<p>Basecalling required the use of advanced machine learning models, and can be computationally intensive. For this reason, basecalling is often performed on a high-performance computing cluster with a graphics processing unit. In this activity, we will use a pre-basecalled dataset to save time.</p>
+<p><img alt="ngs4" src="../../img/ngs4.gif" />     <img alt="ngs5" src="../../img/ngs5.png" /></p>
+<div class="highlight"><pre><span></span><code>cd ~/data/nanopore_activity/basecalling/fastq/pass
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Use the <code>ls</code> command to see what is inside this folder. This directory holds the fastq formatted 'pass' reads from the basecalling process. The reads have a quality score &gt; 7. Use <code>zcat | head</code> to preview the compresssed fastq file. Unlike the fast5 files, these are human-readable and contain all of the read data required for downstream analyses. Can you identify any of the common elements of a .fastq format files - similar to the ones you may have encountered in previous sessions? Click <a href="https://en.wikipedia.org/wiki/FASTQ_format">here</a> to find out more about the FASTQ format.</p>
+</div>
+<h2 id="basecalling-quality-control">Basecalling: Quality Control</h2>
+<p>Before moving on to the analysis steps, it is important to gauge the quality of your sequencing output. There are numerous factors which dictate the quality of the output data, spanning between quality of the input material, library preparation to software and hardware failure. We will look at some important metrics produced by the sequencer which will give us a feel for how well the run went.</p>
+<p>In order to get the run metrics in to a useful form, we will use an pycoQC to produce a range of plots in a HTML output, which we will use to judge the quality of the sequencing run. Something to note, is that in this activity we will only use a small subset of the sequenced reads, or else the analysis would take all day. This subsetting means that the sequencing telemetry may look inconsistent, when compared to a full run.</p>
+<div class="highlight"><pre><span></span><code>pycoQC -f ~/data/nanopore_activity/basecalling/fastq/sequencing_summary.txt -o pycoqc_results.html
+</code></pre></div>
+<p>You'll notice that the command failed with the following error:</p>
+<div class="highlight"><pre><span></span><code>module not found 'pysam'
+</code></pre></div>
+<p>This is because the <code>pysam</code> module is not installed in the <code>ont</code> conda environment. To install it, run the following command:</p>
+<div class="highlight"><pre><span></span><code>mamba install -c bioconda pysam
+</code></pre></div>
+<p>Now try re-running the <code>pycoQC</code> command:</p>
+<div class="highlight"><pre><span></span><code>pycoQC -f ~/data/nanopore_activity/basecalling/fastq/sequencing_summary.txt -o pycoqc_results.html
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>After executing the command you should find a file called 'pycoqc_results.html'. Open them up in the file manager or in the terminal (with the below command) and inspect some of the plots and see what you can find out. As mentioned, the data here are only a small subset of reads, so some of the plots are incomplete. But this should give you a good idea of how this analysis should look.</p>
+</div>
+<p>We can download the html file and open it with your preferred browser like firefox or google chrome.</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Question 1</label><label for="__tabbed_1_2">Answer 1</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Approximately how long did the sequencing run take?</p>
+</div>
+<div class="tabbed-block">
+<p>0.7 hours</p>
+</div>
+</div>
+</div>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Question 2</label><label for="__tabbed_2_2">Answer 2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>What is the N50 of the passed reads (&gt;Q7) for all basecalled reads in this run?</p>
+</div>
+<div class="tabbed-block">
+<p>N50 = 636 bp</p>
+</div>
+</div>
+</div>
+</div>
+<h2 id="adapter-trimming">Adapter Trimming</h2>
+<p>Nanopore library preparation results in the addition of a sequencing adapter at each end of the fragment. Both the template and complement strands to be sequenced carry the motor protein which means both strands are able to translocate the nanopore. For downstream analysis, it is important to remove these adapters. For this we will use Porechop. This program processes all of the reads in our basecalled fastq file, and removes these adapter sequences. Furthermore, the ligation library prep process can result in conjoined reads, meaning an adapter will be found in the middle of an extra-long read. <a href="https://github.com/rrwick/Porechop">Porechop</a> will identify these, split them and remove the adapters. In addition, if you use a multiplexing kit to maximise sample throughput, this program will split the reads based on the molecular barcode added to each sample. Our dataset only has one sample, so this demultiplexing won't be necessary.</p>
+<p><strong>Let's launch porechop and remove the adapters from the basecalled fastq file:</strong></p>
+<div class="highlight"><pre><span></span><code>porechop -i ~/data/nanopore_activity/basecalling/fastq/pass/*.fastq.gz -o basecalled_reads.porechop.fastq
+</code></pre></div>
+<h2 id="kraken-qc">Kraken QC</h2>
+<p>Another method of quality control is to check our reads for sequence contamination from other 'off-target' organisms. This is important in order to firstly, understand how effective your DNA extraction, enrichment and sequencing was. And secondly, to prevent anomalous reads from being incorporated in to assemblies.</p>
+<p>Using our basecalled reads we will perform an analysis using Kraken. Kraken is a tool which sifts through each read in a .fastq file and crosschecks it against a database of microorganisms. The output is a taxonomic assignment of each read, enabling to identify if any contamination has occurred. In this case we will be looking for any reads which do not belong to the Zika genome.</p>
+<p><strong>Let’s navigate to the kraken folder to begin the analysis:</strong></p>
+<div class="highlight"><pre><span></span><code>cd ~/data/nanopore_activity/kraken
+</code></pre></div>
+<p><strong>Type the following command in to the terminal to unleash the Kraken:</strong></p>
+<div class="highlight"><pre><span></span><code>kraken2 --db db --report kraken.report.txt --output kraken.output.txt basecalled_reads.porechop.fastq 
+</code></pre></div>
+<p>The <code>--db</code> flag specifies the database to use. In this case we are using a database with only viral sequences. The <code>--report</code> flag specifies the output file for the report, and the <code>--output</code> flag specifies the output file for the taxonomic assignments.</p>
+<h3 id="kraken-report">Kraken Report</h3>
+<p>The report generated by Kraken is a tab-delimited file which contains a list of all the reads in the input file, and the taxonomic assignment of each read. The first column is the read ID, the second is the taxonomic ID, the third is the length of the read, and the fourth is the lowest common ancestor (LCA) of the taxonomic assignment. The LCA is the lowest taxonomic rank that all the taxonomic assignments share. The report is useful for identifying the taxonomic assignments of reads, and for identifying any contamination in the dataset.</p>
+<h3 id="kraken-output">Kraken Output</h3>
+<p>The output generated by Kraken is a tab-delimited file which contains the taxonomic assignment of each read. The first column is the read ID, the second is the taxonomic ID, the third is the length of the read, and the fourth is the taxonomic assignment. The output is useful for identifying the taxonomic assignments of reads, and for identifying any contamination in the dataset.</p>
+<h2 id="mapping-and-visualisation">Mapping and Visualisation</h2>
+<p>Now that we have varified a successful sequencing run, our basecalled and trimmed Zika-confirmed data are ready to go, we will now map the reads on to a reference genome and perform variant calling. For the first step we will use the BWA program. You may be familiar with the mapping process from previous sessions. Using BWA we will align our .fastq reads to a reference genome. We need to make some slight modifications to the mapping command used previously, as we need to accommodate for some of the features of the nanopore data.</p>
+<p><strong>Move to the mapping directory:</strong></p>
+<div class="highlight"><pre><span></span><code>cd ~/data/nanopore_activity/mapping
+</code></pre></div>
+<p>Now we can use minimap2 to align our qc complete, porechopped reads. Minimap is a fast alignment tools similar to BWA mem. You can find more information about this tool by clicking the link <a href="https://lh3.github.io/2018/04/02/minimap2-and-the-future-of-bwa">comparing the two alignment tools</a></p>
+<div class="highlight"><pre><span></span><code>minimap2 -ax map-ont ./reference.fasta basecalled_reads.fastq | samtools view -q 15 -b | samtools sort -o alignment.bam
+</code></pre></div>
+<p>Finally we need to index the sorted bam file:</p>
+<div class="highlight"><pre><span></span><code>samtools index alignment.bam
+</code></pre></div>
+<p><strong>Now that we have successfully mapped the reads to a reference we can visualise them in IGV, to get a closer look at what our sequencing run looks like.</strong></p>
+<div class="highlight"><pre><span></span><code>igv
+</code></pre></div>
+<p>Using the below animation as a guide, open up the reference (reference.<abbr title="A format used to store sequence data">fasta</abbr>) in IGV and then load the bam file (alignment.bam)</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>Can you see any difference between this data and the illumina data you have previously analysed? What do you notice about the coverage of the reads? Are there any regions which have a high depth of coverage? What do you notice about the quality of the reads? Can you see any regions which have a high frequency of mismatches?</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>An important aspect of an effective nanopore sequencing analysis is being able to differentiate between errors or low quality basecalls, and true SNPs. You can see that there are random errors dotted around the screen, like static on a TV. Do you notice that some positions in the alignment have a distinct vertical column of red squares. These are most likely the variants we are looking for, and the key to unlocking our sequence data. These columns represent positions which have a high frequency of basecalls which do not agree with the reference sequence. It is unlikely that random errors will appear in such a manner, and so, in our next analysis we will use these high frequency variants to alter the reference sequence to build a new sequence, in a process called ‘variant calling’.</p>
+</div>
+<h2 id="coverage-depth-and-variant-calling">Coverage, Depth, and Variant Calling</h2>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Variant calling is a process used to identify new genotypes based on the ‘differences’ found our read data. You will have used it in the previous mapping practical at the start of the course. In this case, we are going to be using the alignment you have just generated and compiling a database of SNPs, inferred from positions which have a majority allele which is different from the one found on the reference sequence.</p>
+</div>
+<p>Before starting on variant calling, we first need to do one more QC step. This analysis will tell us how well our reads have aligned to the reference and how comprehensive our sequencing run was. Two key metrics are required for this: reference coverage and read depth. Read coverage tells us the percentage of the reference which has had sequencing reads aligned to it, which allows us to identify any regions that may have not been successfully sequenced. Depth is an equally as important metric: it tells us how many different reads have mapped to the same position. This is a particularly important statistic if you intend on doing variant calling, as regions with low depth may fall prey to false calls due to the random errors we have in our nanopore data. With a high enough read depth, we can be fairly sure that these errors will be ignored.</p>
+<p><strong>We will now use R to generate a plot to allow us to assess the coverage and depth.</strong></p>
+<p><strong>Navigate to the ‘variant_calling’ folder and we’ll begin:</strong></p>
+<div class="highlight"><pre><span></span><code>cd ~/data/nanopore_activity/variant_calling 
+</code></pre></div>
+<p>We need to use Samtools, a versatile package you will be familiar with, to extract the depth statistics from the .bam alignment file we generated in the previous section. This will generate a file called ‘depth_statistics’.</p>
+<div class="highlight"><pre><span></span><code>samtools depth ~/data/nanopore_activity/mapping/alignment.bam &gt; depth_statistics
+</code></pre></div>
+<p>Next, we will use the R statistical package to generate a plot based on the data samtools generated. Simply type ‘R’ in to the terminal to initialise the R interface.</p>
+<div class="highlight"><pre><span></span><code>R
+</code></pre></div>
+<p><img alt="ngs10" src="../../img/ngs10.png" /></p>
+<p>Once you have initialised R, you can enter the following two lines of code, one after the other. The first command will load the ‘ depth_statistics’ file, and the second will generate the plot</p>
+<div class="highlight"><pre><span></span><code>data&lt;-read.table("depth_statistics")
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>plot(data$V3,type="l",xlab="Reference Position", ylab="read Depth")
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Take a look at the plot you have just generated in R. Does the genome have adequate coverage and depth? What do you notice about the depth of the reads of nanopore generated data, as opposed to Illumina? Furthermore, why do you think there are these block-like increases and decreases in the depth? (Hint: how do you think these sequencing libraries were generated?)</p>
+</div>
+<p>You can quit R by typing:</p>
+<div class="highlight"><pre><span></span><code>quit()
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Now that we know the coverage and depth, we can move on to the variant calling. For this, we will use a package called ‘bcftools’. Bcftools will look through the alignment and ‘call’ the positions which do not agree with the reference, count them and compile them in to a database called a VCF. Enter the following code in to the terminal to begin the process:</p>
+</div>
+<div class="highlight"><pre><span></span><code>bcftools mpileup -q 8 -B -I -Ou -f reference.fasta ~/data/nanopore_activity/mapping/alignment.bam | bcftools call -mv -Oz -o calls.vcf.gz
+</code></pre></div>
+<p><img alt="ngs11" src="../../img/ngs11.gif" /></p>
+<p>Let's take a look inside the VCF file to see what kind of data it contains:</p>
+<div class="highlight"><pre><span></span><code>zless calls.vcf.gz
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>You can scroll down using the down-arrow key on your keyboard. Can you recall the common features of a VCF file? Press 'q' to quit the 'zless' program to continue with the activity:</p>
+</div>
+<p>Next, we need to index the .vcf file:</p>
+<div class="highlight"><pre><span></span><code>bcftools index calls.vcf.gz
+</code></pre></div>
+<p>This next line of code will take the calls made in the VCF file and apply them to the reference sequence, changing it based of the differences observe in our reads:</p>
+<div class="highlight"><pre><span></span><code>bcftools consensus -f reference.fasta calls.vcf.gz -o consensus_sequence.fasta
+</code></pre></div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>It is important to understand how the reference sequence can effect the consensus outcome. If unchecked, positions with zero coverage will default to reference. This will result in the experimental sequence becoming more like the reference than it actually is. We can use BEDtools mark positions with low coverage which BCFtools will use to mask the zero coverage positions with 'N's.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>You will now have a file called ‘consensus_sequence.<abbr title="A format used to store sequence data">fasta</abbr>’. this contains the modified reference, a brand new sequences based on the sequence data we have been working with.</p>
+</div>
+<h2 id="sequence-alignment">Sequence Alignment</h2>
+<p>Now we are going add our consensus sequence to a multiple sequence alignment, to prepare the dataset for phylogenetic inference. First, navigate to the ‘phytogeography’ folder:</p>
+<div class="highlight"><pre><span></span><code>cd ~/data/nanopore_activity/phylogenetics
+</code></pre></div>
+<p>In this folder you will find the consensus sequence you have just generated and a pre-built Zika virus sequence dataset, containing the entire* protein coding sequences of all publicly available ZIKV isolates. Let’s open up the dataset in an alignment viewer and take a look at that this kind of data looks like. Like most of the tools you have encountered during this course there are many alternative programs out there that will perform similar tasks, in this instance we will use Aliview. Let’s call up the program and load our dataset:</p>
+<div class="highlight"><pre><span></span><code>aliview zika_dataset.fasta
+</code></pre></div>
+<p><img alt="ngs12" src="../../img/ngs12.png" /></p>
+<p>With Aliview open, you should now see the dataset we will be working with for the rest of the activity. In the left pane you should see the sequence metadata: the unique sequence accession number, the species the virus was isolated from, the country of origin and the date of collection. Spanning across horizontally, you should see the genome sequence to which the metadata is associated with. On the pane at the bottom of the window, you should see a few statistics about the dataset. Have a browse and familiarise yourself with the data and the software interface.</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Question 5</label><label for="__tabbed_3_2">Answer 5</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>How many sequences are there in the <em>Zika</em> dataset?</p>
+</div>
+<div class="tabbed-block">
+<p>284</p>
+</div>
+</div>
+</div>
+</div>
+<p>Before we continue with any analyses, we first have to add our new sequence and then align the dataset. Alignment is the process of arranging sequence data in such a way that each sequence may be compared to each other. For this we will use a program called ‘mafft’. This program will rearrange the sequences based on similarity, so that they may be compared in future analyses.</p>
+<p><strong>Close the Aliview window, and open up the terminal ensuring you are still in the ‘phylogenetics’ directory. First, we will add our new consensus sequence to the database by using the ‘cat’ (concatenate) command:</strong></p>
+<div class="highlight"><pre><span></span><code>cat zika_dataset.fasta consensus_sequence.fasta &gt; zika_all.fasta
+</code></pre></div>
+<p>Next, we will call up the alignment program and point it in the direction of our unaligned ‘zika_all.<abbr title="A format used to store sequence data">fasta</abbr>’ dataset. The alignment command is made up of the following elements:</p>
+<p><code>mafft</code> – calls the mafft alignment software</p>
+<p><code>zika_all.fasta</code> – the input file </p>
+<p><code>&gt;</code> - this symbol ‘points towards’ the output file </p>
+<p><code>zika_all_aligned.fasta</code> – this is the name of the output file </p>
+<div class="highlight"><pre><span></span><code>mafft zika_all.fasta &gt; zika_all_aligned.fasta
+</code></pre></div>
+<p>The program may take a short while to run. Alignments generally can take a very long time; some of you may be familiar with using the ClustalO or MUSCLE web-based servers. While these are a few of the more popular options, MAFFT has its merits, particularly in being able to build large alignments in an exceptionally short amount of time.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Once the program has completed, you should find a file called ‘zika_all_ailigned.<abbr title="A format used to store sequence data">fasta</abbr>’. Open it up in Aliview and inspect the sequences. Comparing this to the unaligned dataset, can you see how easy it is now, to compare each sequence and visualise the diversity across the dataset. With our sequence added to the dataset, we can now move on to the final section of the activity: phylogenetics.</p>
+</div>
+<h2 id="phylogenetics-iqtree">Phylogenetics: iqtree</h2>
+<p>IQ-Tree is the tool we will be using today to infer our phylogenetic tree. It is a popular program for phylogenetic analyses of large datasets. Its main strengths are its speed and a robust search algorithm resulting in phylogenies with good likelihood scores. The maximum likelihood method uses standard statistical techniques for inferring probability distributions, and to assign probabilities to particular possible phylogenetic tree topologies (the shape of the tree). Hopefully you should be familiar with the basic concepts underpinning phylogenetics, and their applications: so let’s get stuck in.</p>
+<p>Now we have our multiple sequence alignment, we can now start the phylogenetic inference. The following command consists of these elements:</p>
+<p><code>iqtree</code> – this calls the RAxML program</p>
+<p><code>-m GTR+G</code> – specifies the substitution model</p>
+<p><code>-s input.fasta</code> – specifies the input sequence file</p>
+<p><code>-bb 1000</code> – specifies the bootstrap replicates</p>
+<p>From inside the ‘phylogenetics’ folder, run the following command in the terminal:</p>
+<div class="highlight"><pre><span></span><code>iqtree -m GTR+G -s ./zika_all_aligned.fasta -bb 1000 -nt AUTO
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Inferring phylogenies is a complex process can take a very long time, depending on the program you use and the size of the dataset. Because we will not have access to HPC (High Performance Computing) in this activity, we will run only 1 inference. However, in the next step, you will be provided with a tree inferred with the same data, but run with 1000 inferences i.e the program will have been run 1000 times. This gives the program the opportunity to explore the phylogenetic landscape further, so that the resultant tree is the most probabilistically robust.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>If you have any questions about this phylogenetic application, or any others you are aware of, don't hesitate to ask a demonstrator.</p>
+</div>
+<p>Now that RAxML has completed its run we can now visualise the results in Figtree – a phylogenetic tree visualisation software package.</p>
+<p><strong>Run the following command:</strong></p>
+<div class="highlight"><pre><span></span><code>figtree ./zika_all_aligned.fasta.treefile
+</code></pre></div>
+<p><img alt="ngs13" src="../../img/ngs13.gif" /></p>
+<p>Now that you have opened up the tree in Figtree, you first need to assign the bootstrap data to a category. We can then organise the tree in a way that it is more easy to view. Using the animation below as a guide, select the 'Midpoint Root' and 'Increasing Node Order' settings.</p>
+<p><img alt="ngs14" src="../../img/ngs14.gif" /></p>
+<p>Use the scroll bars in the Figree window, and on the pane on the left hand side of the windows to zoom and navigate the tree.</p>
+<p><strong>You can use the search bar in the top right corner of the screen to find our 'CONSENSUS' sequence.</strong></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Now that we can see where our sequence falls on the tree, we can look in to the geographical and chronological metadata in our dataset and the structure of the tree, to gain a deeper understanding of what happened during the Zika outbreak in the Americas.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Question 6</label><label for="__tabbed_4_2">Answer 6</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>What is the closest ancestor of our sequence?</p>
+</div>
+<div class="tabbed-block">
+<p>Brazil - 13/04/2016</p>
+</div>
+</div>
+</div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>What can you tell about the outbreak from the topology (shape and order) of the tree? Can you see distinct clades (groupings) in the overall structure of the tree? As you follow the nodes in each clade further in to the tree, towards the leaves, what to notice about the geography of the isolates in this dataset? Can you tell where most of the lineages began?</p>
+</div>
+<p><strong>We can use the phylogenies similar to the one we have just generated to map transmission and the spread of diseases.</strong></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Click on the 'Phylogeography Map' link. the program it will take you to was built using a similar Zika dataset that we have used today, with a few extra added isolates. To generate this map, we used Bayesian ancestral state reconstruction with a molecular clock to map the spread of Zika during the 2015-16 outbreak. Do you notice the similarities between the structure of the tree in Figtree and the phylogeographic map?</p>
+</div>
+<p><a href="https://jodyphelan.github.io/genomics_course/phylogeography/index.html">Phylogeography Map</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Hopefully having completed this activity, you will have gained a better understanding of how to process third-generation nanopore data, and the applications of such a technologies in an infectious disease outbreak scenario. The pipeline we have used in this activity is one of a hundred you can use to carry out similar tasks, but choosing the right tools for the job is paramount when performing sequence analysis.</p>
+<p>The use of front-line genomics during outbreaks is a somewhat novel practice, but with tools such as the MinION and its downstream applications, it is possible to monitor the dynamics of disease outbreaks in real-time to inform on-the-ground containment strategy and provide a framework for surveillance, both in a preventative and a post-outbreak context.</p>
+<p>If you have any further questions about this activity or your own applications of this skills learnt during this course, ask a demonstrator.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.tooltips", "navigation.instant", "navigation.tabs", "toc.integrate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

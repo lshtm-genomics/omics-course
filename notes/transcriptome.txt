@@ -1,0 +1,50 @@
+Transcriptome 
+
+Slide 2 – Outline
+
+This lecture introduces the field of transcriptomics and its primary method (RNA-Seq), compares it to older technologies, and demonstrates how differential gene expression analysis can reveal biologically meaningful differences between samples.
+
+Slide 3 – What is Transcriptomics?
+
+While genomics tells us what genes an organism has, transcriptomics tells us which genes are actually being expressed, and at what level, at a given moment. Because gene expression is dynamic — changing with cell type, developmental stage, environmental conditions, and disease state — transcriptomics is a powerful tool for understanding biology in context rather than just from sequence alone.
+
+Slide 4 – What is RNA-Seq?
+
+RNA cannot be sequenced directly on most platforms, so it must first be converted to complementary DNA (cDNA) via reverse transcription. The cDNA library is then prepared and sequenced, producing short reads that can be mapped back to the genome or a reference transcriptome. The depth of read coverage at any given transcript reflects how abundantly that transcript was present in the original sample — forming the basis for expression quantification.
+
+Slide 5 – Comparison to Historic Approaches
+
+Microarrays rely on hybridisation and are limited by the need for prior knowledge of the transcriptome, high background noise, and a narrow dynamic range. cDNA/EST sequencing uses Sanger technology and is too low-throughput to be practical for whole-transcriptome quantification. RNA-Seq surpasses both: it has single-base resolution, a dynamic range exceeding 8,000-fold, low background, and does not always require a reference genome — making it suitable for novel transcript and isoform discovery.
+
+Slide 6 – RNA-Seq vs Microarray
+
+This study in P. falciparum during intraerythrocytic development (IDC) illustrates the added discovery power of RNA-Seq over microarrays. The heatmaps show broadly similar expression patterns between the two technologies (correlations of R=0.70–0.85), validating RNA-Seq results. However, RNA-Seq additionally confirmed 75% of predicted splice sites and revealed 202 novel splice sites and 107 novel transcripts that microarrays could not detect — since microarrays can only measure what is already known.
+
+Slide 7 – Experimental Design
+
+Several key decisions must be made before sequencing. Total RNA capture retains all RNA species including rRNA, which typically constitutes >90% of total RNA — rRNA depletion (e.g. with RiboPool) removes this to concentrate sequencing effort on informative transcripts. For bacterial transcriptomics, rRNA depletion is essential as bacteria lack the poly-A tail used for mRNA enrichment in eukaryotic studies. The choice of platform (Illumina for accuracy and throughput, Nanopore for long reads and isoform resolution) and the level of multiplexing both affect cost and depth per sample.
+
+Slide 8 – RNA-Seq Analysis Practical Pipeline
+
+The pipeline branches at the start depending on whether a reference genome is available. When a reference exists, reads are mapped (e.g. with BWA or HISAT2), the alignment can be visualised in Artemis, and counts fed into DESeq2 for differential expression analysis. When no reference exists, reads can be de novo assembled using Trinity to reconstruct the transcriptome, followed by functional annotation. In this practical, the focus (indicated by the red circle) is on the reference-based mapping and differential expression branch.
+
+Slide 9 – Analysis Workflow
+
+After QC (trimming adapters, removing low-quality reads), reads are mapped to the reference. A critical filtering step follows: reads that map to multiple locations are discarded, as their origin cannot be determined with confidence — this is particularly important in organisms with gene families or repetitive regions. The remaining uniquely mapped reads are counted per gene to quantify transcript abundance, and these counts then form the input for differential expression testing between conditions or sample groups.
+
+Slide 10 – Mapping Considerations
+
+A key challenge in eukaryotic RNA-Seq mapping is that mRNA has had its introns spliced out, meaning a read spanning an exon-exon junction will not map contiguously to the genomic DNA. Splice-aware aligners such as HISAT2 are designed to handle this by allowing reads to span large intronic gaps. Alternative splicing means a single gene can produce multiple distinct mRNA isoforms — capturing this requires careful aligner choice and, ideally, long-read sequencing to span full-length transcripts. BWA, by contrast, is not splice-aware and is more appropriate for bacterial transcriptomics where introns are absent.
+
+Slide 11 – Post-Mapping Considerations
+
+Within a sample, the primary output is a read count per transcript, which serves as a proxy for expression level. Novel transcripts or exons can also be identified from reads that map to unannotated regions. Between samples, the goal is to identify genes that are significantly more or less expressed under different conditions. Crucially, raw counts cannot be compared directly across samples without normalisation — differences in total library size, RNA composition, and sequencing depth must all be accounted for to avoid false conclusions.
+
+Slide 12 – Differential Gene Expression
+
+Differential expression (DE) analysis statistically tests which genes show significantly different expression levels between two or more conditions. DESeq2 and EdgeR are the gold-standard tools for this, both using negative binomial models to account for the overdispersion typical of count data. The heatmap shows a real example from TB: iron depletion genes (mbt cluster) are highly upregulated in activated macrophages (red) compared to resting macrophages (blue), illustrating how DE analysis can reveal the transcriptional response to an infection-relevant stress.
+Note: "susceptible vs drug resistance" should read "susceptible vs drug-resistant."
+
+Slide 13 – Practical Background
+
+In this practical you will apply the RNA-Seq pipeline to M. tuberculosis transcriptomic data, comparing gene expression between two major phylogenetic lineages: Lineage 1 (East Africa, Philippines, Indian Ocean rim) and Lineage 4 (Europe, Americas, Africa). These lineages differ in their geographic distribution, clinical behaviour, and transmissibility — identifying transcriptional differences between them may help explain some of those phenotypic differences.

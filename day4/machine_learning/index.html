@@ -1,0 +1,2116 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Machine Learning for Antimicrobial Resistance Prediction - LSHTM Omics</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#machine-learning-for-antimicrobial-resistance-prediction" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="LSHTM Omics" class="md-header__button md-logo" aria-label="LSHTM Omics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LSHTM Omics
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Machine Learning for Antimicrobial Resistance Prediction
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../day1/intro-to-linux/" class="md-tabs__link">
+          
+  
+  
+  Day 1
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../day2/nanopore/" class="md-tabs__link">
+          
+  
+  
+  Day 2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../day3/microbiome/" class="md-tabs__link">
+          
+  
+  
+  Day 3
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../phylogenetics/" class="md-tabs__link">
+          
+  
+  
+  Day 4
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../additional-info/conda/" class="md-tabs__link">
+          
+  
+  
+  Additional information
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../presentations/presentations/" class="md-tabs__link">
+          
+  
+  
+  Presentations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tasks/intro-to-linux-task/" class="md-tabs__link">
+          
+  
+  
+  Tasks
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LSHTM Omics" class="md-nav__button md-logo" aria-label="LSHTM Omics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    LSHTM Omics
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../connecting-github/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting connected
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Day 1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/intro-to-linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/mapping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mapping
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/variant-detection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variant detection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 2
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Day 2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/nanopore/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Third Generation Sequencing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/assembly-and-third-gen-sequencing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Genome Assembly
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day2/transcriptomics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transcriptomics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 3
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Day 3
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/microbiome/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microbiomes Practical
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/methylation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Methylation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/eqtl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EQTL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 4
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Day 4
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../phylogenetics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phylogenetics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gwas_ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GWAS &amp; Machine Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gwas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Genome Wide Association Studies (GWAS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Additional information
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Additional information
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/conda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conda Environments: Why and How to Use Them
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/software/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frequently asked questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/settingUpYourMachines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setting up your machines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Presentations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Presentations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../presentations/presentations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Presentations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tasks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tasks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tasks/intro-to-linux-task/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intro to Linux task
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tasks/variant-calling-task/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variant Discovery Task
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tasks/basic-phylogeny-task/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phylo Task
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tasks/tb-transcriptomics-task/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transcriptomics Task
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tasks/methylation-task/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Methylation Task: Lineage Assignment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="machine-learning-for-antimicrobial-resistance-prediction">Machine Learning for Antimicrobial Resistance Prediction</h1>
+<h3 id="a-practical-workshop-please-use-the-ml-amr-workshop-codespace">A Practical Workshop - Please use the ml-amr-workshop codespace</h3>
+<p><em>Mycobacterium tuberculosis · Genotype-to-Phenotype Prediction</em></p>
+<hr />
+<h2 id="contents">Contents</h2>
+<ol>
+<li><a href="#1-overview-and-learning-objectives">Overview and Learning Objectives</a></li>
+<li><a href="#2-scientific-background">Scientific Background</a></li>
+<li><a href="#3-software-used">Software Used</a></li>
+<li><a href="#4-running-the-pipeline">Running the Pipeline</a></li>
+<li><a href="#5-hyperparameter-experiments">Hyperparameter Experiments</a></li>
+<li><a href="#6-interpreting-your-results">Interpreting Your Results</a></li>
+<li><a href="#7-phenotype-file-format">Phenotype File Format</a></li>
+<li><a href="#8-discussion-questions">Discussion Questions</a></li>
+<li><a href="#9-quick-reference">Quick Reference</a></li>
+</ol>
+<hr />
+<h2 id="1-overview-and-learning-objectives">1. Overview and Learning Objectives</h2>
+<p>This workshop teaches you to build, evaluate, and interpret machine learning classifiers that predict rifampicin resistance in <em>Mycobacterium tuberculosis</em> directly from whole-genome sequencing (WGS) data. You will work with a real genotype-phenotype dataset, process it end-to-end, and critically assess how modelling choices affect predictive performance.</p>
+<p><strong>By the end of this workshop you will be able to:</strong></p>
+<ul>
+<li>Encode raw VCF genotype data into a binary feature matrix suitable for ML</li>
+<li>Split data correctly to avoid data leakage</li>
+<li>Train logistic regression and decision tree classifiers with different hyperparameters</li>
+<li>Interpret sensitivity, specificity, F1, and AUC in a clinical AMR context</li>
+<li>Explain the effect of regularisation strength and tree depth on model behaviour</li>
+<li>Extract and interpret feature importances as biological hypotheses</li>
+<li>Compare model runs visually and draw evidence-based conclusions</li>
+</ul>
+<hr />
+<h2 id="2-scientific-background">2. Scientific Background</h2>
+<h3 id="21-why-predict-amr-from-genotype">2.1 Why predict AMR from genotype?</h3>
+<p>Culture-based drug susceptibility testing (DST) for <em>M. tuberculosis</em> takes 2–6 weeks using solid media, or 1–2 weeks using liquid culture systems such as MGIT. WGS can be completed in 24–48 hours and, when paired with a trained classifier, can predict resistance before culture results are available. This has direct clinical impact: faster appropriate therapy, reduced transmission, and better stewardship.</p>
+<p>Genotypic prediction works because resistance in <em>M. tuberculosis</em> is almost entirely driven by chromosomal mutations — there is no horizontal gene transfer of resistance determinants. ML approaches are valuable because they can learn from patterns across thousands of variants simultaneously, including variants of uncertain significance not captured by curated catalogues such as WHO-TBProfiler.</p>
+<h3 id="22-rifampicin-resistance-in-m-tuberculosis">2.2 Rifampicin resistance in <em>M. tuberculosis</em></h3>
+<p>Rifampicin (RIF) is one of the most important first-line anti-TB drugs and a cornerstone of standard short-course therapy. It works by binding to the β subunit of RNA polymerase, blocking transcription. Resistance arises almost exclusively through mutations in an 81 bp region of <em>rpoB</em> (Rv0667) known as the <strong>rifampicin resistance-determining region (RRDR)</strong>, spanning codons 426–452 (H37Rv numbering).</p>
+<p>Key <em>rpoB</em> codons and their clinical significance:</p>
+<table>
+<thead>
+<tr>
+<th>Codon</th>
+<th>Common mutation</th>
+<th>Resistance level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S450</td>
+<td>S450L</td>
+<td>High-level — most prevalent globally</td>
+</tr>
+<tr>
+<td>H445</td>
+<td>H445Y / H445D / H445R</td>
+<td>High-level</td>
+</tr>
+<tr>
+<td>D435</td>
+<td>D435V</td>
+<td>High-level</td>
+</tr>
+<tr>
+<td>L452</td>
+<td>L452P</td>
+<td>Variable</td>
+</tr>
+<tr>
+<td>I491F</td>
+<td>I491F</td>
+<td>Low-level — may be missed by some assays</td>
+</tr>
+</tbody>
+</table>
+<p>Rifampicin resistance is a strong proxy for multidrug-resistant TB (MDR-TB), since most MDR strains are also isoniazid-resistant. Detecting it rapidly is therefore of major public health importance.</p>
+<blockquote>
+<p><strong>💡 Why is <em>rpoB</em> such a good target for ML?</strong>
+Because resistance is so strongly concentrated in the RRDR, a well-trained model should assign high importance to a small number of <em>rpoB</em> positions. If your top features are dominated by RRDR variants, this is a good sign the model has learned genuine biology rather than noise.</p>
+</blockquote>
+<h3 id="23-the-feature-matrix">2.3 The feature matrix</h3>
+<p>Each sample (row) is a sequenced <em>M. tuberculosis</em> isolate. Each feature (column) is a SNP, identified by <code>CHROM_POS_ALT</code>. Genotypes are encoded numerically:</p>
+<div class="highlight"><pre><span></span><code>0/0  →  0.0   (homozygous reference — no mutation)
+0/1  →  0.5   (heterozygous — mixed infection or within-host diversity)
+1/1  →  1.0   (homozygous alternate — mutation present)
+./.  →  NaN   (missing data — imputed during training)
+</code></pre></div>
+<p><em>M. tuberculosis</em> is haploid, so heterozygous calls (0.5) typically indicate mixed infection rather than true heterozygosity. A 0.5 call at an <em>rpoB</em> RRDR position may indicate a mixed susceptible/resistant infection, which has implications for both phenotyping and clinical interpretation.</p>
+<h3 id="24-logistic-regression">2.4 Logistic Regression</h3>
+<p>Logistic regression models the log-odds of the outcome (resistant = 1) as a linear combination of input features:</p>
+<div class="highlight"><pre><span></span><code>log( p / (1-p) ) = β₀ + β₁x₁ + β₂x₂ + ... + βₙxₙ
+</code></pre></div>
+<p><strong>Regularisation</strong> penalises large coefficients to prevent overfitting. Two types are available:</p>
+<ul>
+<li><strong>L2 (Ridge):</strong> adds the sum of squared coefficients to the loss. Shrinks all coefficients towards zero but rarely to exactly zero. Good default.</li>
+<li><strong>L1 (Lasso):</strong> adds the sum of absolute coefficients. Drives many coefficients to exactly zero, performing implicit feature selection. Particularly relevant here — since resistance signal is concentrated in <em>rpoB</em>, L1 should produce a sparse model with high weight on a handful of RRDR variants.</li>
+</ul>
+<p><strong><code>C</code></strong> is the inverse of regularisation strength. A small C (e.g. 0.01) applies strong regularisation — a simpler model with higher bias. A large C (e.g. 100) applies little regularisation — a more complex model that may overfit. Experiment with C across several orders of magnitude.</p>
+<blockquote>
+<p><strong>💡 Clinical relevance of LR coefficients</strong>
+Because each coefficient β corresponds directly to one SNP, a positive β means that SNP is associated with resistance and a negative β with susceptibility. For rifampicin, you would expect large positive coefficients at known <em>rpoB</em> RRDR positions. Any large coefficients outside <em>rpoB</em> are worth scrutinising — they may reflect population structure rather than direct resistance mechanisms.</p>
+</blockquote>
+<h3 id="25-decision-trees">2.5 Decision Trees</h3>
+<p>A decision tree recursively partitions the feature space using binary splits on individual SNPs. At each node the algorithm selects the feature and threshold that best separates resistant from susceptible samples according to an impurity criterion (Gini impurity or information gain / entropy).</p>
+<p><strong>Key hyperparameters:</strong></p>
+<ul>
+<li><strong><code>max_depth</code>:</strong> controls how many levels the tree can grow. A depth of 1 is a single split (stump); unlimited depth means the tree can perfectly memorise the training data (overfitting). For rifampicin, a very shallow tree (depth 2–3) may already achieve high performance, since a single <em>rpoB</em> RRDR mutation is often sufficient to confer resistance.</li>
+<li><strong><code>min_samples_split</code>:</strong> the minimum number of samples required to split a node. Higher values prevent splits on small, potentially noisy groups.</li>
+<li><strong><code>min_samples_leaf</code>:</strong> the minimum number of samples that must remain in a leaf. Increasing this smooths the decision boundaries.</li>
+<li><strong><code>criterion</code>:</strong> Gini impurity and entropy (information gain) almost always give equivalent results in practice.</li>
+</ul>
+<blockquote>
+<p><strong>💡 Overfitting vs underfitting</strong>
+Run the same model on the training and test sets and compare performance. A model that scores 0.98 on training but 0.62 on test is overfitting. A model that scores 0.65 on both is underfitting. For rifampicin, even simple models tend to perform well — so pay close attention to sensitivity specifically. Are all resistant samples being caught?</p>
+</blockquote>
+<h3 id="26-performance-metrics-in-an-amr-context">2.6 Performance metrics in an AMR context</h3>
+<p>Accuracy alone is a poor metric for AMR prediction because resistance is often the minority class. A classifier that always predicts susceptible can achieve high accuracy while being clinically useless. The following metrics give a more complete picture:</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Formula</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sensitivity (Recall)</td>
+<td>TP / (TP + FN)</td>
+<td>Proportion of true resistants correctly identified</td>
+</tr>
+<tr>
+<td>Specificity</td>
+<td>TN / (TN + FP)</td>
+<td>Proportion of true susceptibles correctly identified</td>
+</tr>
+<tr>
+<td>F1 Score</td>
+<td>2 × (Prec × Rec) / (Prec + Rec)</td>
+<td>Harmonic mean of precision and recall — useful for imbalanced classes</td>
+</tr>
+<tr>
+<td>AUC</td>
+<td>Area under ROC curve</td>
+<td>Probability that the model ranks a random resistant above a susceptible sample</td>
+</tr>
+<tr>
+<td>Accuracy</td>
+<td>Correct / Total</td>
+<td>Overall correctness — misleading with class imbalance</td>
+</tr>
+</tbody>
+</table>
+<p>For rifampicin resistance prediction, <strong>sensitivity is the priority</strong> — a missed resistant case means a patient receives an ineffective regimen and may deteriorate or transmit MDR-TB. However, specificity still matters: falsely labelling a susceptible patient as resistant leads to unnecessary use of toxic, expensive second-line drugs.</p>
+<hr />
+<h2 id="3-software-used">3. Software Used</h2>
+<p>The environment is pre-installed in your Codespace. The following tools are used in this workshop:</p>
+<table>
+<thead>
+<tr>
+<th>Software</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>bcftools</strong></td>
+<td>Indexing and querying the multi-sample VCF</td>
+</tr>
+<tr>
+<td><strong>Python 3</strong></td>
+<td>All scripting</td>
+</tr>
+<tr>
+<td><strong>pandas</strong></td>
+<td>Data loading and manipulation</td>
+</tr>
+<tr>
+<td><strong>numpy</strong></td>
+<td>Numerical operations and missing value handling</td>
+</tr>
+<tr>
+<td><strong>scikit-learn</strong></td>
+<td>Model training, imputation, and evaluation metrics</td>
+</tr>
+<tr>
+<td><strong>matplotlib</strong></td>
+<td>Visualisation plots</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-running-the-pipeline">4. Running the Pipeline</h2>
+<h3 id="file-structure">File structure</h3>
+<div class="highlight"><pre><span></span><code>machine_learning/
+├── data/
+│   ├── samples.vcf.gz          # Multi-sample VCF (provided)
+│   └── phenotypes.csv          # Drug susceptibility labels (provided)
+├── 1_encode_features.py
+├── 2_split_data.py
+├── 3_train_evaluate.py
+├── 4_visualise.py
+└── plots/                      # Created automatically by script 4
+</code></pre></div>
+<hr />
+<h3 id="step-1-feature-encoding">Step 1 — Feature Encoding</h3>
+<p>Convert the multi-sample VCF into a binary SNP matrix. This uses bcftools to query raw genotype calls and encodes them numerically in Python.</p>
+<div class="highlight"><pre><span></span><code>conda<span class="w"> </span>activate<span class="w"> </span>ml-amr
+<span class="nb">cd</span><span class="w"> </span>machine_learning
+python<span class="w"> </span>1_encode_features.py<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--vcf<span class="w"> </span>data/samples.vcf.gz<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--out_csv<span class="w"> </span>features.csv
+</code></pre></div>
+<p><strong>Expected output:</strong> <code>features.csv</code> — rows = samples, columns = SNPs named <code>CHROM_POS_ALT</code>.</p>
+<p><strong>Check:</strong> open the file and verify the index column contains your sample IDs and that values are 0, 0.5, 1, or NaN.</p>
+<hr />
+<h3 id="step-2-data-splitting">Step 2 — Data Splitting</h3>
+<p>Split the feature matrix and phenotype labels into 80% training and 20% test sets. The random seed ensures reproducibility.</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>2_split_data.py<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--geno_matrix<span class="w"> </span>features.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--metadata<span class="w"> </span>data/phenotypes.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--seed<span class="w"> </span><span class="m">42</span>
+</code></pre></div>
+<p><strong>Output files:</strong> <code>train_geno.csv</code>, <code>train_pheno.csv</code>, <code>test_geno.csv</code>, <code>test_pheno.csv</code></p>
+<blockquote>
+<p><strong>💡 Why fix the random seed?</strong>
+With a fixed seed the split is identical every time you run the script, so results are reproducible and comparable across students. Try changing <code>--seed</code> to a different value and re-running — does model performance change? This is a useful exercise in understanding variance due to data splitting.</p>
+</blockquote>
+<hr />
+<h3 id="step-3-train-evaluate-and-extract-feature-importances">Step 3 — Train, Evaluate, and Extract Feature Importances</h3>
+<p>This is the main script. It trains a model, evaluates it on the held-out test set, prints metrics to the terminal, and saves results to CSV — all without saving the model to disk.</p>
+<h4 id="logistic-regression-l2-penalty-default">Logistic Regression — L2 penalty (default)</h4>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>3_train_evaluate.py<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--geno_train<span class="w">  </span>train_geno.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--pheno_train<span class="w"> </span>train_pheno.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--geno_test<span class="w">   </span>test_geno.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--pheno_test<span class="w">  </span>test_pheno.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w">   </span>LR<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--drug<span class="w">    </span>Rifampicin<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--C<span class="w">       </span><span class="m">1</span>.0<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--penalty<span class="w"> </span>l2<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--prefix<span class="w">  </span>run_LR_C1
+</code></pre></div>
+<h4 id="logistic-regression-l1-penalty-with-strong-regularisation">Logistic Regression — L1 penalty with strong regularisation</h4>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>3_train_evaluate.py<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--geno_train<span class="w">  </span>train_geno.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--pheno_train<span class="w"> </span>train_pheno.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--geno_test<span class="w">   </span>test_geno.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--pheno_test<span class="w">  </span>test_pheno.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w">   </span>LR<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--drug<span class="w">    </span>Rifampicin<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--C<span class="w">       </span><span class="m">0</span>.01<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--penalty<span class="w"> </span>l1<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--prefix<span class="w">  </span>run_LR_L1_C001
+</code></pre></div>
+<h4 id="decision-tree-shallow-depth-3">Decision Tree — shallow (depth 3)</h4>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>3_train_evaluate.py<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--geno_train<span class="w">  </span>train_geno.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--pheno_train<span class="w"> </span>train_pheno.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--geno_test<span class="w">   </span>test_geno.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--pheno_test<span class="w">  </span>test_pheno.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w">     </span>DT<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--drug<span class="w">      </span>Rifampicin<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--max_depth<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--prefix<span class="w">    </span>run_DT_depth3
+</code></pre></div>
+<h4 id="decision-tree-no-depth-limit">Decision Tree — no depth limit</h4>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>3_train_evaluate.py<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--geno_train<span class="w">  </span>train_geno.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--pheno_train<span class="w"> </span>train_pheno.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--geno_test<span class="w">   </span>test_geno.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--pheno_test<span class="w">  </span>test_pheno.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--model<span class="w">     </span>DT<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--drug<span class="w">      </span>Rifampicin<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--max_depth<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--prefix<span class="w">    </span>run_DT_nolimit
+</code></pre></div>
+<blockquote>
+<p><strong>Note:</strong> <code>--max_depth 0</code> means no limit (fully grown tree). You may observe overfitting — high training performance, lower test performance.</p>
+</blockquote>
+<hr />
+<h3 id="step-4-visualise-and-compare">Step 4 — Visualise and Compare</h3>
+<p>Pass the metrics and feature importance CSVs from Step 3 to produce comparison plots. Include as many runs as you like.</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>4_visualise.py<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--metrics<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>run_LR_C1_Rifampicin_LR_metrics.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>run_LR_L1_C001_Rifampicin_LR_metrics.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>run_DT_depth3_Rifampicin_DT_metrics.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>run_DT_nolimit_Rifampicin_DT_metrics.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--fi<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>run_LR_C1_Rifampicin_LR_feature_importance.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>run_LR_L1_C001_Rifampicin_LR_feature_importance.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>run_DT_depth3_Rifampicin_DT_feature_importance.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>run_DT_nolimit_Rifampicin_DT_feature_importance.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--out_dir<span class="w"> </span>plots/
+</code></pre></div>
+<p><strong>Output:</strong> <code>plots/performance_comparison.png</code>, <code>plots/performance_radar.png</code>, <code>plots/feature_importance_comparison.png</code></p>
+<hr />
+<h2 id="5-hyperparameter-experiments">5. Hyperparameter Experiments</h2>
+<p>The table below summarises the hyperparameters available, values to try, and the expected effect. Run multiple combinations and compare with script 4.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Values to try</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--penalty</code></td>
+<td><code>l1</code>, <code>l2</code></td>
+<td>L1 = sparse coefficients (feature selection); L2 = shrinks all coefficients</td>
+</tr>
+<tr>
+<td><code>--C</code></td>
+<td><code>0.01, 0.1, 1, 10, 100</code></td>
+<td>Low C = strong regularisation; High C = fits training data more closely</td>
+</tr>
+<tr>
+<td><code>--max_iter</code></td>
+<td><code>100, 1000, 10000</code></td>
+<td>Increase if you see a ConvergenceWarning</td>
+</tr>
+<tr>
+<td><code>--max_depth</code> (DT)</td>
+<td><code>2, 3, 5, 10, 0</code></td>
+<td>Small = underfitting; 0 = unlimited = likely overfitting</td>
+</tr>
+<tr>
+<td><code>--min_samples_split</code></td>
+<td><code>2, 10, 20, 50</code></td>
+<td>Higher values prevent splits on small noisy groups</td>
+</tr>
+<tr>
+<td><code>--min_samples_leaf</code></td>
+<td><code>1, 5, 10, 20</code></td>
+<td>Higher values create smoother decision boundaries</td>
+</tr>
+<tr>
+<td><code>--criterion</code></td>
+<td><code>gini</code>, <code>entropy</code></td>
+<td>Usually equivalent; entropy slightly more expensive</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Suggested experiment sequence:</strong></p>
+<ol>
+<li>Baseline LR: <code>--C 1.0 --penalty l2</code></li>
+<li>Strong regularisation: <code>--C 0.01</code> — does F1 drop? Does overfitting reduce?</li>
+<li>Switch to L1: same C, <code>--penalty l1</code> — how many features have non-zero coefficients? Do they map to <em>rpoB</em>?</li>
+<li>Baseline DT: <code>--max_depth 5</code></li>
+<li>Shallow DT: <code>--max_depth 2</code> — can a 2-level tree predict rifampicin resistance well? Why?</li>
+<li>Unlimited DT: <code>--max_depth 0</code> — compare training vs test performance explicitly</li>
+<li>Visualise all runs together with script 4 and discuss</li>
+</ol>
+<hr />
+<h2 id="6-interpreting-your-results">6. Interpreting Your Results</h2>
+<h3 id="61-reading-the-terminal-output">6.1 Reading the terminal output</h3>
+<p>Script 3 prints a results block for each run:</p>
+<div class="highlight"><pre><span></span><code>============================================================
+  Drug   : Rifampicin
+  Model  : Logistic Regression | penalty=l2 | C=1.0
+============================================================
+  Accuracy   : 0.961
+  Sensitivity: 0.943
+  Specificity: 0.971
+  F1 Score   : 0.952
+  AUC        : 0.957
+
+  Top 10 features:
+  Feature                        Importance
+  NC_000962.3_761155_T            1.842
+  NC_000962.3_761139_C            1.204
+  NC_000962.3_761161_A            0.987
+  ...
+============================================================
+</code></pre></div>
+<ul>
+<li><strong>For LR:</strong> Importance = the model coefficient. Positive = associated with resistance; negative = associated with susceptibility. Magnitude indicates strength of association.</li>
+<li><strong>For DT:</strong> Importance = mean decrease in Gini impurity contributed by that feature across all splits. Values sum to 1.0 across all features.</li>
+</ul>
+<h3 id="62-validating-top-features-against-known-rpob-resistance-loci">6.2 Validating top features against known <em>rpoB</em> resistance loci</h3>
+<p>Cross-reference your top features against the <em>rpoB</em> RRDR. In <em>M. tuberculosis</em> H37Rv (NC_000962.3), the RRDR spans approximately positions <strong>761,110–761,190</strong>. Key positions to recognise:</p>
+<table>
+<thead>
+<tr>
+<th>H37Rv position (approx.)</th>
+<th>Codon</th>
+<th>Common mutation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>~761,155</td>
+<td>S450</td>
+<td>S450L — most common RIF resistance mutation globally</td>
+</tr>
+<tr>
+<td>~761,139</td>
+<td>H445</td>
+<td>H445Y / H445D</td>
+</tr>
+<tr>
+<td>~761,101</td>
+<td>D435</td>
+<td>D435V</td>
+</tr>
+<tr>
+<td>~761,161</td>
+<td>L452</td>
+<td>L452P</td>
+</tr>
+</tbody>
+</table>
+<p>If your top features fall within this region, the model has learned genuine biology. If high-importance features map outside <em>rpoB</em>, consider two explanations:</p>
+<ul>
+<li><strong>Population structure:</strong> variants that differ between lineages may correlate with resistance without causing it, if resistance prevalence differs between lineages in your dataset. This is why lineage filtering before training is important.</li>
+<li><strong>Overfitting to noise:</strong> increase regularisation and re-run.</li>
+</ul>
+<blockquote>
+<p><strong>💡 A useful sanity check</strong>
+Run with L1 regularisation and a moderately strong C (e.g. 0.1). Count how many features have non-zero coefficients. For rifampicin, a well-regularised model may achieve high performance with only a handful of features — most of which should be <em>rpoB</em> RRDR variants. If you see dozens of non-zero coefficients at non-<em>rpoB</em> positions, try reducing C further.</p>
+</blockquote>
+<h3 id="63-common-pitfalls">6.3 Common pitfalls</h3>
+<ul>
+<li><strong>Perfect training performance, poor test performance:</strong> classic overfitting. Increase regularisation (lower C) or constrain tree depth.</li>
+<li><strong>Low sensitivity with high specificity:</strong> the model is predicting mostly susceptible. Check class balance — if resistant samples are rare, the model may not have enough examples to learn from.</li>
+<li><strong>Top features change completely between runs:</strong> model instability, often due to correlated features (linkage disequilibrium between <em>rpoB</em> variants). L1 regularisation or increasing <code>--min_samples_leaf</code> can help.</li>
+<li><strong>ConvergenceWarning for LR:</strong> increase <code>--max_iter</code> (try 10000).</li>
+<li><strong>Very high performance on all metrics:</strong> this is expected for rifampicin — the RRDR signal is strong. The interesting scientific question is whether a very simple model achieves comparable performance to a complex one, and which features it uses.</li>
+</ul>
+<hr />
+<h2 id="7-phenotype-file-format">7. Phenotype File Format</h2>
+<p>The phenotype file must be a CSV with the following structure:</p>
+<div class="highlight"><pre><span></span><code>sample_id,Rifampicin
+ERR1234567,1
+ERR1234568,0
+ERR1234569,1
+ERR1234570,0
+ERR1234571,
+</code></pre></div>
+<ul>
+<li><strong>First column:</strong> sample identifiers — must match exactly the sample names in the VCF</li>
+<li><strong><code>Rifampicin</code> column:</strong> binary — <code>1</code> = resistant, <code>0</code> = susceptible</li>
+<li><strong>Empty cells:</strong> allowed — samples with missing labels are automatically excluded</li>
+<li><strong>Column name:</strong> must match exactly what you pass to <code>--drug</code> (i.e. <code>--drug Rifampicin</code>)</li>
+</ul>
+<blockquote>
+<p><strong>💡 Sample ID mismatch is the most common error</strong>
+If you get a KeyError or empty results, run <code>bcftools query -l samples.vcf.gz</code> and compare the output with the first column of your phenotype file. Even a single trailing space or character difference will cause a mismatch.</p>
+</blockquote>
+<hr />
+<h2 id="8-discussion-questions">8. Discussion Questions</h2>
+<p>Work through these questions with your group after completing the experiments:</p>
+<ol>
+<li>
+<p>How does changing <code>C</code> in logistic regression affect model performance and the number of features with non-zero coefficients when using L1? At what value of C does performance start to drop noticeably, and why?</p>
+</li>
+<li>
+<p>Compare the top-10 features from logistic regression and the decision tree. Are they the same features? Do they all map to the <em>rpoB</em> RRDR? If not, what might explain the differences?</p>
+</li>
+<li>
+<p>A shallow decision tree (depth 2–3) may achieve very high performance for rifampicin. What does this tell you about the genetic architecture of rifampicin resistance compared to a polygenic trait? How would you expect results to differ if you ran the same pipeline on a more complex phenotype?</p>
+</li>
+<li>
+<p>For clinical deployment of a WGS-based resistance prediction tool, what sensitivity threshold would you set as a minimum? How does this trade off against specificity, and who should make that decision — the microbiologist, the clinician, or the public health team?</p>
+</li>
+<li>
+<p>The dataset has been filtered to a single <em>M. tuberculosis</em> lineage. Why might this matter? What problems could arise if you trained on one lineage and predicted on isolates from another, even if overall accuracy remained high?</p>
+</li>
+<li>
+<p>Heterozygous calls (encoded as 0.5) at <em>rpoB</em> RRDR positions likely indicate mixed infection — a susceptible majority population with a resistant minority. How should these samples be labelled phenotypically, and how would you handle them differently in the pipeline?</p>
+</li>
+<li>
+<p>Rifampicin resistance prediction from WGS is already implemented in tools like TBProfiler and Mykrobe using curated mutation catalogues. What is the advantage of an ML approach? In what scenarios might a catalogue-based approach outperform it?</p>
+</li>
+</ol>
+<hr />
+<h2 id="9-quick-reference">9. Quick Reference</h2>
+<h3 id="all-command-line-flags-script-3">All command-line flags — script 3</h3>
+<div class="highlight"><pre><span></span><code>Required:
+  --geno_train          Training genotype CSV
+  --pheno_train         Training phenotype CSV
+  --geno_test           Test genotype CSV
+  --pheno_test          Test phenotype CSV
+  --model               LR or DT
+  --drug                Drug name (must match phenotype column header exactly)
+  --prefix              Output file prefix
+
+Shared optional:
+  --top_n               Number of top features to report (default: 10)
+
+Logistic Regression:
+  --penalty             l1 or l2 (default: l2)
+  --C                   Inverse regularisation strength (default: 1.0)
+  --max_iter            Solver iterations (default: 1000)
+
+Decision Tree:
+  --max_depth           Tree depth, 0 = unlimited (default: 0)
+  --min_samples_split   Min samples to split a node (default: 2)
+  --min_samples_leaf    Min samples at a leaf (default: 1)
+  --criterion           gini or entropy (default: gini)
+</code></pre></div>
+<h3 id="output-files-from-script-3">Output files from script 3</h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>{prefix}_{drug}_{model}_metrics.csv</code></td>
+<td>Accuracy, Sensitivity, Specificity, F1, AUC</td>
+</tr>
+<tr>
+<td><code>{prefix}_{drug}_{model}_feature_importance.csv</code></td>
+<td>Top N features and their importance scores</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rpob-rrdr-quick-reference-nc_0009623"><em>rpoB</em> RRDR quick reference (NC_000962.3)</h3>
+<table>
+<thead>
+<tr>
+<th>Position range</th>
+<th>Region</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>761,110 – 761,190</td>
+<td>Rifampicin resistance-determining region (RRDR)</td>
+</tr>
+<tr>
+<td>~761,155</td>
+<td>Codon S450 — S450L most common resistance mutation globally</td>
+</tr>
+<tr>
+<td>~761,139</td>
+<td>Codon H445 — H445Y / H445D common</td>
+</tr>
+<tr>
+<td>~761,101</td>
+<td>Codon D435 — D435V common</td>
+</tr>
+<tr>
+<td>~761,161</td>
+<td>Codon L452 — L452P variable resistance level</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.tooltips", "navigation.instant", "navigation.tabs", "toc.integrate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

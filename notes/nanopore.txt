@@ -1,0 +1,72 @@
+Nanopore
+
+Slide 2 – What is Third Generation Sequencing?
+
+Short-read sequencing (Illumina) revolutionised genomics but struggles with repetitive regions, complex genomic structures, and scalability. Third generation sequencing — principally ONT and PacBio — addresses these limitations by sequencing long DNA fragments in a single continuous read, enabling real-time, single-molecule analysis.
+
+
+Slide 3 – Third Generation Sequencing Platforms
+
+This table highlights the key trade-offs between platforms. Illumina remains the gold standard for accuracy and throughput, but at high hardware cost. The MinION offers a dramatically lower hardware entry point (~$1,000) making it accessible for field use, while the PromethION scales up yield significantly for larger projects. PacBio's HiFi reads offer long reads with <1% error — a key advantage over standard ONT.
+Note: "PacBio: Single Molecule Real-Time Sequencing SMRT: Vega" — the line break in the column header splits across lines awkwardly; this may confuse students.
+
+Slide 4 – Nanopore Technology
+
+ONT offers a range of devices spanning from the pocket-sized Flongle (for rapid, low-throughput runs) to the MinION (portable, USB-connected), the GridION (a self-contained multi-flow cell instrument), and the PromethION (high-throughput for population-scale studies). For computationally intensive basecalling, a GPU-equipped HPC cluster is recommended.
+
+Slide 5 – Nanopore Sequencing Technology
+
+The core mechanism of ONT sequencing: a helicase unwinds a DNA duplex and feeds a single strand through a protein nanopore embedded in a membrane. As each base passes through, it causes a characteristic disruption to the ionic current — this current signal (the "squiggle") is then decoded into sequence by a basecalling algorithm. The key advantages for infectious disease work include the ability to sequence in the field and detect epigenetic modifications directly without additional sample processing.
+
+Slide 6 – Sequencing Pipeline
+
+The full ONT workflow from wet lab to data: DNA library preparation (up to a day), sequencing on the MinION (>12 hours for a full run), data transfer via high-speed USB, followed by the computationally demanding basecalling step (Dorado; >24 hours depending on hardware), and finally QC, mapping/assembly, and sequence analysis.
+Note: "Assembely" on slide is a typo — should be "Assembly".
+
+Slide 7 – Library Preparation and Loading
+
+Three ONT library preparation strategies are shown, each with different trade-offs. PCR barcoding (~4 hours) amplifies DNA before barcoding — useful when input DNA is limited but introduces PCR bias. PCR-free barcoding (~1.5 hours) preserves stoichiometry and avoids amplification bias — preferred for WGS. Rapid barcoding (~10 minutes) uses transposase fragmentation for ultra-fast prep — ideal for time-critical applications such as outbreak response, though it may produce shorter reads.
+
+Slide 8 – Flow Cells and Chemistries
+
+Choosing the right combination of flow cell, chemistry, and kit is essential — mismatches can lead to poor sequencing performance or failed runs. The R10.4.1 flow cell is the current generation offering improved accuracy over R9.4.1, particularly for homopolymer regions. Each combination also requires a matched basecalling model in Dorado to achieve optimal accuracy.
+
+Slide 9 – Basecalling
+
+Raw ONT data is an electrical current signal (the "squiggle"), not a sequence. Basecalling converts this signal into nucleotide sequence. The comparison here shows that Dorado substantially reduces the error rate relative to the older Guppy basecaller, producing alignments that are much closer in quality to Illumina data. Dorado offers fast, high-accuracy, and super-accuracy models — the latter being the most accurate but most computationally demanding.
+
+Slide 10 – Adaptive Sampling
+
+Adaptive sampling is a unique ONT feature that allows real-time selective sequencing without physical enrichment. Reads are aligned to a reference genome as they are generated; if a read is identified as non-target, the nanopore voltage is reversed to eject the strand and free the pore for the next molecule. This effectively enriches target regions computationally, increasing sensitivity without additional wet lab steps — particularly powerful for targeted surveillance or when working with complex metagenomic samples.
+
+Slide 11 – MinION Real-Time Sequencing
+
+The MinKNOW software interface allows real-time monitoring of a sequencing run. Key panels to watch include the channel states panel (showing how many pores are actively sequencing, recovering, or inactive), the read length histogram (to assess DNA fragment quality), and translocation speed (which affects accuracy). Always save the PDF report at the end of the run — it contains a summary of run metrics needed for QC.
+
+Slide 12 – Analysis Pipeline
+
+The ONT analysis pipeline broadly mirrors the Illumina workflow but uses ONT-specific tools throughout. Dorado handles basecalling and demultiplexing. PycoQC provides run-level QC visualisations, Kraken2 screens for contamination, and Chopper filters and trims reads by length and quality. For mapping, Minimap2 with the map-ont preset is the standard choice. Variant calling can be done with Clair3 (optimised for long reads), and de novo assembly uses Flye or Canu, both designed to handle the higher error rate of ONT reads.
+
+Slide 13 – Applications of ONT Sequencing
+
+The breadth of ONT applications reflects its versatility. Key areas relevant to this course include WGS for pathogen characterisation, metagenomics for culture-free pathogen detection, real-time sequencing for outbreak response, strain typing, and de novo assembly for organisms lacking a reference genome. The ability to detect methylation directly is an emerging area with implications for understanding gene regulation and host-pathogen interactions.
+
+Slide 14 – Applications: Profiling Malaria Strains
+
+This slide illustrates a real-world clinical workflow: DNA is extracted from a patient blood sample, prepared as a WGS or amplicon-seq library, loaded onto the MinION, basecalled to generate FASTQ data, and then processed against a curated mutation database. The final report provides clinically actionable information including species identification, geographic origin, drug resistance profile, and related strain information — all within a timeframe relevant to patient management.
+
+Slide 15 – Applications: Profiling Malaria Strains (results)
+
+This is an example output from the LSHTM Malaria Profiler tool. The example P. falciparum isolate from Southeast Asia carries resistance mutations against multiple drug classes including chloroquine (MDR1/CRT mutations), pyrimethamine (DHFR mutations), sulfadoxine (PPPK-DHPS mutations), and artemisinin (K13 mutation). This multi-drug resistance profile illustrates why rapid genotypic profiling is clinically important for treatment selection.
+
+Slide 16 – Applications: Long-read Assemblies
+
+Long reads excel at genome assembly because they can span repetitive elements that fragment short-read assemblies into many disconnected pieces. The result is assemblies with fewer contigs, fewer gaps, and better representation of structurally complex regions. This is especially relevant for bacterial genomics, where plasmids and mobile genetic elements (often carrying resistance genes) are frequently missed or misassembled with short reads.
+
+Slide 17 – The Nanopore Practical
+
+In this practical you will work with real ONT data from E. coli isolates collected in a long-term healthcare facility in Japan — a setting where AMR is a major concern. You will assemble each genome, annotate it, and identify AMR and virulence genes. The pan-genome analysis at the end allows you to place your results in a broader comparative context alongside other E. coli isolates, revealing shared and unique gene content across strains.
+
+Slide 18 – Nanopore Sequencing Practical Overview
+
+This flowchart summarises the seven steps of the practical: basecalling → sequencing run QC → mapping ONT data → assembly → assembly assessment → annotation and drug resistance identification → pan-genome analysis. Each step builds on the previous one, so data quality decisions made early (e.g. read filtering thresholds) will propagate through to the final assembly and annotation results.

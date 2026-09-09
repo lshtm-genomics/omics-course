@@ -1,0 +1,81 @@
+Variant Detection
+
+Slide 2 – Outline
+
+This lecture covers both small variants (SNPs, indels) and large structural variants, as well as the tools and pipelines used to detect them from NGS data.
+
+Slide 3 – SNPs
+
+A SNP is the simplest form of genetic variation — a single base change at one position in the genome relative to a reference. Two SNPs are shown here at different positions in the same sequence.
+
+Slide 4 – Synonymous vs Non-Synonymous SNPs
+
+Not all SNPs have functional consequences. Synonymous mutations do not change the amino acid sequence, while non-synonymous mutations do — these are more likely to affect protein function and are often of greater biological interest.
+
+Slide 5 – Indels
+
+Indels are small insertions or deletions, typically under 1kb. They can cause frameshifts if not in multiples of three, potentially disrupting gene function significantly.
+
+Slide 6 – CNVs
+
+CNVs involve changes in the number of copies of a genomic segment. They can result in gene amplification (more copies than the reference) or gene loss, both of which can have major phenotypic consequences.
+
+Slide 7 – Other types of variants
+
+Variants exist on a spectrum from single bases to large chromosomal rearrangements. Many real-world variants are combinations or fall between these defined categories, making detection challenging.
+
+Slide 8 – Detecting SNPs from alignments
+
+When reads are aligned to a reference, true SNPs appear consistently across many reads at the same position. Artifacts, by contrast, typically appear at low frequency, on one strand only, or at the ends of reads — distinguishing them requires statistical models.
+
+Slide 9 – Variant Discovery Pipeline
+
+The standard NGS variant calling workflow moves from raw reads (FASTQ) → alignment (BAM/SAM) → variant calling (VCF) → filtering → downstream analysis. Each step introduces potential sources of error that must be managed.
+
+Slide 10 – VCF format
+
+The VCF is the standard file format for storing variant calls. The header contains metadata about the file and reference, while the body contains one variant per line with information on position, alleles, quality, and per-sample genotypes.
+
+Slide 11 – VCF annotated
+
+This slide highlights the key sections of a VCF: the header (##) lines define the fields, the #CHROM line defines the columns, and the body rows show examples of a SNP, an insertion, and a large structural deletion — each represented differently in the ALT field.
+
+Slide 12 – SNP and indel calling tools
+
+Multiple tools exist for small variant calling, each using a different underlying model. SAMtools/BCFtools uses base-level pileup, GATK uses haplotype assembly, and tools like DeepVariant use neural networks. GATK overlaps all three categories as it incorporates elements of each approach.
+
+Slide 13 – Variant discovery with GATK
+
+GATK's best practices pipeline has three stages: pre-processing (base quality score recalibration), variant discovery (HaplotypeCaller and joint genotyping), and refinement (variant quality score recalibration to remove false positives). It is the gold standard for human genomics but computationally intensive.
+
+Slide 14 – Variant discovery with bcftools
+
+BCFtools uses a simpler two-step approach: mpileup calculates genotype likelihoods at each position, and call selects the most likely genotype. It is considerably faster than GATK and well-suited for bacterial genomics and large cohorts.
+
+Slide 15 – NGS and SVs
+
+The ability to detect structural variants has improved dramatically over time — from microarrays in the 2000s, to short-read NGS in the 2010s, to long-read sequencing now. NGS covers the widest size range of SV detection overall.
+
+Slide 16 – Discovery of structural variants
+
+SVs leave characteristic signatures in aligned short-read data. Depending on the SV type, different signals are exploited: anomalous read pairs, split reads, or changes in coverage depth. Unmapped or single-anchored reads can also indicate novel insertions.
+
+Slide 17 – Paired End (PE) Approach
+
+PE reads have an expected insert size and orientation when mapped to the reference. Deletions cause reads to map further apart than expected; tandem duplications cause reads to map in an inverted orientation. These discordant pairs flag the presence of an SV.
+
+Slide 18 – Split Read (SR) Approach
+
+Some reads span an SV breakpoint and can only be partially aligned. The SR approach maps these "split" reads to either side of the breakpoint, allowing precise localisation of SVs to single base-pair resolution — higher resolution than the PE approach alone.
+
+Slide 19 – Read Depth (RD) Approach
+
+Deletions cause a local drop in read coverage (or zero coverage), while duplications cause elevated coverage relative to the genome-wide average. This approach is particularly powerful for CNV detection but has lower resolution for pinpointing exact breakpoints.
+
+Slide 20 – Summary of SV detection and tools
+
+The four approaches (RD, PE, SR, Assembly) offer increasing resolution from left to right. Many tools combine multiple approaches for improved sensitivity and specificity. The choice of tool depends on the SV type of interest, sequencing data available, and the required resolution.
+
+Slide 21 – Conclusions
+
+Key takeaways: variants range from single bases to large chromosomal events; VCF is the universal format for storing them; small and large variants require different detection strategies; all tools have trade-offs; and the best choice depends on your specific research question.

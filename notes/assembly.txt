@@ -1,0 +1,96 @@
+Assembly
+
+Here are notes for each slide:
+Slide 2 – Outline
+
+This lecture covers the fundamentals of de novo genome assembly: what it is, why it is used, the algorithms that underpin it, and how to evaluate the output. By the end you should understand when assembly is the right approach and how to interpret the results.
+Note: "This practical has 3 core objectives" — the slide says "practical" but this appears to be a lecture. Worth correcting to "This lecture has 3 core objectives."
+
+Slide 3 – What is De novo Assembly?
+
+De novo assembly reconstructs a genome purely from sequencing reads, with no prior knowledge of what the genome should look like. The process has three stages: identifying overlapping sequences between reads, merging those overlaps into longer contiguous sequences (contigs), and then ordering and orienting contigs relative to each other using additional information to form scaffolds.
+
+Slide 4 – Why Assemble?
+
+Assembly is most valuable when reference-based approaches are insufficient. Key scenarios include studying organisms with no existing reference, regions of the genome that are too variable or unstable to map reliably, detecting large structural variants that short reads cannot span, and exploring novel transcripts in transcriptomic data where splicing events may not be represented in an existing annotation.
+
+Slide 5 – Why Assemble? (repeat regions)
+
+This IGV screenshot illustrates a classic problem with short-read mapping: reads pile up chaotically across a repetitive region (highlighted in pink), making it impossible to determine the true sequence or structure from mapping alone. De novo assembly, particularly with long reads, can traverse these regions and resolve the correct sequence.
+
+Slide 6 – Assembly Applications: PE/PPE genes in TB
+
+A real-world example from tuberculosis genomics. The PE/PPE gene family in M. tuberculosis is routinely excluded from analyses because its high GC content and repetitive structure make mapping unreliable. Using a de novo assembly approach, these genes can be reconstructed, enabling their inclusion in phylogenetic and population analyses — here demonstrated across 500 clinical isolates spanning four major lineages.
+Note: "reconstruct these gene" should read "reconstruct these genes."
+
+Slide 7 – Assembly Applications: Sandfly genome
+
+An example of active research at LSHTM using de novo assembly for novel genome discovery. The assembly statistics shown (614 scaffolds, 154 Mb total length, N50 of 48.3 Mb) and a BUSCO completeness score of 94.8% indicate a high-quality genome assembly. The circos plot on the right shows synteny between the newly assembled sandfly genome and related reference sequences.
+
+Slide 8 – Genomic Jigsaw Puzzle
+
+A useful intuitive analogy for students. In reference-based mapping you are placing puzzle pieces onto a known picture. De novo assembly is solving the puzzle with no picture on the box — you must work out the final image purely from the shapes of the pieces and how they fit together. This makes it harder, more computationally demanding, and more prone to errors, but also capable of revealing genuinely novel structure.
+
+Slide 9 – Assembly Challenges
+
+The core difficulties of assembly stem from read ambiguity, data requirements, and computational cost. Repetitive regions mean a single read could plausibly fit in multiple locations, creating forks in the assembly graph that are hard to resolve. High sequencing depth is needed to ensure every region of the genome is covered sufficiently to build reliable overlaps. QC is critical because errors in reads propagate directly into the assembly, and the computational demands — particularly for large eukaryotic genomes — are substantial.
+
+Slide 10 – Assembly Methods
+
+The choice of assembly strategy depends entirely on what sequencing data is available. Short read assembly (e.g. Illumina) produces highly accurate but fragmented assemblies, particularly in repeat regions. Long read assembly (e.g. ONT, PacBio) produces more contiguous assemblies but with higher per-read error rates. Hybrid assembly combines the contiguity of long reads with the accuracy of short reads to get the best of both approaches — this is increasingly the gold standard when resources allow.
+
+Slide 11 – Assembly Pipeline: Short Reads
+
+The short-read assembly pipeline follows four steps: QC and contamination removal (Kraken, Trimmomatic), contig assembly using a de Bruijn graph-based assembler (SPAdes, MEGAHIT, or SOAPdenovo), scaffolding using insert size information from paired-end libraries to order and orient contigs, and finally gap closing to fill the N-filled spaces between scaffolds. It is worth noting that many of these tools are now considered outdated and have largely been superseded by more modern approaches.
+
+Slide 12 – Assembly Pipeline: Long Reads
+
+The long-read pipeline adds an important extra step not needed for short reads: polishing. After QC (Kraken, chimera detection with yacrd, quality/length filtering with Chopper), Flye assembles contigs, ntLink or a reference-guided approach handles scaffolding, tgsgapcloser fills gaps, and finally the assembly is polished with racon by re-aligning the original reads to correct residual errors introduced by the higher per-read error rate of ONT data. Hi-C data can additionally be used to scaffold assemblies into chromosome-level sequences — particularly relevant for eukaryotic genomes.
+
+Slide 13 – Assembly Algorithms: Graph Theory
+
+All assembly algorithms are founded on graph theory. A graph is simply a mathematical structure of nodes (objects) connected by edges (relationships). In the context of genome assembly, different algorithms represent reads or subsequences as nodes and overlaps or shared sequences as edges. The goal in all cases is to find the path through the graph that best represents the original genome sequence.
+
+Slide 14 – De Bruijn Graph Algorithm (steps 1–3)
+
+The De Bruijn graph approach — used by tools such as SPAdes and MEGAHIT — breaks reads into fixed-length subsequences called k-mers using a sliding window. Each k-mer is then split into a prefix and suffix, which become the nodes of the graph, with the k-mer itself represented as a directed edge between them. This step is illustrated with the example genome ATGGCGTGCAATG, decomposed into 3-mers (ATG, TGG, GGC, etc.).
+
+Slide 15 – De Bruijn Graph Algorithm (steps 4–5)
+
+Once the full graph is constructed from all k-mers across all reads, the assembly is found by identifying a path through the graph that visits each edge exactly once — an Eulerian path (or Eulerian cycle for circular genomes). This is mathematically well-defined and computationally tractable, which is why it is preferred for short-read data. Each traversal of an edge effectively stitches two k-mers together, gradually building up the full sequence.
+
+Slide 16 – Overlap Layout Consensus (OLC) Algorithm
+
+The OLC algorithm — used by tools such as Canu and Flye — takes a different approach. Rather than breaking reads into k-mers, it performs pairwise alignment of all reads against each other to identify where they overlap. Reads become nodes in a graph and overlaps become edges. The algorithm then identifies the optimal layout of reads through this graph and computes a consensus sequence for each bundle of reads to produce contigs. OLC is better suited to long reads because the longer read lengths make pairwise overlaps more informative and unique.
+
+Slide 17 – Repeat Graphs
+
+Repeat graphs are the approach used by Flye, specifically designed for long-read data with repetitive genomes. The algorithm first identifies unambiguous segments of the genome (disjointigs), concatenates them, and builds a repeat plot to detect where repetitive sequences occur. A repeat graph is then constructed and long reads are aligned to it, allowing repeats to be resolved by determining whether they are "bridged" (a single read spans the entire repeat and its flanking unique sequence) or "unbridged" (no read spans the full repeat).
+
+Slide 18 – Evaluating Assemblies: N50
+
+When no reference is available to compare against, assembly quality is assessed using internal metrics. The N50 is the most widely used: it is the length such that 50% of the total assembly is contained in contigs of that length or longer. In the example, the total assembly is 400 bp; the N50 is 60 bp, meaning half the assembly is in contigs of size 60 or above. A higher N50 generally indicates a more contiguous assembly, though it should always be considered alongside total assembly size.
+
+Slide 19 – Evaluating Assemblies: BUSCO
+
+BUSCO (Benchmarking Universal Single-Copy Orthologs) complements N50 by assessing biological completeness rather than just contiguity. It searches the assembly for a set of genes expected to be present as single copies in all members of a given clade. A high proportion of complete single-copy BUSCOs indicates a good assembly; fragmented or missing BUSCOs suggest regions of the genome are absent or poorly assembled. The proportion of reads that successfully assembled back to the assembly is an additional sanity check.
+
+Slide 20 – What About After Assembly?
+
+A genome assembly on its own is just sequence — to be biologically useful it needs further analysis. Annotation assigns gene coordinates and predicted functions to the assembled sequence. Ortholog analysis identifies genes shared with other species, enabling comparative genomics. Mitochondrial (or plastid) discovery involves targeted extraction and re-assembly of organellar genomes from the same data. Comparative genomics then places the new genome in the context of related species to identify conserved and divergent features.
+
+Slide 21 – Reference Genome Annotation
+
+Annotation strategy depends on data availability. With RNA-seq data, BRAKER uses the RNA evidence to train and run AUGUSTUS, producing a gene annotation guided by actual expression data. Without RNA data, GALBA instead uses protein sequences from a related species as evidence for AUGUSTUS training and prediction. Additional homology-based approaches (liftoff, metaeuk, NCBI annotation) can complement either pipeline, particularly for well-characterised gene families.
+
+Slide 22 – Mitochondria Discovery
+
+Mitochondrial genomes are typically co-sequenced alongside the nuclear genome but present in much higher copy number, meaning mitochondrial reads are abundant in WGS data. This pipeline exploits that by using protein sequences from a related species' mitochondrion as bait (Diamond blastx), extracting the matching reads from the raw data, filtering by E-value, and then re-assembling just those reads with Flye to produce a standalone mitochondrial genome assembly. This avoids the mitochondrion being misassembled or buried within the much larger nuclear assembly.
+
+Slide 23 – Comparative Genomics: Orthologs
+
+Ortholog analysis (typically using tools such as OrthoFinder) compares protein sequences across multiple species to identify genes that share a common evolutionary origin. Markov clustering groups proteins by sequence similarity into orthologous gene families. This reveals which genes are core to all members of a group (conserved) versus species-specific (accessory), and provides a powerful route to annotating unknown genes in a new assembly by finding their orthologs in better-studied species.
+
+Slide 24 – Practical Overview
+
+In the practical you will apply the full assembly workflow to Mycobacterium tuberculosis data, comparing all three assembly strategies side by side. You will assemble the genome using short reads alone, long reads alone, and a hybrid of both, and then use the assemblies to identify and validate structural variants — allowing you to directly observe how assembly approach affects the detection of genomic variation.

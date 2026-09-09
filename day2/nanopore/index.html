@@ -1,0 +1,1885 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../day1/variant-detection/">
+      
+      
+        <link rel="next" href="../assembly-and-third-gen-sequencing/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Third Generation Sequencing - LSHTM Omics</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#third-generation-sequencing" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="LSHTM Omics" class="md-header__button md-logo" aria-label="LSHTM Omics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LSHTM Omics
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Third Generation Sequencing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../day1/intro-to-linux/" class="md-tabs__link">
+          
+  
+  
+  Day 1
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Day 2
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../day3/microbiome/" class="md-tabs__link">
+          
+  
+  
+  Day 3
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../day4/phylogenetics/" class="md-tabs__link">
+          
+  
+  
+  Day 4
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../additional-info/conda/" class="md-tabs__link">
+          
+  
+  
+  Additional information
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../presentations/presentations/" class="md-tabs__link">
+          
+  
+  
+  Presentations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tasks/intro-to-linux-task/" class="md-tabs__link">
+          
+  
+  
+  Tasks
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LSHTM Omics" class="md-nav__button md-logo" aria-label="LSHTM Omics" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    LSHTM Omics
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../connecting-github/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting connected
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Day 1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/intro-to-linux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/mapping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mapping
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day1/variant-detection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variant detection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 2
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Day 2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Third Generation Sequencing
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Third Generation Sequencing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#activity-briefing-identifying-drug-resistance-from-escherichia-coli-wgs-sequenced-using-oxford-nanopore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Activity Briefing: Identifying drug-resistance from Escherichia coli WGS sequenced using Oxford Nanopore
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Activity Briefing: Identifying drug-resistance from Escherichia coli WGS sequenced using Oxford Nanopore">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-basecalling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1. Basecalling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-quality-control-and-contamination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2. Quality Control and Contamination
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-mapping-and-variant-calling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3. Mapping and Variant Calling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-assembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4. Assembly
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-assess-the-quality-of-your-assembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5. Assess the Quality of your Assembly
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-annotate-your-assembly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6. Annotate your assembly
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-predicting-drug-resistance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7. Predicting Drug-resistance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-8-if-you-have-time-pan-genome-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 8. If you have time: Pan-genome Analysis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-you-do-this-analysis-with-illumina-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Can you do this analysis with Illumina data?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tips-and-tricks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tips and Tricks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assembly-and-third-gen-sequencing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Genome Assembly
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../transcriptomics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transcriptomics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 3
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Day 3
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/microbiome/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Microbiomes Practical
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/methylation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Methylation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day3/eqtl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EQTL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Day 4
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Day 4
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/phylogenetics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phylogenetics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/gwas_ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GWAS &amp; Machine Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../day4/gwas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Genome Wide Association Studies (GWAS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Additional information
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Additional information
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/conda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conda Environments: Why and How to Use Them
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/software/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frequently asked questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../additional-info/settingUpYourMachines/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setting up your machines
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Presentations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Presentations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../presentations/presentations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Presentations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tasks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tasks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tasks/intro-to-linux-task/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intro to Linux task
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tasks/variant-calling-task/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variant Discovery Task
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tasks/basic-phylogeny-task/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phylo Task
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tasks/tb-transcriptomics-task/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transcriptomics Task
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tasks/methylation-task/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Methylation Task: Lineage Assignment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="third-generation-sequencing">Third Generation Sequencing</h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Be sure to use the <code>nanopore</code> Codespace when initiating VM for this practical.</p>
+</div>
+<h2 id="introduction">Introduction</h2>
+<p>In this session, we will be exploring data generated by third-generation nanopore sequencing technology. Developed by Oxford Nanopore Technologies (ONT), these platforms differ from next-generation 'sequencing-by-synthesis' approaches by using an array of microscopic protein pores set into an electrically resistant membrane. Strands of DNA or RNA are guided through these nanopores. Each nanopore is connected to its own electrode and sensor chip, which measures the electric current flowing through the pore. As a molecule passes through, it disrupts the current to produce a characteristic signal known as a 'squiggle' which is stored in 'pod5 files'. This squiggle is decoded in real time using basecalling algorithms to determine the DNA or RNA sequence in fastq format. ONT’s most popular platform, the MinION, is capable of generating single reads longer than 4 megabases.</p>
+<p>The MinION is one of five scalable platforms developed by ONT. High-throughput systems such as the GridION and PromethION use an array of nanopore flow cells to produce between 5 and 48 times more data than the MinION alone — outputting up to 48 TB of data in a single run. More compact solutions such as the Flongle and SmidgION use smaller, single flow cells to generate data. The MinION itself is highly portable, roughly the size of a large USB flash drive. This portability allows researchers to perform sequencing analyses almost anywhere, provided they have the necessary equipment for library preparation and data analysis.</p>
+<p>A complete sequencing run on the MinION can generate upwards of 1 TB of raw data. Processing this volume of data requires substantial computing power, including multicore high-performance processors and large amounts of RAM. This presents a logistical challenge for researchers who wish to take full advantage of the platform’s portability. However, the integration of GPUs (graphics processing units) in recent years has significantly improved analysis workflows.</p>
+<p>The long reads generated by nanopore sequencing are ideal for de novo genome assembly. They can span repetitive regions and structural variants, making it easier to reconstruct genomes with fewer gaps and higher continuity compared to short-read sequencing. Here, we will apply what we have learned about genome assembly and long-read sequencing to <em>E. coli</em> data.</p>
+<h2 id="activity-briefing-identifying-drug-resistance-from-escherichia-coli-wgs-sequenced-using-oxford-nanopore">Activity Briefing: Identifying drug-resistance from <em>Escherichia coli</em> WGS sequenced using Oxford Nanopore</h2>
+<p>In the data repository you have been provided with  <em>Escherichia coli</em> whole genome data that have been sequenced using Oxford Nanopore (MinION). These samples were collected from a long-term health care facility in Japan by a previous study (ENA Project Accession: PRJDB9189). The WGS data will need to be basecalled, quality checked and analysed. Your task is to analyse the Nanopore fastq data to identify drug-resistance genes. </p>
+<h3 id="step-1-basecalling">Step 1. Basecalling</h3>
+<p>We have the pod5 files already in the data directory that are output directly from the nanopore sequencer. Now it is time to basecall the data to get the fastq files. To run dorado correctly, we need a few things:</p>
+<ul>
+<li>The pod5 files</li>
+<li>The barcoding kit. Important to get right due to the signal interpretation from the model, and the specific barcoding sequences given to each model.</li>
+<li>The basecalling model. The machine learning model to decode the nanopore sequencing data. You can learn more about the models here https://dorado-docs.readthedocs.io/en/latest/models/models/. But they essentially come in 3 different versions and correspond to the kits and chemistries used:</li>
+<li>fast (the fastest and least accurate)</li>
+<li>hac (high accuracy)</li>
+<li>sup (super-accurate, the most accurate)</li>
+<li>The sample sheet. Information about the samples you're running, must be in the correct format which you can see here https://dorado-docs.readthedocs.io/en/latest/barcoding/sample_sheet/</li>
+</ul>
+<p>You will find all of these things in the data directory.</p>
+<p>We will now basecall using <strong>dorado</strong>, take notice of the parameters we have used. ** Note you may wish to add --emit-fastq when running in the future.
+<div class="highlight"><pre><span></span><code>conda activate nanopore
+cd nanopore/data
+python ./taxdump/dorado --output-dir dorado_out  --min-qscore 7 --kit-name SQK-NBD114-24 --sample-sheet sample_sheet.csv --trim all
+</code></pre></div>
+Ok, great we have basecalled! However, the file has a generic name, let's move it back to our data directory before we do the quality checks.</p>
+<div class="highlight"><pre><span></span><code>cp ./dorado_out/exp40.fastq.gz Ecoli_Japan_1.fastq.gz
+</code></pre></div>
+<h3 id="step-2-quality-control-and-contamination">Step 2. Quality Control and Contamination</h3>
+<p>The output sequence data is not always ready to be put straight through a pipeline. We must first perform quality control, trimming and filtering for contamination. Nanopore library preparation results in the addition of a sequencing adapter at each end of the fragment. Both the template and complement strands to be sequenced carry the motor protein which means both strands are able to translocate the nanopore. For downstream analysis, it is important to remove these adapters. For this we will use chopper, although sometimes porechop can be used. These programs processes all of the reads in our basecalled fastq file, and removes these adapter sequences. Furthermore, the ligation library prep process can result in conjoined reads, meaning an adapter will be found in the middle of an extra-long read. Trimming tools will identify these, split them and remove the adapters. In addition, if you use a multiplexing kit to maximise sample throughput, this program will split the reads based on the molecular barcode added to each sample. Our dataset only has one sample, so this demultiplexing won't be necessary. Another method of quality control is to check our reads for sequence contamination from other 'off-target' organisms. This is important in order to understand how effective your DNA extraction, enrichment and sequencing was. And secondly, to prevent anomalous reads from being incorporated in to assemblies. Using our basecalled reads we will perform an analysis using Kraken. Kraken is a tool which sifts through each read in a .fastq file and crosschecks it against a database of microorganisms. The output is a taxonomic assignment of each read, enabling to identify if any contamination has occurred.</p>
+<p>Let's first check the quality of the nanopore fastq data. To do this we use a 'sequencing_summary.txt' file generated using dorado. We check quality using <strong>PycoQC</strong>:
+<div class="highlight"><pre><span></span><code>mkdir pycoqc
+pycoQC -f sequencing_summary.txt -o pycoqc/Ecoli_Japan_1_PycoQC.html
+</code></pre></div>
+To download the files they are on the left-hand side. Simply right click PycoQC.html and download to your own folder and open the html file in a web browser of your choice.</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>What can you see from the output? How do you think the read lengths compare to Illumina? How does read quality vary over time?</p>
+</div>
+<p>Next we should trim our files and filter for high-quality reads. To trim the nanopore reads we have used <strong>Chopper</strong> (You could also use Porechop_abi, see Tips and Tricks) to identify any adapter sequences and remove them. This is an important step, especially when performing genome assembly. 
+<div class="highlight"><pre><span></span><code>gunzip -c Ecoli_Japan_1.fastq.gz | chopper -q 10 -l 500 --headcrop 50 --tailcrop 50 | gzip &gt; Ecoli_Japan_1_trim.fastq.gz
+</code></pre></div></p>
+<p>We should also check to see if the sequence contains any contaminants. We have used <strong>Kraken2</strong> to do this. The Kraken reports have been generated for you as they require large databases. The report generated by Kraken is a tab-delimited file which contains a list of all the reads in the input file, and the taxonomic assignment of each read. The first column is the read ID, the second is the taxonomic ID, the third is the length of the read, and the fourth is the lowest common ancestor (LCA) of the taxonomic assignment. The LCA is the lowest taxonomic rank that all the taxonomic assignments share. The report is useful for identifying the taxonomic assignments of reads, and for identifying any contamination in the dataset. We can visualise the results using <strong>recentrifuge (rcf)</strong>, here there is a dependency clash in our conda environment, so let's quickly install using <strong>pip</strong>:
+<div class="highlight"><pre><span></span><code>mkdir kraken
+pip install recentrifuge
+rcf -n ./taxdump/ -k Ecoli_Japan_1.koutput.txt -o kraken/Ecoli_Japan_1_kraken.html
+</code></pre></div>
+To download the files they are on the left-hand side. Simply right click PycoQC.html and download to your own folder and open the html file in a web browser of your choice.</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>What can you determine from the Kraken2 outputs? Is the data clean? Do you think there are contaminants?</p>
+</div>
+<p>Just in case we will filter our fastq files to remove any contaminants. We won't be too stringent with the filtering- we will use the taxa id from NCBI for Enterobacteriaceae (543). To do this we will use <strong>KrakenTools</strong>:</p>
+<div class="highlight"><pre><span></span><code>python ./taxdump/extract_kraken_reads.py --include-children --fastq-output -t 543 -k Ecoli_Japan_1.koutput.txt -r Ecoli_Japan_1.kreport.txt -s Ecoli_Japan_1_trim.fastq.gz -o ./kraken/Ecoli_Japan_1.kraken_filtered.fq
+</code></pre></div>
+<h3 id="step-3-mapping-and-variant-calling">Step 3. Mapping and Variant Calling</h3>
+<p>The mapping and variant calling tools for Nanopore are different than those typically used with Illumina data. Now that we have verified a successful sequencing run, our data are ready to go, we will now map the reads on to a reference genome and perform variant calling. Nanopore fastq data can be mapped to an E.coli reference genome using <strong>Minimap2</strong>. Notice the '-ax map-ont' signalling we are using Nanopore data. Minimap2 creates a SAM file, a type of alignment file. We need to convert this to a BAM file to make the alignment compatible with other software (see tips and tricks). We do this using <strong>samtools</strong>, but we will not do this as part of the practical.
+<div class="highlight"><pre><span></span><code>minimap2 -ax map-ont Ecoli_reference.fasta ./kraken/Ecoli_Japan_1.kraken_filtered.fq &gt; Ecoli_Japan_1_aln.sam
+</code></pre></div></p>
+<p>For variant calling we tend to use variant callers that have been designed specifically for Nanopore data. This includes <strong>Clair3</strong> and <strong>Freebayes</strong>, which can generate outputs that are generally compatible with GATK-based workflows. These tools can be fairly slow so feel free to trial them in your own time!</p>
+<h3 id="step-4-assembly">Step 4. Assembly</h3>
+<p>While mapping aligns reads to a known reference, assembly builds the genome from scratch. Assembly is essential when no good reference exists or when studying structural variation and novel regions. We often assemble bacterial genomes because they are small, circular, and can be fully reconstructed. Assembly allows us to detect plasmids, structural variants, and novel genes that mapping alone might miss. Let's now perform genome assembly using our high-quality, trimmed and filtered nanopore fastq. There are a few different tools we can use, but for Nanopore data <strong>Flye</strong> performs well. This may take 2 minutes or so to run. </p>
+<div class="highlight"><pre><span></span><code>mkdir flye_output
+python ./taxdump/flye --nano-raw ./kraken/Ecoli_Japan_1.kraken_filtered.fq --genome-size 4.6m --out-dir flye_output --threads 4
+</code></pre></div>
+<h3 id="step-5-assess-the-quality-of-your-assembly">Step 5. Assess the Quality of your Assembly</h3>
+<p>Now the assembly is ready we will test its quality using <strong>BUSCO</strong>. BUSCO assesses the quality of genome assemblies by looking at the percentage of conserved genes. Open the short_summary.specific.enterobacteriaceae_odb12.assembly_QC.txt file.</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>What do you think, is it a good assembly?</p>
+</div>
+<h3 id="step-6-annotate-your-assembly">Step 6. Annotate your assembly</h3>
+<p>Ok, so the assembly could be better, but how about we annotate some genes? Genome annotation identifies genes and other important elements within a DNA sequence. It predicts where genes are located and what they might do. This helps scientists understand the biological function of the genome. Annotation is crucial for studying how organisms work and evolve. We will do this using <strong>Prokka</strong>. Prokka is a software tool used for rapid genome annotation of prokaryotic (bacterial and archaeal) genomes. It identifies genes, predicts their functions, and produces standard annotation files. Prokka streamlines the process by using multiple databases and tools in one easy step. It is widely used because it is fast, automated, and produces consistent results. There are lots of other tools for annotating Eukaryotes and beyond, however, this tool is well-developed for bacteria species.</p>
+<p><div class="highlight"><pre><span></span><code>prokka --outdir assembly_annotation --prefix Ecoli_Japan_1 flye_output/assembly.fasta
+</code></pre></div>
+Inside the assembly_annotation directory you will see "Ecoli_Japan_1.gff". This is the most common format for annotations. If you like, you can load this into <strong>igv</strong> to visualise the annotation (Load Genome: Ecoli_Japan_1.fna; Load files:Ecoli_Japan_1.gff). We can analyse the annotations further downstream (See Step 7).</p>
+<h3 id="step-7-predicting-drug-resistance">Step 7. Predicting Drug-resistance</h3>
+<p>Great! We have an assembly and we have annotated it. How are the assemblies useful for downstream analysis? For bacteria specifically, genome assemblies can be input into specialist software to mass screen the contigs (bits of the assembly) for antimicrobial resistance genes, virulence genes or plasmids. <strong>Abricate</strong> is a handy suite of tools that can help us do this by scanning databases of these genes.
+To identify resistance genes:
+<div class="highlight"><pre><span></span><code>mkdir abricate_results
+abricate --db resfinder --quiet flye_output/assembly.fasta &gt; abricate_results/resistance_results.txt
+</code></pre></div>
+To identify virulence genes:
+<div class="highlight"><pre><span></span><code>abricate --db vfdb --quiet flye_output/assembly.fasta &gt; abricate_results/virulence_results.txt
+</code></pre></div>
+To identify plasmids:
+<div class="highlight"><pre><span></span><code>abricate --db plasmidfinder --quiet flye_output/assembly.fasta &gt; abricate_results/plasmid_results.txt
+</code></pre></div></p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>Take a look at some of the resistance genes and plasmids- why might the blaCTX-M-27 gene be of concern?</p>
+</div>
+<h3 id="step-8-if-you-have-time-pan-genome-analysis">Step 8. If you have time: Pan-genome Analysis</h3>
+<p><strong>Please activate a new codespace pangenomes!</strong></p>
+<p>With growth in the size of datasets, there is a need to understand key processes such as selection and evolution taking place in bacteria populations. For example, bacteria can transfer genes to one another, otherwise known as 'horizontal gene transfer' which can spread virulence and resistance genes. One way to identify some of these differences is to look at <em>core</em> or <em>accessory</em> genes within a population: A Pangenome. <strong>Roary</strong> and <strong>Pirate</strong> can be used to compare our gff annotation files to one another and construct a pangenome. Roary constructs bacterial pangenomes by clustering genes extracted from annotated genomes provided in GFF3 format. It uses these annotations to identify core and accessory genes, helping researchers analyse genetic diversity, evolution, and functional differences across strains. Accurate GFF files are critical for reliable gene comparison and clustering. We will use a different conda environment and codespace. This may take a moment or two!
+<div class="highlight"><pre><span></span><code>conda activate roary
+cd pangenomics/all_gffs
+cpanm -f Bio::Roary 
+roary -e --mafft -p 2 *.gff
+</code></pre></div>
+View your files, right click and download  "accessory_binary_genes.fa.newick" and "gene_presence_absence.csv". Open your favourite web browser and load https://jameshadfield.github.io/phandango/#/ to view the roary output files. Drag and drop the "accessory_binary_genes.fa.newick" and "gene_presence_absence.csv" files into phandango. You should get something that looks like this:
+<img alt="image" src="https://github.com/user-attachments/assets/11f76e30-3125-43ae-9614-59e5cb984cb5" /></p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>What do you think the blue blocks mean?</p>
+</div>
+<h3 id="can-you-do-this-analysis-with-illumina-data">Can you do this analysis with Illumina data?</h3>
+<p><strong>Yes!</strong> Anything from steps 4 to 8 can be done with Illumina data. You might just need to switch up your tool box. For bacteria genome assembly with short read data, there are some fantastic tools available such as <strong>shovill</strong>. The short read assemblies can be annotated using <strong>prokka</strong> and analysed using <strong>abricate</strong> as above. Here, we wanted to demonstrate the utility of nanopore data for real-time sequencing and help you gain some experience in the downstream analysis.</p>
+<h3 id="tips-and-tricks">Tips and Tricks</h3>
+<p>You may wish in the future to trim your own reads and make Kraken2 reports by yourself or use porechop to trim reads. These are the commands we have used to generate the data for the practical. These commands take some time or require large databases which is why we have performed these steps in advance. </p>
+<div class="highlight"><pre><span></span><code># Kraken2 
+kraken2 --db /path/to/kraken_db Ecoli_Japan_1.fastq.gz --report Ecoli_Japan_1.kreport.txt --output Ecoli_Japan_1.koutput.txt
+# Trimming
+porechop_abi -abi -i Ecoli_Japan_1.fastq.gz -o Ecoli_Japan_1_trim.fastq.gz
+# Flye
+flye --nano-raw ./kraken/Ecoli_Japan_1.kraken_filtered.fq --genome-size 4.6m --out-dir flye_output --threads 4
+# BUSCO
+busco -i flye_output/assembly.fasta -l enterobacteriaceae_odb12 -c 4 -m genome -o assembly_QC
+# Converting sam to bam
+samtools sort -o Ecoli_Japan_1_aln.bam Ecoli_Japan_1_aln.sam
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.tooltips", "navigation.instant", "navigation.tabs", "toc.integrate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

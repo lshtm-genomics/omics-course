@@ -1,0 +1,84 @@
+Microbiome Notes
+Slide 1 — Title
+•	Welcome to the metagenomics and microbiome lecture
+•	Today we'll cover what the microbiome is, how we sequence it, and how we analyse the data
+•	This will underpin the practical you'll be doing using QIIME2
+________________________________________
+Slide 2 — Microbiome Background
+•	The microbiome refers to all the genetic material of microbial communities in a given environment
+•	This includes bacteria, fungi, viruses and their genes — both on and inside the human body
+•	We can't grow most of these organisms in a lab, so we sequence them directly from samples
+•	A faecal sample, for example, gives us a window into the gut microbiota
+•	We then look at the relative abundance of different microbial signatures across samples
+________________________________________
+Slide 3 — Two Main Sequencing Approaches
+•	There are two main ways to sequence the microbiome: targeted amplicon sequencing and shotgun metagenomics
+•	Amplicon sequencing targets a specific marker gene — most commonly the 16S rRNA gene in bacteria
+•	It's cheaper and simpler but only tells you who is there, not what they're doing
+•	Shotgun metagenomics sequences everything in the sample — all genomic DNA
+•	It produces far more data and can give functional information, but is more expensive and computationally demanding
+________________________________________
+Slide 4 — Pros and Cons
+•	Neither approach is perfect — the choice depends on your research question and budget
+•	Shotgun metagenomics gives richer data but requires more complex analysis and is more prone to introducing bias during sample processing
+•	Amplicon sequencing is simpler to QC and less prone to contamination, but primer choice can bias which organisms you detect
+•	A key question with amplicon sequencing is: are we actually capturing enough variation to answer our question?
+________________________________________
+Slide 5 — 16S Microbiome Analysis
+•	The 16S rRNA gene is the most widely used marker for studying prokaryotic diversity
+•	It is present in all bacteria and archaea, making it a universal target
+•	The gene contains both conserved regions — used for primer binding — and hypervariable regions (V1–V9) that differ between species
+•	This variability is what allows us to tell organisms apart
+•	Importantly, 16S only tells us who is there and in what relative abundance — it cannot tell us about metabolic function
+•	Also be aware that some species share identical 16S sequences in certain regions, or carry multiple copies of the gene, which can complicate interpretation
+________________________________________
+Slide 6 — The 16S Gene
+•	This slide shows the structure of the 16S rRNA gene and its variable regions
+•	The graph on the right shows standardised entropy — the peaks represent the hypervariable regions V1–V9
+•	Higher entropy means more variation between species, so these regions are most useful for distinguishing organisms
+•	Different studies target different variable regions — V3-V4 is one of the most commonly used combinations
+•	The region you choose affects which organisms you detect, which is an important source of bias to be aware of
+________________________________________
+Slide 7 — OTUs
+•	Historically, 16S sequences were grouped into Operational Taxonomic Units, or OTUs
+•	Sequences sharing a defined level of similarity — typically 97% — are clustered into the same OTU
+•	There are three main approaches: de novo clustering, open reference, and closed reference
+•	OTUs have limitations: closely related species can be merged together, and a single nucleotide difference can be biologically meaningful but lost in clustering
+•	They are also difficult to compare across studies and hard to update when new data is added
+________________________________________
+Slide 8 — ASVs
+•	The more modern approach is Amplicon Sequence Variants, or ASVs
+•	Rather than clustering sequences, ASVs use an error model to distinguish true biological sequences from sequencing errors
+•	Each unique sequence is treated as its own variant, giving much higher resolution than OTUs
+•	ASVs are reproducible and can be compared across studies, and don't rely on a reference database until the classification step
+•	The main drawbacks are that low-abundance species may be filtered out, and it requires more computational resources
+________________________________________
+Slide 9 — OTU vs ASV
+•	This table summarises the key differences — ASVs are generally considered superior for most modern analyses
+•	ASVs are more easily shared across studies, independent of reference bias, and capture sequences exactly rather than averaging them
+•	Both approaches are still susceptible to chimeric sequences — artefacts created when two different sequences join during PCR — though ASVs handle chimera identification more simply
+•	The ASV approach is now the standard and is what we will use in the practical
+________________________________________
+Slide 10 — Analysing the Counts Table
+•	Once we have our ASV or OTU table, the real analysis begins
+•	Alpha diversity looks at diversity within a single sample — how many species are there, and how evenly distributed are they?
+•	Beta diversity compares diversity between samples — are two groups of people different in their microbiome composition?
+•	Rarefaction helps us check whether we have sequenced deeply enough to capture the true diversity in our samples
+•	Taxonomic assignment classifies each ASV to a known taxon using a reference database
+•	Differential abundance analysis tests whether specific taxa are significantly more or less abundant between conditions
+________________________________________
+Slide 11 — Composition Analysis: A Cautionary Note
+•	This is an important point that is often overlooked — microbiome data is compositional
+•	We are measuring relative, not absolute, abundances — if one taxon increases, all others appear to decrease even if their true numbers haven't changed
+•	This is illustrated clearly here: samples 1 and 2 look similar in raw counts, but proportionally sample 2 is more like sample 3
+•	Standard statistical tests assume independence between features, which is violated in compositional data
+•	Always use methods designed for compositional data, such as ANCOM or ALDEx2, and consider transformations like the centred log-ratio
+________________________________________
+Slide 12 — Practical
+•	In the practical you will work through a full 16S amplicon analysis pipeline using QIIME2
+•	You will start with quality control and denoising to produce clean ASVs
+•	Then classify those ASVs taxonomically using a reference database
+•	Apply rarefaction to normalise sequencing depth across samples
+•	And finally visualise alpha and beta diversity to interpret differences between groups
+•	Other tools exist for this kind of analysis — Mothur, USEARCH, and STAMP — but QIIME2 is currently the most widely used and well-documented
+

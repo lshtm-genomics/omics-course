@@ -1,0 +1,933 @@
+Phylodynamics & Populations — Lecture Notes
+
+1. Introduction
+
+Phylodynamics = study of how epidemiological, immunological, and evolutionary processes shape viral phylogenies (Volz et al. 2013)
+Different viruses produce characteristically different phylogeny shapes — e.g. measles (bushy/balanced), HIV (ladder-like), influenza (rapidly evolving trunk)
+Host population structure matters: structured vs. unstructured populations produce different tree topologies
+Selection pressure creates imbalanced (ladder-like) trees; neutral evolution produces balanced trees
+
+
+2. Molecular Dating
+
+Molecular clock hypothesis: mutations accumulate at a roughly constant rate for a given organism/gene/strain
+Two clock models:
+
+Strict clock — all lineages evolve at the same rate
+Relaxed clock — rates vary across lineages and over time
+
+
+Root-to-tip regression: plots genetic distance (root-to-tip) against sampling time
+
+Slope = substitution rate (μ = Δd/Δt)
+x-intercept = time of origin (t₀)
+
+
+Limitations of root-to-tip regression:
+
+Assumes constant rate
+Ignores phylogenetic non-independence
+→ Better to use ML or Bayesian frameworks
+
+
+Applications:
+
+2014 Guinea Ebola outbreak: single introduction from reservoir, divergence from Central African variant ~late 2004, crossed into Sierra Leone May 2014
+HIV UK: Subtype B (MSM) had shorter transmission intervals (14 months) vs. Non-B heterosexual (27 months); 25% of B transmissions within 6 months post-infection
+
+
+
+
+3. Population Dynamics
+
+Phylogenies can inform:
+
+Effective population size (Ne) — fraction of population contributing offspring to next generation
+Growth rate of epidemic
+Time of origin
+
+
+Coalescent theory: rate at which lineages merge going backwards in time depends on Ne and population structure
+
+Large Ne → lineages coalesce slowly → long branches deep in tree
+Small Ne → rapid coalescence → short internal branches
+
+
+Skyline plots visualise Ne through time from a phylogeny
+Applications:
+
+HCV in Egypt: dramatic Ne increase mid-1900s, linked to contaminated antischistosomiasis injections
+Zika in Central America: birth-death skyline estimated Re > 1 during 2015–2016 epidemic wave; spread from Honduras outward
+Phylogenies can also directly estimate numbers of infectious vs. removed individuals through time
+
+
+
+
+4. Phylogeography
+
+Reconstructs spatial spread of pathogens by mapping geographic location onto phylogeny branches
+Parsimony approach: assigns ancestral locations minimising total state changes — fast but ignores phylogenetic uncertainty and asymmetric transition rates
+Bayesian MCMC approach (preferred):
+
+Integrates over phylogenetic uncertainty
+Uses molecular clock + demographic priors
+Calculates probability of each ancestral location given observed data
+
+
+Applications:
+
+H5N1 in SE Asia: origin traced, spread animated across time snapshots
+H3N2 influenza globally: SE Asia identified as major source of annual flu strains
+2014 Ebola: detailed dispersal routes mapped at district level within Guinea/Sierra Leone/Liberia
+
+
+
+
+Summary Pipeline
+Pathogen sequences
+      ↓  [Nucleotide substitution model]
+Evolutionary tree
+      ↓  [Molecular clock model]
+Dated tree
+      ↓  [Demographic model]
+Population dynamics
+      ↓  [Translocation model]
+Geographic dispersalper slide notes, bit more detail16:15Here are more detailed per-slide notes:
+
+Slide 1 — Title Slide
+
+Lecture from the Infectious Disease 'Omics module
+From the London School of Hygiene & Tropical Medicine
+Topic: how genomic sequence data from pathogens can be used to understand epidemic dynamics, population history, and geographic spread
+
+
+Slide 2 — Lecture Overview
+
+Four main sections:
+
+Introduction — what is phylodynamics and why does it matter?
+Molecular Dating — how do we use genetic data to estimate timing of evolutionary events?
+Population Dynamics — what can phylogenies tell us about epidemic size and growth?
+Phylogeography — how do we reconstruct the geographic spread of pathogens?
+
+
+These build on each other — molecular dating is a prerequisite for population dynamics and phylogeography
+
+
+Slide 3 — Section Header: Introduction
+
+Slide 4 — Unifying Epidemiology and Evolution (phylogeny examples)
+
+Key insight: different pathogens produce characteristically different phylogeny shapes, reflecting their underlying biology
+Measles: bushy, balanced tree — large, immunising host population, epidemic fade-outs and re-introductions
+Dengue: distinct deep lineages — multiple serotypes co-circulating
+HIV (population): moderately diverse, branching tree — chronic infection, slow evolution at population level
+HIV (within-host): strong ladder shape over time — rapid within-host evolution and selection
+Influenza A: highly ladder-like — strong immune selection pressure drives a single dominant lineage forward through time
+Reference: Grenfell et al. 2004, Science — landmark paper unifying evolutionary and epidemiological dynamics
+Key point: the shape of the tree encodes epidemiological information — we can read population history from phylogenetic structure
+
+
+Slide 5 — Unifying Epidemiology and Evolution (phylodynamics definition)
+
+Formal definition: Phylodynamics = the study of how epidemiological, immunological, and evolutionary processes interact to shape viral phylogenies (Volz et al. 2013)
+Structured host population (left diagram): pathogen circulates in discrete subgroups — produces a tree with distinct clusters corresponding to subpopulations
+Unstructured host population (right diagram): pathogen circulates freely — produces a more evenly branching tree
+Selection vs. no selection:
+
+With selection → imbalanced/ladder tree: one lineage outcompetes others, sweeps through the population
+Without selection → balanced tree: lineages diversify equally, no single dominant strain
+
+
+This means tree topology itself is informative about whether selection is acting
+
+
+Slide 6 — Section Header: Molecular Dating
+
+Slide 7 — The Molecular Clock Hypothesis
+
+Core idea: for a given organism, gene, or strain, mutations accumulate at a roughly constant rate over time
+This allows genetic distance to be converted into calendar time
+Evidence shown: HIV divergence from founder sequence increases linearly over ~10 years post-seroconversion (Shankarappa 1999) — supports clock-like behaviour within hosts
+Two clock models:
+
+Strict clock: every lineage in the tree evolves at exactly the same rate — simple but often unrealistic
+Relaxed clock: rates are allowed to vary across branches and over time — more realistic, especially for datasets spanning long time periods or multiple viral lineages
+
+
+Ebolavirus example (Dudas & Rambaut 2014): genetic distance increases linearly with year of collection across outbreaks from 1976–2014 — demonstrates clock-like evolution between hosts
+The slope of that line = the substitution rate
+
+
+Slide 8 — Estimating Substitution Rates
+
+Method: Root-to-Tip linear regression
+Setup:
+
+Collect sequences sampled at different time points (heterochronous sequences)
+Build a phylogeny — branch lengths are in units of genetic distance (substitutions per site)
+For each sequence (tip), measure: dᵢ = genetic distance from root to tip, tᵢ = calendar date of sampling
+
+
+Plot dᵢ (y-axis) against tᵢ (x-axis) → should give a straight line if clock-like
+Slope (μ) = evolutionary rate in substitutions/site/year
+x-intercept (t₀) = estimated time of origin (when distance = 0, i.e. the root)
+Linear equation: y = μx + a
+Tool commonly used: TempEst (formerly Path-O-Gen) for visualising root-to-tip regression
+Important: this is a quick, exploratory method — has significant limitations (addressed on next slide)
+
+
+Slide 9 — From Genetic Diversity to Time
+
+Once you have a substitution rate, you can convert a genetic distance tree into a time tree
+The x-axis changes from substitutions/site → calendar years
+This "dated phylogeny" (chronogram) allows you to:
+
+Date the origin of an epidemic — the root of the tree corresponds to the most recent common ancestor (MRCA) of all sampled sequences
+Date internal nodes — these correspond to branching events, e.g. when a new outbreak or cluster began
+Estimate transmission intervals — the length of internal branches in time units approximates the interval between transmission events
+
+
+Example shown: HIV phylogeny converted from genetic distance to a time tree spanning ~1995–2005
+Red dashed arrow on time tree = uncertainty interval around node date estimates
+
+
+Slide 10 — Statistical Inference of Evolution Rates
+
+Root-to-tip regression has two major unrealistic assumptions:
+
+Constant evolution rate across all lineages and time — violated if rate varies
+Independence of data points — violated because sequences share evolutionary history (internal branches are not independent)
+
+
+Better approach: incorporate phylogenetic structure directly into statistical inference
+Method:
+
+Each tip is assigned its known sampling time
+Internal nodes are given starting times consistent with their order in the tree (later nodes must be younger than earlier ones)
+The vector of node times and substitution rate are jointly optimised
+Find parameter values giving the best statistical fit to observed sequence data
+
+
+Two main frameworks:
+
+Maximum likelihood (ML): finds the single set of parameter values maximising the likelihood of the data — fast but no uncertainty estimates
+Bayesian MCMC: samples from the posterior distribution of parameters — gives full uncertainty estimates (credible intervals), can incorporate prior knowledge
+
+
+Software: BEAST (Bayesian Evolutionary Analysis by Sampling Trees) is the dominant tool
+
+
+Slide 11 — The Guinea 2014 Ebolavirus Outbreak
+
+Case study applying molecular dating to a real outbreak
+Data: genome sequences from the 2014 West African Ebola epidemic (Gire et al. 2014, Science)
+Key findings from phylogenetic analysis:
+
+Single introduction from the natural reservoir (likely bats) into humans — indicated by all sequences falling in one clade (red arrow in panel A)
+The West African strain diverged from Central African variants around late 2004 — decades before the 2014 epidemic was detected
+The virus spread from Guinea into Sierra Leone in May 2014 (yellow circle in panel B) — confirmed by phylogeographic analysis
+No evidence of further zoonotic spillover events — the epidemic was sustained by human-to-human transmission only
+
+
+Panel B shows: Bayesian posterior probability distributions (bell curves) for timing of key nodes — wide curves = more uncertainty
+Demonstrates power of genomic surveillance for real-time outbreak response
+
+
+Slide 12 — HIV Sexual Transmission in the UK
+
+Study using molecular dating to understand transmission dynamics by route of exposure
+Data: large UK HIV dataset, phylogenetic clusters identified
+Subtype B (primarily MSM — men who have sex with men): 2,126 patients
+
+25% of patients in clusters of >10 individuals
+Median transmission interval: 14 months
+25% of transmissions within 6 months post-infection — suggests acute-phase HIV (high viral load) driving a substantial fraction of onward transmission
+
+
+Non-B subtypes (primarily heterosexual contact): 11,071 patients
+
+Only 5% in large clusters — less clustered transmission network
+Median transmission interval: 27 months — slower spread
+Only 2% of transmissions within 6 months post-infection
+
+
+Implication: early infection transmission is especially important in MSM networks — has major implications for treatment-as-prevention and testing strategies
+References: Lewis et al. 2008 PLoS Med; Hughes et al. 2009 PLoS Path
+
+
+Slide 13 — Section Header: Population Dynamics
+
+Slide 14 — Phylogenies & Population Dynamics
+
+Beyond timing, phylogenies encode information about historical population sizes
+Three key demographic parameters estimable from sequence data:
+
+Effective population size (Ne): the number of individuals in a population who actually contribute genetic material to the next generation — in viral epidemiology, this approximates the number of actively transmitting infections
+Growth rate: how fast the epidemic was expanding (or contracting)
+Time of origin: when the epidemic began
+
+
+Workflow shown:
+
+Multiple aligned sequences → phylogenetic tree → population size through time (sigmoid growth curve shown)
+
+
+The shape of the branching pattern encodes population history:
+
+Many recent coalescent events (lots of branching near the tips) → rapid recent growth
+Few deep coalescent events (long branches near root) → small ancestral population
+
+
+
+
+Slide 15 — The Coalescent Theory
+
+Coalescent theory (Kingman 1982): a mathematical framework describing how gene lineages merge (coalesce) going backwards in time
+Key relationship: rate of coalescence ∝ 1/Ne
+
+Large population → low coalescence rate → long waiting times between merges → long branches
+Small population → high coalescence rate → short waiting times → short branches, rapid merging
+
+
+Population structure also matters — subpopulations slow down coalescence across demes
+Skyline plot: graphical representation of Ne through time, inferred from the pattern of coalescent intervals in a dated phylogeny
+
+Left example: Ne increasing toward present → growing epidemic
+Right example: Ne decreasing toward present → declining epidemic
+
+
+Reference: Lemey et al. 2007 AIDS Rev
+
+
+Slide 16 — The Coalescent Theory II (diagram)
+
+Visual illustration of the coalescent process
+Reading left (present) to right (past): viral population shrinks from many particles at t₀ to a single ancestor at t₋₈
+The phylogeny (top) mirrors this: many tips at the present coalesce into fewer and fewer lineages going back in time
+Key insight: when the population was large, coalescent events are spread out over many time intervals; when population was small, lineages merge quickly
+Internal nodes of the phylogeny correspond to transmission events — their timing and density reveal population dynamics
+
+
+Slide 17 — The Coalescent Theory II (annotated)
+
+Same diagram now annotated with epidemiological interpretations of the skyline:
+
+Number of new infections at the present (left/present end of skyline) = current epidemic size
+Rate of growth (slope of the skyline) = how fast the epidemic expanded or contracted
+Origin of the epidemic (right/past end of skyline) = when the founding lineage first appeared
+
+
+The red line (effective population size skyline) rises steeply from a low value in the past → indicates exponential epidemic growth
+This connects directly to R₀ and epidemic doubling time — rapid coalescence growth rate can be converted to epidemiological growth parameters
+
+
+Slide 18 — Hepatitis C Virus in Egypt
+
+Classic example of coalescent analysis revealing historical epidemic dynamics
+Data: 63 HCV E1 gene sequences from Egypt (Pybus et al. 2003; Drummond et al. 2005)
+Finding: Ne was very low before ~1918, then dramatically increased in the mid-20th century
+Proposed explanation: large-scale parenteral antischistosomiasis treatment campaigns in Egypt (1920s–1980s) used inadequately sterilised needles → massive iatrogenic HCV transmission
+Egypt has one of the highest HCV prevalence rates in the world — this analysis helped explain why
+The 1918 vertical line marks the estimated timing of the Ne increase
+Demonstrates that phylodynamics can uncover historical public health events not recorded in clinical data
+Uncertainty intervals (dashed lines) around skyline = Bayesian credible intervals
+
+
+Slide 19 — Estimating Epidemiological Parameters
+
+More sophisticated models can go beyond Ne to estimate explicit epidemiological parameters directly from phylogenies
+Birth-death models: model the phylogeny as the result of a branching process where:
+
+Birth = transmission event (new infection)
+Death = removal from infectious pool (recovery, death, treatment)
+
+
+Diagram shows: infectious individuals (blue) and removed individuals (orange) estimated simultaneously through time from a viral phylogeny
+
+Branching events in phylogeny (purple) correspond to transmission events
+Tips (sampling events) correspond to removals
+
+
+This allows direct estimation of:
+
+Transmission rate (β)
+Removal/recovery rate (γ)
+R = β/γ (basic reproductive number)
+
+
+Reference: du Plessis & Stadler 2015 Trends in Microbiology
+
+
+Slide 20 — Estimating Zika Re in Central America & Mexico
+
+Application of birth-death skyline model to the 2015–2016 Zika epidemic
+Reference: Thézé et al. 2018, Cell Host & Microbe
+Phylogeny (panel A): colour-coded by country of origin, showing multiple introductions and spread across Central America
+Key phylogeographic finding: ZIKV spread outward from Honduras to other Central American countries
+Re (effective reproductive number) through time (bottom panel) shows four distinct phases:
+
+Early spread within Honduras — Re rising, lineages diversifying
+Rapid radiation across Central America — Re peaks
+Pre-epidemic period — Re fluctuating around 1, virus spreading silently before cases detected
+Observed epidemic peak (April–July 2016) — Re elevated, corresponds to reported case surge
+
+
+Re > 1 = epidemic growing; Re < 1 = epidemic declining (red dashed line = Re of 1)
+Demonstrates genomic epidemiology detecting epidemic spread before clinical surveillance
+
+
+Slide 21 — Section Header: Phylogeography
+
+Slide 22 — Reconstructing Geographic Dispersal
+
+Phylogeography: reconstruction of the geographic history of pathogen spread using phylogenies
+Core idea: assign a geographic location to each branch of the phylogeny — not just the sampled tips, but also inferred ancestral nodes
+Example shown (France/Spain/UK): sequences from three countries — phylogeny used to infer which country the pathogen was in at each point in history
+Parsimony approach:
+
+Ancestral state reconstruction minimising the total number of location changes across the tree
+Quick and intuitive
+Limitations: ignores phylogenetic uncertainty (treats one tree as truth), ignores that some transitions may be more likely than others (e.g. Spain→France more likely than Spain→UK)
+
+
+Reference: Pybus & Rambaut 2009 Nature Reviews Genetics
+
+
+Slide 23 — Reconstructing Geographic Dispersal (Bayesian)
+
+Bayesian MCMC approach overcomes parsimony limitations:
+
+Samples over many possible phylogenies — accounts for phylogenetic uncertainty
+Models asymmetric transition rates between locations (A→B ≠ B→A)
+Integrates geographic dispersal model with molecular clock and demographic model simultaneously
+Output: probability distribution over ancestral locations at each node — not just a single answer
+
+
+Two main implementations:
+
+Discrete phylogeography: locations are discrete categories (countries, cities) — uses continuous-time Markov chain model
+Continuous phylogeography: locations are GPS coordinates — models diffusion across landscape
+
+
+Calibrated under strict/relaxed clock models and coalescent or birth-death demographic priors
+Software: BEAST with BEAGLE library for computational efficiency
+
+
+Slide 24 — Influenza A H5N1 Dispersal in South East Asia
+
+Reference: Lemey et al. 2009 PLoS Computational Biology
+Application of Bayesian discrete phylogeography to avian influenza H5N1
+Left panel: time-resolved phylogeny colour-coded by geographic location (province/country level)
+
+Gs/GD = Goose/Guangdong lineage — the ancestral source lineage
+Multiple distinct colour clusters = multiple geographic introductions and local persistence
+
+
+Right panels: animated snapshots of viral dispersal (May 1997 → 2001 → 2003 → 2005)
+
+Circles = estimated location of ancestral lineages (size = uncertainty)
+Lines = inferred dispersal routes between locations
+Shows progressive spread across SE Asia over time
+
+
+Key finding: China (particularly Guangdong region) was the primary source of H5N1 spread across SE Asia
+Demonstrates utility of phylogeography for identifying source populations and transmission routes
+
+
+Slide 25 — Global Migration of Human Influenza A H3N2
+
+Reference: Bedford et al. 2010 PLoS Pathogens
+Bayesian phylogeographic analysis of seasonal influenza H3N2 on a global scale
+Top panel: large time-resolved phylogeny colour-coded by global region — strong ladder shape confirms selection driving a single trunk lineage
+Trunk = the lineage that gives rise to all future diversity — identifying where the trunk is tells you where the global source population is
+Bottom panel (trunk probability over time): shows which region was on the trunk at each time point
+
+SE Asia and China dominate the trunk probability — identified as the primary global source of seasonal influenza
+USA, Europe, Oceania have periodic trunk contributions but are largely sink populations — they receive virus but don't seed the global epidemic
+
+
+Explains why vaccine strains are often selected from SE Asian sequences
+Classic result — later confirmed and extended by other studies
+
+
+Slide 26 — Early EBOV Dispersal in the 2014 Epidemic
+
+Reference: Dudas et al. 2017, Nature
+High-resolution Bayesian phylogeography of early Ebola spread at the district level within West Africa
+Left panel (phylogeny): tips labelled by district and country; branches colour-coded by inferred location
+
+Guéckédou (Guinea) = origin district, confirmed as the epicentre
+Distinct clades for Guinea (GN), Sierra Leone (SLE), Liberia (LBR)
+
+
+Right panel (map): arrows show inferred dispersal routes between districts
+
+Initial spread within Guinea from Guéckédou → Kissidougou, Macenta, Conakry, Siguiri
+Cross-border spread: Guinea → Kailahun (Sierra Leone) and Guinea → Lofa (Liberia)
+
+
+Posterior probability distributions (bottom left) show timing uncertainty for key dispersal events
+Key finding: early epidemic driven by a small number of long-distance dispersal events rather than continuous spread — highlighting importance of mobility and contact tracing
+This level of resolution only possible with dense genomic sampling during the outbreak
+
+
+Slide 27 — Summary
+
+The full phylodynamic workflow, from raw sequences to biological insights:
+
+StepInputModel UsedOutput1Pathogen gene sequencesNucleotide substitution modelEvolutionary tree2Evolutionary treeMolecular clock modelDated evolutionary tree3Dated treeDemographic modelPopulation dynamics / Ne4Dated treeTranslocation modelGeographic dispersal history
+
+Each layer adds biological interpretation
+Modern tools (especially BEAST) perform steps 2–4 jointly in a single Bayesian analysis — parameters are co-estimated, reducing bias
+Reference: Pybus & Rambaut 2009 Nature Reviews Genetics — recommended reading for overview of the field
+
+
+Slide 28 — References & Acknowledgements
+
+12 key papers cited throughout — all worth reading for deeper understanding
+Acknowledgement to Stéphane Hué (likely the original lecture author)
+Key papers to prioritise:
+
+Grenfell et al. 2004 (Science) — foundational phylodynamics paper
+Pybus & Rambaut 2009 (Nat Rev Genet) — excellent review of methods
+Volz et al. 2013 (PLoS Comp Biol) — modern phylodynamics framework
+Lemey et al. 2009 (PLoS Comp Biol) — Bayesian phylogeography methods
+
+
+can you add in a bullet point on why we do certain steps16:17Here are the updated per-slide notes with added "why we do this" bullets:
+
+Slide 1 — Title Slide
+
+Lecture from the Infectious Disease 'Omics module
+From the London School of Hygiene & Tropical Medicine
+Topic: how genomic sequence data from pathogens can be used to understand epidemic dynamics, population history, and geographic spread
+Why this matters: traditional epidemiology relies on case reports and contact tracing — genomic data adds an independent, objective layer of evidence that can reveal transmission patterns invisible to classical surveillance
+
+
+Slide 2 — Lecture Overview
+
+Four main sections:
+
+Introduction — what is phylodynamics and why does it matter?
+Molecular Dating — how do we use genetic data to estimate timing of evolutionary events?
+Population Dynamics — what can phylogenies tell us about epidemic size and growth?
+Phylogeography — how do we reconstruct the geographic spread of pathogens?
+
+
+These build on each other — molecular dating is a prerequisite for population dynamics and phylogeography
+Why this structure: you cannot infer population dynamics or geographic spread without first anchoring the phylogeny in real time — the sections are deliberately ordered as a pipeline
+
+
+Slide 3 — Section Header: Introduction
+
+Slide 4 — Unifying Epidemiology and Evolution (phylogeny examples)
+
+Key insight: different pathogens produce characteristically different phylogeny shapes, reflecting their underlying biology
+Measles: bushy, balanced tree — large, immunising host population, epidemic fade-outs and re-introductions
+Dengue: distinct deep lineages — multiple serotypes co-circulating
+HIV (population): moderately diverse, branching tree — chronic infection, slow evolution at population level
+HIV (within-host): strong ladder shape over time — rapid within-host evolution and selection
+Influenza A: highly ladder-like — strong immune selection pressure drives a single dominant lineage forward through time
+Reference: Grenfell et al. 2004, Science — landmark paper unifying evolutionary and epidemiological dynamics
+Why we look at tree shape: the topology of a phylogeny is not arbitrary — it is directly shaped by the biology of transmission, immunity, and selection. Reading tree shape lets us infer biological processes without needing direct observation of transmission events
+
+
+Slide 5 — Unifying Epidemiology and Evolution (phylodynamics definition)
+
+Formal definition: Phylodynamics = the study of how epidemiological, immunological, and evolutionary processes interact to shape viral phylogenies (Volz et al. 2013)
+Structured host population (left diagram): pathogen circulates in discrete subgroups — produces a tree with distinct clusters corresponding to subpopulations
+Unstructured host population (right diagram): pathogen circulates freely — produces a more evenly branching tree
+Selection vs. no selection:
+
+With selection → imbalanced/ladder tree: one lineage outcompetes others, sweeps through the population
+Without selection → balanced tree: lineages diversify equally, no single dominant strain
+
+
+Why this distinction matters: identifying whether selection is acting — and on which lineages — is critical for vaccine design, drug resistance monitoring, and predicting which strains will dominate in future seasons
+
+
+Slide 6 — Section Header: Molecular Dating
+
+Slide 7 — The Molecular Clock Hypothesis
+
+Core idea: for a given organism, gene, or strain, mutations accumulate at a roughly constant rate over time
+This allows genetic distance to be converted into calendar time
+Evidence shown: HIV divergence from founder sequence increases linearly over ~10 years post-seroconversion (Shankarappa 1999) — supports clock-like behaviour within hosts
+Two clock models:
+
+Strict clock: every lineage in the tree evolves at exactly the same rate — simple but often unrealistic
+Relaxed clock: rates are allowed to vary across branches and over time — more realistic, especially for datasets spanning long time periods or multiple viral lineages
+
+
+Ebolavirus example (Dudas & Rambaut 2014): genetic distance increases linearly with year of collection across outbreaks from 1976–2014 — demonstrates clock-like evolution between hosts
+Why we need a molecular clock: without assuming some relationship between mutation rate and time, genetic distance is unanchored — we cannot say whether two sequences diverged 10 years or 100 years ago. The clock is what gives phylogenies their temporal dimension
+Why choose strict vs. relaxed: strict clock is appropriate for datasets with short time spans or single genes with consistent selective pressure. Relaxed clock is preferred when sampling spans decades or multiple host species, where rate variation is expected
+
+
+Slide 8 — Estimating Substitution Rates
+
+Method: Root-to-Tip linear regression
+Setup:
+
+Collect sequences sampled at different time points (heterochronous sequences)
+Build a phylogeny — branch lengths are in units of genetic distance (substitutions per site)
+For each sequence (tip), measure: dᵢ = genetic distance from root to tip, tᵢ = calendar date of sampling
+
+
+Plot dᵢ (y-axis) against tᵢ (x-axis) → should give a straight line if clock-like
+Slope (μ) = evolutionary rate in substitutions/site/year
+x-intercept (t₀) = estimated time of origin (when distance = 0, i.e. the root)
+Linear equation: y = μx + a
+Tool commonly used: TempEst (formerly Path-O-Gen) for visualising root-to-tip regression
+Why we do root-to-tip regression first: it is a rapid, visual diagnostic to check whether your data has sufficient temporal signal before committing to a full Bayesian analysis, which is computationally expensive. A poor R² in root-to-tip regression warns you that clock-based inference may be unreliable
+Why heterochronous sequences are essential: if all sequences were sampled at the same time point, you cannot distinguish genetic distance due to time from genetic distance due to rate variation — you need sampling spread across time to calibrate the clock
+
+
+Slide 9 — From Genetic Diversity to Time
+
+Once you have a substitution rate, you can convert a genetic distance tree into a time tree
+The x-axis changes from substitutions/site → calendar years
+This "dated phylogeny" (chronogram) allows you to:
+
+Date the origin of an epidemic — the root of the tree corresponds to the most recent common ancestor (MRCA) of all sampled sequences
+Date internal nodes — these correspond to branching events, e.g. when a new outbreak or cluster began
+Estimate transmission intervals — the length of internal branches in time units approximates the interval between transmission events
+
+
+Example shown: HIV phylogeny converted from genetic distance to a time tree spanning ~1995–2005
+Red dashed arrow on time tree = uncertainty interval around node date estimates
+Why we convert to a time tree: a phylogeny in genetic distance units tells you how different sequences are, but not when events happened. Converting to calendar time is what makes phylogenies epidemiologically actionable — you can now ask "when did this outbreak start?" or "how long between transmission events?" rather than just "how divergent are these sequences?"
+Why uncertainty intervals matter: node date estimates carry statistical uncertainty that must be communicated — overconfident point estimates can mislead public health decisions
+
+
+Slide 10 — Statistical Inference of Evolution Rates
+
+Root-to-tip regression has two major unrealistic assumptions:
+
+Constant evolution rate across all lineages and time — violated if rate varies
+Independence of data points — violated because sequences share evolutionary history (internal branches are not independent)
+
+
+Better approach: incorporate phylogenetic structure directly into statistical inference
+Method:
+
+Each tip is assigned its known sampling time
+Internal nodes are given starting times consistent with their order in the tree (later nodes must be younger than earlier ones)
+The vector of node times and substitution rate are jointly optimised
+Find parameter values giving the best statistical fit to observed sequence data
+
+
+Two main frameworks:
+
+Maximum likelihood (ML): finds the single set of parameter values maximising the likelihood of the data — fast but no uncertainty estimates
+Bayesian MCMC: samples from the posterior distribution of parameters — gives full uncertainty estimates (credible intervals), can incorporate prior knowledge
+
+
+Software: BEAST (Bayesian Evolutionary Analysis by Sampling Trees) is the dominant tool
+Why move beyond regression: root-to-tip regression treats each sequence as an independent observation, which they are not — sequences from the same clade share much of their evolutionary history. Ignoring this produces biased rate estimates and overconfident timing inferences
+Why Bayesian over ML: Bayesian MCMC propagates uncertainty through the entire analysis — you get credible intervals on every parameter including node dates, substitution rates, and population sizes. This is essential for honest scientific inference, especially in outbreak response where decisions are made under uncertainty
+
+
+Slide 11 — The Guinea 2014 Ebolavirus Outbreak
+
+Case study applying molecular dating to a real outbreak
+Data: genome sequences from the 2014 West African Ebola epidemic (Gire et al. 2014, Science)
+Key findings from phylogenetic analysis:
+
+Single introduction from the natural reservoir (likely bats) into humans — indicated by all sequences falling in one clade (red arrow in panel A)
+The West African strain diverged from Central African variants around late 2004 — decades before the 2014 epidemic was detected
+The virus spread from Guinea into Sierra Leone in May 2014 (yellow circle in panel B) — confirmed by phylogeographic analysis
+No evidence of further zoonotic spillover events — the epidemic was sustained by human-to-human transmission only
+
+
+Panel B shows: Bayesian posterior probability distributions (bell curves) for timing of key nodes — wide curves = more uncertainty
+Why determining "single vs. multiple introductions" matters: if multiple independent spillovers from the animal reservoir were ongoing, control strategy would need to focus heavily on the animal-human interface. Confirming a single introduction meant all effort could be directed at interrupting human-to-human transmission chains
+Why the 2004 divergence date is important: it shows the virus was circulating cryptically for ~10 years before detection — highlighting critical gaps in zoonotic disease surveillance in the region
+
+
+Slide 12 — HIV Sexual Transmission in the UK
+
+Study using molecular dating to understand transmission dynamics by route of exposure
+Data: large UK HIV dataset, phylogenetic clusters identified
+Subtype B (primarily MSM — men who have sex with men): 2,126 patients
+
+25% of patients in clusters of >10 individuals
+Median transmission interval: 14 months
+25% of transmissions within 6 months post-infection — suggests acute-phase HIV (high viral load) driving a substantial fraction of onward transmission
+
+
+Non-B subtypes (primarily heterosexual contact): 11,071 patients
+
+Only 5% in large clusters — less clustered transmission network
+Median transmission interval: 27 months — slower spread
+Only 2% of transmissions within 6 months post-infection
+
+
+Why measure transmission intervals from phylogenies: self-reported data on timing of HIV acquisition is highly unreliable — patients often don't know when they were infected. Phylogenetic inference provides an objective, biology-based estimate of transmission timing that doesn't depend on recall or disclosure
+Why the acute transmission finding matters: if 25% of MSM transmissions occur within 6 months of infection (when viral load is highest), then early diagnosis and rapid treatment initiation would have a disproportionately large impact on reducing onward transmission in this network — directly informing "Test and Treat" policy
+References: Lewis et al. 2008 PLoS Med; Hughes et al. 2009 PLoS Path
+
+
+Slide 13 — Section Header: Population Dynamics
+
+Slide 14 — Phylogenies & Population Dynamics
+
+Beyond timing, phylogenies encode information about historical population sizes
+Three key demographic parameters estimable from sequence data:
+
+Effective population size (Ne): the number of individuals in a population who actually contribute genetic material to the next generation — in viral epidemiology, this approximates the number of actively transmitting infections
+Growth rate: how fast the epidemic was expanding (or contracting)
+Time of origin: when the epidemic began
+
+
+Workflow shown:
+
+Multiple aligned sequences → phylogenetic tree → population size through time (sigmoid growth curve shown)
+
+
+The shape of the branching pattern encodes population history:
+
+Many recent coalescent events (lots of branching near the tips) → rapid recent growth
+Few deep coalescent events (long branches near root) → small ancestral population
+
+
+Why estimate Ne rather than census population size: Ne reflects the genetically effective number of transmitters — it is directly linked to genetic diversity and drift. In a viral epidemic, Ne tracks the number of actively transmitting individuals more accurately than reported case counts, which suffer from ascertainment bias and underreporting
+Why this is useful for public health: Ne through time gives you an epidemiological curve derived entirely from genomic data — useful when case surveillance is incomplete, delayed, or unreliable, as is common in resource-limited settings or early outbreak phases
+
+
+Slide 15 — The Coalescent Theory
+
+Coalescent theory (Kingman 1982): a mathematical framework describing how gene lineages merge (coalesce) going backwards in time
+Key relationship: rate of coalescence ∝ 1/Ne
+
+Large population → low coalescence rate → long waiting times between merges → long branches
+Small population → high coalescence rate → short waiting times → short branches, rapid merging
+
+
+Population structure also matters — subpopulations slow down coalescence across demes
+Skyline plot: graphical representation of Ne through time, inferred from the pattern of coalescent intervals in a dated phylogeny
+
+Left example: Ne increasing toward present → growing epidemic
+Right example: Ne decreasing toward present → declining epidemic
+
+
+Why coalescent theory is the mathematical foundation: it provides a rigorous probabilistic model linking observable genetic data (branch lengths, topology) to unobservable population parameters (Ne, growth rate). Without this theoretical framework, we could describe phylogenies but not make quantitative inferences about population history
+Why skyline plots are preferred over fixed demographic models: classic coalescent models assume a fixed demographic function (e.g. constant size, exponential growth). Skyline plots make no such assumption — they are non-parametric and can capture complex, irregular epidemic dynamics that no simple model would fit
+
+
+Slide 16 — The Coalescent Theory II (diagram)
+
+Visual illustration of the coalescent process
+Reading left (present) to right (past): viral population shrinks from many particles at t₀ to a single ancestor at t₋₈
+The phylogeny (top) mirrors this: many tips at the present coalesce into fewer and fewer lineages going back in time
+Key insight: when the population was large, coalescent events are spread out over many time intervals; when population was small, lineages merge quickly
+Internal nodes of the phylogeny correspond to transmission events — their timing and density reveal population dynamics
+Why visualising the coalescent process helps: it makes concrete the abstract link between what we observe (branch lengths in a phylogeny) and what we want to infer (historical population size). The diagram shows intuitively why a large population produces long branches — there are simply more individuals for a lineage to "wait" before finding a common ancestor
+
+
+Slide 17 — The Coalescent Theory II (annotated)
+
+Same diagram now annotated with epidemiological interpretations of the skyline:
+
+Number of new infections at the present (left/present end of skyline) = current epidemic size
+Rate of growth (slope of the skyline) = how fast the epidemic expanded or contracted
+Origin of the epidemic (right/past end of skyline) = when the founding lineage first appeared
+
+
+The red line (effective population size skyline) rises steeply from a low value in the past → indicates exponential epidemic growth
+This connects directly to R₀ and epidemic doubling time — rapid coalescence growth rate can be converted to epidemiological growth parameters
+Why extracting these three parameters is practically important:
+
+Current epidemic size informs resource allocation
+Growth rate informs urgency of intervention and helps calculate R₀
+Time of origin informs retrospective investigation — where and when to look for the index case or animal reservoir event
+
+
+
+
+Slide 18 — Hepatitis C Virus in Egypt
+
+Classic example of coalescent analysis revealing historical epidemic dynamics
+Data: 63 HCV E1 gene sequences from Egypt (Pybus et al. 2003; Drummond et al. 2005)
+Finding: Ne was very low before ~1918, then dramatically increased in the mid-20th century
+Proposed explanation: large-scale parenteral antischistosomiasis treatment campaigns in Egypt (1920s–1980s) used inadequately sterilised needles → massive iatrogenic HCV transmission
+Egypt has one of the highest HCV prevalence rates in the world — this analysis helped explain why
+The 1918 vertical line marks the estimated timing of the Ne increase
+Uncertainty intervals (dashed lines) around skyline = Bayesian credible intervals
+Why this example is so important methodologically: it demonstrates that phylodynamic analysis can recover a historical public health event (the treatment campaigns) from sequence data alone, with no prior knowledge of that event built into the model. The genomic signal was strong enough to implicate a cause that epidemiological records had not conclusively established
+Why Bayesian credible intervals must be shown: the wide uncertainty intervals remind us that 63 sequences give limited statistical power to resolve fine-scale demographic history — honest reporting of uncertainty is essential to avoid overinterpreting results
+
+
+Slide 19 — Estimating Epidemiological Parameters
+
+More sophisticated models can go beyond Ne to estimate explicit epidemiological parameters directly from phylogenies
+Birth-death models: model the phylogeny as the result of a branching process where:
+
+Birth = transmission event (new infection)
+Death = removal from infectious pool (recovery, death, treatment)
+
+
+Diagram shows: infectious individuals (blue) and removed individuals (orange) estimated simultaneously through time from a viral phylogeny
+
+Branching events in phylogeny (purple) correspond to transmission events
+Tips (sampling events) correspond to removals
+
+
+This allows direct estimation of:
+
+Transmission rate (β)
+Removal/recovery rate (γ)
+R = β/γ (basic reproductive number)
+
+
+Why birth-death models are an advance over coalescent models: the coalescent is a neutral model — it doesn't explicitly model transmission and recovery as separate processes. Birth-death models are mechanistically grounded in epidemiological theory, meaning the parameters you estimate (β, γ, R) are directly interpretable in public health terms rather than being proxies like Ne
+Why estimating R from genomic data matters: R is the single most important parameter in epidemic management, but it is difficult to estimate from case counts when surveillance is incomplete. Genomic estimation of R is independent of case ascertainment and can therefore provide a cross-check on surveillance-based estimates
+Reference: du Plessis & Stadler 2015 Trends in Microbiology
+
+
+Slide 20 — Estimating Zika Re in Central America & Mexico
+
+Application of birth-death skyline model to the 2015–2016 Zika epidemic
+Reference: Thézé et al. 2018, Cell Host & Microbe
+Phylogeny (panel A): colour-coded by country of origin, showing multiple introductions and spread across Central America
+Key phylogeographic finding: ZIKV spread outward from Honduras to other Central American countries
+Re (effective reproductive number) through time (bottom panel) shows four distinct phases:
+
+Early spread within Honduras — Re rising, lineages diversifying
+Rapid radiation across Central America — Re peaks
+Pre-epidemic period — Re fluctuating around 1, virus spreading silently before cases detected
+Observed epidemic peak (April–July 2016) — Re elevated, corresponds to reported case surge
+
+
+Re > 1 = epidemic growing; Re < 1 = epidemic declining (red dashed line = Re of 1)
+Why tracking Re through time rather than assuming a constant R₀: epidemic dynamics change — interventions are introduced, population immunity builds, behaviour changes. A static R₀ gives you a single snapshot. Re through time tells you whether the epidemic was accelerating or decelerating at each moment, and whether interventions had measurable impact
+Why the detection of pre-epidemic spread (phase 3) is significant: it shows the virus was circulating silently at Re ≈ 1 for months before case counts triggered an alarm. This demonstrates that genomic surveillance can detect epidemics earlier than clinical surveillance — particularly important for arboviruses where symptoms are non-specific and case ascertainment is poor
+
+
+Slide 21 — Section Header: Phylogeography
+
+Slide 22 — Reconstructing Geographic Dispersal
+
+Phylogeography: reconstruction of the geographic history of pathogen spread using phylogenies
+Core idea: assign a geographic location to each branch of the phylogeny — not just the sampled tips, but also inferred ancestral nodes
+Example shown (France/Spain/UK): sequences from three countries — phylogeny used to infer which country the pathogen was in at each point in history
+Parsimony approach:
+
+Ancestral state reconstruction minimising the total number of location changes across the tree
+Quick and intuitive
+Limitations: ignores phylogenetic uncertainty (treats one tree as truth), ignores that some transitions may be more likely than others (e.g. Spain→France more likely than Spain→UK)
+
+
+Why we need to reconstruct ancestral locations at all: we only have sequences from sampled individuals at known locations — we don't directly observe where the virus was at intermediate time points. Ancestral state reconstruction is the statistical method that lets us infer the unobserved geographic history of unsampled lineages
+Why parsimony alone is insufficient: it finds the most parsimonious explanation but gives no measure of confidence, cannot account for unequal transition probabilities between locations, and treats phylogenetic uncertainty as if it doesn't exist — all of which can lead to confidently wrong conclusions about spread pathways
+Reference: Pybus & Rambaut 2009 Nature Reviews Genetics
+
+
+Slide 23 — Reconstructing Geographic Dispersal (Bayesian)
+
+Bayesian MCMC approach overcomes parsimony limitations:
+
+Samples over many possible phylogenies — accounts for phylogenetic uncertainty
+Models asymmetric transition rates between locations (A→B ≠ B→A)
+Integrates geographic dispersal model with molecular clock and demographic model simultaneously
+Output: probability distribution over ancestral locations at each node — not just a single answer
+
+
+Two main implementations:
+
+Discrete phylogeography: locations are discrete categories (countries, cities) — uses continuous-time Markov chain model
+Continuous phylogeography: locations are GPS coordinates — models diffusion across landscape
+
+
+Calibrated under strict/relaxed clock models and coalescent or birth-death demographic priors
+Software: BEAST with BEAGLE library for computational efficiency
+Why asymmetric transition rates matter: viral spread between locations is rarely symmetric. A major international hub may seed many countries (high outgoing rate) while rarely receiving introductions (low incoming rate). Forcing symmetric rates misspecifies the model and can reverse inferred directionality of spread — critically important when trying to identify source populations
+Why joint estimation of clock + demography + geography is better than sequential estimation: doing each step separately propagates only point estimates forward, discarding uncertainty. Joint Bayesian estimation propagates full uncertainty from sequence data all the way through to geographic conclusions — giving more honest and calibrated inference
+
+
+Slide 24 — Influenza A H5N1 Dispersal in South East Asia
+
+Reference: Lemey et al. 2009 PLoS Computational Biology
+Application of Bayesian discrete phylogeography to avian influenza H5N1
+Left panel: time-resolved phylogeny colour-coded by geographic location (province/country level)
+
+Gs/GD = Goose/Guangdong lineage — the ancestral source lineage
+Multiple distinct colour clusters = multiple geographic introductions and local persistence
+
+
+Right panels: animated snapshots of viral dispersal (May 1997 → 2001 → 2003 → 2005)
+
+Circles = estimated location of ancestral lineages (size = uncertainty)
+Lines = inferred dispersal routes between locations
+Shows progressive spread across SE Asia over time
+
+
+Key finding: China (particularly Guangdong region) was the primary source of H5N1 spread across SE Asia
+Why identifying source populations matters for control: targeted surveillance and culling/vaccination interventions are most efficient when directed at true source populations. Without phylogeographic analysis, every affected region appears equally important — with it, you can prioritise where to focus limited veterinary and public health resources
+Why animating spread over time is informative: static maps show where virus has been but not the sequence or speed of spread. Animated phylogeography reveals the temporal order of introductions, which is essential for evaluating whether border control or movement restrictions could have been effective and at what time points
+
+
+Slide 25 — Global Migration of Human Influenza A H3N2
+
+Reference: Bedford et al. 2010 PLoS Pathogens
+Bayesian phylogeographic analysis of seasonal influenza H3N2 on a global scale
+Top panel: large time-resolved phylogeny colour-coded by global region — strong ladder shape confirms selection driving a single trunk lineage
+Trunk = the lineage that gives rise to all future diversity — identifying where the trunk is tells you where the global source population is
+Bottom panel (trunk probability over time): shows which region was on the trunk at each time point
+
+SE Asia and China dominate the trunk probability — identified as the primary global source of seasonal influenza
+USA, Europe, Oceania have periodic trunk contributions but are largely sink populations — they receive virus but don't seed the global epidemic
+
+
+Why identifying source vs. sink populations matters for vaccine strain selection: WHO influenza vaccine strain recommendations must anticipate which strains will circulate 6–12 months into the future. Knowing that SE Asia/China is the global source means surveillance there should be prioritised and weighted more heavily in vaccine composition decisions — a directly actionable public health finding
+Why the source-sink dynamic is counterintuitive: the USA and Europe have the most sophisticated influenza surveillance systems and report the most cases numerically — yet phylogeography shows they are epidemiological sinks, not sources. This highlights how case burden and epidemiological importance are not the same thing, and why genomic data is needed to reveal true transmission hierarchies
+
+
+Slide 26 — Early EBOV Dispersal in the 2014 Epidemic
+
+Reference: Dudas et al. 2017, Nature
+High-resolution Bayesian phylogeography of early Ebola spread at the district level within West Africa
+Left panel (phylogeny): tips labelled by district and country; branches colour-coded by inferred location
+
+Guéckédou (Guinea) = origin district, confirmed as the epicentre
+Distinct clades for Guinea (GN), Sierra Leone (SLE), Liberia (LBR)
+
+
+Right panel (map): arrows show inferred dispersal routes between districts
+
+Initial spread within Guinea from Guéckédou → Kissidougou, Macenta, Conakry, Siguiri
+Cross-border spread: Guinea → Kailahun (Sierra Leone) and Guinea → Lofa (Liberia)
+
+
+Posterior probability distributions (bottom left) show timing uncertainty for key dispersal events
+Key finding: early epidemic driven by a small number of long-distance dispersal events rather than continuous spread
+Why district-level resolution matters: country-level phylogeography would have told us Guinea preceded Sierra Leone and Liberia — useful but not actionable. District-level resolution identified which specific border crossings and movement corridors transmitted the virus, informing where to deploy contact tracing teams, establish checkpoints, and focus community engagement
+Why identifying long-distance jumps vs. continuous spread changes the response: if spread were predominantly short-range (village to village), a ring containment strategy centred on known cases would work well. The finding that spread was driven by occasional long-distance jumps (likely along major transport routes) indicated that movement surveillance and border monitoring were equally important as local ring vaccination — fundamentally altering the strategic response
+
+
+Slide 27 — Summary
+
+The full phylodynamic workflow, from raw sequences to biological insights:
+
+StepInputModel UsedOutputWhy this step1Pathogen gene sequencesNucleotide substitution modelEvolutionary treeConverts raw sequences into a branching history of relatedness2Evolutionary treeMolecular clock modelDated evolutionary treeAnchors genetic relationships in calendar time3Dated treeDemographic modelPopulation dynamics / NeExtracts epidemic size and growth history4Dated treeTranslocation modelGeographic dispersal historyReconstructs where and when spread occurred
+
+Each layer adds biological interpretation — no single step alone gives the full picture
+Modern tools (especially BEAST) perform steps 2–4 jointly in a single Bayesian analysis — parameters are co-estimated, reducing bias
+Why the pipeline must be followed in order: each step depends on the output of the previous one. A dated tree is meaningless without a reliable clock model; population dynamics inference is unreliable without accurate node dates. Skipping or poorly executing any step propagates error through all subsequent analyses
+Reference: Pybus & Rambaut 2009 Nature Reviews Genetics — recommended reading for overview of the field
+
+
+Slide 28 — References & Acknowledgements
+
+12 key papers cited throughout — all worth reading for deeper understanding
+Acknowledgement to Stéphane Hué (likely the original lecture author)
+Key papers to prioritise:
+
+Grenfell et al. 2004 (Science) — foundational phylodynamics paper
+Pybus & Rambaut 2009 (Nat Rev Genet) — excellent review of methods
+Volz et al. 2013 (PLoS Comp Biol) — modern phylodynamics framework
+Lemey et al. 2009 (PLoS Comp Biol) — Bayesian phylogeography methods
+
+
+Why these references matter: phylodynamics is a fast-moving field — these papers provide the theoretical and methodological foundations that underpin all current tools. Understanding the original papers helps you critically evaluate new methods and software as they emerge
