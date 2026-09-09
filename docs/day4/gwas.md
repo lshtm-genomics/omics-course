@@ -79,10 +79,33 @@ plink --bfile MD --het --out MD
 
 This creates the file MD.het where the third column gives the observed number of homozygous genotypes [O(Hom)] and the fifth column gives the number of non-missing genotypes [N(NM)], per individual. 
 
-Calculate the observed heterozygosity rate per individual using the formula (N(NM) - O(Hom))/N(NM) and create a graph where the proportion of missing SNPs per individual is plotted on the x-axis and the observed heterozygosity rate per individual is plotted on the y-axis. Type: 
-
+Calculate the observed heterozygosity rate per individual using the formula (N(NM) - O(Hom))/N(NM) and create a graph where the proportion of missing SNPs per individual is plotted on the x-axis and the observed heterozygosity rate per individual is plotted on the y-axis. 
+We will do this using R. Open R by typing:
 ```
-R CMD BATCH imiss-vs-het.Rscript
+R
+```
+To make the plot, type:
+```
+imiss <- read.table("MD.imiss", h=T)
+imiss$logF_MISS <- log10(imiss[,6])
+
+het <- read.table("MD.het", h=T)
+het$meanHet <- (het$N.NM. - het$O.HOM.) / het$N.NM.
+
+pdf("MD.imiss-vs-het.pdf")
+plot(imiss$logF_MISS, het$meanHet, col=rgb(0,0,0,0.3), xlim=c(-3,0), ylim=c(0,0.5),
+     pch=20, xlab="Proportion of missing genotypes",
+     ylab="Heterozygosity rate", axes=F)
+axis(2, at=c(0,0.05,0.10,0.15,0.2,0.25,0.3,0.35,0.4,0.45,0.5), tick=T)
+axis(1, at=c(-3,-2,-1,0), labels=c(0.001,0.01,0.1,1))
+abline(h=mean(het$meanHet)-(2*sd(het$meanHet)), col="RED", lty=2)
+abline(h=mean(het$meanHet)+(2*sd(het$meanHet)), col="RED", lty=2)
+abline(v=-1.8322879, col="RED", lty=2)
+dev.off()
+
+# Quit
+quit()
+n
 ```
 
 This creates the graph MD.imiss-vs-het.pdf (see below). 
