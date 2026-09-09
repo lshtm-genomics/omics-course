@@ -411,7 +411,7 @@ spades.py \
     -2 tb_ILL/sample1_2.fastq.gz \
     --nanopore tb_ONT/sample1_ONT.fastq.gz \
     --isolate \
-    -k 21 \
+    -k 55 \
     -t 4 \
     -o hybrid/spades/
 ```
