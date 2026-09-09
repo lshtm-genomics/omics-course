@@ -71,7 +71,6 @@ This will generate 5 files which are needed for BWA. We will then align the RNA-
 
 ```
 bwa mem H37Rv.fa Mtb_L1_1.fastq.gz Mtb_L1_2.fastq.gz | samtools sort - -o Mapping_Mtb/Mtb_L1.bam
-samtools index Mapping_Mtb/Mtb_L1.bam
 ```
 The output will be located in the Mapping_Mtb folder, which is in the transcriptomics directory.
 
@@ -101,7 +100,7 @@ Launch IGV from where you downloaded it and perform the following steps:
 
 ### Interpreting the mapping
 
-This exercise is similar to the one performed before in the Visualisation module. Scroll along the genome and examine the read coverage (the part of the genome mapped goes from position 2420631 to 2920631. To view that part select 'Goto', 'Navigator' and write in 'Goto Base' 2420631). Notice how different genes have different depths of coverage.
+This exercise is similar to the one performed before in the Visualisation module. Scroll along the genome and examine the read coverage (the part of the genome mapped goes from position 2,422,040-2,425,852. To view that part select 'Goto', 'Navigator' and write in 'Goto Base' PE_PGRS38). Notice how different genes have different depths of coverage.
 
 ![](../img/rnaseq_3.png)
 
@@ -144,7 +143,7 @@ One reason to perform RNA-seq under different conditions or in different samples
         Can you find any genes that have differential expression?
 
 
-Now go to gene Rv2161c (position 2422271).
+Now go to transcript ID CCP44938 (gene: Rv2161c) (position 2422271).
 
 ![](../img/rnaseq_5.png)
 
@@ -184,7 +183,7 @@ The parameters we have used in the HTSeq-count command are:
 If you have any doubt about the parameters of the program, type:
 
 ```
-python -m HTSeq.scripts.count
+python -m HTSeq.scripts.count -h
 ```
 
 
