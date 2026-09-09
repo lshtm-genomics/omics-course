@@ -183,7 +183,7 @@ The parameters we have used in the HTSeq-count command are:
 If you have any doubt about the parameters of the program, type:
 
 ```
-python -m HTSeq.scripts.count
+python -m HTSeq.scripts.count -h
 ```
 
 
